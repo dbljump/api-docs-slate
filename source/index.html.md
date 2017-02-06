@@ -11,7 +11,6 @@ includes:
   - users/intro
   - users/get_index
   - users/post_create
-  - errors
 
 search: true
 ---
