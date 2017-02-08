@@ -10,7 +10,10 @@ toc_footers:
 includes:
   - users/intro
   - users/get_index
+  - users/get_record
   - users/post_create
+  - users/patch_update
+  - users/delete
 
 search: true
 ---

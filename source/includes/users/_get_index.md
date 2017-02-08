@@ -114,6 +114,10 @@ Parameter | Default | Description
 page[number] | 1 | Select the page number
 page[size] | 30 | Select the number of users per page
 
+### Success HTTP response code
+
+`200`
+
 ### Errors
 
 HTTP code | Error code | Pointer | Title | Description
