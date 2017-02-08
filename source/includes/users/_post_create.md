@@ -60,19 +60,18 @@ password_confirmation | string | Required. Must match password.
 
 ### Errors
 
-HTTP code | Error code | Pointer
---------- | ---------- | -------
-400 | USER_USERNAME_BLANK | username
-400 | USER_USERNAME_INVALID | username
-400 | USER_USERNAME_TAKEN | username
-400 | USER_USERNAME_TOO_SHORT | username
-400 | USER_USERNAME_TOO_LONG | username
-400 | USER_EMAIL_BLANK | email
-400 | USER_EMAIL_INVALID | email
-400 | USER_EMAIL_TAKEN | email
-400 | USER_EMAIL_TOO_SHORT | email
-400 | USER_EMAIL_TOO_LONG | email
-400 | USER_PASSWORD_BLANK | password
-400 | USER_PASSWORD_TOO_SHORT | password
-400 | USER_PASSWORD_TOO_LONG | password
-400 | USER_PASSWORD_CONFIRMATION_CONFIRMATION | password_confirmation
+HTTP code | Error code | Pointer | Title
+--------- | ---------- | ------- | -----
+400 | USER_USERNAME_BLANK | username | Username is required.
+400 | USER_USERNAME_INVALID | username | Username can only contain letters, numbers, and underscores.
+400 | USER_USERNAME_TAKEN | username | Username has already been taken.
+400 | USER_USERNAME_TOO_SHORT | username | Username cannot be less than 2 characters.
+400 | USER_USERNAME_TOO_LONG | username | Username cannot be more than 24 characters.
+400 | USER_EMAIL_BLANK | email | Email is required.
+400 | USER_EMAIL_INVALID | email | Email must be a valid address.
+400 | USER_EMAIL_TAKEN | email | Email has already been taken.
+400 | USER_EMAIL_TOO_LONG | email | Username cannot be more than 255 characters.
+400 | USER_PASSWORD_BLANK | password | Password is required.
+400 | USER_PASSWORD_TOO_SHORT | password | Password cannot be less than 8 characters.
+400 | USER_PASSWORD_TOO_LONG | password | Password cannot be more than 24 characters.
+400 | USER_PASSWORD_CONFIRMATION_CONFIRMATION | password_confirmation | Password and confirmation must match.
