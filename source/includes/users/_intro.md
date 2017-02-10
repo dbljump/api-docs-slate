@@ -10,11 +10,12 @@ username | string | Required. Must be unique. 2-24 chars. Letters, numbers and u
 email | string | Required. Must be unique. Max 255 chars. Email format only. Downcased on save.
 role | string | Authorization level. Required. Default: `member`. See 'User roles' below.
 avatar | string | User picture. Submissions must be base64 encoded. Must be JPG, GIF or PNG. No size limits.
-given_name | string | Usually the user's first name. Max 20 chars.
-family_name | string | Usually the user's last name. Max 20 chars.
-country_id | integer | Dbljump record ID of the user's home country. Must be a valid country ID.
-birthday | date | The user's date of birth. Must be less than 110 years ago.
-gender | string | Max 20 chars. Form inputs could suggest 'Male' or 'Female' but accept any value.
+given_name | string | Any 1-20 chars.
+family_name | string | Any 1-20 chars.
+gender | string | Any 1-20 chars. Client could suggest 'male' or 'female'.
+birthday | date | Format 'YYYY-MM-DD'. Must not be a future date or > 100 years ago.
+country_id | integer | Must be a valid country record ID.
+avatar | string | Base64 encoded JPEG, GIF or PNG. Any size (needs review).
 
 
 ### User roles
