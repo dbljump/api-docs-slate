@@ -14,6 +14,12 @@ includes:
   - users/post_create
   - users/patch_update
   - users/delete
+  - users/authentications/intro
+  - users/authentications/post_create
+  - users/activations/intro
+  - users/activations/post_create
+  - users/activations/patch_update
+  - users/passwords/intro
 
 search: true
 ---

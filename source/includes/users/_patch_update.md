@@ -98,7 +98,7 @@ avatar | string | Base64 encoded JPEG, GIF or PNG. Any size (needs review).
 
 ### Success HTTP response code
 
-`200`
+`200 OK`
 
 ### Errors
 

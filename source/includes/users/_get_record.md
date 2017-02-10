@@ -57,7 +57,7 @@ Retrieve a single existing user account record. Any user can retrive their own a
 
 ### Success HTTP response code
 
-`200`
+`200 OK`
 
 ### Errors
 

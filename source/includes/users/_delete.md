@@ -11,7 +11,7 @@ Delete an existing user account. A user can delete their own account. An admin c
 
 ### Success HTTP response code
 
-`204`
+`204 No Content`
 
 
 ### Errors

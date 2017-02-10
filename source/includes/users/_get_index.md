@@ -152,7 +152,7 @@ page[size] | 30 | Select the number of users per page
 
 ### Success HTTP response code
 
-`200`
+`200 OK`
 
 ### Errors
 

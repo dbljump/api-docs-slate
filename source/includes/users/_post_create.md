@@ -69,7 +69,7 @@ password_confirmation | string | Required. Must match password.
 
 ### Success HTTP response code
 
-`201`
+`201 Created`
 
 ### Errors
 
