@@ -14,13 +14,15 @@
         "role": "admin",
         "given_name": "Tiki",
         "family_name": "the Kiwi",
-        "full_name": "Tiki the Kiwi",
-        "short_name": "Tiki",
         "gender": "Female",
-        "avatar": {
-          "url": null
-        },
+        "avatar": null,
+        "birthday": "1988-09-01",
         "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": null
+        }
       },
       "links": {
         "self": "http://localhost:3000/users/1"
@@ -35,13 +37,15 @@
         "role": "member",
         "given_name": null,
         "family_name": null,
-        "full_name": "member",
-        "short_name": "member",
         "gender": null,
-        "avatar": {
-          "url": null
-        },
+        "avatar": null,
+        "birthday": null,
         "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": null
+        }
       },
       "links": {
         "self": "http://localhost:3000/users/3"
@@ -56,16 +60,41 @@
         "role": "editor",
         "given_name": null,
         "family_name": null,
-        "full_name": "editor",
-        "short_name": "editor",
         "gender": null,
-        "avatar": {
-          "url": null
-        },
+        "avatar": null,
+        "birthday": null,
         "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": null
+        }
       },
       "links": {
         "self": "http://localhost:3000/users/4"
+      }
+    },
+    {
+      "id": "5",
+      "type": "users",
+      "attributes": {
+        "email": "new@user.com",
+        "username": "new_user",
+        "role": "member",
+        "given_name": null,
+        "family_name": null,
+        "gender": null,
+        "avatar": null,
+        "birthday": null,
+        "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": null
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/users/5"
       }
     },
     {
@@ -77,23 +106,30 @@
         "role": "admin",
         "given_name": "Neil",
         "family_name": "Wheatley",
-        "full_name": "Neil Wheatley",
-        "short_name": "Neil",
         "gender": "Male",
-        "avatar": {
-          "url": "/uploads/user_avatar/2/1701282319.jpg"
-        },
+        "avatar": "/uploads/user_avatar/2/1701282319.jpg",
+        "birthday": "1980-02-14",
         "jwt": null
       },
+      "relationships": {
+        "country": {
+          "data": {
+            "id": "219",
+            "type": "place_countries"
+          },
+          "links": {
+            "country": "http://localhost:3000/places/countries/united-kingdom"
+          }
+        }
+      },
       "links": {
-        "self": "http://localhost:3000/users/2",
-        "avatar": "http://localhost:3000/uploads/user_avatar/2/1701282319.jpg"
+        "self": "http://localhost:3000/users/2"
       }
     }
   ],
   "links": {},
   "meta": {
-    "total_items": 4
+    "total_items": 5
   }
 }
 ```

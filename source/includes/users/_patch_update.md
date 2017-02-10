@@ -4,16 +4,22 @@
 
 ```JSON
 {
-  "data": {
-    "type": "users",
-    "id": 5,
-    "attributes": {
-      "username": "updated_username",
-      "email": "updated@user.com",
-      "role": "editor",
-      "password": "newpassword",
-      "password_confirmation": "newpassword"
-    }
+ "data": {
+	"type": "users",
+	"id": "4",
+	"attributes": {
+		"email": "updated@email.com",
+		"username": "updated_username",
+		"password": "newpassword",
+		"password_confirmation": "newpassword",
+		"role": "editor",
+		"given_name": "Updated",
+		"family_name": "Name",
+		"gender": "male",
+		"birthday": "1985-07-20",
+		"country_id": 5,
+		"avatar": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw=="
+	}
   }
 }
 ```
@@ -23,16 +29,42 @@
 ```JSON
 {
   "data": {
+    "id": "4",
     "type": "users",
-    "id": "5",
     "attributes": {
+      "email": "updated@email.com",
       "username": "updated_username",
-      "email": "updated@user.com",
-      "role": "editor"
+      "role": "editor",
+      "given_name": "Updated",
+      "family_name": "Name",
+      "gender": "male",
+      "avatar": "/uploads/user_avatar/4/1702101051.gif",
+      "birthday": "1985-07-20"
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "5",
+          "type": "place_countries"
+        },
+        "links": {
+          "country": "http://localhost:3000/places/countries/andorra"
+        }
+      }
     },
     "links": {
-      "self": "http://localhost:3000/users/5"
+      "self": "http://localhost:3000/users/4"
     }
+  },
+  "meta": {
+    "keywords": "updated_username, updated name, user, dbljump, video games, pc games, gaming",
+    "description": "Updated Name is a member at Dbljump, the video game reference.",
+    "created_at": "2017-01-28T23:19:21.362Z",
+    "updated_at": "2017-02-10T10:51:46.844Z",
+    "last_signed_in_at": null,
+    "last_sign_in_ip": null,
+    "sign_in_count": 0,
+    "activated_at": "2017-01-28T23:19:21.285Z"
   }
 }
 ```
@@ -57,6 +89,12 @@ email | string | Required. Must be unique. Max 255 chars. Email format only. Dow
 role | string | Authorization level. Must be 'member', 'editor' or 'admin'. Can only be updated by admin users.
 password | string | New password. Any 8-24 chars.
 password_confirmation | string | Required if changing password. Must match password.
+given_name | string | Any 1-20 chars.
+family_name | string | Any 1-20 chars.
+gender | string | Any 1-20 chars. Client could suggest 'male' or 'female'.
+birthday | date | Format 'YYYY-MM-DD'. Must not be a future date or > 100 years ago.
+country_id | integer | Must be a valid country record ID.
+avatar | string | Base64 encoded JPEG, GIF or PNG. Any size (needs review).
 
 ### Success HTTP response code
 
@@ -80,5 +118,10 @@ HTTP code | Error code | Pointer | Title
 400 | USER_PASSWORD_TOO_SHORT | password | Password cannot be less than 8 characters.
 400 | USER_PASSWORD_TOO_LONG | password | Password cannot be more than 24 characters.
 400 | USER_PASSWORD_CONFIRMATION_CONFIRMATION | password_confirmation | Password and confirmation must match.
+400 | USER_GIVEN_NAME_TOO_LONG | given_name | Given name cannot be more than 20 characters.
+400 | USER_FAMILY_NAME_TOO_LONG | family_name | Family name cannot be more than 20 characters.
+400 | USER_GENDER_TOO_LONG | gender | Gender cannot be more than 20 characters.
+400 | USER_BIRTHDAY_INCLUSION | birthday | Birthday must not be a future date, or over 100 years ago.
+400 | USER_COUNTRY_ID_INVALID | country_id | Country must be valid.
 401 | USER_LOGIN_EXPIRED | n/a | The JWT in the header has expired.
 401 | USER_UNAUTHORIZED | n/a | The user isn't an admin, or there's an authentication problem.

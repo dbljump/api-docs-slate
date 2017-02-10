@@ -21,21 +21,30 @@
 ```JSON
 {
   "data": {
-    "id": "5",
+    "id": "6",
     "type": "users",
     "attributes": {
       "email": "new@user.com",
       "username": "new_user",
       "role": "member",
-      "full_name": "new_user",
-      "short_name": "new_user",
-      "avatar": {
-        "url": null
-      }
+      "given_name": null,
+      "family_name": null,
+      "gender": null,
+      "avatar": null
     },
     "links": {
-      "self": "http://localhost:3000/users/5"
+      "self": "http://localhost:3000/users/6"
     }
+  },
+  "meta": {
+    "keywords": "new_user, new_user, user, dbljump, video games, pc games, gaming",
+    "description": "new_user is a member at Dbljump, the video game reference.",
+    "created_at": "2017-02-10T02:17:45.542Z",
+    "updated_at": "2017-02-10T02:17:45.997Z",
+    "last_signed_in_at": null,
+    "last_sign_in_ip": null,
+    "sign_in_count": 0,
+    "activated_at": null
   }
 }
 ```
