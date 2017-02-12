@@ -27,7 +27,7 @@
       "email": "new@user.com",
       "username": "new_user",
       "role": "member",
-      "given_name": null,
+      "given_names": null,
       "family_name": null,
       "gender": null,
       "avatar": null

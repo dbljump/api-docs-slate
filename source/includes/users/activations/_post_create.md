@@ -25,7 +25,7 @@
       "email": "haggar@user.com",
       "username": "haggar",
       "role": "member",
-      "given_name": null,
+      "given_names": null,
       "family_name": null,
       "gender": null,
       "avatar": null,

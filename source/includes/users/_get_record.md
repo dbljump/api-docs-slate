@@ -11,7 +11,7 @@
       "email": "neil@example.com",
       "username": "neil",
       "role": "admin",
-      "given_name": "Neil",
+      "given_names": "Neil",
       "family_name": "Wheatley",
       "gender": "Male",
       "avatar": "/uploads/user_avatar/2/1701282319.jpg",

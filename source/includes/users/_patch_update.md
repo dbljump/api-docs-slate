@@ -13,7 +13,7 @@
 		"password": "newpassword",
 		"password_confirmation": "newpassword",
 		"role": "editor",
-		"given_name": "Updated",
+		"given_names": "Updated",
 		"family_name": "Name",
 		"gender": "male",
 		"birthday": "1985-07-20",
@@ -35,7 +35,7 @@
       "email": "updated@email.com",
       "username": "updated_username",
       "role": "editor",
-      "given_name": "Updated",
+      "given_names": "Updated",
       "family_name": "Name",
       "gender": "male",
       "avatar": "/uploads/user_avatar/4/1702101051.gif",
@@ -89,7 +89,7 @@ email | string | Required. Must be unique. Max 255 chars. Email format only. Dow
 role | string | Authorization level. Must be 'member', 'editor' or 'admin'. Can only be updated by admin users.
 password | string | New password. Any 8-24 chars.
 password_confirmation | string | Required if changing password. Must match password.
-given_name | string | Any 1-20 chars.
+given_names | string | Any 1-20 chars.
 family_name | string | Any 1-20 chars.
 gender | string | Any 1-20 chars. Client could suggest 'male' or 'female'.
 birthday | date | Format 'YYYY-MM-DD'. Must not be a future date or > 100 years ago.
@@ -118,7 +118,7 @@ HTTP code | Error code | Pointer | Title
 400 | USER_PASSWORD_TOO_SHORT | password | Password cannot be less than 8 characters.
 400 | USER_PASSWORD_TOO_LONG | password | Password cannot be more than 24 characters.
 400 | USER_PASSWORD_CONFIRMATION_CONFIRMATION | password_confirmation | Password and confirmation must match.
-400 | USER_GIVEN_NAME_TOO_LONG | given_name | Given name cannot be more than 20 characters.
+400 | USER_GIVEN_NAMES_TOO_LONG | given_names | Given name cannot be more than 20 characters.
 400 | USER_FAMILY_NAME_TOO_LONG | family_name | Family name cannot be more than 20 characters.
 400 | USER_GENDER_TOO_LONG | gender | Gender cannot be more than 20 characters.
 400 | USER_BIRTHDAY_INCLUSION | birthday | Birthday must not be a future date, or over 100 years ago.

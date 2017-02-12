@@ -10,7 +10,7 @@ username | string | Required. Must be unique. 2-24 chars. Letters, numbers and u
 email | string | Required. Must be unique. Max 255 chars. Email format only. Downcased on save.
 role | string | Authorization level. Required. Default: `member`. See 'User roles' below.
 avatar | string | User picture. Submissions must be base64 encoded. Must be JPG, GIF or PNG. No size limits.
-given_name | string | Any 1-20 chars.
+given_names | string | Any 1-20 chars.
 family_name | string | Any 1-20 chars.
 gender | string | Any 1-20 chars. Client could suggest 'male' or 'female'.
 birthday | date | Format 'YYYY-MM-DD'. Must not be a future date or > 100 years ago.

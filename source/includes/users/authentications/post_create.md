@@ -25,7 +25,7 @@
       "email": "tiki@dbljump.com",
       "username": "tikithekiwi",
       "role": "admin",
-      "given_name": "Tiki",
+      "given_names": "Tiki",
       "family_name": "the Kiwi",
       "gender": "Female",
       "avatar": null,
