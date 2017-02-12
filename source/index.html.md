@@ -20,6 +20,8 @@ includes:
   - users/activations/post_create
   - users/activations/patch_update
   - users/passwords/intro
+  - users/passwords/post_create
+  - users/passwords/patch_update
 
 search: true
 ---
