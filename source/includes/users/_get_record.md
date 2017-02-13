@@ -53,7 +53,7 @@ Retrieve a single existing user account record. Any user can retrive their own a
 
 ### HTTP request
 
-`GET /users/id` (replace `id` with user record ID)
+`GET /users/'id'` (replace `id` with user record ID)
 
 ### Success HTTP response code
 

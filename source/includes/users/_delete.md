@@ -7,7 +7,7 @@ Delete an existing user account. A user can delete their own account. An admin c
 
 ### HTTP request
 
-`DELETE /users/id` (replace `id` with user record ID)
+`DELETE /users/'id'` (replace `id` with user record ID)
 
 ### Success HTTP response code
 
