@@ -17,6 +17,13 @@ birthday | date | Format 'YYYY-MM-DD'. Must not be a future date or > 100 years 
 country_id | integer | Must be a valid country record ID.
 avatar | string | Base64 encoded JPEG, GIF or PNG. Any size (needs review).
 
+### Format validation regular expressions
+
+Attribute | Ruby | JavaScript
+--------- | ---- | -----------
+username | /^[a-zA-Z0-9](\w/&#124;\.)*[a-zA-Z0-9]$/ | ^[a-zA-Z0-9](\\w&#124;\\.)*[a-zA-Z0-9]$
+email | /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i | ^[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+$
+
 
 ### User roles
 
