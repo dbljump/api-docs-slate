@@ -7,8 +7,8 @@
   "data": {
     "type": "user_passwords",
     "id": "Bml5G2MnBqMJVFacD243tffPmKrmnwX",
-    "email": "user@example.com",
     "attributes": {
+      "email": "user@example.com",
       "password": "new_password",
       "password_confirmation": "new_password"
     }
