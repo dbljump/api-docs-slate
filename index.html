@@ -1,0 +1,1626 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Dbljump REST API Reference</title>
+    <link rel="shortcut icon" type="image/ico" href="images/favicon.ico">
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #272822;
+  background-color: #f92672;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #f8f8f2;
+}
+.highlight .p, .highlight .pi {
+  color: #f8f8f2;
+}
+.highlight .gi {
+  color: #a6e22e;
+}
+.highlight .gd {
+  color: #f92672;
+}
+.highlight .gh {
+  color: #66d9ef;
+  background-color: #272822;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #ae81ff;
+}
+.highlight .kc {
+  color: #fd971f;
+}
+.highlight .kt {
+  color: #fd971f;
+}
+.highlight .kd {
+  color: #fd971f;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #a6e22e;
+}
+.highlight .sr {
+  color: #a1efe4;
+}
+.highlight .si {
+  color: #cc6633;
+}
+.highlight .se {
+  color: #cc6633;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #66d9ef;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #a6e22e;
+}
+.highlight .ss {
+  color: #a6e22e;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;JSON&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="JSON">JSON</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to the DblJump REST API. Dbljump is a video game reference application built with Ruby on Rails 5. This API follows the <a href="http://jsonapi.org">JSON API</a> specification.</p>
+
+<aside class="notice">
+All of your requests should include the following HTTP headers. Replace <code>vnum</code> with the API version you want to use (1 is the latest).<br /><br />
+<code>Accept:application/vnd.api+json; version='vnum'<br />
+Content-Type:application/vnd.api+json; version='vnum'</code></aside>
+
+<aside class="notice">
+This API uses <a href="https://jwt.io" target="_blank">JSON web tokens (JWT)</a> for authentication. When your request requires user authentication, it should include the following header replacing <code>user-JWT</code> with the token. For more details, see the user authentication section.<br /><br />
+<code>Authorization:Bearer 'user-JWT'</code></aside>
+
+<aside class="notice">
+Successful responses  include the following HTTP header.<br /><br />
+<code>Content-Type:application/vnd.api+json; charset=utf-8</code></aside>
+
+          <h1 id="users">Users</h1>
+
+<p>Resources related to user accounts.</p>
+
+<h3 id="mutable-attributes">Mutable attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>Required. Must be unique. 2-24 chars. Letters, numbers and underscores only.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Required. Must be unique. Max 255 chars. Email format only. Downcased on save.</td>
+</tr>
+<tr>
+<td>role</td>
+<td>string</td>
+<td>Authorization level. Required. Default: <code class="prettyprint">member</code>. See &lsquo;User roles&rsquo; below.</td>
+</tr>
+<tr>
+<td>avatar</td>
+<td>string</td>
+<td>User picture. Submissions must be base64 encoded. Must be JPG, GIF or PNG. No size limits.</td>
+</tr>
+<tr>
+<td>given_names</td>
+<td>string</td>
+<td>Any 1-20 chars.</td>
+</tr>
+<tr>
+<td>family_name</td>
+<td>string</td>
+<td>Any 1-20 chars.</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>string</td>
+<td>Any 1-20 chars. Client could suggest &#39;male&rsquo; or &#39;female&rsquo;.</td>
+</tr>
+<tr>
+<td>birthday</td>
+<td>date</td>
+<td>Format &#39;YYYY-MM-DD&rsquo;. Must not be a future date or &gt; 100 years ago.</td>
+</tr>
+<tr>
+<td>country_id</td>
+<td>integer</td>
+<td>Must be a valid country record ID.</td>
+</tr>
+<tr>
+<td>avatar</td>
+<td>string</td>
+<td>Base64 encoded JPEG, GIF or PNG. Any size (needs review).</td>
+</tr>
+</tbody></table>
+
+<h3 id="format-validation-regular-expressions">Format validation regular expressions</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Ruby</th>
+<th>JavaScript</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>/^<a href="w/&amp;#124;.">a-zA-Z0-9</a>*[a-zA-Z0-9]$/</td>
+<td>^<a href="\w&amp;#124;\.">a-zA-Z0-9</a>*[a-zA-Z0-9]$</td>
+</tr>
+<tr>
+<td>email</td>
+<td>/\A[\w+-.]+@[a-z\d-.]+.[a-z]+\z/i</td>
+<td>^[\w+-.]+@[a-z\d-.]+.[a-z]+$</td>
+</tr>
+</tbody></table>
+
+<h3 id="user-roles">User roles</h3>
+
+<p>Dbljump has three kinds of users, representing three levels of authorization. They are defined by the value of the <code class="prettyprint">role</code> attribute, which has three possible values.</p>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>member</td>
+<td>Ordinary users who sign up at Dbljump.com. No special privileges.</td>
+</tr>
+<tr>
+<td>editor</td>
+<td>Can edit and create records. Must complete an approval process.</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>The highest level of authorization. Can do everything.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-all-users">Get all users</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "email": "tiki@dbljump.com",
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "gender": "Female",
+        "avatar": null,
+        "birthday": "1988-09-01",
+        "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": null
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/users/1"
+      }
+    },
+    {
+      "id": "3",
+      "type": "users",
+      "attributes": {
+        "email": "member@example.com",
+        "username": "member",
+        "role": "member",
+        "given_names": null,
+        "family_name": null,
+        "gender": null,
+        "avatar": null,
+        "birthday": null,
+        "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": null
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/users/3"
+      }
+    },
+    {
+      "id": "4",
+      "type": "users",
+      "attributes": {
+        "email": "editor@example.com",
+        "username": "editor",
+        "role": "editor",
+        "given_names": null,
+        "family_name": null,
+        "gender": null,
+        "avatar": null,
+        "birthday": null,
+        "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": null
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/users/4"
+      }
+    },
+    {
+      "id": "5",
+      "type": "users",
+      "attributes": {
+        "email": "new@user.com",
+        "username": "new_user",
+        "role": "member",
+        "given_names": null,
+        "family_name": null,
+        "gender": null,
+        "avatar": null,
+        "birthday": null,
+        "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": null
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/users/5"
+      }
+    },
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "email": "neil@example.com",
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "gender": "Male",
+        "avatar": "/uploads/user_avatar/2/1701282319.jpg",
+        "birthday": "1980-02-14",
+        "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": {
+            "id": "219",
+            "type": "place_countries"
+          },
+          "links": {
+            "country": "http://localhost:3000/places/countries/united-kingdom"
+          }
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/users/2"
+      }
+    }
+  ],
+  "links": {},
+  "meta": {
+    "total_items": 5
+  }
+}
+</code></pre>
+<p>Retrieve all users. Automatically paginated. Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /users</code></p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number</td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of users per page</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>The user isn&rsquo;t an admin, or there&rsquo;s an authentication problem.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-single-user">Get single user</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "2",
+    "type": "users",
+    "attributes": {
+      "email": "neil@example.com",
+      "username": "neil",
+      "role": "admin",
+      "given_names": "Neil",
+      "family_name": "Wheatley",
+      "gender": "Male",
+      "avatar": "/uploads/user_avatar/2/1701282319.jpg",
+      "birthday": "1980-02-14",
+      "jwt": null
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "219",
+          "type": "place_countries"
+        },
+        "links": {
+          "country": "http://localhost:3000/places/countries/united-kingdom"
+        }
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/users/2"
+    }
+  },
+  "meta": {
+    "keywords": "neil, neil wheatley, user, dbljump, video games, pc games, gaming",
+    "description": "Neil Wheatley is a member at Dbljump, the video game reference.",
+    "created_at": "2017-01-28T23:19:21.044Z",
+    "updated_at": "2017-02-10T00:41:28.321Z",
+    "last_signed_in_at": "2017-02-10T00:41:28.240Z",
+    "last_sign_in_ip": "::1",
+    "sign_in_count": 4,
+    "activated_at": "2017-01-28T23:19:20.476Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single existing user account record. Any user can retrive their own account. An admin-level user can retrieve any user account.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: Any, if retrieving own account. Admin if retriveing other user&rsquo;s account.</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /users/&#39;id&#39;</code> (replace <code class="prettyprint">id</code> with user record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>The user doesn&rsquo;t have the right privileges, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h2 id="register-a-new-user">Register a new user</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "users",
+    "attributes": {
+      "username": "new_user",
+      "email": "new@user.com",
+      "password": "password",
+      "password_confirmation": "password"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 201 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "6",
+    "type": "users",
+    "attributes": {
+      "email": "new@user.com",
+      "username": "new_user",
+      "role": "member",
+      "given_names": null,
+      "family_name": null,
+      "gender": null,
+      "avatar": null
+    },
+    "links": {
+      "self": "http://localhost:3000/users/6"
+    }
+  },
+  "meta": {
+    "keywords": "new_user, new_user, user, dbljump, video games, pc games, gaming",
+    "description": "new_user is a member at Dbljump, the video game reference.",
+    "created_at": "2017-02-10T02:17:45.542Z",
+    "updated_at": "2017-02-10T02:17:45.997Z",
+    "last_signed_in_at": null,
+    "last_sign_in_ip": null,
+    "sign_in_count": 0,
+    "activated_at": null
+  }
+}
+</code></pre>
+<p>Create a new user account. No authentication is required. Anyone can sign up for a new account with default <code class="prettyprint">role: member</code>.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: N/A</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /users</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>Required. Must be unique. 2-24 chars. Letters, numbers and underscores only.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Required. Must be unique. Max 255 chars. Email format only. Downcased on save.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>Required. Any 8-24 chars.</td>
+</tr>
+<tr>
+<td>password_confirmation</td>
+<td>string</td>
+<td>Required. Must match password.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_BLANK</td>
+<td>username</td>
+<td>Username is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_INVALID</td>
+<td>username</td>
+<td>Username can only contain letters, numbers, and underscores.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_TAKEN</td>
+<td>username</td>
+<td>Username has already been taken.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_TOO_SHORT</td>
+<td>username</td>
+<td>Username cannot be less than 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_TOO_LONG</td>
+<td>username</td>
+<td>Username cannot be more than 24 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_BLANK</td>
+<td>email</td>
+<td>Email is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_INVALID</td>
+<td>email</td>
+<td>Email must be a valid address.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_TAKEN</td>
+<td>email</td>
+<td>Email has already been taken.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_TOO_LONG</td>
+<td>email</td>
+<td>Username cannot be more than 255 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_BLANK</td>
+<td>password</td>
+<td>Password is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_TOO_SHORT</td>
+<td>password</td>
+<td>Password cannot be less than 8 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_TOO_LONG</td>
+<td>password</td>
+<td>Password cannot be more than 24 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_CONFIRMATION_CONFIRMATION</td>
+<td>password_confirmation</td>
+<td>Password and confirmation must match.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="update-a-user-account-details">Update a user account details</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+ "data": {
+    "type": "users",
+    "id": "4",
+    "attributes": {
+        "email": "updated@email.com",
+        "username": "updated_username",
+        "password": "newpassword",
+        "password_confirmation": "newpassword",
+        "role": "editor",
+        "given_names": "Updated",
+        "family_name": "Name",
+        "gender": "male",
+        "birthday": "1985-07-20",
+        "country_id": 5,
+        "avatar": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw=="
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "4",
+    "type": "users",
+    "attributes": {
+      "email": "updated@email.com",
+      "username": "updated_username",
+      "role": "editor",
+      "given_names": "Updated",
+      "family_name": "Name",
+      "gender": "male",
+      "avatar": "/uploads/user_avatar/4/1702101051.gif",
+      "birthday": "1985-07-20"
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "5",
+          "type": "place_countries"
+        },
+        "links": {
+          "country": "http://localhost:3000/places/countries/andorra"
+        }
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/users/4"
+    }
+  },
+  "meta": {
+    "keywords": "updated_username, updated name, user, dbljump, video games, pc games, gaming",
+    "description": "Updated Name is a member at Dbljump, the video game reference.",
+    "created_at": "2017-01-28T23:19:21.362Z",
+    "updated_at": "2017-02-10T10:51:46.844Z",
+    "last_signed_in_at": null,
+    "last_sign_in_ip": null,
+    "sign_in_count": 0,
+    "activated_at": "2017-01-28T23:19:21.285Z"
+  }
+}
+</code></pre>
+<p>Update an existing user account. A user can update their own account. An admin can update any other non-admin account.</p>
+
+<p>Admin-level authorization is required to update attributes role.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: Any if editing own account. Admin if editing other user&rsquo;s account. Admin-level accounts can only be edited by the account owner.</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /users/&#39;id&#39;</code> (replace <code class="prettyprint">id</code> with user record ID)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>Required. Must be unique. 2-24 chars. Letters, numbers and underscores only.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Required. Must be unique. Max 255 chars. Email format only. Downcased on save.</td>
+</tr>
+<tr>
+<td>role</td>
+<td>string</td>
+<td>Authorization level. Must be &lsquo;member&rsquo;, &#39;editor&rsquo; or &#39;admin&rsquo;. Can only be updated by admin users.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>New password. Any 8-24 chars.</td>
+</tr>
+<tr>
+<td>password_confirmation</td>
+<td>string</td>
+<td>Required if changing password. Must match password.</td>
+</tr>
+<tr>
+<td>given_names</td>
+<td>string</td>
+<td>Any 1-20 chars.</td>
+</tr>
+<tr>
+<td>family_name</td>
+<td>string</td>
+<td>Any 1-20 chars.</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>string</td>
+<td>Any 1-20 chars. Client could suggest &#39;male&rsquo; or &#39;female&rsquo;.</td>
+</tr>
+<tr>
+<td>birthday</td>
+<td>date</td>
+<td>Format &#39;YYYY-MM-DD&rsquo;. Must not be a future date or &gt; 100 years ago.</td>
+</tr>
+<tr>
+<td>country_id</td>
+<td>integer</td>
+<td>Must be a valid country record ID.</td>
+</tr>
+<tr>
+<td>avatar</td>
+<td>string</td>
+<td>Base64 encoded JPEG, GIF or PNG. Any size (needs review).</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_BLANK</td>
+<td>username</td>
+<td>Username is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_INVALID</td>
+<td>username</td>
+<td>Username can only contain letters, numbers, and underscores.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_TAKEN</td>
+<td>username</td>
+<td>Username has already been taken.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_TOO_SHORT</td>
+<td>username</td>
+<td>Username cannot be less than 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_TOO_LONG</td>
+<td>username</td>
+<td>Username cannot be more than 24 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_BLANK</td>
+<td>email</td>
+<td>Email is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_INVALID</td>
+<td>email</td>
+<td>Email must be a valid address.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_TAKEN</td>
+<td>email</td>
+<td>Email has already been taken.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_TOO_LONG</td>
+<td>email</td>
+<td>Username cannot be more than 255 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_ROLE_INVALID</td>
+<td>role</td>
+<td>Role must be &#39;member&rsquo;, &#39;editor&rsquo;, or &#39;admin&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_BLANK</td>
+<td>password</td>
+<td>Password is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_TOO_SHORT</td>
+<td>password</td>
+<td>Password cannot be less than 8 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_TOO_LONG</td>
+<td>password</td>
+<td>Password cannot be more than 24 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_CONFIRMATION_CONFIRMATION</td>
+<td>password_confirmation</td>
+<td>Password and confirmation must match.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_GIVEN_NAMES_TOO_LONG</td>
+<td>given_names</td>
+<td>Given name cannot be more than 20 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_FAMILY_NAME_TOO_LONG</td>
+<td>family_name</td>
+<td>Family name cannot be more than 20 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_GENDER_TOO_LONG</td>
+<td>gender</td>
+<td>Gender cannot be more than 20 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_BIRTHDAY_INCLUSION</td>
+<td>birthday</td>
+<td>Birthday must not be a future date, or over 100 years ago.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_COUNTRY_ID_INVALID</td>
+<td>country_id</td>
+<td>Country must be valid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user isn&rsquo;t an admin, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="delete-a-user-account">Delete a user account</h2>
+
+<p>Delete an existing user account. A user can delete their own account. An admin can delete any other non-admin account.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: Any, if deleting own account. Admin if deleting other user&rsquo;s account. Admin-level accounts can only be deleted by the account owner.</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /users/&#39;id&#39;</code> (replace <code class="prettyprint">id</code> with user record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user isn&rsquo;t an admin, or there&rsquo;s an authentication problem.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="users-authentications">Users: authentications</h1>
+
+<p>Resources related to user sign-ins.</p>
+
+<h3 id="json-web-tokens-jwt">JSON web tokens (JWT)</h3>
+
+<p>This API uses <a href="https://jwt.io" target="_blank">JSON web tokens (JWT)</a> for authentication. Sessions are not used.</p>
+
+<p>It works like this:</p>
+
+<ul>
+<li>The client sends a user&rsquo;s credentials to the API, and receives a JWT in the response body.</li>
+<li>The client stores this JWT and sends it in the HTTP Authorization header with each subsequent request.</li>
+<li>When the user signs out, the client stops sending the JWT in the HTTP Authorization header.</li>
+</ul>
+
+<h3 id="jwt-payload">JWT payload</h3>
+
+<p>The JWT also has a payload with the following attributes, which the client can decode:</p>
+
+<ul>
+<li>user_id</li>
+<li>user_role</li>
+<li>expiry</li>
+</ul>
+
+          <h2 id="sign-in-a-user">Sign in a user</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+ "data": {
+    "type": "users",
+    "attributes": {
+        "email": "tiki@dbljump.com",
+        "password": "password"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "1",
+    "type": "users",
+    "attributes": {
+      "email": "tiki@dbljump.com",
+      "username": "tikithekiwi",
+      "role": "admin",
+      "given_names": "Tiki",
+      "family_name": "the Kiwi",
+      "gender": "Female",
+      "avatar": null,
+      "birthday": "1988-09-01",
+      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOiJhZG1pbiIsImV4cGlyeSI6IjIwMTctMDItMTEgMTI6MjY6MTUgKzAwMDAifQ.jaAbCFZnyi1Foqf8EktcStZrhmwGIN1Ekw5FFGq622U"
+    },
+    "relationships": {
+      "country": {
+        "data": null
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/users/1"
+    }
+  },
+  "meta": {
+    "last_signed_in_at": "2017-02-10T12:26:15.891Z",
+    "last_sign_in_ip": "::1",
+    "sign_in_count": 1,
+    "activated_at": "2017-01-28T23:18:37.302Z"
+  }
+}
+</code></pre>
+<p>Sign in an existing user. With valid credentials, returns a JSON web token (JWT) used to authenticate user requests.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: N/A</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /users/authentications</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>The user&rsquo;s registered email. Required. Max 255 chars. Must be email format.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>The user&rsquo;s password. Required.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+<th>Detail</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_BLANK</td>
+<td>email</td>
+<td>Email is required.</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_CREDENTIALS_INVALID</td>
+<td>-</td>
+<td>User not authorized.</td>
+<td>Invalid email and password combination.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="users-activations">Users: activations</h1>
+
+<p>Resources related to user account activations.</p>
+
+<h3 id="how-activations-work">How activations work</h3>
+
+<p>A new user cannot sign in until they activate their account. Activations work like this:</p>
+
+<ol>
+<li>When a user signs up for a new account, they receive an email with a link they must follow to activate their account.</li>
+<li>The link contains an activation token and the user&rsquo;s email. Clicking the link passes these to the API.</li>
+<li>On successful activation, the API sets the user attribute <code class="prettyprint">activated_at</code> to the current time, and returns a JWT the client can use to sign in the activated user.</li>
+<li>If the user loses their activation email/link, or if it has expired, they can request a new one.</li>
+</ol>
+
+          <h2 id="send-a-new-activation-email">Send a new activation email</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "user_activations",
+    "attributes": {
+      "email": "user@example.com"
+    }
+  }
+}
+
+</code></pre>
+<p>Send a new account activation link by email to a user&rsquo;s registered email address.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: N/A</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /users/activations</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>The user&rsquo;s registered email address.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+<th>Detail</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_INVALID</td>
+<td>email</td>
+<td>User not found.</td>
+<td>Invalid email address.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_ALREADY_ACTIVATED</td>
+<td>email</td>
+<td>Cannot activate user.</td>
+<td>User already activated.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="activate-a-user-account">Activate a user account</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "user_activations",
+    "id": "G2MnBqMJVF43tffPmKrmnw",
+    "attributes": {
+      "email": "user@example.com"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "7",
+    "type": "users",
+    "attributes": {
+      "email": "user@example.com",
+      "username": "user",
+      "role": "member",
+      "given_names": null,
+      "family_name": null,
+      "gender": null,
+      "avatar": null,
+      "birthday": null,
+      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJ1c2VyX3JvbGUiOiJtZW1iZXIiLCJleHBpcnkiOiIyMDE3LTAyLTExIDE1OjQ1OjIxICswMDAwIn0.cQcvrTYTumoocdUFFkHNh4uwEIbYU7Ht0z9KRww20wE"
+    },
+    "relationships": {
+      "country": {
+        "data": null
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/users/7"
+    }
+  },
+  "meta": {
+    "last_signed_in_at": null,
+    "last_sign_in_ip": null,
+    "sign_in_count": 0,
+    "activated_at": "2017-02-10T15:45:21.688Z"
+  }
+}
+</code></pre>
+<p>Activate a user account. This endpoint should be triggered by an activation link sent to the user by email.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: N/A</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /users/activations/&#39;activation_token&#39;</code> (replace <code class="prettyprint">activation_token</code> with the user&rsquo;s activation token)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>User activation token. Provided by the activation link.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>The user&rsquo;s registered email. Provided by the activation link.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+<th>Detail</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>USER_ACTIVATION_INVALID</td>
+<td>N/A</td>
+<td>Cannot activate user.</td>
+<td>Invalid user or activation token.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_ALREADY_ACTIVATED</td>
+<td>email</td>
+<td>Cannot activate user.</td>
+<td>User already activated.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="users-passwords">Users: passwords</h1>
+
+<p>Resources related to user passwords.</p>
+
+<p>If a user needs a new password, they can:</p>
+
+<ul>
+<li>Enter their registered email address and receive a password-reset link by email</li>
+<li>Set a new password after clicking the password-reset email</li>
+</ul>
+
+          <h2 id="request-a-password-reset-link">Request a password-reset link</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "user_passwords",
+    "attributes": {
+      "email": "user@example.com"
+    }
+  }
+}
+</code></pre>
+<p>A user can request an email with a link to reset their password.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: N/A</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /users/passwords</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>The user&rsquo;s registered email. Required. Max 255 chars. Must be email format.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+<th>Detail</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_INVALID</td>
+<td>email</td>
+<td>User not found.</td>
+<td>Invalid email address.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_ACTIVATION_REQUIRED</td>
+<td>email</td>
+<td>User activation required.</td>
+<td>User not yet activated.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="set-a-new-user-password">Set a new user password</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "user_passwords",
+    "id": "Bml5G2MnBqMJVFacD243tffPmKrmnwX",
+    "email": "user@example.com",
+    "attributes": {
+      "password": "new_password",
+      "password_confirmation": "new_password"
+    }
+  }
+}
+</code></pre>
+<p>A user can set a new password after following a reset-password link. The reset token in the link expires after 2 hours.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: N/A</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /users/passwords/&#39;password_reset_token&#39;</code> (replace <code class="prettyprint">password_reset_token</code> with the password reset token)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The password reset token, available in the password reset link URL. Required.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>The user&rsquo;s registered email address, available in the password reset link URL. Required.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>New password. Required. Any 8-24 chars.</td>
+</tr>
+<tr>
+<td>password_confirmation</td>
+<td>string</td>
+<td>Required. Must match password.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+<th>Detail</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_INVALID</td>
+<td>email</td>
+<td>User not found.</td>
+<td>Invalid email address.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_ACTIVATION_REQUIRED</td>
+<td>email</td>
+<td>User activation required.</td>
+<td>User not yet activated.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_TOKEN_INVALID</td>
+<td>password_reset_token</td>
+<td>Cannot reset user password.</td>
+<td>Password reset token invalid.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_TOKEN_EXPIRED</td>
+<td>password_reset_token</td>
+<td>Cannot reset user password.</td>
+<td>Password reset token expired.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_BLANK</td>
+<td>password</td>
+<td>Password is required.</td>
+<td></td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_TOO_SHORT</td>
+<td>password</td>
+<td>Password cannot be less than 8 characters.</td>
+<td></td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_TOO_LONG</td>
+<td>password</td>
+<td>Password cannot be more than 24 characters.</td>
+<td></td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_CONFIRMATION_CONFIRMATION</td>
+<td>password_confirmation</td>
+<td>Password and confirmation must match.</td>
+<td></td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="JSON">JSON</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

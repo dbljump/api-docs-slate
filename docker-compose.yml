@@ -1,9 +1,0 @@
-version: '2'
-services:
-  slate:
-    container_name: 'dbljump_api_docs'
-    image: crazw/slate
-    volumes:
-      - ./source:/app/source
-    ports:
-      - '4567:4567'
