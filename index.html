@@ -1621,6 +1621,642 @@ Successful responses  include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
+          <h1 id="images"><a name="images_intro"></a>Images</h1>
+
+<p>Resources related to images.</p>
+
+<p>An image record includes the URL of an image stored on Amazon S3, plus metadata about the image. An image can be associated with many articles.</p>
+
+<h3 id="mutable-attributes"><a name="image_attrs"></a>Mutable attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>file</td>
+<td>string (base64)</td>
+<td>Image file encoded as base64. Req&rsquo;d. See <a href="#image_file">File</a> section below.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Req&rsquo;d. Must be &lsquo;art&rsquo;, &#39;doc&rsquo;, &#39;photo&rsquo;, or &#39;screen&rsquo;.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Req&rsquo;d. A subcategory related to the given type. See <a href="#image_kind">Kind</a> section below.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Req&rsquo;d. Max 100 chars.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Max 250 chars.</td>
+</tr>
+<tr>
+<td>year</td>
+<td>integer</td>
+<td>1800 to present year.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>date</td>
+<td>1800-01-01 to present year.</td>
+</tr>
+<tr>
+<td>place_id</td>
+<td>belongs_to</td>
+<td>Must be valid place ID.</td>
+</tr>
+<tr>
+<td>usage_type</td>
+<td>string</td>
+<td>Must be &#39;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a> section.</td>
+</tr>
+<tr>
+<td>usage_license</td>
+<td>string</td>
+<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. See <a href="#image_usage_license">Usage license</a> section.</td>
+</tr>
+<tr>
+<td>attributed_name</td>
+<td>string</td>
+<td>Image owner&rsquo;s name. Max 100 chars. Req&rsquo;d if usage_type is &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>attributed_url</td>
+<td>string</td>
+<td>The owner&rsquo;s website. Max 250 chars.</td>
+</tr>
+<tr>
+<td>source_url</td>
+<td>string</td>
+<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. Max 250 chars. URL of image source.</td>
+</tr>
+</tbody></table>
+
+<h3 id="file"><a name="image_file"></a>File</h3>
+
+<p><strong>File type:</strong> File uploads must be of type GIF, JPG/JPEG, or PNG.</p>
+
+<p><strong>Base64:</strong> Image file uploads are handled by the Ruby gems <a href="https://github.com/carrierwaveuploader/carrierwave">CarrierWave</a> and <a href="https://github.com/lebedev-yury/carrierwave-base64">Carrierwave::Base64</a>. If the image is encoded as Base64, it should have <a href="https://github.com/lebedev-yury/carrierwave-base64#data-format">the correct data format</a>, i.e.:</p>
+
+<p><code class="prettyprint">data:image/jpeg;base64,(base64 encoded data)</code></p>
+
+<h3 id="kind"><a name="image_kind"></a>Kind</h3>
+
+<p>The <code class="prettyprint">kind</code> attribute is a subcategory of <code class="prettyprint">type</code>. Acceptable values are shown below.</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Acceptable kind values</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>art</td>
+<td>boxart, logo, poster, production, uncategorized</td>
+</tr>
+<tr>
+<td>doc</td>
+<td>publication, slides, text, uncategorized</td>
+</tr>
+<tr>
+<td>photo</td>
+<td>event, likeness, place, product, uncategorized</td>
+</tr>
+<tr>
+<td>screen</td>
+<td>credits, gameplay, title, uncategorized</td>
+</tr>
+</tbody></table>
+
+<h3 id="usage-type"><a name="image_usage_type"></a>Usage type</h3>
+
+<p>Users should only upload images that can legally be shown on Dbljump.com. An image must therefore have one of three <code class="prettyprint">usage_type</code> values.</p>
+
+<table><thead>
+<tr>
+<th>Usage type</th>
+<th>usage_type value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Free</td>
+<td>free</td>
+<td>The image is in the public domain.</td>
+</tr>
+<tr>
+<td>Fair use</td>
+<td>fair</td>
+<td>The image can be used under US fair use law.</td>
+</tr>
+<tr>
+<td>Licensed</td>
+<td>licensed</td>
+<td>The image is free to use with some-rights-reserved license, e.g. Creative Commons.</td>
+</tr>
+</tbody></table>
+
+<h3 id="usage-license"><a name="image_usage_license"></a>Usage license</h3>
+
+<p>If <code class="prettyprint">usage_type</code> is set to <code class="prettyprint">licensed</code>, a valid image license code must be provided. Acceptable values are below.</p>
+
+<table><thead>
+<tr>
+<th>usage_license</th>
+<th>License name</th>
+<th>License URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cc_by_2_0</td>
+<td>Creative Commons Attribution 2.0</td>
+<td>https://creativecommons.org/licenses/by/2.0</td>
+</tr>
+<tr>
+<td>cc_by_2_5</td>
+<td>Creative Commons Attribution 2.5</td>
+<td>https://creativecommons.org/licenses/by/2.5/</td>
+</tr>
+<tr>
+<td>cc_by_sa_2_0</td>
+<td>Creative Commons Attribution-ShareAlike 2.0</td>
+<td>https://creativecommons.org/licenses/by-sa/2.0</td>
+</tr>
+<tr>
+<td>cc_by_nd_2_0</td>
+<td>Creative Commons Attribution-NoDerivs 2.0</td>
+<td>http://creativecommons.org/licenses/by-nd/2.0/</td>
+</tr>
+<tr>
+<td>cc_by_3_0</td>
+<td>Creative Commons Attribution 3.0</td>
+<td>https://creativecommons.org/licenses/by/3.0/</td>
+</tr>
+<tr>
+<td>cc_by_sa_3_0</td>
+<td>Creative Commons Attribution-ShareAlike 3.0</td>
+<td>https://creativecommons.org/licenses/by-sa/3.0</td>
+</tr>
+<tr>
+<td>cc_by_nd_3_0</td>
+<td>Creative Commons Attribution-NoDerivs 3.0</td>
+<td>http://creativecommons.org/licenses/by-nd/3.0</td>
+</tr>
+<tr>
+<td>cc_by_4_0</td>
+<td>Creative Commons Attribution 4.0</td>
+<td>https://creativecommons.org/licenses/by/4.0</td>
+</tr>
+<tr>
+<td>cc_by_sa_4_0</td>
+<td>Creative Commons Attribution-ShareAlike 4.0</td>
+<td>https://creativecommons.org/licenses/by-sa/4.0</td>
+</tr>
+<tr>
+<td>cc_by_nd_4_0</td>
+<td>Creative Commons Attribution-NoDerivs 4.0</td>
+<td>http://creativecommons.org/licenses/by-nd/4.0</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-all-images">Get all images</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+</code></pre>
+<p>Retrieve all images. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /images</code></p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number</td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of images per page</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-single-image">Get single image</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+</code></pre>
+<p>Retrieve a single image record. Images are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /images/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with image record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h2 id="upload-a-new-image">Upload a new image</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "images",
+    "attributes": {
+      "file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
+      "type": "photo",
+      "kind": "likeness",
+      "title": "Portrait of Takashi Tezuka",
+      "description": "Takashi Tezuka in Kyoto on 2nd February 2017.",
+      "year": "",
+      "date": "2017-02-02",
+      "place_id": "2932",
+      "usage_type": "licensed",
+      "usage_license": "cc_by_4_0",
+      "attributed_name": "Jonny Snapper",
+      "attributed_url": "http://www.jonnys-game-pics.com",
+      "source_url": "http://www.jonnys-game-pics.com/tezuka.jpg"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 201 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+</code></pre>
+<p>Upload a new image. User must be an editor.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /images</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>file</td>
+<td>string (base64)</td>
+<td>Image file encoded as base64. Req&rsquo;d. See <a href="#image_file">File</a>.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Req&rsquo;d. Must be &lsquo;art&rsquo;, &#39;doc&rsquo;, &#39;photo&rsquo;, or &#39;screen&rsquo;.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Req&rsquo;d. A subcategory related to the given type. See <a href="#image_kind">Kind</a>.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Req&rsquo;d. Max 100 chars.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Max 250 chars.</td>
+</tr>
+<tr>
+<td>year</td>
+<td>integer</td>
+<td>1800 to present year.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>date</td>
+<td>1800-01-01 to present year.</td>
+</tr>
+<tr>
+<td>place_id</td>
+<td>belongs_to</td>
+<td>Must be valid place ID.</td>
+</tr>
+<tr>
+<td>usage_type</td>
+<td>string</td>
+<td>Must be &#39;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
+</tr>
+<tr>
+<td>usage_license</td>
+<td>string</td>
+<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. See <a href="#image_usage_license">Usage license</a>.</td>
+</tr>
+<tr>
+<td>attributed_name</td>
+<td>string</td>
+<td>Image owner&rsquo;s name. Max 100 chars. Req&rsquo;d if usage_type is &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>attributed_url</td>
+<td>string</td>
+<td>The owner&rsquo;s website. Max 250 chars.</td>
+</tr>
+<tr>
+<td>source_url</td>
+<td>string</td>
+<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. Max 250 chars. URL of image source.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="update-an-image-record">Update an image record</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "images",
+    "id": "portait-of-takashi-tezuka-2017-02-02"
+    "attributes": {
+      "type": "photo",
+      "kind": "likeness",
+      "title": "Portrait of Takashi Tezuka",
+      "description": "Takashi Tezuka in Kyoto on 4th February 2017.",
+      "year": "2017",
+      "date": "2017-02-04",
+      "place_id": "2932",
+      "usage_type": "licensed",
+      "usage_license": "cc_by_4_0",
+      "attributed_name": "Jonny Snapper",
+      "attributed_url": "http://www.jonnys-game-pics.com",
+      "source_url": "http://www.jonnys-game-pics.com/tezuka.jpg"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+</code></pre>
+<p>Update an existing image record account. The user must be an editor.</p>
+
+<p>The <code class="prettyprint">file</code> attribute cannot be updated. A new image file can only be uploaded with a new image record.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: Editor.</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /images/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with image record slug)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Req&rsquo;d. Must be &lsquo;art&rsquo;, &#39;doc&rsquo;, &#39;photo&rsquo;, or &#39;screen&rsquo;.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Req&rsquo;d. A subcategory related to the given type. See <a href="#image_kind">Kind</a>.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Req&rsquo;d. Max 100 chars.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Max 250 chars.</td>
+</tr>
+<tr>
+<td>year</td>
+<td>integer</td>
+<td>1800 to present year.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>date</td>
+<td>1800-01-01 to present year.</td>
+</tr>
+<tr>
+<td>place_id</td>
+<td>belongs_to</td>
+<td>Must be valid place ID.</td>
+</tr>
+<tr>
+<td>usage_type</td>
+<td>string</td>
+<td>Must be &#39;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
+</tr>
+<tr>
+<td>usage_license</td>
+<td>string</td>
+<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. See <a href="#image_usage_license">Usage license</a>.</td>
+</tr>
+<tr>
+<td>attributed_name</td>
+<td>string</td>
+<td>Image owner&rsquo;s name. Max 100 chars. Req&rsquo;d if usage_type is &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>attributed_url</td>
+<td>string</td>
+<td>The owner&rsquo;s website. Max 250 chars.</td>
+</tr>
+<tr>
+<td>source_url</td>
+<td>string</td>
+<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. Max 250 chars. URL of image source.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="delete-an-image-record">Delete an image record</h2>
+
+<p>Delete an existing image record. An editor can delete images they uploaded. An admin can delete any image.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: Editor to delete own images. Admin to delete any image.</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /images/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with image record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user isn&rsquo;t an admin, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
