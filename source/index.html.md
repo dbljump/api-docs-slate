@@ -22,6 +22,12 @@ includes:
   - users/passwords/intro
   - users/passwords/post_create
   - users/passwords/patch_update
+  - images/intro
+  - images/get_index
+  - images/get_record
+  - images/post_create
+  - images/patch_update
+  - images/delete
 
 search: true
 ---
