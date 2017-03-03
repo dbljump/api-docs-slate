@@ -17,7 +17,7 @@ year | integer | 1800 to present year.
 date | date | 1800-01-01 to present year.
 place_id | belongs_to | Must be valid place ID.
 usage_type | string | Must be 'free', 'fair', or 'licensed'. See [Usage type](#image_usage_type) section.
-usage_license | string | Req'd if usage_type is 'licensed'. See [Usage license](#image_usage_license) section.
+usage_license_code | string | Req'd if usage_type is 'licensed'. See [Usage license](#image_usage_license) section.
 attributed_name | string | Image owner's name. Max 100 chars. Req'd if usage_type is 'licensed'.
 attributed_url | string | The owner's website. Max 250 chars.
 source_url | string | Req'd if usage_type is 'licensed'. Max 250 chars. URL of image source.
