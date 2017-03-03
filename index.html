@@ -1682,7 +1682,7 @@ Successful responses  include the following HTTP header.<br /><br />
 <td>Must be &#39;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a> section.</td>
 </tr>
 <tr>
-<td>usage_license</td>
+<td>usage_license_code</td>
 <td>string</td>
 <td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. See <a href="#image_usage_license">Usage license</a> section.</td>
 </tr>
@@ -1835,7 +1835,84 @@ Successful responses  include the following HTTP header.<br /><br />
 <blockquote>
 <p>HTTP 200 response body</p>
 </blockquote>
-<pre class="highlight plaintext"><code>
+<pre class="highlight plaintext"><code>{
+  "data": [
+    {
+      "id": "1",
+      "type": "image_photos",
+      "attributes": {
+        "file": "/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+        "type": "Image::Photo",
+        "kind": "uncategorized",
+        "title": "Nintendo office",
+        "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
+        "year": 2006,
+        "date": "2006-02-18",
+        "usage_type": "licensed",
+        "usage_license_code": "cc_by_sa_3_0",
+        "usage_license_name": "Creative Commons Attribution-ShareAlike 3.0",
+        "usage_license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "attributed_name": "Moja~commonswiki",
+        "attributed_url": "",
+        "source_url": "https://en.wikipedia.org/wiki/Nintendo#/media/File:Nintendo_office.jpg",
+        "slug": "nintendo-office-2006-uncategorized-moja-commonswiki"
+      },
+      "relationships": {
+        "uploaded_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          }
+        },
+        "place": {
+          "data": null
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/images/nintendo-office-2006-uncategorized-moja-commonswiki"
+      }
+    },
+    {
+      "id": "2",
+      "type": "image_photos",
+      "attributes": {
+        "file": "/uploads/images/2/mario-figure.jpg",
+        "type": "Image::Photo",
+        "kind": "uncategorized",
+        "title": "Mario figure",
+        "description": "",
+        "year": 2016,
+        "date": "2016-07-30",
+        "usage_type": "free",
+        "usage_license_code": null,
+        "usage_license_name": null,
+        "usage_license_url": null,
+        "attributed_name": null,
+        "attributed_url": null,
+        "source_url": "",
+        "slug": "mario-figure-2016-uncategorized"
+      },
+      "relationships": {
+        "uploaded_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          }
+        },
+        "place": {
+          "data": null
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/images/mario-figure-2016-uncategorized"
+      }
+    }
+  ],
+  "links": {},
+  "meta": {
+    "total_items": 2
+  }
+}
 </code></pre>
 <p>Retrieve all images. Automatically paginated.</p>
 
@@ -1878,7 +1955,49 @@ Successful responses  include the following HTTP header.<br /><br />
 <blockquote>
 <p>HTTP 200 response body</p>
 </blockquote>
-<pre class="highlight plaintext"><code>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "1",
+    "type": "image_photos",
+    "attributes": {
+      "file": "/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+      "type": "Image::Photo",
+      "kind": "uncategorized",
+      "title": "Nintendo office",
+      "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
+      "year": 2006,
+      "date": "2006-02-18",
+      "usage_type": "licensed",
+      "usage_license_code": "cc_by_sa_3_0",
+      "usage_license_name": "Creative Commons Attribution-ShareAlike 3.0",
+      "usage_license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attributed_name": "Moja~commonswiki",
+      "attributed_url": "",
+      "source_url": "https://en.wikipedia.org/wiki/Nintendo#/media/File:Nintendo_office.jpg",
+      "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+    },
+    "relationships": {
+      "uploaded_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        }
+      },
+      "place": {
+        "data": null
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/images/nintendo-office-2006-uncategorized-moja-commonswiki"
+    }
+  },
+  "meta": {
+    "keywords": "nintendo office, 2006, 2006-02-18, moja~commonswiki, photo, false, image, picture, media, dbljump, video games, pc games, gaming",
+    "description": "'Nintendo office' is a video game image at Dbljump.",
+    "created_at": "2017-03-03T20:01:29.551Z",
+    "updated_at": "2017-03-03T20:01:29.551Z"
+  }
+}
 </code></pre>
 <p>Retrieve a single image record. Images are publicly available. No sign-in is required.</p>
 
@@ -1925,15 +2044,15 @@ Successful responses  include the following HTTP header.<br /><br />
     "type": "images",
     "attributes": {
       "file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
-      "type": "photo",
+      "type": "Image::Photo",
       "kind": "likeness",
       "title": "Portrait of Takashi Tezuka",
       "description": "Takashi Tezuka in Kyoto on 2nd February 2017.",
       "year": "",
       "date": "2017-02-02",
-      "place_id": "2932",
+      "place_id": "1",
       "usage_type": "licensed",
-      "usage_license": "cc_by_4_0",
+      "usage_license_code": "cc_by_4_0",
       "attributed_name": "Jonny Snapper",
       "attributed_url": "http://www.jonnys-game-pics.com",
       "source_url": "http://www.jonnys-game-pics.com/tezuka.jpg"
@@ -1944,7 +2063,52 @@ Successful responses  include the following HTTP header.<br /><br />
 <blockquote>
 <p>HTTP 201 response body</p>
 </blockquote>
-<pre class="highlight plaintext"><code>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "5",
+    "type": "image_photos",
+    "attributes": {
+      "file": "/uploads/images/5/file.gif",
+      "type": "Image::Photo",
+      "kind": "likeness",
+      "title": "Portrait of Takashi Tezuka",
+      "description": "Takashi Tezuka in Kyoto on 2nd February 2017.",
+      "year": 2017,
+      "date": "2017-02-02",
+      "usage_type": "licensed",
+      "usage_license_code": "cc_by_4_0",
+      "usage_license_name": "Creative Commons Attribution 4.0",
+      "usage_license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attributed_name": "Jonny Snapper",
+      "attributed_url": "http://www.jonnys-game-pics.com",
+      "source_url": "http://www.jonnys-game-pics.com/tezuka.jpg",
+      "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+    },
+    "relationships": {
+      "uploaded_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        }
+      },
+      "place": {
+        "data": {
+          "id": "1",
+          "type": "place_countries"
+        }
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/images/portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+    }
+  },
+  "meta": {
+    "keywords": "portrait of takashi tezuka, 2017, 2017-02-02, jonny snapper, photo, likeness, image, picture, media, dbljump, video games, pc games, gaming",
+    "description": "'Portrait of Takashi Tezuka' is a video game image at Dbljump.",
+    "created_at": "2017-03-03T22:37:34.198Z",
+    "updated_at": "2017-03-03T22:37:34.198Z"
+  }
+}
 </code></pre>
 <p>Upload a new image. User must be an editor.</p>
 
@@ -1974,7 +2138,7 @@ Successful responses  include the following HTTP header.<br /><br />
 <tr>
 <td>type</td>
 <td>string</td>
-<td>Req&rsquo;d. Must be &lsquo;art&rsquo;, &#39;doc&rsquo;, &#39;photo&rsquo;, or &#39;screen&rsquo;.</td>
+<td>Req&rsquo;d. Must be &lsquo;Image::Art&rsquo;, &#39;Image::Doc&rsquo;, &#39;Image::Photo&rsquo;, or &#39;Image::Screen&rsquo;.</td>
 </tr>
 <tr>
 <td>kind</td>
@@ -2012,7 +2176,7 @@ Successful responses  include the following HTTP header.<br /><br />
 <td>Must be &#39;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
 </tr>
 <tr>
-<td>usage_license</td>
+<td>usage_license_code</td>
 <td>string</td>
 <td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. See <a href="#image_usage_license">Usage license</a>.</td>
 </tr>
@@ -2039,6 +2203,8 @@ Successful responses  include the following HTTP header.<br /><br />
 
 <h3 id="errors">Errors</h3>
 
+<aside class="notice">Actual error codes may include the image sub-class, e.g. 'IMAGE_SCREEN_FILE_BLANK&rsquo;</aside>
+
 <table><thead>
 <tr>
 <th>HTTP code</th>
@@ -2047,6 +2213,120 @@ Successful responses  include the following HTTP header.<br /><br />
 <th>Title</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td>IMAGE_FILE_BLANK</td>
+<td>file</td>
+<td>File is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_TITLE_BLANK</td>
+<td>title</td>
+<td>Title is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_TITLE_TOO_LONG</td>
+<td>title</td>
+<td>Title cannot be more than 100 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_DESCRIPTION_TOO_LONG</td>
+<td>description</td>
+<td>Description cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_TYPE_BLANK</td>
+<td>type</td>
+<td>Type is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_TYPE_INCLUSION</td>
+<td>type</td>
+<td>Type must be &#39;Image::Art&rsquo;, &#39;Image::Doc&rsquo;, &#39;Image::Photo&rsquo; or &#39;Image::Screen&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_KIND_BLANK</td>
+<td>kind</td>
+<td>Kind is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_KIND_INCLUSION</td>
+<td>kind</td>
+<td>Kind must be a valid value for this image type.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_YEAR_INCLUSION</td>
+<td>year</td>
+<td>Year must be between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_DATE_INCLUSION</td>
+<td>year</td>
+<td>Date must be between 1 January 1800 and the present date.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_USAGE_TYPE_BLANK</td>
+<td>usage_type</td>
+<td>Usage type is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_USAGE_TYPE_INCLUSION</td>
+<td>usage_type</td>
+<td>Usage type must be &#39;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_ATTRIBUTED_NAME_BLANK</td>
+<td>attributed_name</td>
+<td>Attributed name is required if usage type is &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_ATTRIBUTED_NAME_TOO_LONG</td>
+<td>attributed_name</td>
+<td>Attributed name cannot be more than 100 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_ATTRIBUTED_URL_TOO_LONG</td>
+<td>attributed_url</td>
+<td>Attributed URL cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_SOURCE_URL_BLANK</td>
+<td>source_url</td>
+<td>Source url is required if usage type is &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_SOURCE_URL_TOO_LONG</td>
+<td>source_url</td>
+<td>Source url cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_USAGE_LICENSE_CODE_BLANK</td>
+<td>usage_license_code</td>
+<td>Usage license code is required if usage type is &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_USAGE_LICENSE_CODE_INCLUSION</td>
+<td>usage_license_code</td>
+<td>Usage license code must be valid.</td>
+</tr>
 <tr>
 <td>401</td>
 <td>USER_LOGIN_EXPIRED</td>
@@ -2069,20 +2349,20 @@ Successful responses  include the following HTTP header.<br /><br />
 <pre class="highlight plaintext"><code>{
   "data": {
     "type": "images",
-    "id": "portait-of-takashi-tezuka-2017-02-02"
+    "id": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper",
     "attributes": {
-      "type": "photo",
-      "kind": "likeness",
-      "title": "Portrait of Takashi Tezuka",
-      "description": "Takashi Tezuka in Kyoto on 4th February 2017.",
-      "year": "2017",
-      "date": "2017-02-04",
-      "place_id": "2932",
+      "type": "Image::Screen",
+      "kind": "gameplay",
+      "title": "New Title",
+      "description": "New description.",
+      "year": "",
+      "date": "2000-01-01",
+      "place_id": "3",
       "usage_type": "licensed",
-      "usage_license": "cc_by_4_0",
-      "attributed_name": "Jonny Snapper",
-      "attributed_url": "http://www.jonnys-game-pics.com",
-      "source_url": "http://www.jonnys-game-pics.com/tezuka.jpg"
+      "usage_license_code": "cc_by_3_0",
+      "attributed_name": "New Attributed Name",
+      "attributed_url": "http://www.new-site.com",
+      "source_url": "http://www.new-site/new-file.jpg"
     }
   }
 }
@@ -2090,7 +2370,52 @@ Successful responses  include the following HTTP header.<br /><br />
 <blockquote>
 <p>HTTP 200 response body</p>
 </blockquote>
-<pre class="highlight plaintext"><code>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "6",
+    "type": "image_photos",
+    "attributes": {
+      "file": "/uploads/images/6/file.gif",
+      "type": "Image::Photo",
+      "kind": "likeness",
+      "title": "New Title",
+      "description": "New description.",
+      "year": 2000,
+      "date": "2000-01-01",
+      "usage_type": "licensed",
+      "usage_license_code": "cc_by_3_0",
+      "usage_license_name": "Creative Commons Attribution 3.0",
+      "usage_license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "attributed_name": "New Attributed Name",
+      "attributed_url": "http://www.new-site.com",
+      "source_url": "http://www.new-site/new-file.jpg",
+      "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+    },
+    "relationships": {
+      "uploaded_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        }
+      },
+      "place": {
+        "data": {
+          "id": "3",
+          "type": "place_countries"
+        }
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/images/portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+    }
+  },
+  "meta": {
+    "keywords": "new title, 2000, 2000-01-01, new attributed name, photo, likeness, image, picture, media, dbljump, video games, pc games, gaming",
+    "description": "'New Title' is a video game image at Dbljump.",
+    "created_at": "2017-03-03T22:46:51.098Z",
+    "updated_at": "2017-03-03T22:48:02.962Z"
+  }
+}
 </code></pre>
 <p>Update an existing image record account. The user must be an editor.</p>
 
@@ -2155,7 +2480,7 @@ Successful responses  include the following HTTP header.<br /><br />
 <td>Must be &#39;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
 </tr>
 <tr>
-<td>usage_license</td>
+<td>usage_license_code</td>
 <td>string</td>
 <td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. See <a href="#image_usage_license">Usage license</a>.</td>
 </tr>
@@ -2182,6 +2507,8 @@ Successful responses  include the following HTTP header.<br /><br />
 
 <h3 id="errors">Errors</h3>
 
+<aside class="notice">Actual error codes may include the image sub-class, e.g. 'IMAGE_SCREEN_FILE_BLANK&rsquo;</aside>
+
 <table><thead>
 <tr>
 <th>HTTP code</th>
@@ -2190,6 +2517,120 @@ Successful responses  include the following HTTP header.<br /><br />
 <th>Title</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td>IMAGE_FILE_BLANK</td>
+<td>file</td>
+<td>File is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_TITLE_BLANK</td>
+<td>title</td>
+<td>Title is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_TITLE_TOO_LONG</td>
+<td>title</td>
+<td>Title cannot be more than 100 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_DESCRIPTION_TOO_LONG</td>
+<td>description</td>
+<td>Description cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_TYPE_BLANK</td>
+<td>type</td>
+<td>Type is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_TYPE_INCLUSION</td>
+<td>type</td>
+<td>Type must be &#39;Image::Art&rsquo;, &#39;Image::Doc&rsquo;, &#39;Image::Photo&rsquo; or &#39;Image::Screen&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_KIND_BLANK</td>
+<td>kind</td>
+<td>Kind is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_KIND_INCLUSION</td>
+<td>kind</td>
+<td>Kind must be a valid value for this image type.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_YEAR_INCLUSION</td>
+<td>year</td>
+<td>Year must be between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_DATE_INCLUSION</td>
+<td>year</td>
+<td>Date must be between 1 January 1800 and the present date.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_USAGE_TYPE_BLANK</td>
+<td>usage_type</td>
+<td>Usage type is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_USAGE_TYPE_INCLUSION</td>
+<td>usage_type</td>
+<td>Usage type must be &#39;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_ATTRIBUTED_NAME_BLANK</td>
+<td>attributed_name</td>
+<td>Attributed name is required if usage type is &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_ATTRIBUTED_NAME_TOO_LONG</td>
+<td>attributed_name</td>
+<td>Attributed name cannot be more than 100 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_ATTRIBUTED_URL_TOO_LONG</td>
+<td>attributed_url</td>
+<td>Attributed URL cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_SOURCE_URL_BLANK</td>
+<td>source_url</td>
+<td>Source url is required if usage type is &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_SOURCE_URL_TOO_LONG</td>
+<td>source_url</td>
+<td>Source url cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_USAGE_LICENSE_CODE_BLANK</td>
+<td>usage_license_code</td>
+<td>Usage license code is required if usage type is &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>IMAGE_USAGE_LICENSE_CODE_INCLUSION</td>
+<td>usage_license_code</td>
+<td>Usage license code must be valid.</td>
+</tr>
 <tr>
 <td>401</td>
 <td>USER_LOGIN_EXPIRED</td>
@@ -2201,12 +2642,6 @@ Successful responses  include the following HTTP header.<br /><br />
 <td>USER_UNAUTHORIZED</td>
 <td>n/a</td>
 <td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>RECORD_NOT_FOUND</td>
-<td>n/a</td>
-<td>Record not found.</td>
 </tr>
 </tbody></table>
 
