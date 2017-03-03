@@ -114,7 +114,7 @@ source_url | string | Req'd if usage_type is 'licensed'. Max 250 chars. URL of i
 
 HTTP code | Error code | Pointer | Title
 --------- | ---------- | ------- | -----
-400 | IMAGE_FILE_BLANK | file | File is required.
+400 | IMAGE_FILE_ACCEPTED | file | File cannot be updated.
 400 | IMAGE_TITLE_BLANK | title | Title is required.
 400 | IMAGE_TITLE_TOO_LONG | title | Title cannot be more than 100 characters.
 400 | IMAGE_DESCRIPTION_TOO_LONG | description | Description cannot be more than 250 characters.

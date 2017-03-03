@@ -55,8 +55,8 @@ Licensed | licensed | The image is free to use with some-rights-reserved license
 
 If `usage_type` is set to `licensed`, a valid image license code must be provided. Acceptable values are below.
 
-usage_license | License name | License URL
-------------- | ------------ | -----------
+usage_license_code | License name | License URL
+------------------ | ------------ | -----------
 cc_by_2_0 | Creative Commons Attribution 2.0 | https://creativecommons.org/licenses/by/2.0
 cc_by_2_5 | Creative Commons Attribution 2.5 | https://creativecommons.org/licenses/by/2.5/
 cc_by_sa_2_0 | Creative Commons Attribution-ShareAlike 2.0 | https://creativecommons.org/licenses/by-sa/2.0
