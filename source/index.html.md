@@ -28,6 +28,9 @@ includes:
   - images/post_create
   - images/patch_update
   - images/delete
+  - places/intro
+  - places/get_index
+  - places/get_record
 
 search: true
 ---
