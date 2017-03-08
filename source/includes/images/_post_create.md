@@ -30,10 +30,10 @@
 ```JSON
 {
   "data": {
-    "id": "5",
+    "id": "3",
     "type": "image_photos",
     "attributes": {
-      "file": "/uploads/images/5/file.gif",
+      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
       "type": "Image::Photo",
       "kind": "likeness",
       "title": "Portrait of Takashi Tezuka",
@@ -52,7 +52,7 @@
     "relationships": {
       "uploaded_by": {
         "data": {
-          "id": "2",
+          "id": "5",
           "type": "users"
         }
       },
@@ -64,14 +64,14 @@
       }
     },
     "links": {
-      "self": "http://localhost:3000/images/portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+      "self": "http://api.dbljump.com/images/portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
     }
   },
   "meta": {
     "keywords": "portrait of takashi tezuka, 2017, 2017-02-02, jonny snapper, photo, likeness, image, picture, media, dbljump, video games, pc games, gaming",
     "description": "'Portrait of Takashi Tezuka' is a video game image at Dbljump.",
-    "created_at": "2017-03-03T22:37:34.198Z",
-    "updated_at": "2017-03-03T22:37:34.198Z"
+    "created_at": "2017-03-08T20:33:17.449Z",
+    "updated_at": "2017-03-08T20:33:17.449Z"
   }
 }
 ```

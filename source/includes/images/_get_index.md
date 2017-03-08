@@ -9,7 +9,7 @@
       "id": "1",
       "type": "image_photos",
       "attributes": {
-        "file": "/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
         "type": "Image::Photo",
         "kind": "uncategorized",
         "title": "Nintendo office",
@@ -37,14 +37,14 @@
         }
       },
       "links": {
-        "self": "http://localhost:3000/images/nintendo-office-2006-uncategorized-moja-commonswiki"
+        "self": "http://api.dbljump.com/images/nintendo-office-2006-uncategorized-moja-commonswiki"
       }
     },
     {
       "id": "2",
       "type": "image_photos",
       "attributes": {
-        "file": "/uploads/images/2/mario-figure.jpg",
+        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
         "type": "Image::Photo",
         "kind": "uncategorized",
         "title": "Mario figure",
@@ -72,7 +72,7 @@
         }
       },
       "links": {
-        "self": "http://localhost:3000/images/mario-figure-2016-uncategorized"
+        "self": "http://api.dbljump.com/images/mario-figure-2016-uncategorized"
       }
     }
   ],

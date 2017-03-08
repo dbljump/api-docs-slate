@@ -18,8 +18,8 @@
         "currency": null,
         "longitude": 65,
         "latitude": 33,
-        "created_at": "2017-03-06T14:48:43.442Z",
-        "updated_at": "2017-03-06T14:48:43.442Z"
+        "created_at": "2017-03-08T17:33:22.884Z",
+        "updated_at": "2017-03-08T17:33:22.884Z"
       },
       "relationships": {
         "created_by": {
@@ -30,7 +30,7 @@
         }
       },
       "links": {
-        "self": "http://localhost:3000/places/countries/afghanistan"
+        "self": "http://api.dbljump.com/places/countries/afghanistan"
       }
     },
     {
@@ -46,8 +46,8 @@
         "currency": null,
         "longitude": 20,
         "latitude": 41,
-        "created_at": "2017-03-06T14:48:43.485Z",
-        "updated_at": "2017-03-06T14:48:43.485Z"
+        "created_at": "2017-03-08T17:33:22.932Z",
+        "updated_at": "2017-03-08T17:33:22.932Z"
       },
       "relationships": {
         "created_by": {
@@ -58,42 +58,14 @@
         }
       },
       "links": {
-        "self": "http://localhost:3000/places/countries/albania"
-      }
-    },
-    {
-      "id": "3",
-      "type": "place_countries",
-      "attributes": {
-        "slug": "algeria",
-        "iso_code": "DZ",
-        "short_name": null,
-        "name": "Algeria",
-        "also_known_as": [],
-        "nationality": "Algerian",
-        "currency": null,
-        "longitude": 3,
-        "latitude": 28,
-        "created_at": "2017-03-06T14:48:43.509Z",
-        "updated_at": "2017-03-06T14:48:43.509Z"
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          }
-        }
-      },
-      "links": {
-        "self": "http://localhost:3000/places/countries/algeria"
+        "self": "http://api.dbljump.com/places/countries/albania"
       }
     }
   ],
   "links": {
-    "self": "http://localhost:3000/places?page%5Bnumber%5D=1&page%5Bsize%5D=30",
-    "next": "http://localhost:3000/places?page%5Bnumber%5D=2&page%5Bsize%5D=30",
-    "last": "http://localhost:3000/places?page%5Bnumber%5D=98&page%5Bsize%5D=30"
+    "self": "http://api.dbljump.com/places?page%5Bnumber%5D=1&page%5Bsize%5D=30",
+    "next": "http://api.dbljump.com/places?page%5Bnumber%5D=2&page%5Bsize%5D=30",
+    "last": "http://api.dbljump.com/places?page%5Bnumber%5D=98&page%5Bsize%5D=30"
   },
   "meta": {
     "total_items": 2

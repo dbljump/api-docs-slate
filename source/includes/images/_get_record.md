@@ -8,7 +8,7 @@
     "id": "1",
     "type": "image_photos",
     "attributes": {
-      "file": "/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
       "type": "Image::Photo",
       "kind": "uncategorized",
       "title": "Nintendo office",
@@ -22,7 +22,7 @@
       "attributed_name": "Moja~commonswiki",
       "attributed_url": "",
       "source_url": "https://en.wikipedia.org/wiki/Nintendo#/media/File:Nintendo_office.jpg",
-      "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+      "slug": "nintendo-office-2006-uncategorized-moja-commonswiki"
     },
     "relationships": {
       "uploaded_by": {
@@ -36,14 +36,14 @@
       }
     },
     "links": {
-      "self": "http://localhost:3000/images/nintendo-office-2006-uncategorized-moja-commonswiki"
+      "self": "http://api.dbljump.com/images/nintendo-office-2006-uncategorized-moja-commonswiki"
     }
   },
   "meta": {
     "keywords": "nintendo office, 2006, 2006-02-18, moja~commonswiki, photo, false, image, picture, media, dbljump, video games, pc games, gaming",
     "description": "'Nintendo office' is a video game image at Dbljump.",
-    "created_at": "2017-03-03T20:01:29.551Z",
-    "updated_at": "2017-03-03T20:01:29.551Z"
+    "created_at": "2017-03-08T17:37:22.384Z",
+    "updated_at": "2017-03-08T17:37:22.384Z"
   }
 }
 ```

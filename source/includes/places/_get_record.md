@@ -29,16 +29,16 @@
       }
     },
     "links": {
-      "self": "http://localhost:3000/places/localities/austin-texas-united-states",
-      "subdivision": "http://localhost:3000/places/subdivisions/texas-united-states",
-      "country": "http://localhost:3000/places/countries/united-states"
+      "self": "http://api.dbljump.com/places/localities/austin-texas-united-states",
+      "subdivision": "http://api.dbljump.com/places/subdivisions/texas-united-states",
+      "country": "http://api.dbljump.com/places/countries/united-states"
     }
   },
   "meta": {
     "keywords": "austin, texas, united states, city, town, place, city, town, place, dbljump, video games, pc games, gaming",
     "description": "Find video game companies and games industry professionals from Austin, Texas, United States at Dbljump.",
-    "created_at": "2017-03-06T14:49:29.207Z",
-    "updated_at": "2017-03-06T14:49:29.207Z"
+    "created_at": "2017-03-08T17:37:15.372Z",
+    "updated_at": "2017-03-08T17:37:15.372Z"
   }
 }
 ```

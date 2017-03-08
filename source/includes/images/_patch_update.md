@@ -30,12 +30,12 @@
 ```JSON
 {
   "data": {
-    "id": "6",
+    "id": "1",
     "type": "image_photos",
     "attributes": {
-      "file": "/uploads/images/6/file.gif",
+      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
       "type": "Image::Photo",
-      "kind": "likeness",
+      "kind": "uncategorized",
       "title": "New Title",
       "description": "New description.",
       "year": 2000,
@@ -47,12 +47,12 @@
       "attributed_name": "New Attributed Name",
       "attributed_url": "http://www.new-site.com",
       "source_url": "http://www.new-site/new-file.jpg",
-      "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+      "slug": "nintendo-office-2006-uncategorized-moja-commonswiki"
     },
     "relationships": {
       "uploaded_by": {
         "data": {
-          "id": "2",
+          "id": "1",
           "type": "users"
         }
       },
@@ -64,14 +64,14 @@
       }
     },
     "links": {
-      "self": "http://localhost:3000/images/portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+      "self": "http://api.dbljump.com/images/nintendo-office-2006-uncategorized-moja-commonswiki"
     }
   },
   "meta": {
-    "keywords": "new title, 2000, 2000-01-01, new attributed name, photo, likeness, image, picture, media, dbljump, video games, pc games, gaming",
+    "keywords": "new title, 2000, 2000-01-01, new attributed name, photo, false, image, picture, media, dbljump, video games, pc games, gaming",
     "description": "'New Title' is a video game image at Dbljump.",
-    "created_at": "2017-03-03T22:46:51.098Z",
-    "updated_at": "2017-03-03T22:48:02.962Z"
+    "created_at": "2017-03-08T17:37:22.384Z",
+    "updated_at": "2017-03-08T20:31:44.725Z"
   }
 }
 ```
