@@ -119,6 +119,8 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
+<p>http://api.dbljump.com</p>
+
 <p>Welcome to the DblJump REST API. Dbljump is a video game reference application built with Ruby on Rails 5. This API follows the <a href="http://jsonapi.org">JSON API</a> specification.</p>
 
 <aside class="notice">
@@ -131,7 +133,7 @@ This API uses <a href="https://jwt.io" target="_blank">JSON web tokens (JWT)</a>
 <code>Authorization:Bearer 'user-JWT'</code></aside>
 
 <aside class="notice">
-Successful responses  include the following HTTP header.<br /><br />
+Successful responses include the following HTTP header.<br /><br />
 <code>Content-Type:application/vnd.api+json; charset=utf-8</code></aside>
 
           <h1 id="users">Users</h1>
@@ -262,8 +264,7 @@ Successful responses  include the following HTTP header.<br /><br />
         "family_name": "the Kiwi",
         "gender": "Female",
         "avatar": null,
-        "birthday": "1988-09-01",
-        "jwt": null
+        "birthday": "1988-09-01"
       },
       "relationships": {
         "country": {
@@ -271,7 +272,35 @@ Successful responses  include the following HTTP header.<br /><br />
         }
       },
       "links": {
-        "self": "http://localhost:3000/users/1"
+        "self": "http://api.dbljump.com/users/1"
+      }
+    },
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "email": "neil@example.com",
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "gender": "male",
+        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703042214.jpg",
+        "birthday": "1980-02-14"
+      },
+      "relationships": {
+        "country": {
+          "data": {
+            "id": "219",
+            "type": "place_countries"
+          },
+          "links": {
+            "country": "http://api.dbljump.com/places/countries/united-kingdom"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/2"
       }
     },
     {
@@ -285,8 +314,7 @@ Successful responses  include the following HTTP header.<br /><br />
         "family_name": null,
         "gender": null,
         "avatar": null,
-        "birthday": null,
-        "jwt": null
+        "birthday": null
       },
       "relationships": {
         "country": {
@@ -294,7 +322,7 @@ Successful responses  include the following HTTP header.<br /><br />
         }
       },
       "links": {
-        "self": "http://localhost:3000/users/3"
+        "self": "http://api.dbljump.com/users/3"
       }
     },
     {
@@ -308,8 +336,7 @@ Successful responses  include the following HTTP header.<br /><br />
         "family_name": null,
         "gender": null,
         "avatar": null,
-        "birthday": null,
-        "jwt": null
+        "birthday": null
       },
       "relationships": {
         "country": {
@@ -317,65 +344,13 @@ Successful responses  include the following HTTP header.<br /><br />
         }
       },
       "links": {
-        "self": "http://localhost:3000/users/4"
-      }
-    },
-    {
-      "id": "5",
-      "type": "users",
-      "attributes": {
-        "email": "new@user.com",
-        "username": "new_user",
-        "role": "member",
-        "given_names": null,
-        "family_name": null,
-        "gender": null,
-        "avatar": null,
-        "birthday": null,
-        "jwt": null
-      },
-      "relationships": {
-        "country": {
-          "data": null
-        }
-      },
-      "links": {
-        "self": "http://localhost:3000/users/5"
-      }
-    },
-    {
-      "id": "2",
-      "type": "users",
-      "attributes": {
-        "email": "neil@example.com",
-        "username": "neil",
-        "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "gender": "Male",
-        "avatar": "/uploads/user_avatar/2/1701282319.jpg",
-        "birthday": "1980-02-14",
-        "jwt": null
-      },
-      "relationships": {
-        "country": {
-          "data": {
-            "id": "219",
-            "type": "place_countries"
-          },
-          "links": {
-            "country": "http://localhost:3000/places/countries/united-kingdom"
-          }
-        }
-      },
-      "links": {
-        "self": "http://localhost:3000/users/2"
+        "self": "http://api.dbljump.com/users/4"
       }
     }
   ],
   "links": {},
   "meta": {
-    "total_items": 5
+    "total_items": 4
   }
 }
 </code></pre>
@@ -457,10 +432,9 @@ Successful responses  include the following HTTP header.<br /><br />
       "role": "admin",
       "given_names": "Neil",
       "family_name": "Wheatley",
-      "gender": "Male",
-      "avatar": "/uploads/user_avatar/2/1701282319.jpg",
-      "birthday": "1980-02-14",
-      "jwt": null
+      "gender": "male",
+      "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703042214.jpg",
+      "birthday": "1980-02-14"
     },
     "relationships": {
       "country": {
@@ -469,23 +443,23 @@ Successful responses  include the following HTTP header.<br /><br />
           "type": "place_countries"
         },
         "links": {
-          "country": "http://localhost:3000/places/countries/united-kingdom"
+          "country": "http://api.dbljump.com/places/countries/united-kingdom"
         }
       }
     },
     "links": {
-      "self": "http://localhost:3000/users/2"
+      "self": "http://api.dbljump.com/users/2"
     }
   },
   "meta": {
     "keywords": "neil, neil wheatley, user, dbljump, video games, pc games, gaming",
     "description": "Neil Wheatley is a member at Dbljump, the video game reference.",
-    "created_at": "2017-01-28T23:19:21.044Z",
-    "updated_at": "2017-02-10T00:41:28.321Z",
-    "last_signed_in_at": "2017-02-10T00:41:28.240Z",
-    "last_sign_in_ip": "::1",
-    "sign_in_count": 4,
-    "activated_at": "2017-01-28T23:19:20.476Z"
+    "created_at": "2017-03-04T22:14:41.550Z",
+    "updated_at": "2017-03-04T22:14:41.550Z",
+    "last_signed_in_at": null,
+    "last_sign_in_ip": null,
+    "sign_in_count": 0,
+    "activated_at": "2017-03-04T22:14:40.892Z"
   }
 }
 </code></pre>
@@ -560,7 +534,7 @@ Successful responses  include the following HTTP header.<br /><br />
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "id": "6",
+    "id": "1",
     "type": "users",
     "attributes": {
       "email": "new@user.com",
@@ -569,17 +543,23 @@ Successful responses  include the following HTTP header.<br /><br />
       "given_names": null,
       "family_name": null,
       "gender": null,
-      "avatar": null
+      "avatar": null,
+      "birthday": null
+    },
+    "relationships": {
+      "country": {
+        "data": null
+      }
     },
     "links": {
-      "self": "http://localhost:3000/users/6"
+      "self": "http://api.dbljump.com/users/1"
     }
   },
   "meta": {
     "keywords": "new_user, new_user, user, dbljump, video games, pc games, gaming",
     "description": "new_user is a member at Dbljump, the video game reference.",
-    "created_at": "2017-02-10T02:17:45.542Z",
-    "updated_at": "2017-02-10T02:17:45.997Z",
+    "created_at": "2017-03-08T17:27:17.877Z",
+    "updated_at": "2017-03-08T17:27:18.648Z",
     "last_signed_in_at": null,
     "last_sign_in_ip": null,
     "sign_in_count": 0,
@@ -758,11 +738,11 @@ Successful responses  include the following HTTP header.<br /><br />
     "attributes": {
       "email": "updated@email.com",
       "username": "updated_username",
-      "role": "editor",
+      "role": "member",
       "given_names": "Updated",
       "family_name": "Name",
       "gender": "male",
-      "avatar": "/uploads/user_avatar/4/1702101051.gif",
+      "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/4/1703081836.gif",
       "birthday": "1985-07-20"
     },
     "relationships": {
@@ -772,23 +752,23 @@ Successful responses  include the following HTTP header.<br /><br />
           "type": "place_countries"
         },
         "links": {
-          "country": "http://localhost:3000/places/countries/andorra"
+          "country": "http://api.dbljump.com/places/countries/andorra"
         }
       }
     },
     "links": {
-      "self": "http://localhost:3000/users/4"
+      "self": "http://api.dbljump.com/users/4"
     }
   },
   "meta": {
     "keywords": "updated_username, updated name, user, dbljump, video games, pc games, gaming",
     "description": "Updated Name is a member at Dbljump, the video game reference.",
-    "created_at": "2017-01-28T23:19:21.362Z",
-    "updated_at": "2017-02-10T10:51:46.844Z",
-    "last_signed_in_at": null,
-    "last_sign_in_ip": null,
-    "sign_in_count": 0,
-    "activated_at": "2017-01-28T23:19:21.285Z"
+    "created_at": "2017-03-08T17:37:18.535Z",
+    "updated_at": "2017-03-08T18:36:24.885Z",
+    "last_signed_in_at": "2017-03-08T18:33:42.727Z",
+    "last_sign_in_ip": "94.4.193.77",
+    "sign_in_count": 1,
+    "activated_at": "2017-03-08T17:37:18.448Z"
   }
 }
 </code></pre>
@@ -1101,7 +1081,7 @@ Successful responses  include the following HTTP header.<br /><br />
  "data": {
     "type": "users",
     "attributes": {
-        "email": "tiki@dbljump.com",
+        "email": "member@example.com",
         "password": "password"
     }
   }
@@ -1112,18 +1092,18 @@ Successful responses  include the following HTTP header.<br /><br />
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "id": "1",
+    "id": "4",
     "type": "users",
     "attributes": {
-      "email": "tiki@dbljump.com",
-      "username": "tikithekiwi",
-      "role": "admin",
-      "given_names": "Tiki",
-      "family_name": "the Kiwi",
-      "gender": "Female",
+      "email": "member@example.com",
+      "username": "member",
+      "role": "member",
+      "given_names": null,
+      "family_name": null,
+      "gender": null,
       "avatar": null,
-      "birthday": "1988-09-01",
-      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOiJhZG1pbiIsImV4cGlyeSI6IjIwMTctMDItMTEgMTI6MjY6MTUgKzAwMDAifQ.jaAbCFZnyi1Foqf8EktcStZrhmwGIN1Ekw5FFGq622U"
+      "birthday": null,
+      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJ1c2VyX3JvbGUiOiJtZW1iZXIiLCJleHBpcnkiOiIyMDE3LTAzLTA5IDE4OjMzOjQyICswMDAwIn0.XMY0wazu1sSL4ujoUXIi5AG46RJDG2o44y-f7eyK_Fg"
     },
     "relationships": {
       "country": {
@@ -1131,14 +1111,14 @@ Successful responses  include the following HTTP header.<br /><br />
       }
     },
     "links": {
-      "self": "http://localhost:3000/users/1"
+      "self": "http://api.dbljump.com/users/4"
     }
   },
   "meta": {
-    "last_signed_in_at": "2017-02-10T12:26:15.891Z",
-    "last_sign_in_ip": "::1",
+    "last_signed_in_at": "2017-03-08T18:33:42.727Z",
+    "last_sign_in_ip": "94.4.193.77",
     "sign_in_count": 1,
-    "activated_at": "2017-01-28T23:18:37.302Z"
+    "activated_at": "2017-03-08T17:37:18.448Z"
   }
 }
 </code></pre>
@@ -1332,7 +1312,7 @@ Successful responses  include the following HTTP header.<br /><br />
       }
     },
     "links": {
-      "self": "http://localhost:3000/users/7"
+      "self": "http://api.dbljump.com/users/7"
     }
   },
   "meta": {
@@ -1841,7 +1821,7 @@ Successful responses  include the following HTTP header.<br /><br />
       "id": "1",
       "type": "image_photos",
       "attributes": {
-        "file": "/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
         "type": "Image::Photo",
         "kind": "uncategorized",
         "title": "Nintendo office",
@@ -1869,14 +1849,14 @@ Successful responses  include the following HTTP header.<br /><br />
         }
       },
       "links": {
-        "self": "http://localhost:3000/images/nintendo-office-2006-uncategorized-moja-commonswiki"
+        "self": "http://api.dbljump.com/images/nintendo-office-2006-uncategorized-moja-commonswiki"
       }
     },
     {
       "id": "2",
       "type": "image_photos",
       "attributes": {
-        "file": "/uploads/images/2/mario-figure.jpg",
+        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
         "type": "Image::Photo",
         "kind": "uncategorized",
         "title": "Mario figure",
@@ -1904,7 +1884,7 @@ Successful responses  include the following HTTP header.<br /><br />
         }
       },
       "links": {
-        "self": "http://localhost:3000/images/mario-figure-2016-uncategorized"
+        "self": "http://api.dbljump.com/images/mario-figure-2016-uncategorized"
       }
     }
   ],
@@ -1960,7 +1940,7 @@ Successful responses  include the following HTTP header.<br /><br />
     "id": "1",
     "type": "image_photos",
     "attributes": {
-      "file": "/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
       "type": "Image::Photo",
       "kind": "uncategorized",
       "title": "Nintendo office",
@@ -1974,7 +1954,7 @@ Successful responses  include the following HTTP header.<br /><br />
       "attributed_name": "Moja~commonswiki",
       "attributed_url": "",
       "source_url": "https://en.wikipedia.org/wiki/Nintendo#/media/File:Nintendo_office.jpg",
-      "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+      "slug": "nintendo-office-2006-uncategorized-moja-commonswiki"
     },
     "relationships": {
       "uploaded_by": {
@@ -1988,14 +1968,14 @@ Successful responses  include the following HTTP header.<br /><br />
       }
     },
     "links": {
-      "self": "http://localhost:3000/images/nintendo-office-2006-uncategorized-moja-commonswiki"
+      "self": "http://api.dbljump.com/images/nintendo-office-2006-uncategorized-moja-commonswiki"
     }
   },
   "meta": {
     "keywords": "nintendo office, 2006, 2006-02-18, moja~commonswiki, photo, false, image, picture, media, dbljump, video games, pc games, gaming",
     "description": "'Nintendo office' is a video game image at Dbljump.",
-    "created_at": "2017-03-03T20:01:29.551Z",
-    "updated_at": "2017-03-03T20:01:29.551Z"
+    "created_at": "2017-03-08T17:37:22.384Z",
+    "updated_at": "2017-03-08T17:37:22.384Z"
   }
 }
 </code></pre>
@@ -2065,10 +2045,10 @@ Successful responses  include the following HTTP header.<br /><br />
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "id": "5",
+    "id": "3",
     "type": "image_photos",
     "attributes": {
-      "file": "/uploads/images/5/file.gif",
+      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
       "type": "Image::Photo",
       "kind": "likeness",
       "title": "Portrait of Takashi Tezuka",
@@ -2087,7 +2067,7 @@ Successful responses  include the following HTTP header.<br /><br />
     "relationships": {
       "uploaded_by": {
         "data": {
-          "id": "2",
+          "id": "5",
           "type": "users"
         }
       },
@@ -2099,14 +2079,14 @@ Successful responses  include the following HTTP header.<br /><br />
       }
     },
     "links": {
-      "self": "http://localhost:3000/images/portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+      "self": "http://api.dbljump.com/images/portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
     }
   },
   "meta": {
     "keywords": "portrait of takashi tezuka, 2017, 2017-02-02, jonny snapper, photo, likeness, image, picture, media, dbljump, video games, pc games, gaming",
     "description": "'Portrait of Takashi Tezuka' is a video game image at Dbljump.",
-    "created_at": "2017-03-03T22:37:34.198Z",
-    "updated_at": "2017-03-03T22:37:34.198Z"
+    "created_at": "2017-03-08T20:33:17.449Z",
+    "updated_at": "2017-03-08T20:33:17.449Z"
   }
 }
 </code></pre>
@@ -2372,12 +2352,12 @@ Successful responses  include the following HTTP header.<br /><br />
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "id": "6",
+    "id": "1",
     "type": "image_photos",
     "attributes": {
-      "file": "/uploads/images/6/file.gif",
+      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
       "type": "Image::Photo",
-      "kind": "likeness",
+      "kind": "uncategorized",
       "title": "New Title",
       "description": "New description.",
       "year": 2000,
@@ -2389,12 +2369,12 @@ Successful responses  include the following HTTP header.<br /><br />
       "attributed_name": "New Attributed Name",
       "attributed_url": "http://www.new-site.com",
       "source_url": "http://www.new-site/new-file.jpg",
-      "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+      "slug": "nintendo-office-2006-uncategorized-moja-commonswiki"
     },
     "relationships": {
       "uploaded_by": {
         "data": {
-          "id": "2",
+          "id": "1",
           "type": "users"
         }
       },
@@ -2406,14 +2386,14 @@ Successful responses  include the following HTTP header.<br /><br />
       }
     },
     "links": {
-      "self": "http://localhost:3000/images/portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+      "self": "http://api.dbljump.com/images/nintendo-office-2006-uncategorized-moja-commonswiki"
     }
   },
   "meta": {
-    "keywords": "new title, 2000, 2000-01-01, new attributed name, photo, likeness, image, picture, media, dbljump, video games, pc games, gaming",
+    "keywords": "new title, 2000, 2000-01-01, new attributed name, photo, false, image, picture, media, dbljump, video games, pc games, gaming",
     "description": "'New Title' is a video game image at Dbljump.",
-    "created_at": "2017-03-03T22:46:51.098Z",
-    "updated_at": "2017-03-03T22:48:02.962Z"
+    "created_at": "2017-03-08T17:37:22.384Z",
+    "updated_at": "2017-03-08T20:31:44.725Z"
   }
 }
 </code></pre>
@@ -2720,8 +2700,8 @@ Successful responses  include the following HTTP header.<br /><br />
         "currency": null,
         "longitude": 65,
         "latitude": 33,
-        "created_at": "2017-03-06T14:48:43.442Z",
-        "updated_at": "2017-03-06T14:48:43.442Z"
+        "created_at": "2017-03-08T17:33:22.884Z",
+        "updated_at": "2017-03-08T17:33:22.884Z"
       },
       "relationships": {
         "created_by": {
@@ -2732,7 +2712,7 @@ Successful responses  include the following HTTP header.<br /><br />
         }
       },
       "links": {
-        "self": "http://localhost:3000/places/countries/afghanistan"
+        "self": "http://api.dbljump.com/places/countries/afghanistan"
       }
     },
     {
@@ -2748,8 +2728,8 @@ Successful responses  include the following HTTP header.<br /><br />
         "currency": null,
         "longitude": 20,
         "latitude": 41,
-        "created_at": "2017-03-06T14:48:43.485Z",
-        "updated_at": "2017-03-06T14:48:43.485Z"
+        "created_at": "2017-03-08T17:33:22.932Z",
+        "updated_at": "2017-03-08T17:33:22.932Z"
       },
       "relationships": {
         "created_by": {
@@ -2760,42 +2740,14 @@ Successful responses  include the following HTTP header.<br /><br />
         }
       },
       "links": {
-        "self": "http://localhost:3000/places/countries/albania"
-      }
-    },
-    {
-      "id": "3",
-      "type": "place_countries",
-      "attributes": {
-        "slug": "algeria",
-        "iso_code": "DZ",
-        "short_name": null,
-        "name": "Algeria",
-        "also_known_as": [],
-        "nationality": "Algerian",
-        "currency": null,
-        "longitude": 3,
-        "latitude": 28,
-        "created_at": "2017-03-06T14:48:43.509Z",
-        "updated_at": "2017-03-06T14:48:43.509Z"
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          }
-        }
-      },
-      "links": {
-        "self": "http://localhost:3000/places/countries/algeria"
+        "self": "http://api.dbljump.com/places/countries/albania"
       }
     }
   ],
   "links": {
-    "self": "http://localhost:3000/places?page%5Bnumber%5D=1&amp;page%5Bsize%5D=30",
-    "next": "http://localhost:3000/places?page%5Bnumber%5D=2&amp;page%5Bsize%5D=30",
-    "last": "http://localhost:3000/places?page%5Bnumber%5D=98&amp;page%5Bsize%5D=30"
+    "self": "http://api.dbljump.com/places?page%5Bnumber%5D=1&amp;page%5Bsize%5D=30",
+    "next": "http://api.dbljump.com/places?page%5Bnumber%5D=2&amp;page%5Bsize%5D=30",
+    "last": "http://api.dbljump.com/places?page%5Bnumber%5D=98&amp;page%5Bsize%5D=30"
   },
   "meta": {
     "total_items": 2
@@ -2869,16 +2821,16 @@ Successful responses  include the following HTTP header.<br /><br />
       }
     },
     "links": {
-      "self": "http://localhost:3000/places/localities/austin-texas-united-states",
-      "subdivision": "http://localhost:3000/places/subdivisions/texas-united-states",
-      "country": "http://localhost:3000/places/countries/united-states"
+      "self": "http://api.dbljump.com/places/localities/austin-texas-united-states",
+      "subdivision": "http://api.dbljump.com/places/subdivisions/texas-united-states",
+      "country": "http://api.dbljump.com/places/countries/united-states"
     }
   },
   "meta": {
     "keywords": "austin, texas, united states, city, town, place, city, town, place, dbljump, video games, pc games, gaming",
     "description": "Find video game companies and games industry professionals from Austin, Texas, United States at Dbljump.",
-    "created_at": "2017-03-06T14:49:29.207Z",
-    "updated_at": "2017-03-06T14:49:29.207Z"
+    "created_at": "2017-03-08T17:37:15.372Z",
+    "updated_at": "2017-03-08T17:37:15.372Z"
   }
 }
 </code></pre>
