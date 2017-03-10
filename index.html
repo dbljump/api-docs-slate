@@ -2397,13 +2397,13 @@ Successful responses include the following HTTP header.<br /><br />
   }
 }
 </code></pre>
-<p>Update an existing image record account. The user must be an editor.</p>
+<p>Update an existing image record. The user must be an editor.</p>
 
 <p>The <code class="prettyprint">file</code> attribute cannot be updated. A new image file can only be uploaded with a new image record.</p>
 
 <ul>
 <li>User authentication: required</li>
-<li>Authorization level: Editor.</li>
+<li>Authorization level: editor</li>
 </ul>
 
 <h3 id="http-request">HTTP request</h3>
@@ -2622,6 +2622,12 @@ Successful responses include the following HTTP header.<br /><br />
 <td>USER_UNAUTHORIZED</td>
 <td>n/a</td>
 <td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
 </tr>
 </tbody></table>
 
@@ -2869,6 +2875,2347 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
+          <h1 id="places-countries"><a name="countries_intro"></a>Places: countries</h1>
+
+<p>Resources related to geographic countries.</p>
+
+<h3 id="mutable-attributes"><a name="country_attrs"></a>Mutable attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. Unique. 2-250 chars. English-language common name, e.g. &lsquo;United States&rsquo;.</td>
+</tr>
+<tr>
+<td>iso_code</td>
+<td>string</td>
+<td>Req&rsquo;d. Unique. 2 chars. ISO 3166-1 country code.</td>
+</tr>
+<tr>
+<td>short_name</td>
+<td>string</td>
+<td>Unique. 2-20 chars. Common short name, e.g. &#39;USA&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;US&#39;, &#39;America&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td>Between -180 and 180.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>Must be 3 chars. ISO 4217 currency code, e.g. &#39;USD&rsquo;.</td>
+</tr>
+<tr>
+<td>nationality</td>
+<td>string</td>
+<td>2-30 chars.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-all-countries">Get all countries</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": [
+    {
+      "id": "232",
+      "type": "place_countries",
+      "attributes": {
+        "slug": "zimbabwe",
+        "iso_code": "ZW",
+        "short_name": null,
+        "name": "Zimbabwe",
+        "also_known_as": [],
+        "nationality": "Zimbabwean",
+        "currency": null,
+        "longitude": 30,
+        "latitude": -20,
+        "created_at": "2017-03-08T17:33:40.884Z",
+        "updated_at": "2017-03-08T17:33:40.884Z"
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/zimbabwe"
+      }
+    },
+    {
+      "id": "231",
+      "type": "place_countries",
+      "attributes": {
+        "slug": "zambia",
+        "iso_code": "ZM",
+        "short_name": null,
+        "name": "Zambia",
+        "also_known_as": [],
+        "nationality": "Zambian",
+        "currency": null,
+        "longitude": 30,
+        "latitude": -15,
+        "created_at": "2017-03-08T17:33:40.824Z",
+        "updated_at": "2017-03-08T17:33:40.824Z"
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/zambia"
+      }
+    },
+    {
+      "id": "230",
+      "type": "place_countries",
+      "attributes": {
+        "slug": "yemen",
+        "iso_code": "YE",
+        "short_name": null,
+        "name": "Yemen",
+        "also_known_as": [],
+        "nationality": "Yemeni",
+        "currency": null,
+        "longitude": 48,
+        "latitude": 15,
+        "created_at": "2017-03-08T17:33:40.755Z",
+        "updated_at": "2017-03-08T17:33:40.755Z"
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/yemen"
+      }
+    }
+  ],
+  "links": {
+    "self": "http://api.dbljump.com/places/countries?page%5Bnumber%5D=1&amp;page%5Bsize%5D=30",
+    "next": "http://api.dbljump.com/places/countries?page%5Bnumber%5D=2&amp;page%5Bsize%5D=30",
+    "last": "http://api.dbljump.com/places/countries?page%5Bnumber%5D=8&amp;page%5Bsize%5D=30"
+  },
+  "meta": {
+    "total_items": 232
+  }
+}
+</code></pre>
+<p>Retrieve all countries. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /places/countries</code></p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number</td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of images per page</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-single-country">Get single country</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "220",
+    "type": "place_countries",
+    "attributes": {
+      "slug": "united-states",
+      "iso_code": "US",
+      "short_name": "USA",
+      "name": "United States",
+      "also_known_as": [],
+      "nationality": "American",
+      "currency": null,
+      "longitude": -97,
+      "latitude": 38,
+      "created_at": "2017-03-08T17:33:40.235Z",
+      "updated_at": "2017-03-08T17:33:40.235Z"
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/countries/united-states"
+    }
+  },
+  "meta": {
+    "keywords": "united states, usa, us, american, country, place, country, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from United States at Dbljump.",
+    "created_at": "2017-03-08T17:33:40.235Z",
+    "updated_at": "2017-03-08T17:33:40.235Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single country record. Countries are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /places/countries/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with country record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h2 id="create-a-new-country-record">Create a new country record</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "place_countries",
+    "attributes": {
+      "name": "New Country",
+      "iso_code": "NC",
+      "short_name": "NewC",
+      "also_known_as": ["That New Country", "The New Place"],
+      "latitude": "88.27",
+      "longitude": "-150.55",
+      "currency": "NCY",
+      "nationality": "New Countryfolk"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 201 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "2937",
+    "type": "place_countries",
+    "attributes": {
+      "slug": "new-country",
+      "iso_code": "NC",
+      "short_name": "NewC",
+      "name": "New Country",
+      "also_known_as": [
+        "That New Country",
+        "The New Place"
+      ],
+      "nationality": "New Countryfolk",
+      "currency": "NCY",
+      "longitude": -150.55,
+      "latitude": 88.27,
+      "created_at": "2017-03-10T15:27:13.797Z",
+      "updated_at": "2017-03-10T15:27:13.797Z"
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "id": "3",
+          "type": "users"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/countries/new-country"
+    }
+  }
+}
+</code></pre>
+<p>Create a new country record. Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /places/countries</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. Unique. 2-250 chars. English-language common name, e.g. &lsquo;United States&rsquo;.</td>
+</tr>
+<tr>
+<td>iso_code</td>
+<td>string</td>
+<td>Req&rsquo;d. Unique. 2 chars. ISO 3166-1 country code.</td>
+</tr>
+<tr>
+<td>short_name</td>
+<td>string</td>
+<td>Unique. 2-20 chars. Common short name, e.g. &#39;USA&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;US&#39;, &#39;America&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td>Between -180 and 180.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>Must be 3 chars. ISO 4217 currency code, e.g. &#39;USD&rsquo;.</td>
+</tr>
+<tr>
+<td>nationality</td>
+<td>string</td>
+<td>2-30 chars.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_NAME_BLANK</td>
+<td>name</td>
+<td>Name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_NAME_TAKEN</td>
+<td>name</td>
+<td>There&rsquo;s already a country with that name.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_NAME_TOO_SHORT</td>
+<td>name</td>
+<td>Name must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_NAME_TOO_LONG</td>
+<td>name</td>
+<td>Name cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_SHORT_NAME_TAKEN</td>
+<td>short_name</td>
+<td>There&rsquo;s already a country with that short name.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_SHORT_NAME_TOO_SHORT</td>
+<td>short_name</td>
+<td>Short name must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_SHORT_NAME_TOO_LONG</td>
+<td>short_name</td>
+<td>Short name cannot be more than 20 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_ALSO_KNOWN_AS_TOO_SHORT</td>
+<td>also_known_as</td>
+<td>Also-known-as tags must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_ALSO_KNOWN_AS_TOO_LONG</td>
+<td>also_known_as</td>
+<td>Also-known-as tags cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_ISO_CODE_BLANK</td>
+<td>iso_code</td>
+<td>ISO code is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_ISO_CODE_TAKEN</td>
+<td>iso_code</td>
+<td>There&rsquo;s already a country with that ISO code.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_ISO_CODE_TOO_SHORT</td>
+<td>iso_code</td>
+<td>ISO code must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_ISO_CODE_TOO_LONG</td>
+<td>iso_code</td>
+<td>ISO code cannot be more than 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_NATIONALITY_TOO_SHORT</td>
+<td>nationality</td>
+<td>Nationality must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_NATIONALITY_TOO_LONG</td>
+<td>nationality</td>
+<td>Nationality cannot be more than 30 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_CURRENCY_TOO_SHORT</td>
+<td>currency</td>
+<td>Currency must be at least 3 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_CURRENCY_TOO_LONG</td>
+<td>currency</td>
+<td>Currency cannot be more than 3 characters.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="update-a-country-record">Update a country record</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "place_countries",
+    "id": "andorra",
+    "attributes": {
+      "name": "Updated Country",
+      "iso_code": "UP",
+      "short_name": "Updated",
+      "also_known_as": ["Edited Country", "Renamed Country"],
+      "latitude": "5.0",
+      "longitude": "10.0",
+      "currency": "UPD",
+      "nationality": "Updatedfolk"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "5",
+    "type": "place_countries",
+    "attributes": {
+      "slug": "updated-country",
+      "iso_code": "UP",
+      "short_name": "Updated",
+      "name": "Updated Country",
+      "also_known_as": [
+        "Edited Country",
+        "Renamed Country"
+      ],
+      "nationality": "Updatedfolk",
+      "currency": "UPD",
+      "longitude": 10,
+      "latitude": 5,
+      "created_at": "2017-03-08T17:33:23.051Z",
+      "updated_at": "2017-03-10T17:17:07.482Z"
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/countries/updated-country"
+    }
+  }
+}
+</code></pre>
+<p>Update an existing country record. The user must be an admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /places/countries/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with country record slug)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. Unique. 2-250 chars. English-language common name, e.g. &lsquo;United States&rsquo;.</td>
+</tr>
+<tr>
+<td>iso_code</td>
+<td>string</td>
+<td>Req&rsquo;d. Unique. 2 chars. ISO 3166-1 country code.</td>
+</tr>
+<tr>
+<td>short_name</td>
+<td>string</td>
+<td>Unique. 2-20 chars. Common short name, e.g. &#39;USA&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;US&#39;, &#39;America&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td>Between -180 and 180.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>Must be 3 chars. ISO 4217 currency code, e.g. &#39;USD&rsquo;.</td>
+</tr>
+<tr>
+<td>nationality</td>
+<td>string</td>
+<td>2-30 chars.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_NAME_BLANK</td>
+<td>name</td>
+<td>Name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_NAME_TAKEN</td>
+<td>name</td>
+<td>There&rsquo;s already a country with that name.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_NAME_TOO_SHORT</td>
+<td>name</td>
+<td>Name must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_NAME_TOO_LONG</td>
+<td>name</td>
+<td>Name cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_SHORT_NAME_TAKEN</td>
+<td>short_name</td>
+<td>There&rsquo;s already a country with that short name.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_SHORT_NAME_TOO_SHORT</td>
+<td>short_name</td>
+<td>Short name must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_SHORT_NAME_TOO_LONG</td>
+<td>short_name</td>
+<td>Short name cannot be more than 20 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_ALSO_KNOWN_AS_TOO_SHORT</td>
+<td>also_known_as</td>
+<td>Also-known-as tags must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_ALSO_KNOWN_AS_TOO_LONG</td>
+<td>also_known_as</td>
+<td>Also-known-as tags cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_ISO_CODE_BLANK</td>
+<td>iso_code</td>
+<td>ISO code is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_ISO_CODE_TAKEN</td>
+<td>iso_code</td>
+<td>There&rsquo;s already a country with that ISO code.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_ISO_CODE_TOO_SHORT</td>
+<td>iso_code</td>
+<td>ISO code must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_ISO_CODE_TOO_LONG</td>
+<td>iso_code</td>
+<td>ISO code cannot be more than 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_NATIONALITY_TOO_SHORT</td>
+<td>nationality</td>
+<td>Nationality must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_NATIONALITY_TOO_LONG</td>
+<td>nationality</td>
+<td>Nationality cannot be more than 30 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_CURRENCY_TOO_SHORT</td>
+<td>currency</td>
+<td>Currency must be at least 3 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_COUNTRY_CURRENCY_TOO_LONG</td>
+<td>currency</td>
+<td>Currency cannot be more than 3 characters.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="delete-a-country-record">Delete a country record</h2>
+
+<p>Delete an existing country record. Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /places/countries/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with country record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user isn&rsquo;t an admin, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="places-subdivisions"><a name="subdivs_intro"></a>Places: subdivisions</h1>
+
+<p>Resources related to geographic subdivisions (e.g. states and counties).</p>
+
+<h3 id="mutable-attributes"><a name="subdivision_attrs"></a>Mutable attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>country_id</td>
+<td>integer</td>
+<td>Req&rsquo;d. ID of parent country.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. 2-250 chars. English-language common name, e.g. &lsquo;Florida&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;The Sunshine State&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td>Between -180 and 180.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-all-subdivisions">Get all subdivisions</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": [
+    {
+      "id": "240",
+      "type": "place_subdivisions",
+      "attributes": {
+        "name": "All",
+        "formatted": "All, Niue",
+        "latitude": null,
+        "longitude": null,
+        "also_known_as": []
+      },
+      "relationships": {
+        "country": {
+          "data": {
+            "id": "151",
+            "type": "place_countries"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/subdivisions/0-niue",
+        "country": "http://api.dbljump.com/places/countries/niue"
+      }
+    },
+    {
+      "id": "241",
+      "type": "place_subdivisions",
+      "attributes": {
+        "name": "All",
+        "formatted": "All, Curaçao",
+        "latitude": null,
+        "longitude": null,
+        "also_known_as": []
+      },
+      "relationships": {
+        "country": {
+          "data": {
+            "id": "53",
+            "type": "place_countries"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/subdivisions/0-curacao",
+        "country": "http://api.dbljump.com/places/countries/curacao"
+      }
+    },
+    {
+      "id": "242",
+      "type": "place_subdivisions",
+      "attributes": {
+        "name": "All",
+        "formatted": "All, Bermuda",
+        "latitude": null,
+        "longitude": null,
+        "also_known_as": []
+      },
+      "relationships": {
+        "country": {
+          "data": {
+            "id": "23",
+            "type": "place_countries"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/subdivisions/0-bermuda",
+        "country": "http://api.dbljump.com/places/countries/bermuda"
+      }
+    }
+  ],
+  "links": {
+    "self": "http://api.dbljump.com/places/subdivisions?page%5Bnumber%5D=1&amp;page%5Bsize%5D=30",
+    "next": "http://api.dbljump.com/places/subdivisions?page%5Bnumber%5D=2&amp;page%5Bsize%5D=30",
+    "last": "http://api.dbljump.com/places/subdivisions?page%5Bnumber%5D=89&amp;page%5Bsize%5D=30"
+  },
+  "meta": {
+    "total_items": 2641
+  }
+}
+</code></pre>
+<p>Retrieve all subdivisions. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /places/subdivisions</code></p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number</td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of images per page</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-single-subdivision">Get single subdivision</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "2599",
+    "type": "place_subdivisions",
+    "attributes": {
+      "name": "Texas",
+      "formatted": "Texas, United States",
+      "latitude": 31.9685988,
+      "longitude": -99.9018131,
+      "also_known_as": []
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "220",
+          "type": "place_countries"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/subdivisions/texas-united-states",
+      "country": "http://api.dbljump.com/places/countries/united-states"
+    }
+  },
+  "meta": {
+    "keywords": "texas, united states, state, county, place, state, county, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from Texas, United States at Dbljump.",
+    "created_at": "2017-03-08T17:36:44.379Z",
+    "updated_at": "2017-03-08T17:36:44.379Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single subdivision record. Subdivisions are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /places/subdivisions/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with subdivision record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h2 id="create-a-new-subdivision-record">Create a new subdivision record</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "place_subdivisions",
+    "attributes": {
+      "country_id": "1",
+      "name": "New Subdivision",
+      "also_known_as": ["That New Subdiv", "The New Subdiv"],
+      "latitude": "17.85",
+      "longitude": "-20.00"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 201 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "2938",
+    "type": "place_subdivisions",
+    "attributes": {
+      "name": "New Subdivision",
+      "formatted": "New Subdivision, Afghanistan",
+      "latitude": 17.85,
+      "longitude": -20,
+      "also_known_as": [
+        "That New Subdiv",
+        "The New Subdiv"
+      ]
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "1",
+          "type": "place_countries"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "3",
+          "type": "users"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/subdivisions/new-subdivision-afghanistan",
+      "country": "http://api.dbljump.com/places/countries/afghanistan"
+    }
+  }
+}
+</code></pre>
+<p>Create a new subdivision record. Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /places/subdivisions</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>country_id</td>
+<td>integer</td>
+<td>Req&rsquo;d. ID of parent country.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. 2-250 chars. English-language common name, e.g. &lsquo;Florida&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;The Sunshine State&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td>Between -180 and 180.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<aside class="notice"><code>parent_id</code> refers to <code>country_id</code> in these errors.</aside>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_PARENT_ID_BLANK</td>
+<td>parent_id</td>
+<td>Country ID is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_COUNTRY_ID_INVALID</td>
+<td>country_id</td>
+<td>Country ID must be a valid country record.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_BLANK</td>
+<td>name</td>
+<td>Name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_TAKEN</td>
+<td>name</td>
+<td>There&rsquo;s already a subdivision with that name and parent country.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_TOO_SHORT</td>
+<td>name</td>
+<td>Name must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_TOO_LONG</td>
+<td>name</td>
+<td>Name cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_ALSO_KNOWN_AS_TOO_SHORT</td>
+<td>also_known_as</td>
+<td>Also-known-as tags must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_ALSO_KNOWN_AS_TOO_LONG</td>
+<td>also_known_as</td>
+<td>Also-known-as tags cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="update-a-subdivision-record">Update a subdivision record</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "place_subdivisions",
+    "id": "north-puerto-rico",
+    "attributes": {
+      "country_id": "10",
+      "name": "Updated Subdivision",
+      "also_known_as": ["Updated Subdiv", "Changed Subdiv"],
+      "latitude": "3.0",
+      "longitude": "-25.00"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "269",
+    "type": "place_subdivisions",
+    "attributes": {
+      "name": "Updated Subdivision",
+      "formatted": "Updated Subdivision, Armenia",
+      "latitude": 3,
+      "longitude": -25,
+      "also_known_as": [
+        "Updated Subdiv",
+        "Changed Subdiv"
+      ]
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "10",
+          "type": "place_countries"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/subdivisions/updated-subdivision-armenia",
+      "country": "http://api.dbljump.com/places/countries/armenia"
+    }
+  }
+}
+</code></pre>
+<p>Update an existing subdivision record. The user must be an admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /places/subdivisions/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with subdivision record slug)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>country_id</td>
+<td>integer</td>
+<td>Req&rsquo;d. ID of parent country.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. 2-250 chars. English-language common name, e.g. &lsquo;Florida&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;The Sunshine State&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td>Between -180 and 180.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<aside class="notice"><code>country_id</code> may also appear as <code>parent_id</code> in these errors.</aside>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_PARENT_ID_BLANK</td>
+<td>parent_id</td>
+<td>Country ID is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_COUNTRY_ID_INVALID</td>
+<td>parent_id</td>
+<td>Country ID must be a valid country record.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_BLANK</td>
+<td>name</td>
+<td>Name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_TAKEN</td>
+<td>name</td>
+<td>There&rsquo;s already a subdivision with that name and parent country.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_TOO_SHORT</td>
+<td>name</td>
+<td>Name must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_TOO_LONG</td>
+<td>name</td>
+<td>Name cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_ALSO_KNOWN_AS_TOO_SHORT</td>
+<td>also_known_as</td>
+<td>Also-known-as tags must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_ALSO_KNOWN_AS_TOO_LONG</td>
+<td>also_known_as</td>
+<td>Also-known-as tags cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="delete-a-subdivision-record">Delete a subdivision record</h2>
+
+<p>Delete an existing subdivision record. Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /places/subdivisions/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with subdivision record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user isn&rsquo;t an admin, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="places-localities"><a name="localities_intro"></a>Places: localities</h1>
+
+<p>Resources related to geographic localities (e.g. cities and towns).</p>
+
+<h3 id="mutable-attributes"><a name="locality_attrs"></a>Mutable attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subdivision_id</td>
+<td>integer</td>
+<td>Req&rsquo;d. ID of parent subdivision.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. 2-250 chars. English-language common name, e.g. &lsquo;Los Angeles&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;LA&#39;, &#39;City of Angels&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td>Between -180 and 180.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-all-localities">Get all localities</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": [
+    {
+      "id": "2936",
+      "type": "place_localities",
+      "attributes": {
+        "name": "Matsumoto",
+        "formatted": "Matsumoto, Nagano Prefecture, Japan",
+        "also_known_as": [],
+        "latitude": null,
+        "longitude": null
+      },
+      "relationships": {
+        "subdivision": {
+          "data": {
+            "id": "1795",
+            "type": "place_subdivisions"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/localities/matsumoto-nagano-prefecture-japan",
+        "subdivision": "http://api.dbljump.com/places/subdivisions/nagano-prefecture-japan",
+        "country": "http://api.dbljump.com/places/countries/japan"
+      }
+    },
+    {
+      "id": "2935",
+      "type": "place_localities",
+      "attributes": {
+        "name": "Nagano",
+        "formatted": "Nagano, Nagano Prefecture, Japan",
+        "also_known_as": [],
+        "latitude": null,
+        "longitude": null
+      },
+      "relationships": {
+        "subdivision": {
+          "data": {
+            "id": "1795",
+            "type": "place_subdivisions"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/localities/nagano-nagano-prefecture-japan",
+        "subdivision": "http://api.dbljump.com/places/subdivisions/nagano-prefecture-japan",
+        "country": "http://api.dbljump.com/places/countries/japan"
+      }
+    },
+    {
+      "id": "2934",
+      "type": "place_localities",
+      "attributes": {
+        "name": "Sapporo",
+        "formatted": "Sapporo, Hokkaido Prefecture, Japan",
+        "also_known_as": [],
+        "latitude": null,
+        "longitude": null
+      },
+      "relationships": {
+        "subdivision": {
+          "data": {
+            "id": "1232",
+            "type": "place_subdivisions"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/localities/sapporo-hokkaido-prefecture-japan",
+        "subdivision": "http://api.dbljump.com/places/subdivisions/hokkaido-prefecture-japan",
+        "country": "http://api.dbljump.com/places/countries/japan"
+      }
+    }
+  ],
+  "links": {
+    "self": "http://api.dbljump.com/places/localities?page%5Bnumber%5D=1&amp;page%5Bsize%5D=30",
+    "next": "http://api.dbljump.com/places/localities?page%5Bnumber%5D=2&amp;page%5Bsize%5D=30",
+    "last": "http://api.dbljump.com/places/localities?page%5Bnumber%5D=2&amp;page%5Bsize%5D=30"
+  },
+  "meta": {
+    "total_items": 56
+  }
+}
+</code></pre>
+<p>Retrieve all localities. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /places/localities</code></p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number</td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of images per page</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-single-locality">Get single locality</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "2894",
+    "type": "place_localities",
+    "attributes": {
+      "name": "Austin",
+      "formatted": "Austin, Texas, United States",
+      "also_known_as": [],
+      "latitude": null,
+      "longitude": null
+    },
+    "relationships": {
+      "subdivision": {
+        "data": {
+          "id": "2599",
+          "type": "place_subdivisions"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/localities/austin-texas-united-states",
+      "subdivision": "http://api.dbljump.com/places/subdivisions/texas-united-states",
+      "country": "http://api.dbljump.com/places/countries/united-states"
+    }
+  },
+  "meta": {
+    "keywords": "austin, texas, united states, city, town, place, city, town, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from Austin, Texas, United States at Dbljump.",
+    "created_at": "2017-03-08T17:37:15.372Z",
+    "updated_at": "2017-03-08T17:37:15.372Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single locality record. Localities are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /places/localities/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with locality record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h2 id="create-a-new-locality-record">Create a new locality record</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "place_localities",
+    "attributes": {
+      "subdivision_id": "1000",
+      "name": "New City",
+      "also_known_as": ["That New City", "The New Locality"],
+      "latitude": "81.3",
+      "longitude": "-45.9"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 201 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "2939",
+    "type": "place_localities",
+    "attributes": {
+      "name": "New City",
+      "formatted": "New City, Enugu, Nigeria",
+      "also_known_as": [
+        "That New City",
+        "The New Locality"
+      ],
+      "latitude": 81.3,
+      "longitude": -45.9
+    },
+    "relationships": {
+      "subdivision": {
+        "data": {
+          "id": "1000",
+          "type": "place_subdivisions"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "3",
+          "type": "users"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/localities/new-city-enugu-nigeria",
+      "subdivision": "http://api.dbljump.com/places/subdivisions/enugu-nigeria",
+      "country": "http://api.dbljump.com/places/countries/nigeria"
+    }
+  }
+}
+</code></pre>
+<p>Create a new locality record. Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /places/localities</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subdivision_id</td>
+<td>integer</td>
+<td>Req&rsquo;d. ID of parent subdivision.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. 2-250 chars. English-language common name, e.g. &lsquo;Los Angeles&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;LA&#39;, &#39;City of Angels&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td>Between -180 and 180.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_PARENT_ID_BLANK</td>
+<td>parent_id</td>
+<td>Subdivision ID is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_SUBDIVISION_ID_INVALID</td>
+<td>parent_id</td>
+<td>Subdivision ID must be a valid subdivision record.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_NAME_BLANK</td>
+<td>name</td>
+<td>Name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_NAME_TAKEN</td>
+<td>name</td>
+<td>There&rsquo;s already a locality with that name and parent subdivision.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_NAME_TOO_SHORT</td>
+<td>name</td>
+<td>Name must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_NAME_TOO_LONG</td>
+<td>name</td>
+<td>Name cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_ALSO_KNOWN_AS_TOO_SHORT</td>
+<td>also_known_as</td>
+<td>Also-known-as tags must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_ALSO_KNOWN_AS_TOO_LONG</td>
+<td>also_known_as</td>
+<td>Also-known-as tags cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="update-a-locality-record">Update a locality record</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "place_localities",
+    "id": "matsumoto-nagano-prefecture-japan",
+    "attributes": {
+      "subdivision_id": "1001",
+      "name": "Updated City",
+      "also_known_as": ["Updated City", "Changed Locality"],
+      "latitude": "24.0",
+      "longitude": "89.5"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "2936",
+    "type": "place_localities",
+    "attributes": {
+      "name": "Updated City",
+      "formatted": "Updated City, Epirus, Greece",
+      "also_known_as": [
+        "Updated City",
+        "Changed Locality"
+      ],
+      "latitude": 24,
+      "longitude": 89.5
+    },
+    "relationships": {
+      "subdivision": {
+        "data": {
+          "id": "1001",
+          "type": "place_subdivisions"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/localities/updated-city-epirus-greece",
+      "subdivision": "http://api.dbljump.com/places/subdivisions/epirus-greece",
+      "country": "http://api.dbljump.com/places/countries/greece"
+    }
+  }
+}
+</code></pre>
+<p>Update an existing locality record. The user must be an admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /places/localities/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with locality record slug)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subdivision_id</td>
+<td>integer</td>
+<td>Req&rsquo;d. ID of parent subdivision.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. 2-250 chars. English-language common name, e.g. &lsquo;Los Angeles&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;LA&#39;, &#39;City of Angels&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td>Between -180 and 180.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_PARENT_ID_BLANK</td>
+<td>parent_id</td>
+<td>Subdivision ID is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_SUBDIVISION_ID_INVALID</td>
+<td>parent_id</td>
+<td>Subdivision ID must be a valid subdivision record.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_NAME_BLANK</td>
+<td>name</td>
+<td>Name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_NAME_TAKEN</td>
+<td>name</td>
+<td>There&rsquo;s already a locality with that name and parent subdivision.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_NAME_TOO_SHORT</td>
+<td>name</td>
+<td>Name must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_NAME_TOO_LONG</td>
+<td>name</td>
+<td>Name cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_ALSO_KNOWN_AS_TOO_SHORT</td>
+<td>also_known_as</td>
+<td>Also-known-as tags must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_ALSO_KNOWN_AS_TOO_LONG</td>
+<td>also_known_as</td>
+<td>Also-known-as tags cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_LOCALITY_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="delete-a-locality-record">Delete a locality record</h2>
+
+<p>Delete an existing locality record. Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /places/localities/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with locality record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user isn&rsquo;t an admin, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="places-regions"><a name="regions_intro"></a>Places: regions</h1>
+
+<p>Resources related to geographic regions (groups of countries).</p>
+
+<aside class="notice">Docs will be written when the regions controller is done.</aside>
+
+          
+          
+          
+          
+          
       </div>
       <div class="dark-box">
           <div class="lang-selector">
