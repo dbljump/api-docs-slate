@@ -1,0 +1,62 @@
+## Get single subdivision
+
+> HTTP 200 response body
+
+```JSON
+{
+  "data": {
+    "id": "2599",
+    "type": "place_subdivisions",
+    "attributes": {
+      "name": "Texas",
+      "formatted": "Texas, United States",
+      "latitude": 31.9685988,
+      "longitude": -99.9018131,
+      "also_known_as": []
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "220",
+          "type": "place_countries"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/subdivisions/texas-united-states",
+      "country": "http://api.dbljump.com/places/countries/united-states"
+    }
+  },
+  "meta": {
+    "keywords": "texas, united states, state, county, place, state, county, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from Texas, United States at Dbljump.",
+    "created_at": "2017-03-08T17:36:44.379Z",
+    "updated_at": "2017-03-08T17:36:44.379Z"
+  }
+}
+```
+
+Retrieve a single subdivision record. Subdivisions are publicly available. No sign-in is required.
+
+* User authentication: not required
+* Authorization level: n/a
+
+### HTTP request
+
+`GET /places/subdivisions/'slug'` (replace `slug` with subdivision record slug)
+
+### Success HTTP response code
+
+`200 OK`
+
+### Errors
+
+HTTP code | Error code | Pointer | Title | Description
+--------- | ---------- | ------- | ----- | -----------
+404 | RECORD_NOT_FOUND | n/a | Record not found. |

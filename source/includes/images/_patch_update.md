@@ -76,12 +76,12 @@
 }
 ```
 
-Update an existing image record account. The user must be an editor.
+Update an existing image record. The user must be an editor.
 
 The `file` attribute cannot be updated. A new image file can only be uploaded with a new image record.
 
 * User authentication: required
-* Authorization level: Editor.
+* Authorization level: editor
 
 ### HTTP request
 

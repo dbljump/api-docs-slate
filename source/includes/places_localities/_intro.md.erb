@@ -1,0 +1,14 @@
+# <a name="localities_intro"></a>Places: localities
+
+Resources related to geographic localities (e.g. cities and towns).
+
+### <a name="locality_attrs"></a>Mutable attributes
+
+Attribute | Type | Description
+--------- | ---- | -----------
+subdivision_id | integer | Req'd. ID of parent subdivision.
+name | string | Req'd. 2-250 chars. English-language common name, e.g. 'Los Angeles'.
+short_name | string | 2-20 chars.
+also_known_as | array | Members must be 2-50 char strings. E.g. `['LA', 'City of Angels']`.
+latitude | number/float | Between -90 and 90.
+longitude | number/float | Between -180 and 180.

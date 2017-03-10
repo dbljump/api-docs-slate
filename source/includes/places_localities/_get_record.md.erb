@@ -1,0 +1,63 @@
+## Get single locality
+
+> HTTP 200 response body
+
+```JSON
+{
+  "data": {
+    "id": "2894",
+    "type": "place_localities",
+    "attributes": {
+      "name": "Austin",
+      "formatted": "Austin, Texas, United States",
+      "also_known_as": [],
+      "latitude": null,
+      "longitude": null
+    },
+    "relationships": {
+      "subdivision": {
+        "data": {
+          "id": "2599",
+          "type": "place_subdivisions"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/localities/austin-texas-united-states",
+      "subdivision": "http://api.dbljump.com/places/subdivisions/texas-united-states",
+      "country": "http://api.dbljump.com/places/countries/united-states"
+    }
+  },
+  "meta": {
+    "keywords": "austin, texas, united states, city, town, place, city, town, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from Austin, Texas, United States at Dbljump.",
+    "created_at": "2017-03-08T17:37:15.372Z",
+    "updated_at": "2017-03-08T17:37:15.372Z"
+  }
+}
+```
+
+Retrieve a single locality record. Localities are publicly available. No sign-in is required.
+
+* User authentication: not required
+* Authorization level: n/a
+
+### HTTP request
+
+`GET /places/localities/'slug'` (replace `slug` with locality record slug)
+
+### Success HTTP response code
+
+`200 OK`
+
+### Errors
+
+HTTP code | Error code | Pointer | Title | Description
+--------- | ---------- | ------- | ----- | -----------
+404 | RECORD_NOT_FOUND | n/a | Record not found. |

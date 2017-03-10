@@ -1,0 +1,16 @@
+# <a name="countries_intro"></a>Places: countries
+
+Resources related to geographic countries.
+
+### <a name="country_attrs"></a>Mutable attributes
+
+Attribute | Type | Description
+--------- | ---- | -----------
+name | string | Req'd. Unique. 2-250 chars. English-language common name, e.g. 'United States'.
+iso_code | string | Req'd. Unique. 2 chars. ISO 3166-1 country code.
+short_name | string | Unique. 2-20 chars. Common short name, e.g. 'USA'.
+also_known_as | array | Members must be 2-50 char strings. E.g. `['US', 'America']`.
+latitude | number/float | Between -90 and 90.
+longitude | number/float | Between -180 and 180.
+currency | string | Must be 3 chars. ISO 4217 currency code, e.g. 'USD'.
+nationality | string | 2-30 chars.
