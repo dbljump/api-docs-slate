@@ -135,3 +135,4 @@ HTTP code | Error code | Pointer | Title
 400 | IMAGE_USAGE_LICENSE_CODE_INCLUSION | usage_license_code | Usage license code must be valid.
 401 | USER_LOGIN_EXPIRED | n/a | The JWT in the header has expired.
 401 | USER_UNAUTHORIZED | n/a | The user doesn't have the right permissions, or there's an authentication problem.
+404 | RECORD_NOT_FOUND | n/a | Record not found.

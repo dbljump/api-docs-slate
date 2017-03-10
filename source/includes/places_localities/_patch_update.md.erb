@@ -10,7 +10,6 @@
     "attributes": {
       "subdivision_id": "1001",
       "name": "Updated City",
-      "short_name": "UpC",
       "also_known_as": ["Updated City", "Changed Locality"],
       "latitude": "24.0",
       "longitude": "89.5"
@@ -74,7 +73,6 @@ Attribute | Type | Description
 --------- | ---- | -----------
 subdivision_id | integer | Req'd. ID of parent subdivision.
 name | string | Req'd. 2-250 chars. English-language common name, e.g. 'Los Angeles'.
-short_name | string | 2-20 chars.
 also_known_as | array | Members must be 2-50 char strings. E.g. `['LA', 'City of Angels']`.
 latitude | number/float | Between -90 and 90.
 longitude | number/float | Between -180 and 180.
@@ -87,6 +85,18 @@ longitude | number/float | Between -180 and 180.
 
 HTTP code | Error code | Pointer | Title
 --------- | ---------- | ------- | -----
-400 | CODE | pointer | Title
+400 | PLACE_LOCALITY_PARENT_ID_BLANK | parent_id | Subdivision ID is required.
+400 | PLACE_LOCALITY_SUBDIVISION_ID_INVALID | parent_id | Subdivision ID must be a valid subdivision record.
+400 | PLACE_LOCALITY_NAME_BLANK | name | Name is required.
+400 | PLACE_LOCALITY_NAME_TAKEN | name | There's already a locality with that name and parent subdivision.
+400 | PLACE_LOCALITY_NAME_TOO_SHORT | name | Name must be at least 2 characters.
+400 | PLACE_LOCALITY_NAME_TOO_LONG | name | Name cannot be more than 50 characters.
+400 | PLACE_LOCALITY_ALSO_KNOWN_AS_TOO_SHORT | also_known_as | Also-known-as tags must be at least 2 characters.
+400 | PLACE_LOCALITY_ALSO_KNOWN_AS_TOO_LONG | also_known_as | Also-known-as tags cannot be more than 50 characters.
+400 | PLACE_LOCALITY_LATITUDE_GREATER_THAN_OR_EQUAL_TO | latitude | Latitude must be between -90 and 90.
+400 | PLACE_LOCALITY_LATITUDE_LESS_THAN_OR_EQUAL_TO | latitude | Latitude must be between -90 and 90.
+400 | PLACE_LOCALITY_LONGITUDE_GREATER_THAN_OR_EQUAL_TO | longitude | Longitude must be between -180 and 180.
+400 | PLACE_LOCALITY_LONGITUDE_LESS_THAN_OR_EQUAL_TO | longitude | Longitude must be between -180 and 180.
 401 | USER_LOGIN_EXPIRED | n/a | The JWT in the header has expired.
 401 | USER_UNAUTHORIZED | n/a | The user doesn't have the right permissions, or there's an authentication problem.
+404 | RECORD_NOT_FOUND | n/a | Record not found.
