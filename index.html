@@ -170,6 +170,16 @@ Successful responses include the following HTTP header.<br /><br />
 <td>User picture. Submissions must be base64 encoded. Must be JPG, GIF or PNG. No size limits.</td>
 </tr>
 <tr>
+<td>password</td>
+<td>string</td>
+<td>Required on sign-up. 8-24 chars.</td>
+</tr>
+<tr>
+<td>password_confirmation</td>
+<td>string</td>
+<td>Required on sign-up or if updating password. Must match <code class="prettyprint">password</code>.</td>
+</tr>
+<tr>
 <td>given_names</td>
 <td>string</td>
 <td>Any 1-20 chars.</td>
