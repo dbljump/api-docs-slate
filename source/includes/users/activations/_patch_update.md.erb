@@ -19,33 +19,43 @@
 ```JSON
 {
   "data": {
-    "id": "7",
+    "id": "5",
     "type": "users",
     "attributes": {
       "email": "user@example.com",
-      "username": "user",
+      "username": "new_user",
       "role": "member",
       "given_names": null,
       "family_name": null,
       "gender": null,
-      "avatar": null,
+      "avatar": {
+        "url": null
+      },
       "birthday": null,
-      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJ1c2VyX3JvbGUiOiJtZW1iZXIiLCJleHBpcnkiOiIyMDE3LTAyLTExIDE1OjQ1OjIxICswMDAwIn0.cQcvrTYTumoocdUFFkHNh4uwEIbYU7Ht0z9KRww20wE"
+      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VyX3JvbGUiOiJtZW1iZXIiLCJleHBpcnkiOiIyMDE3LTAzLTIyIDIzOjU1OjMyICswMDAwIn0.WqLjZkgyEh3Trv2U9q2PDBkbY4toWPJx02zbqTSn540"
     },
     "relationships": {
       "country": {
-        "data": null
+        "data": null,
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/andorra"
+        }
+      },
+      "images": {
+        "links": {
+          "related": "http://api.dbljump.com/users/5/images"
+        }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/users/7"
+      "self": "http://api.dbljump.com/users/5"
     }
   },
   "meta": {
     "last_signed_in_at": null,
     "last_sign_in_ip": null,
     "sign_in_count": 0,
-    "activated_at": "2017-02-10T15:45:21.688Z"
+    "activated_at": "2017-03-21T23:55:32.873Z"
   }
 }
 ```

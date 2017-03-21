@@ -21,7 +21,7 @@
 ```JSON
 {
   "data": {
-    "id": "1",
+    "id": "5",
     "type": "users",
     "attributes": {
       "email": "new@user.com",
@@ -30,23 +30,34 @@
       "given_names": null,
       "family_name": null,
       "gender": null,
-      "avatar": null,
-      "birthday": null
+      "avatar": {
+        "url": null
+      },
+      "birthday": null,
+      "jwt": null
     },
     "relationships": {
       "country": {
-        "data": null
+        "data": null,
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/andorra"
+        }
+      },
+      "images": {
+        "links": {
+          "related": "http://api.dbljump.com/users/5/images"
+        }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/users/1"
+      "self": "http://api.dbljump.com/users/5"
     }
   },
   "meta": {
     "keywords": "new_user, new_user, user, dbljump, video games, pc games, gaming",
     "description": "new_user is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-08T17:27:17.877Z",
-    "updated_at": "2017-03-08T17:27:18.648Z",
+    "created_at": "2017-03-21T23:51:23.213Z",
+    "updated_at": "2017-03-21T23:51:23.920Z",
     "last_signed_in_at": null,
     "last_sign_in_ip": null,
     "sign_in_count": 0,

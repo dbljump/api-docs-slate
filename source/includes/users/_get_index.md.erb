@@ -6,56 +6,6 @@
 {
   "data": [
     {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "email": "tiki@dbljump.com",
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "gender": "Female",
-        "avatar": null,
-        "birthday": "1988-09-01"
-      },
-      "relationships": {
-        "country": {
-          "data": null
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
-    },
-    {
-      "id": "2",
-      "type": "users",
-      "attributes": {
-        "email": "neil@example.com",
-        "username": "neil",
-        "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "gender": "male",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703042214.jpg",
-        "birthday": "1980-02-14"
-      },
-      "relationships": {
-        "country": {
-          "data": {
-            "id": "219",
-            "type": "place_countries"
-          },
-          "links": {
-            "country": "http://api.dbljump.com/places/countries/united-kingdom"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/2"
-      }
-    },
-    {
       "id": "3",
       "type": "users",
       "attributes": {
@@ -65,12 +15,23 @@
         "given_names": null,
         "family_name": null,
         "gender": null,
-        "avatar": null,
-        "birthday": null
+        "avatar": {
+          "url": null
+        },
+        "birthday": null,
+        "jwt": null
       },
       "relationships": {
         "country": {
-          "data": null
+          "data": null,
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/united-kingdom"
+          }
+        },
+        "images": {
+          "links": {
+            "related": "http://api.dbljump.com/users/3/images"
+          }
         }
       },
       "links": {
@@ -87,16 +48,96 @@
         "given_names": null,
         "family_name": null,
         "gender": null,
-        "avatar": null,
-        "birthday": null
+        "avatar": {
+          "url": null
+        },
+        "birthday": null,
+        "jwt": null
       },
       "relationships": {
         "country": {
-          "data": null
+          "data": null,
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/united-kingdom"
+          }
+        },
+        "images": {
+          "links": {
+            "related": "http://api.dbljump.com/users/4/images"
+          }
         }
       },
       "links": {
         "self": "http://api.dbljump.com/users/4"
+      }
+    },
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "email": "tiki@dbljump.com",
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "gender": "Female",
+        "avatar": {
+          "url": null
+        },
+        "birthday": "1988-09-01",
+        "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": null,
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/united-kingdom"
+          }
+        },
+        "images": {
+          "links": {
+            "related": "http://api.dbljump.com/users/1/images"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    },
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "email": "neil@example.com",
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "gender": "male",
+        "avatar": {
+          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703212334.jpg"
+        },
+        "birthday": "1980-02-14",
+        "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": {
+            "id": "219",
+            "type": "place_countries"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/united-kingdom"
+          }
+        },
+        "images": {
+          "links": {
+            "related": "http://api.dbljump.com/users/2/images"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/2"
       }
     }
   ],

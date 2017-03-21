@@ -18,7 +18,7 @@
 		"gender": "male",
 		"birthday": "1985-07-20",
 		"country_id": 5,
-		"avatar": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw=="
+		"avatar_base64": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw=="
 	}
   }
 }
@@ -34,12 +34,15 @@
     "attributes": {
       "email": "updated@email.com",
       "username": "updated_username",
-      "role": "member",
+      "role": "editor",
       "given_names": "Updated",
       "family_name": "Name",
       "gender": "male",
-      "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/4/1703081836.gif",
-      "birthday": "1985-07-20"
+      "avatar": {
+        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/4/1703212349.gif"
+      },
+      "birthday": "1985-07-20",
+      "jwt": null
     },
     "relationships": {
       "country": {
@@ -48,7 +51,12 @@
           "type": "place_countries"
         },
         "links": {
-          "country": "http://api.dbljump.com/places/countries/andorra"
+          "related": "http://api.dbljump.com/places/countries/andorra"
+        }
+      },
+      "images": {
+        "links": {
+          "related": "http://api.dbljump.com/users/4/images"
         }
       }
     },
@@ -59,12 +67,12 @@
   "meta": {
     "keywords": "updated_username, updated name, user, dbljump, video games, pc games, gaming",
     "description": "Updated Name is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-08T17:37:18.535Z",
-    "updated_at": "2017-03-08T18:36:24.885Z",
-    "last_signed_in_at": "2017-03-08T18:33:42.727Z",
-    "last_sign_in_ip": "94.4.193.77",
-    "sign_in_count": 1,
-    "activated_at": "2017-03-08T17:37:18.448Z"
+    "created_at": "2017-03-21T23:34:55.501Z",
+    "updated_at": "2017-03-21T23:49:55.104Z",
+    "last_signed_in_at": null,
+    "last_sign_in_ip": null,
+    "sign_in_count": 0,
+    "activated_at": "2017-03-21T23:34:55.419Z"
   }
 }
 ```
@@ -94,7 +102,7 @@ family_name | string | Any 1-20 chars.
 gender | string | Any 1-20 chars. Client could suggest 'male' or 'female'.
 birthday | date | Format 'YYYY-MM-DD'. Must not be a future date or > 100 years ago.
 country_id | integer | Must be a valid country record ID.
-avatar | string | Base64 encoded JPEG, GIF or PNG. Any size (needs review).
+avatar_base64 | string | Base64 encoded JPEG, GIF or PNG. Any size (needs review).
 
 ### Success HTTP response code
 
