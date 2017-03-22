@@ -7,7 +7,7 @@
  "data": {
     "type": "users",
     "attributes": {
-        "email": "member@example.com",
+        "email": "neil@example.com",
         "password": "password"
     }
   }
@@ -18,33 +18,46 @@
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "id": "4",
+    "id": "2",
     "type": "users",
     "attributes": {
-      "email": "member@example.com",
-      "username": "member",
-      "role": "member",
-      "given_names": null,
-      "family_name": null,
-      "gender": null,
-      "avatar": null,
-      "birthday": null,
-      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJ1c2VyX3JvbGUiOiJtZW1iZXIiLCJleHBpcnkiOiIyMDE3LTAzLTA5IDE4OjMzOjQyICswMDAwIn0.XMY0wazu1sSL4ujoUXIi5AG46RJDG2o44y-f7eyK_Fg"
+      "email": "neil@example.com",
+      "username": "neil",
+      "role": "admin",
+      "given_names": "Neil",
+      "family_name": "Wheatley",
+      "gender": "male",
+      "avatar": {
+        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703212334.jpg"
+      },
+      "birthday": "1980-02-14",
+      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VyX3JvbGUiOiJhZG1pbiIsImV4cGlyeSI6IjIwMTctMDMtMjIgMjM6NDc6MTQgKzAwMDAifQ.QMT2e25fqh6rEMKWPKojvfYh-WMR-OgUKCyWoLEX-Ms"
     },
     "relationships": {
       "country": {
-        "data": null
+        "data": {
+          "id": "219",
+          "type": "place_countries"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/united-kingdom"
+        }
+      },
+      "images": {
+        "links": {
+          "related": "http://api.dbljump.com/users/2/images"
+        }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/users/4"
+      "self": "http://api.dbljump.com/users/2"
     }
   },
   "meta": {
-    "last_signed_in_at": "2017-03-08T18:33:42.727Z",
+    "last_signed_in_at": "2017-03-21T23:47:13.936Z",
     "last_sign_in_ip": "94.4.193.77",
     "sign_in_count": 1,
-    "activated_at": "2017-03-08T17:37:18.448Z"
+    "activated_at": "2017-03-21T23:34:53.917Z"
   }
 }
 </code></pre>

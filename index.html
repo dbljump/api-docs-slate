@@ -205,7 +205,7 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Must be a valid country record ID.</td>
 </tr>
 <tr>
-<td>avatar</td>
+<td>avatar_base64</td>
 <td>string</td>
 <td>Base64 encoded JPEG, GIF or PNG. Any size (needs review).</td>
 </tr>
@@ -264,56 +264,6 @@ Successful responses include the following HTTP header.<br /><br />
 <pre class="highlight plaintext"><code>{
   "data": [
     {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "email": "tiki@dbljump.com",
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "gender": "Female",
-        "avatar": null,
-        "birthday": "1988-09-01"
-      },
-      "relationships": {
-        "country": {
-          "data": null
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
-    },
-    {
-      "id": "2",
-      "type": "users",
-      "attributes": {
-        "email": "neil@example.com",
-        "username": "neil",
-        "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "gender": "male",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703042214.jpg",
-        "birthday": "1980-02-14"
-      },
-      "relationships": {
-        "country": {
-          "data": {
-            "id": "219",
-            "type": "place_countries"
-          },
-          "links": {
-            "country": "http://api.dbljump.com/places/countries/united-kingdom"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/2"
-      }
-    },
-    {
       "id": "3",
       "type": "users",
       "attributes": {
@@ -323,12 +273,23 @@ Successful responses include the following HTTP header.<br /><br />
         "given_names": null,
         "family_name": null,
         "gender": null,
-        "avatar": null,
-        "birthday": null
+        "avatar": {
+          "url": null
+        },
+        "birthday": null,
+        "jwt": null
       },
       "relationships": {
         "country": {
-          "data": null
+          "data": null,
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/united-kingdom"
+          }
+        },
+        "images": {
+          "links": {
+            "related": "http://api.dbljump.com/users/3/images"
+          }
         }
       },
       "links": {
@@ -345,16 +306,96 @@ Successful responses include the following HTTP header.<br /><br />
         "given_names": null,
         "family_name": null,
         "gender": null,
-        "avatar": null,
-        "birthday": null
+        "avatar": {
+          "url": null
+        },
+        "birthday": null,
+        "jwt": null
       },
       "relationships": {
         "country": {
-          "data": null
+          "data": null,
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/united-kingdom"
+          }
+        },
+        "images": {
+          "links": {
+            "related": "http://api.dbljump.com/users/4/images"
+          }
         }
       },
       "links": {
         "self": "http://api.dbljump.com/users/4"
+      }
+    },
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "email": "tiki@dbljump.com",
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "gender": "Female",
+        "avatar": {
+          "url": null
+        },
+        "birthday": "1988-09-01",
+        "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": null,
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/united-kingdom"
+          }
+        },
+        "images": {
+          "links": {
+            "related": "http://api.dbljump.com/users/1/images"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    },
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "email": "neil@example.com",
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "gender": "male",
+        "avatar": {
+          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703212334.jpg"
+        },
+        "birthday": "1980-02-14",
+        "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": {
+            "id": "219",
+            "type": "place_countries"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/united-kingdom"
+          }
+        },
+        "images": {
+          "links": {
+            "related": "http://api.dbljump.com/users/2/images"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/2"
       }
     }
   ],
@@ -443,8 +484,11 @@ Successful responses include the following HTTP header.<br /><br />
       "given_names": "Neil",
       "family_name": "Wheatley",
       "gender": "male",
-      "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703042214.jpg",
-      "birthday": "1980-02-14"
+      "avatar": {
+        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703212334.jpg"
+      },
+      "birthday": "1980-02-14",
+      "jwt": null
     },
     "relationships": {
       "country": {
@@ -453,7 +497,12 @@ Successful responses include the following HTTP header.<br /><br />
           "type": "place_countries"
         },
         "links": {
-          "country": "http://api.dbljump.com/places/countries/united-kingdom"
+          "related": "http://api.dbljump.com/places/countries/united-kingdom"
+        }
+      },
+      "images": {
+        "links": {
+          "related": "http://api.dbljump.com/users/2/images"
         }
       }
     },
@@ -464,12 +513,12 @@ Successful responses include the following HTTP header.<br /><br />
   "meta": {
     "keywords": "neil, neil wheatley, user, dbljump, video games, pc games, gaming",
     "description": "Neil Wheatley is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-04T22:14:41.550Z",
-    "updated_at": "2017-03-04T22:14:41.550Z",
-    "last_signed_in_at": null,
-    "last_sign_in_ip": null,
-    "sign_in_count": 0,
-    "activated_at": "2017-03-04T22:14:40.892Z"
+    "created_at": "2017-03-21T23:34:54.651Z",
+    "updated_at": "2017-03-21T23:47:14.034Z",
+    "last_signed_in_at": "2017-03-21T23:47:13.936Z",
+    "last_sign_in_ip": "94.4.193.77",
+    "sign_in_count": 1,
+    "activated_at": "2017-03-21T23:34:53.917Z"
   }
 }
 </code></pre>
@@ -544,7 +593,7 @@ Successful responses include the following HTTP header.<br /><br />
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "id": "1",
+    "id": "5",
     "type": "users",
     "attributes": {
       "email": "new@user.com",
@@ -553,23 +602,34 @@ Successful responses include the following HTTP header.<br /><br />
       "given_names": null,
       "family_name": null,
       "gender": null,
-      "avatar": null,
-      "birthday": null
+      "avatar": {
+        "url": null
+      },
+      "birthday": null,
+      "jwt": null
     },
     "relationships": {
       "country": {
-        "data": null
+        "data": null,
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/andorra"
+        }
+      },
+      "images": {
+        "links": {
+          "related": "http://api.dbljump.com/users/5/images"
+        }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/users/1"
+      "self": "http://api.dbljump.com/users/5"
     }
   },
   "meta": {
     "keywords": "new_user, new_user, user, dbljump, video games, pc games, gaming",
     "description": "new_user is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-08T17:27:17.877Z",
-    "updated_at": "2017-03-08T17:27:18.648Z",
+    "created_at": "2017-03-21T23:51:23.213Z",
+    "updated_at": "2017-03-21T23:51:23.920Z",
     "last_signed_in_at": null,
     "last_sign_in_ip": null,
     "sign_in_count": 0,
@@ -733,7 +793,7 @@ Successful responses include the following HTTP header.<br /><br />
         "gender": "male",
         "birthday": "1985-07-20",
         "country_id": 5,
-        "avatar": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw=="
+        "avatar_base64": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw=="
     }
   }
 }
@@ -748,12 +808,15 @@ Successful responses include the following HTTP header.<br /><br />
     "attributes": {
       "email": "updated@email.com",
       "username": "updated_username",
-      "role": "member",
+      "role": "editor",
       "given_names": "Updated",
       "family_name": "Name",
       "gender": "male",
-      "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/4/1703081836.gif",
-      "birthday": "1985-07-20"
+      "avatar": {
+        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/4/1703212349.gif"
+      },
+      "birthday": "1985-07-20",
+      "jwt": null
     },
     "relationships": {
       "country": {
@@ -762,7 +825,12 @@ Successful responses include the following HTTP header.<br /><br />
           "type": "place_countries"
         },
         "links": {
-          "country": "http://api.dbljump.com/places/countries/andorra"
+          "related": "http://api.dbljump.com/places/countries/andorra"
+        }
+      },
+      "images": {
+        "links": {
+          "related": "http://api.dbljump.com/users/4/images"
         }
       }
     },
@@ -773,12 +841,12 @@ Successful responses include the following HTTP header.<br /><br />
   "meta": {
     "keywords": "updated_username, updated name, user, dbljump, video games, pc games, gaming",
     "description": "Updated Name is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-08T17:37:18.535Z",
-    "updated_at": "2017-03-08T18:36:24.885Z",
-    "last_signed_in_at": "2017-03-08T18:33:42.727Z",
-    "last_sign_in_ip": "94.4.193.77",
-    "sign_in_count": 1,
-    "activated_at": "2017-03-08T17:37:18.448Z"
+    "created_at": "2017-03-21T23:34:55.501Z",
+    "updated_at": "2017-03-21T23:49:55.104Z",
+    "last_signed_in_at": null,
+    "last_sign_in_ip": null,
+    "sign_in_count": 0,
+    "activated_at": "2017-03-21T23:34:55.419Z"
   }
 }
 </code></pre>
@@ -855,7 +923,7 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Must be a valid country record ID.</td>
 </tr>
 <tr>
-<td>avatar</td>
+<td>avatar_base64</td>
 <td>string</td>
 <td>Base64 encoded JPEG, GIF or PNG. Any size (needs review).</td>
 </tr>
@@ -1091,7 +1159,7 @@ Successful responses include the following HTTP header.<br /><br />
  "data": {
     "type": "users",
     "attributes": {
-        "email": "member@example.com",
+        "email": "neil@example.com",
         "password": "password"
     }
   }
@@ -1102,33 +1170,46 @@ Successful responses include the following HTTP header.<br /><br />
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "id": "4",
+    "id": "2",
     "type": "users",
     "attributes": {
-      "email": "member@example.com",
-      "username": "member",
-      "role": "member",
-      "given_names": null,
-      "family_name": null,
-      "gender": null,
-      "avatar": null,
-      "birthday": null,
-      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJ1c2VyX3JvbGUiOiJtZW1iZXIiLCJleHBpcnkiOiIyMDE3LTAzLTA5IDE4OjMzOjQyICswMDAwIn0.XMY0wazu1sSL4ujoUXIi5AG46RJDG2o44y-f7eyK_Fg"
+      "email": "neil@example.com",
+      "username": "neil",
+      "role": "admin",
+      "given_names": "Neil",
+      "family_name": "Wheatley",
+      "gender": "male",
+      "avatar": {
+        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703212334.jpg"
+      },
+      "birthday": "1980-02-14",
+      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VyX3JvbGUiOiJhZG1pbiIsImV4cGlyeSI6IjIwMTctMDMtMjIgMjM6NDc6MTQgKzAwMDAifQ.QMT2e25fqh6rEMKWPKojvfYh-WMR-OgUKCyWoLEX-Ms"
     },
     "relationships": {
       "country": {
-        "data": null
+        "data": {
+          "id": "219",
+          "type": "place_countries"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/united-kingdom"
+        }
+      },
+      "images": {
+        "links": {
+          "related": "http://api.dbljump.com/users/2/images"
+        }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/users/4"
+      "self": "http://api.dbljump.com/users/2"
     }
   },
   "meta": {
-    "last_signed_in_at": "2017-03-08T18:33:42.727Z",
+    "last_signed_in_at": "2017-03-21T23:47:13.936Z",
     "last_sign_in_ip": "94.4.193.77",
     "sign_in_count": 1,
-    "activated_at": "2017-03-08T17:37:18.448Z"
+    "activated_at": "2017-03-21T23:34:53.917Z"
   }
 }
 </code></pre>
@@ -1303,33 +1384,43 @@ Successful responses include the following HTTP header.<br /><br />
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "id": "7",
+    "id": "5",
     "type": "users",
     "attributes": {
       "email": "user@example.com",
-      "username": "user",
+      "username": "new_user",
       "role": "member",
       "given_names": null,
       "family_name": null,
       "gender": null,
-      "avatar": null,
+      "avatar": {
+        "url": null
+      },
       "birthday": null,
-      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJ1c2VyX3JvbGUiOiJtZW1iZXIiLCJleHBpcnkiOiIyMDE3LTAyLTExIDE1OjQ1OjIxICswMDAwIn0.cQcvrTYTumoocdUFFkHNh4uwEIbYU7Ht0z9KRww20wE"
+      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VyX3JvbGUiOiJtZW1iZXIiLCJleHBpcnkiOiIyMDE3LTAzLTIyIDIzOjU1OjMyICswMDAwIn0.WqLjZkgyEh3Trv2U9q2PDBkbY4toWPJx02zbqTSn540"
     },
     "relationships": {
       "country": {
-        "data": null
+        "data": null,
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/andorra"
+        }
+      },
+      "images": {
+        "links": {
+          "related": "http://api.dbljump.com/users/5/images"
+        }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/users/7"
+      "self": "http://api.dbljump.com/users/5"
     }
   },
   "meta": {
     "last_signed_in_at": null,
     "last_sign_in_ip": null,
     "sign_in_count": 0,
-    "activated_at": "2017-02-10T15:45:21.688Z"
+    "activated_at": "2017-03-21T23:55:32.873Z"
   }
 }
 </code></pre>
@@ -3748,6 +3839,384 @@ Successful responses include the following HTTP header.<br /><br />
 <td>USER_UNAUTHORIZED</td>
 <td>n/a</td>
 <td>The user isn&rsquo;t an admin, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="country-subdivisions-get-all">Country subdivisions - get all</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": [
+    {
+      "id": "504",
+      "type": "place_subdivisions",
+      "attributes": {
+        "name": "Australian Capital Territory",
+        "formatted": "Australian Capital Territory, Australia",
+        "latitude": -35.4734679,
+        "longitude": 149.0123679,
+        "also_known_as": []
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        },
+        "country": {
+          "data": {
+            "id": "12",
+            "type": "place_countries"
+          },
+          "links": {
+            "related": "http://localhost:3000/places/countries/australia"
+          }
+        },
+        "localities": {
+          "data": []
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/places/subdivisions/australian-capital-territory-australia"
+      }
+    },
+    {
+      "id": "815",
+      "type": "place_subdivisions",
+      "attributes": {
+        "name": "Christmas Island",
+        "formatted": "Christmas Island, Australia",
+        "latitude": null,
+        "longitude": null,
+        "also_known_as": []
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        },
+        "country": {
+          "data": {
+            "id": "12",
+            "type": "place_countries"
+          },
+          "links": {
+            "related": "http://localhost:3000/places/countries/australia"
+          }
+        },
+        "localities": {
+          "data": []
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/places/subdivisions/christmas-island-australia"
+      }
+    },
+    {
+      "id": "834",
+      "type": "place_subdivisions",
+      "attributes": {
+        "name": "Cocos (Keeling) Islands",
+        "formatted": "Cocos (Keeling) Islands, Australia",
+        "latitude": null,
+        "longitude": null,
+        "also_known_as": []
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        },
+        "country": {
+          "data": {
+            "id": "12",
+            "type": "place_countries"
+          },
+          "links": {
+            "related": "http://localhost:3000/places/countries/australia"
+          }
+        },
+        "localities": {
+          "data": []
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/places/subdivisions/cocos-keeling-islands-australia"
+      }
+    }
+  ],
+  "links": {},
+  "meta": {
+    "total_items": 13
+  }
+}
+</code></pre>
+<p>Retrieve all subdivisions belonging to the given country. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /places/&#39;country_slug&#39;/subdivisions</code></p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number</td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of images per page</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="country-subdivisions-create-new">Country subdivisions - create new</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "place_subdivisions",
+    "attributes": {
+      "name": "New Subdivision",
+      "also_known_as": ["That New Subdiv", "The New Subdiv"],
+      "latitude": "17.85",
+      "longitude": "-20.00"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 201 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "2938",
+    "type": "place_subdivisions",
+    "attributes": {
+      "name": "New Subdivision",
+      "formatted": "New Subdivision, Afghanistan",
+      "latitude": 17.85,
+      "longitude": -20,
+      "also_known_as": [
+        "That New Subdiv",
+        "The New Subdiv"
+      ]
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "1",
+          "type": "place_countries"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "3",
+          "type": "users"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/subdivisions/new-subdivision-afghanistan",
+      "country": "http://api.dbljump.com/places/countries/afghanistan"
+    }
+  }
+}
+</code></pre>
+<p>Create a new subdivision record belonging to the given country. Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /places/countries/&#39;country-slug&#39;/subdivisions</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. 2-250 chars. English-language common name, e.g. &lsquo;Florida&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;The Sunshine State&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td>Between -180 and 180.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<aside class="notice"><code>parent_id</code> refers to <code>country_id</code> in these errors.</aside>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_PARENT_ID_BLANK</td>
+<td>parent_id</td>
+<td>Country ID is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_BLANK</td>
+<td>name</td>
+<td>Name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_TAKEN</td>
+<td>name</td>
+<td>There&rsquo;s already a subdivision with that name and parent country.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_TOO_SHORT</td>
+<td>name</td>
+<td>Name must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_TOO_LONG</td>
+<td>name</td>
+<td>Name cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_ALSO_KNOWN_AS_TOO_SHORT</td>
+<td>also_known_as</td>
+<td>Also-known-as tags must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_ALSO_KNOWN_AS_TOO_LONG</td>
+<td>also_known_as</td>
+<td>Also-known-as tags cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
 </tr>
 <tr>
 <td>404</td>
