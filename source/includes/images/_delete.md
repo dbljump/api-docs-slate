@@ -7,7 +7,7 @@ Delete an existing image record. An editor can delete images they uploaded. An a
 
 ### HTTP request
 
-`DELETE /images/'slug'` (replace `slug` with image record slug)
+`DELETE /images/{slug}` (replace `{slug}` with image record slug)
 
 ### Success HTTP response code
 

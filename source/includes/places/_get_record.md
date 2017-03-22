@@ -50,7 +50,7 @@ Retrieve a single place record. Places are publicly available. No sign-in is req
 
 ### HTTP request
 
-`GET /places/'slug'` (replace `slug` with place record slug)
+`GET /places/{slug}` (replace `{slug}` with place record slug)
 
 ### Success HTTP response code
 

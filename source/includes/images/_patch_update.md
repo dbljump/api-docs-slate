@@ -85,7 +85,7 @@ The `file` attribute cannot be updated. A new image file can only be uploaded wi
 
 ### HTTP request
 
-`PATCH /images/'slug'` (replace `slug` with image record slug)
+`PATCH /images/{slug}` (replace `{slug}` with image record slug)
 
 ### Request attributes
 

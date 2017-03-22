@@ -55,7 +55,7 @@ Retrieve a single image record. Images are publicly available. No sign-in is req
 
 ### HTTP request
 
-`GET /images/'slug'` (replace `slug` with image record slug)
+`GET /images/{slug}` (replace `{slug}` with image record slug)
 
 ### Success HTTP response code
 
