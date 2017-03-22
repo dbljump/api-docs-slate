@@ -27,7 +27,7 @@ vagrant up
 
 With the server running, you can now see the docs at http://localhost:4567.
 
-# Publishing to GitHub Pages
+## Publishing to GitHub Pages
 
 Commit changes to master branch, then run the deploy script:
 
