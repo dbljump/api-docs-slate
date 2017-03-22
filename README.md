@@ -23,6 +23,16 @@ bundle exec middleman server
 vagrant up
 ```
 
-## Usage
+## Local
 
 With the server running, you can now see the docs at http://localhost:4567.
+
+# Publishing to GitHub Pages
+
+Commit changes to master branch, then run the deploy script:
+
+```
+./deploy.sh
+```
+
+Re-set the custom domain name (http://docs.dbljump.com), as the deploy script removes it.
