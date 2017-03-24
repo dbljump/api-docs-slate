@@ -1,16 +1,17 @@
-## Country subdivisions: create new
+## Subdivision localities: create new
 
 > Request body
 
 ```JSON
 {
   "data": {
-    "type": "place_subdivisions",
+    "type": "place_localities",
+    "id": "texas-united-states",
     "attributes": {
-      "name": "New Subdivision",
-      "also_known_as": ["That New Subdiv", "The New Subdiv"],
-      "latitude": "17.85",
-      "longitude": "-20.00"
+      "name": "New City",
+      "also_known_as": ["That New City", "The New Locality"],
+      "latitude": "70.3",
+      "longitude": "-45.5"
     }
   }
 }
@@ -21,48 +22,63 @@
 ```JSON
 {
   "data": {
-    "id": "2938",
-    "type": "place_subdivisions",
+    "id": "2937",
+    "type": "place_localities",
     "attributes": {
-      "name": "New Subdivision",
-      "formatted": "New Subdivision, Afghanistan",
-      "latitude": 17.85,
-      "longitude": -20,
+      "slug": "new-city-texas-united-states",
+      "name": "New City",
+      "formatted": "New City, Texas, United States",
       "also_known_as": [
-        "That New Subdiv",
-        "The New Subdiv"
-      ]
+        "That New City",
+        "The New Locality"
+      ],
+      "latitude": 70.3,
+      "longitude": -45.5
     },
     "relationships": {
-      "country": {
-        "data": {
-          "id": "1",
-          "type": "place_countries"
-        }
-      },
       "created_by": {
         "data": {
-          "id": "3",
+          "id": "2",
           "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/2"
+        }
+      },
+      "country": {
+        "data": {
+          "id": "220",
+          "type": "place_countries"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/united-states"
+        }
+      },
+      "subdivision": {
+        "data": {
+          "id": "2599",
+          "type": "place_subdivisions"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/subdivisions/texas-united-states"
         }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/places/subdivisions/new-subdivision-afghanistan",
-      "country": "http://api.dbljump.com/places/countries/afghanistan"
+      "self": "http://api.dbljump.com/places/localities/new-city-texas-united-states"
     }
   }
 }
 ```
 
-Create a new subdivision record belonging to the given country. Admin-level authorization required.
+Create a new locality record belonging to the given subdivision. Admin-level authorization required.
 
 * User authentication: required
 * Authorization level: admin
 
 ### HTTP request
 
-`POST /places/countries/{country-slug}/subdivisions` (replace `{country-slug}` with country record slug)
+`POST /places/subdivisions/{subdivision-slug}/localities` (replace `{subdivision-slug}` with subdivision record slug)
 
 ### Request attributes
 
