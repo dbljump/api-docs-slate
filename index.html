@@ -119,8 +119,6 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>http://api.dbljump.com</p>
-
 <p>Welcome to the DblJump REST API. Dbljump is a video game reference application built with Ruby on Rails 5. This API follows the <a href="http://jsonapi.org">JSON API</a> specification.</p>
 
 <aside class="notice">
@@ -531,7 +529,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /users/&#39;id&#39;</code> (replace <code class="prettyprint">id</code> with user record ID)</p>
+<p><code class="prettyprint">GET /users/{id}</code> (replace <code class="prettyprint">{id}</code> with user record ID)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
@@ -862,7 +860,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">PATCH /users/&#39;id&#39;</code> (replace <code class="prettyprint">id</code> with user record ID)</p>
+<p><code class="prettyprint">PATCH /users/{id}</code> (replace <code class="prettyprint">{id}</code> with user record ID)</p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -1094,7 +1092,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">DELETE /users/&#39;id&#39;</code> (replace <code class="prettyprint">id</code> with user record ID)</p>
+<p><code class="prettyprint">DELETE /users/{id}</code> (replace <code class="prettyprint">{id}</code> with user record ID)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
@@ -1439,7 +1437,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">PATCH /users/activations/&#39;activation_token&#39;</code> (replace <code class="prettyprint">activation_token</code> with the user&rsquo;s activation token)</p>
+<p><code class="prettyprint">PATCH /users/activations/{activation_token}</code> (replace <code class="prettyprint">{activation_token}</code> with the user&rsquo;s activation token)</p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -1602,7 +1600,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">PATCH /users/passwords/&#39;password_reset_token&#39;</code> (replace <code class="prettyprint">password_reset_token</code> with the password reset token)</p>
+<p><code class="prettyprint">PATCH /users/passwords/{password_reset_token}</code> (replace <code class="prettyprint">{password_reset_token}</code> with the password reset token)</p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -2095,7 +2093,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /images/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with image record slug)</p>
+<p><code class="prettyprint">GET /images/{slug}</code> (replace <code class="prettyprint">{slug}</code> with image record slug)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
@@ -2515,7 +2513,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">PATCH /images/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with image record slug)</p>
+<p><code class="prettyprint">PATCH /images/{slug}</code> (replace <code class="prettyprint">{slug}</code> with image record slug)</p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -2749,7 +2747,763 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">DELETE /images/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with image record slug)</p>
+<p><code class="prettyprint">DELETE /images/{slug}</code> (replace <code class="prettyprint">{slug}</code> with image record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user isn&rsquo;t an admin, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="platforms"><a name="platforms_intro"></a>Platforms</h1>
+
+<p>Resources related to game platforms.</p>
+
+<p>Game platforms can include dedicated game systems (e.g. Sony PlayStation 4), computers (e.g. Atari ST), operating systems (e.g. Microsoft Windows), add-ons with unique game libraries (e.g. Sega 32X), and arcade systems (e.g. Capcom CPS-2).</p>
+
+<h3 id="mutable-attributes"><a name="platform_attrs"></a>Mutable attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. Max 50 chars. The full North American name, or nearest alternative, e.g. &lsquo;Genesis&rsquo;</td>
+</tr>
+<tr>
+<td>short_name</td>
+<td>string</td>
+<td>Max 10 chars. The common abbreviated name, e.g. &#39;SNES&rsquo;.</td>
+</tr>
+<tr>
+<td>sphere</td>
+<td>string</td>
+<td>Req&rsquo;d. Limited options. The usual platform environment, e.g. &#39;home&rsquo; or &#39;arcade&rsquo;.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Req&rsquo;d. Limited options. Platform type, e.g. &#39;console&rsquo; or &#39;OS&rsquo;.</td>
+</tr>
+<tr>
+<td>holder_id</td>
+<td>integer</td>
+<td>Req&rsquo;d. Must be a valid company ID. The platform holder, e.g. &#39;Sony&rsquo; for PlayStation.</td>
+</tr>
+<tr>
+<td>parent_id</td>
+<td>integer</td>
+<td>Must be a valid platform ID. Used for add-ons, e.g. &#39;Sega CD&rsquo; belongs to Sega Genesis.</td>
+</tr>
+</tbody></table>
+
+<h3 id="sphere-accepted-values"><a name="platforms_sphere"></a>Sphere: accepted values</h3>
+
+<p>The <code class="prettyprint">sphere</code> attribute must take one of the following values.</p>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>home</td>
+<td>Usually used at home, e.g. a home console or computer.</td>
+</tr>
+<tr>
+<td>portable</td>
+<td>Portable or handheld, e.g. PS Vita or Nintendo Game Boy.</td>
+</tr>
+<tr>
+<td>mobile</td>
+<td>A phone, tablet or mobile operating system, e.g. Android.</td>
+</tr>
+<tr>
+<td>arcade</td>
+<td>Associated with public game arcades, e.g. Sega NAOMI.</td>
+</tr>
+<tr>
+<td>non-gaming</td>
+<td>For platforms not usually associated with gaming.</td>
+</tr>
+</tbody></table>
+
+<h3 id="kind-accepted-values"><a name="platforms_kind"></a>Kind: accepted values</h3>
+
+<p>The <code class="prettyprint">kind</code> attribute must take one of the following values.</p>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>system</td>
+<td>Hardware such as a console, computer or device.</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>A software operating system that might run on various devices.</td>
+</tr>
+<tr>
+<td>add-on</td>
+<td>A device that requires its parent platform to run.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-all-platforms">Get all platforms</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": [
+    {
+      "id": "1",
+      "type": "platforms",
+      "attributes": {
+        "slug": "sony-playstation",
+        "name": "PlayStation",
+        "short_name": "PS",
+        "sphere": "home",
+        "kind": "console"
+      },
+      "relationships": {
+        "holder": {
+          "meta": {}
+        },
+        "parent": {
+          "data": null
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/platforms/sony-playstation"
+      }
+    },
+    {
+      "id": "2",
+      "type": "platforms",
+      "attributes": {
+        "slug": "sony-playstation-2",
+        "name": "PlayStation 2",
+        "short_name": "PS2",
+        "sphere": "home",
+        "kind": "console"
+      },
+      "relationships": {
+        "holder": {
+          "meta": {}
+        },
+        "parent": {
+          "data": null
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/platforms/sony-playstation-2"
+      }
+    },
+    {
+      "id": "3",
+      "type": "platforms",
+      "attributes": {
+        "slug": "sony-playstation-3",
+        "name": "PlayStation 3",
+        "short_name": "PS3",
+        "sphere": "home",
+        "kind": "console"
+      },
+      "relationships": {
+        "holder": {
+          "meta": {}
+        },
+        "parent": {
+          "data": null
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/platforms/sony-playstation-3"
+      }
+    }
+  ],
+  "links": {
+    "self": "http://api.dbljump.com/platforms?page%5Bnumber%5D=1&amp;page%5Bsize%5D=30",
+    "next": "http://api.dbljump.com/platforms?page%5Bnumber%5D=2&amp;page%5Bsize%5D=30",
+    "last": "http://api.dbljump.com/platforms?page%5Bnumber%5D=2&amp;page%5Bsize%5D=30"
+  },
+  "meta": {
+    "total_items": 3
+  }
+}
+</code></pre>
+<p>Retrieve all platforms. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /platforms</code></p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number</td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of platforms per page</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-single-platform">Get single platform</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "1",
+    "type": "platforms",
+    "attributes": {
+      "slug": "sony-playstation",
+      "name": "PlayStation",
+      "short_name": "PS",
+      "sphere": "home",
+      "kind": "console"
+    },
+    "relationships": {
+      "holder": {
+        "meta": {}
+      },
+      "parent": {
+        "data": null
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/1"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/platforms/sony-playstation"
+    }
+  },
+  "meta": {
+    "keywords": "playstation, ps, sony, home, console, platform, dbljump, video games, pc games, gaming",
+    "description": "Find out about games for PlayStation by Sony Corporation at Dbljump, the video game reference.",
+    "created_at": "2017-03-21T23:35:02.890Z",
+    "updated_at": "2017-03-21T23:35:02.890Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single platform record. Platforms are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /platforms/{slug}</code> (replace <code class="prettyprint">{slug}</code> with platform record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h2 id="create-a-new-platform-record">Create a new platform record</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "platforms",
+    "attributes": {
+      "name": "New Platform",
+      "short_name": "NPlat",
+      "sphere": "home",
+      "kind": "add-on",
+      "holder_id": "1",
+      "parent_id": "13"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 201 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "39",
+    "type": "platforms",
+    "attributes": {
+      "slug": "nintendo-new-platform",
+      "name": "New Platform",
+      "short_name": "NPlat",
+      "sphere": "home",
+      "kind": "add-on"
+    },
+    "relationships": {
+      "holder": {
+        "meta": {}
+      },
+      "parent": {
+        "data": {
+          "id": "13",
+          "type": "platforms"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/platforms/nintendo-switch"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/2"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/platforms/nintendo-new-platform"
+    }
+  },
+  "meta": {
+    "keywords": "new platform, nplat, nintendo, home, add-on, platform, dbljump, video games, pc games, gaming",
+    "description": "Find out about games for New Platform by Nintendo Co., Ltd. at Dbljump, the video game reference.",
+    "created_at": "2017-03-24T13:01:13.617Z",
+    "updated_at": "2017-03-24T13:01:13.617Z"
+  }
+}
+</code></pre>
+<p>Create a new platform record. Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /platforms</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. Max 50 chars. The full North American name, or nearest alternative, e.g. &lsquo;Genesis&rsquo;</td>
+</tr>
+<tr>
+<td>short_name</td>
+<td>string</td>
+<td>Max 10 chars. The common abbreviated name, e.g. &#39;SNES&rsquo;.</td>
+</tr>
+<tr>
+<td>sphere</td>
+<td>string</td>
+<td>Req&rsquo;d. Limited options. The usual platform environment, e.g. &#39;home&rsquo; or &#39;arcade&rsquo;.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Req&rsquo;d. Limited options. Platform type, e.g. &#39;console&rsquo; or &#39;OS&rsquo;.</td>
+</tr>
+<tr>
+<td>holder_id</td>
+<td>integer</td>
+<td>Req&rsquo;d. Must be a valid company ID. The platform holder, e.g. &#39;Sony&rsquo; for PlayStation.</td>
+</tr>
+<tr>
+<td>parent_id</td>
+<td>integer</td>
+<td>Must be a valid platform ID. Used for add-ons, e.g. &#39;Sega CD&rsquo; belongs to Sega Genesis.</td>
+</tr>
+</tbody></table>
+
+<p><a href="#platforms_sphere">See <code class="prettyprint">sphere</code> accepted values.</a></p>
+
+<p><a href="#platforms_kind">See <code class="prettyprint">kind</code> accepted values.</a></p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>PLATFORM_NAME_BLANK</td>
+<td>name</td>
+<td>Name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLATFORM_NAME_TAKEN</td>
+<td>name</td>
+<td>Name has already been taken.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLATFORM_NAME_TOO_LONG</td>
+<td>name</td>
+<td>Name cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLATFORM_SHORT_NAME_TAKEN</td>
+<td>short_name</td>
+<td>Short name has already been taken.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLATFORM_SHORT_TOO_LONG</td>
+<td>short_name</td>
+<td>Short name cannot be more than 10 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLATFORM_SPHERE_BLANK</td>
+<td>sphere</td>
+<td>Sphere is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLATFORM_SPHERE_INCLUSION</td>
+<td>sphere</td>
+<td>Sphere must be an accepted value.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLATFORM_KIND_BLANK</td>
+<td>kind</td>
+<td>Kind is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLATFORM_KIND_INCLUSION</td>
+<td>kind</td>
+<td>Kind must be an accepted value.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLATFORM_HOLDER_ID_BLANK</td>
+<td>holder_id</td>
+<td>Holder is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLATFORM_HOLDER_ID_INVALID</td>
+<td>holder_id</td>
+<td>Holder ID must be a valid company ID.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLATFORM_PARENT_ID_INVALID</td>
+<td>parent_id</td>
+<td>Parent ID must be a valid platform ID.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="update-a-platform-record">Update a platform record</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "platforms",
+    "id": "sega-dreamcast-2",
+    "attributes": {
+      "name": "Updated Name",
+      "short_name": "Changed",
+      "sphere": "portable",
+      "kind": "console",
+      "holder_id": "1",
+      "parent_id": "2"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "50",
+    "type": "platforms",
+    "attributes": {
+      "slug": "sega-updated-name",
+      "name": "Updated Name",
+      "short_name": "Changed",
+      "sphere": "portable",
+      "kind": "console"
+    },
+    "relationships": {
+      "holder": {
+        "meta": {}
+      },
+      "parent": {
+        "data": {
+          "id": "2",
+          "type": "platforms"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/platforms/sega-dreamcast"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/2"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/platforms/sega-updated-name"
+    }
+  },
+  "meta": {
+    "keywords": "updated name, changed, sega, portable, console, platform, dbljump, video games, pc games, gaming",
+    "description": "Find out about games for Updated Name by Sega Co., Ltd. at Dbljump, the video game reference.",
+    "created_at": "2017-03-24T13:01:13.617Z",
+    "updated_at": "2017-03-24T13:01:13.617Z"
+  }
+}
+</code></pre>
+<p>Update an existing platform record. The user must be an admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /platforms/{slug}</code> (replace <code class="prettyprint">{slug}</code> with platform record slug)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. Max 50 chars. The full North American name, or nearest alternative, e.g. &lsquo;Genesis&rsquo;</td>
+</tr>
+<tr>
+<td>short_name</td>
+<td>string</td>
+<td>Max 10 chars. The common abbreviated name, e.g. &#39;SNES&rsquo;.</td>
+</tr>
+<tr>
+<td>sphere</td>
+<td>string</td>
+<td>Req&rsquo;d. Limited options. The usual platform environment, e.g. &#39;home&rsquo; or &#39;arcade&rsquo;.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Req&rsquo;d. Limited options. Platform type, e.g. &#39;console&rsquo; or &#39;OS&rsquo;.</td>
+</tr>
+<tr>
+<td>holder_id</td>
+<td>integer</td>
+<td>Req&rsquo;d. Must be a valid company ID. The platform holder, e.g. &#39;Sony&rsquo; for PlayStation.</td>
+</tr>
+<tr>
+<td>parent_id</td>
+<td>integer</td>
+<td>Must be a valid platform ID. Used for add-ons, e.g. &#39;Sega CD&rsquo; belongs to Sega Genesis.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="delete-a-platform-record">Delete a platform record</h2>
+
+<p>Delete an existing platform record. Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /platforms/{slug}</code> (replace <code class="prettyprint">{slug}</code> with platform record slug)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
@@ -2956,7 +3710,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /places/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with place record slug)</p>
+<p><code class="prettyprint">GET /places/{slug}</code> (replace <code class="prettyprint">{slug}</code> with place record slug)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
@@ -3226,7 +3980,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /places/countries/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with country record slug)</p>
+<p><code class="prettyprint">GET /places/countries/{slug}</code> (replace <code class="prettyprint">{slug}</code> with country record slug)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
@@ -3594,7 +4348,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">PATCH /places/countries/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with country record slug)</p>
+<p><code class="prettyprint">PATCH /places/countries/{slug}</code> (replace <code class="prettyprint">{slug}</code> with country record slug)</p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -3854,7 +4608,7 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
-          <h2 id="country-subdivisions-get-all">Country subdivisions - get all</h2>
+          <h2 id="country-subdivisions-get-all">Country subdivisions: get all</h2>
 
 <blockquote>
 <p>HTTP 200 response body</p>
@@ -4033,7 +4787,7 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
-          <h2 id="country-subdivisions-create-new">Country subdivisions - create new</h2>
+          <h2 id="country-subdivisions-create-new">Country subdivisions: create new</h2>
 
 <blockquote>
 <p>Request body</p>
@@ -4465,7 +5219,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /places/subdivisions/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with subdivision record slug)</p>
+<p><code class="prettyprint">GET /places/subdivisions/{slug}</code> (replace <code class="prettyprint">{slug}</code> with subdivision record slug)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
@@ -4762,7 +5516,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">PATCH /places/subdivisions/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with subdivision record slug)</p>
+<p><code class="prettyprint">PATCH /places/subdivisions/{slug}</code> (replace <code class="prettyprint">{slug}</code> with subdivision record slug)</p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -4929,7 +5683,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">DELETE /places/subdivisions/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with subdivision record slug)</p>
+<p><code class="prettyprint">DELETE /places/subdivisions/{slug}</code> (replace <code class="prettyprint">{slug}</code> with subdivision record slug)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
@@ -5202,7 +5956,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /places/localities/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with locality record slug)</p>
+<p><code class="prettyprint">GET /places/localities/{slug}</code> (replace <code class="prettyprint">{slug}</code> with locality record slug)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
@@ -5499,7 +6253,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">PATCH /places/localities/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with locality record slug)</p>
+<p><code class="prettyprint">PATCH /places/localities/{slug}</code> (replace <code class="prettyprint">{slug}</code> with locality record slug)</p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -5654,7 +6408,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">DELETE /places/localities/&#39;slug&#39;</code> (replace <code class="prettyprint">slug</code> with locality record slug)</p>
+<p><code class="prettyprint">DELETE /places/localities/{slug}</code> (replace <code class="prettyprint">{slug}</code> with locality record slug)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
