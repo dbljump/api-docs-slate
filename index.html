@@ -1128,6 +1128,150 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
+          <h2 id="user-images-get-all">User images: get all</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": [
+    {
+      "id": "2",
+      "type": "images",
+      "attributes": {
+        "slug": "mario-figure-2016-uncategorized",
+        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
+        "type": "Image::Photo",
+        "kind": "uncategorized",
+        "title": "Mario figure",
+        "description": "",
+        "year": 2016,
+        "date": "2016-07-30",
+        "usage_type": "free",
+        "usage_license_code": null,
+        "usage_license_name": null,
+        "usage_license_url": null,
+        "attributed_name": null,
+        "attributed_url": null,
+        "source_url": ""
+      },
+      "relationships": {
+        "uploaded_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "place": {
+          "data": null
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/images/mario-figure-2016-uncategorized"
+      }
+    },
+    {
+      "id": "1",
+      "type": "images",
+      "attributes": {
+        "slug": "nintendo-office-2006-uncategorized-moja-commonswiki",
+        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+        "type": "Image::Photo",
+        "kind": "uncategorized",
+        "title": "Nintendo office",
+        "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
+        "year": 2006,
+        "date": "2006-02-18",
+        "usage_type": "licensed",
+        "usage_license_code": "cc_by_sa_3_0",
+        "usage_license_name": "Creative Commons Attribution-ShareAlike 3.0",
+        "usage_license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "attributed_name": "Moja~commonswiki",
+        "attributed_url": "",
+        "source_url": "https://en.wikipedia.org/wiki/Nintendo#/media/File:Nintendo_office.jpg"
+      },
+      "relationships": {
+        "uploaded_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "place": {
+          "data": null
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/images/nintendo-office-2006-uncategorized-moja-commonswiki"
+      }
+    }
+  ],
+  "links": {},
+  "meta": {
+    "total_items": 2
+  }
+}
+</code></pre>
+<p>Retrieve all images uploaded by the given user. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /users/{user_id}/images</code> (replace <code class="prettyprint">{user_id}</code> with country record slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number</td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of images per page</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
           <h1 id="users-authentications">Users: authentications</h1>
 
 <p>Resources related to user sign-ins.</p>
@@ -4742,7 +4886,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /places/&#39;country_slug&#39;/subdivisions</code></p>
+<p><code class="prettyprint">GET /places/countries/{country-slug}/subdivisions</code> (replace <code class="prettyprint">{country-slug}</code> with country record slug)</p>
 
 <h3 id="url-query-parameters">URL query parameters</h3>
 
@@ -4851,7 +4995,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /places/countries/&#39;country-slug&#39;/subdivisions</code></p>
+<p><code class="prettyprint">POST /places/countries/{country-slug}/subdivisions</code> (replace <code class="prettyprint">{country-slug}</code> with country record slug)</p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -4890,8 +5034,6 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="errors">Errors</h3>
 
-<aside class="notice"><code>parent_id</code> refers to <code>country_id</code> in these errors.</aside>
-
 <table><thead>
 <tr>
 <th>HTTP code</th>
@@ -4900,12 +5042,6 @@ Successful responses include the following HTTP header.<br /><br />
 <th>Title</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>400</td>
-<td>PLACE_SUBDIVISION_PARENT_ID_BLANK</td>
-<td>parent_id</td>
-<td>Country ID is required.</td>
-</tr>
 <tr>
 <td>400</td>
 <td>PLACE_SUBDIVISION_NAME_BLANK</td>
@@ -5710,6 +5846,325 @@ Successful responses include the following HTTP header.<br /><br />
 <td>USER_UNAUTHORIZED</td>
 <td>n/a</td>
 <td>The user isn&rsquo;t an admin, or there&rsquo;s an authentication problem.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="subdivision-localities-get-all">Subdivision localities: get all</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": [
+    {
+      "id": "2894",
+      "type": "place_localities",
+      "attributes": {
+        "slug": "austin-texas-united-states",
+        "name": "Austin",
+        "formatted": "Austin, Texas, United States",
+        "also_known_as": [],
+        "latitude": null,
+        "longitude": null
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "country": {
+          "data": {
+            "id": "220",
+            "type": "place_countries"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/united-states"
+          }
+        },
+        "subdivision": {
+          "data": {
+            "id": "2599",
+            "type": "place_subdivisions"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/subdivisions/texas-united-states"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/localities/austin-texas-united-states"
+      }
+    }
+  ],
+  "links": {},
+  "meta": {
+    "total_items": 1
+  }
+}
+</code></pre>
+<p>Retrieve all localities belonging to the given subdivision. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /places/subdivisions/{subdivision-slug}/localities</code> (replace <code class="prettyprint">{subdivision-slug}</code> with subdivision record slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number</td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of images per page</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="subdivision-localities-create-new">Subdivision localities: create new</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "place_localities",
+    "id": "texas-united-states",
+    "attributes": {
+      "name": "New City",
+      "also_known_as": ["That New City", "The New Locality"],
+      "latitude": "70.3",
+      "longitude": "-45.5"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 201 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "2937",
+    "type": "place_localities",
+    "attributes": {
+      "slug": "new-city-texas-united-states",
+      "name": "New City",
+      "formatted": "New City, Texas, United States",
+      "also_known_as": [
+        "That New City",
+        "The New Locality"
+      ],
+      "latitude": 70.3,
+      "longitude": -45.5
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/2"
+        }
+      },
+      "country": {
+        "data": {
+          "id": "220",
+          "type": "place_countries"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/united-states"
+        }
+      },
+      "subdivision": {
+        "data": {
+          "id": "2599",
+          "type": "place_subdivisions"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/subdivisions/texas-united-states"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/localities/new-city-texas-united-states"
+    }
+  }
+}
+</code></pre>
+<p>Create a new locality record belonging to the given subdivision. Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /places/subdivisions/{subdivision-slug}/localities</code> (replace <code class="prettyprint">{subdivision-slug}</code> with subdivision record slug)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Req&rsquo;d. 2-250 chars. English-language common name, e.g. &lsquo;Florida&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;The Sunshine State&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td>Between -180 and 180.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_BLANK</td>
+<td>name</td>
+<td>Name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_TAKEN</td>
+<td>name</td>
+<td>There&rsquo;s already a subdivision with that name and parent country.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_TOO_SHORT</td>
+<td>name</td>
+<td>Name must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_NAME_TOO_LONG</td>
+<td>name</td>
+<td>Name cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_ALSO_KNOWN_AS_TOO_SHORT</td>
+<td>also_known_as</td>
+<td>Also-known-as tags must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_ALSO_KNOWN_AS_TOO_LONG</td>
+<td>also_known_as</td>
+<td>Also-known-as tags cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_SUBDIVISION_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_LOGIN_EXPIRED</td>
+<td>n/a</td>
+<td>The JWT in the header has expired.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>USER_UNAUTHORIZED</td>
+<td>n/a</td>
+<td>The user doesn&rsquo;t have the right permissions, or there&rsquo;s an authentication problem.</td>
 </tr>
 <tr>
 <td>404</td>

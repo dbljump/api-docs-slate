@@ -1,0 +1,143 @@
+<h2 id="user-images-get-all">User images: get all</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": [
+    {
+      "id": "2",
+      "type": "images",
+      "attributes": {
+        "slug": "mario-figure-2016-uncategorized",
+        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
+        "type": "Image::Photo",
+        "kind": "uncategorized",
+        "title": "Mario figure",
+        "description": "",
+        "year": 2016,
+        "date": "2016-07-30",
+        "usage_type": "free",
+        "usage_license_code": null,
+        "usage_license_name": null,
+        "usage_license_url": null,
+        "attributed_name": null,
+        "attributed_url": null,
+        "source_url": ""
+      },
+      "relationships": {
+        "uploaded_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "place": {
+          "data": null
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/images/mario-figure-2016-uncategorized"
+      }
+    },
+    {
+      "id": "1",
+      "type": "images",
+      "attributes": {
+        "slug": "nintendo-office-2006-uncategorized-moja-commonswiki",
+        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+        "type": "Image::Photo",
+        "kind": "uncategorized",
+        "title": "Nintendo office",
+        "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
+        "year": 2006,
+        "date": "2006-02-18",
+        "usage_type": "licensed",
+        "usage_license_code": "cc_by_sa_3_0",
+        "usage_license_name": "Creative Commons Attribution-ShareAlike 3.0",
+        "usage_license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "attributed_name": "Moja~commonswiki",
+        "attributed_url": "",
+        "source_url": "https://en.wikipedia.org/wiki/Nintendo#/media/File:Nintendo_office.jpg"
+      },
+      "relationships": {
+        "uploaded_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "place": {
+          "data": null
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/images/nintendo-office-2006-uncategorized-moja-commonswiki"
+      }
+    }
+  ],
+  "links": {},
+  "meta": {
+    "total_items": 2
+  }
+}
+</code></pre>
+<p>Retrieve all images uploaded by the given user. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /users/{user_id}/images</code> (replace <code class="prettyprint">{user_id}</code> with country record slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number</td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of images per page</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>RECORD_NOT_FOUND</td>
+<td>n/a</td>
+<td>Record not found.</td>
+</tr>
+</tbody></table>
