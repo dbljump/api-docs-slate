@@ -1,0 +1,38 @@
+# <a name="platforms_intro"></a>Platforms
+
+Resources related to game platforms.
+
+Game platforms can include dedicated game systems (e.g. Sony PlayStation 4), computers (e.g. Atari ST), operating systems (e.g. Microsoft Windows), add-ons with unique game libraries (e.g. Sega 32X), and arcade systems (e.g. Capcom CPS-2).
+
+### <a name="platform_attrs"></a>Mutable attributes
+
+Attribute | Type | Description
+--------- | ---- | -----------
+name | string | Req'd. Max 50 chars. The full North American name, or nearest alternative, e.g. 'Genesis'
+short_name | string | Max 10 chars. The common abbreviated name, e.g. 'SNES'.
+sphere | string | Req'd. Limited options. The usual platform environment, e.g. 'home' or 'arcade'.
+kind | string | Req'd. Limited options. Platform type, e.g. 'console' or 'OS'.
+holder_id | integer | Req'd. Must be a valid company ID. The platform holder, e.g. 'Sony' for PlayStation.
+parent_id | integer | Must be a valid platform ID. Used for add-ons, e.g. 'Sega CD' belongs to Sega Genesis.
+
+### <a name="platforms_sphere"></a>Sphere: accepted values
+
+The `sphere` attribute must take one of the following values.
+
+Value | Description
+----- | -----------
+home | Usually used at home, e.g. a home console or computer.
+portable | Portable or handheld, e.g. PS Vita or Nintendo Game Boy.
+mobile | A phone, tablet or mobile operating system, e.g. Android.
+arcade | Associated with public game arcades, e.g. Sega NAOMI.
+non-gaming | For platforms not usually associated with gaming.
+
+### <a name="platforms_kind"></a>Kind: accepted values
+
+The `kind` attribute must take one of the following values.
+
+Value | Description
+----- | -----------
+system | Hardware such as a console, computer or device.
+OS | A software operating system that might run on various devices.
+add-on | A device that requires its parent platform to run.
