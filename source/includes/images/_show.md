@@ -1,4 +1,4 @@
-## Get single image
+## <a name="images_show"></a>Get single image
 
 > HTTP 200 response body
 
@@ -61,8 +61,38 @@ Retrieve a single image record. Images are publicly available. No sign-in is req
 
 `200 OK`
 
-### Errors
+### <a name="image_response_attrs"></a>Response attributes
 
-HTTP code | Error code | Pointer | Title | Description
---------- | ---------- | ------- | ----- | -----------
-404 | RECORD_NOT_FOUND | n/a | Record not found. |
+Attribute | Type | Req'd? | Description
+--------- | ---- | ------ | -----------
+file/url | string | Y | Image URL, usually at AWS.
+subtype | string | Y | The image subclass. Either 'artworks', 'docs', 'photos', or 'screens'.
+slug | string | Y | A record ID based on metadata, e.g. 'photo-of-hideo-kojima'.
+kind | string | Y | A further subcategory related to subtype. See [Kind](#image_kind).
+title | string | Y | The image title.
+description | string | | The image description.
+year | integer | | Year the image was created.
+date | date | | Date the image was created.
+usage_type | string | Y | One of three usage types:'free', 'fair', or 'licensed'. See [Usage type](#image_usage_type).
+usage_license_code | string | * | Req'd if usage_type is 'licensed'. See [Usage license](#image_usage_license) section.
+attributed_name | string | * | The image owner's name. Always present if usage_type is 'licensed'.
+attributed_url | string | | The image owner's website URL.
+source_url | string | * | The URL the image was sourced from. Always present if usage_type is 'licensed'.
+
+### Relationships
+
+Association | Record type | Relationship type
+------------ | ---------- | -----------------
+uploaded_by | users | belongs_to |
+place | places | belongs_to
+
+### Included
+
+Record type | Relationship | Attributes included
+----------- | ------------ | -------------------
+users | uploaded_by | username, role, given_names, family_name, avatar
+places | place | subtype, slug, name, short_name, formatted
+
+### Meta
+
+The `meta` section of the JSON response includes `keywords`, `description`, `created_at` and `updated_at` attributes.

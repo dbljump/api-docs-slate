@@ -1,4 +1,4 @@
-## Update an image record
+## <a name="images_update"></a>Update an image record
 
 > Request body
 
@@ -89,50 +89,21 @@ The `file` attribute cannot be updated. A new image file can only be uploaded wi
 
 ### Request attributes
 
-Attribute | Type | Description
---------- | ---- | -----------
-type | string | Req'd. Must be 'art', 'doc', 'photo', or 'screen'.
-kind | string | Req'd. A subcategory related to the given type. See [Kind](#image_kind).
-title | string | Req'd. Max 100 chars.
-description | string | Max 250 chars.
-year | integer | 1800 to present year.
-date | date | 1800-01-01 to present year.
-place_id | belongs_to | Must be valid place ID.
-usage_type | string | Must be 'free', 'fair', or 'licensed'. See [Usage type](#image_usage_type).
-usage_license_code | string | Req'd if usage_type is 'licensed'. See [Usage license](#image_usage_license).
-attributed_name | string | Image owner's name. Max 100 chars. Req'd if usage_type is 'licensed'.
-attributed_url | string | The owner's website. Max 250 chars.
-source_url | string | Req'd if usage_type is 'licensed'. Max 250 chars. URL of image source.
+Attribute | Type | Req'd? | Description
+--------- | ---- | ------ | -----------
+subtype | string | Y | Must be 'artworks', 'docs', 'photos', or 'screens'.
+kind | string | Y | A subcategory related to the given subtype. See [Kind](#image_kind).
+title | string | Y | Max 100 chars.
+description | string | | Max 250 chars.
+year | integer | | 1800 to present year.
+date | date | | 1800-01-01 to present year.
+place_id | belongs_to | | Must be a valid place ID.
+usage_type | string | Y | Must be 'free', 'fair', or 'licensed'. See [Usage type](#image_usage_type).
+usage_license_code | string | * | Req'd if usage_type is 'licensed'. See [Usage license](#image_usage_license).
+attributed_name | string | * | Image owner's name. Max 100 chars. Req'd if usage_type is 'licensed'.
+attributed_url | string | | The owner's website. Max 250 chars.
+source_url | string | * | Req'd if usage_type is 'licensed'. Max 250 chars. URL of image source.
 
 ### Success HTTP response code
 
 `200 OK`
-
-### Errors
-
-<aside class="notice">Actual error codes may include the image sub-class, e.g. 'IMAGE_SCREEN_FILE_BLANK'</aside>
-
-HTTP code | Error code | Pointer | Title
---------- | ---------- | ------- | -----
-400 | IMAGE_FILE_ACCEPTED | file | File cannot be updated.
-400 | IMAGE_TITLE_BLANK | title | Title is required.
-400 | IMAGE_TITLE_TOO_LONG | title | Title cannot be more than 100 characters.
-400 | IMAGE_DESCRIPTION_TOO_LONG | description | Description cannot be more than 250 characters.
-400 | IMAGE_TYPE_BLANK | type | Type is required.
-400 | IMAGE_TYPE_INCLUSION | type | Type must be 'Image::Art', 'Image::Doc', 'Image::Photo' or 'Image::Screen'.
-400 | IMAGE_KIND_BLANK | kind | Kind is required.
-400 | IMAGE_KIND_INCLUSION | kind | Kind must be a valid value for this image type.
-400 | IMAGE_YEAR_INCLUSION | year | Year must be between 1800 and the present year.
-400 | IMAGE_DATE_INCLUSION | year | Date must be between 1 January 1800 and the present date.
-400 | IMAGE_USAGE_TYPE_BLANK | usage_type | Usage type is required.
-400 | IMAGE_USAGE_TYPE_INCLUSION | usage_type | Usage type must be 'free', 'fair', or 'licensed'.
-400 | IMAGE_ATTRIBUTED_NAME_BLANK | attributed_name | Attributed name is required if usage type is 'licensed'.
-400 | IMAGE_ATTRIBUTED_NAME_TOO_LONG | attributed_name | Attributed name cannot be more than 100 characters.
-400 | IMAGE_ATTRIBUTED_URL_TOO_LONG | attributed_url | Attributed URL cannot be more than 250 characters.
-400 | IMAGE_SOURCE_URL_BLANK | source_url | Source url is required if usage type is 'licensed'.
-400 | IMAGE_SOURCE_URL_TOO_LONG | source_url | Source url cannot be more than 250 characters.
-400 | IMAGE_USAGE_LICENSE_CODE_BLANK | usage_license_code | Usage license code is required if usage type is 'licensed'.
-400 | IMAGE_USAGE_LICENSE_CODE_INCLUSION | usage_license_code | Usage license code must be valid.
-401 | USER_LOGIN_EXPIRED | n/a | The JWT in the header has expired.
-401 | USER_UNAUTHORIZED | n/a | The user doesn't have the right permissions, or there's an authentication problem.
-404 | RECORD_NOT_FOUND | n/a | Record not found.
