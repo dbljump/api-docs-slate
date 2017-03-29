@@ -1,4 +1,4 @@
-## Get single place
+## <a name="places_show"></a>Get single place
 
 > HTTP 200 response body
 
@@ -56,7 +56,19 @@ Retrieve a single place record. Places are publicly available. No sign-in is req
 
 `200 OK`
 
-### Errors
+### <a name="place_response_attrs"></a>Response attributes
+
+Attribute | Type | Req'd? | Description
+--------- | ---- | ------ | -----------
+sub_type | string | Y | The place subclass. Either 'countries', 'subdivisions', or 'localities'.
+slug | string | Y | A record ID based on the formatted name, e.g. 'glasgow-scotland-united-kingdom'.
+name | string | Y | The place name, e.g. 'Glasow' or 'Scotland' or 'United Kingdom'.
+short_name | array | | A commonly-used short name, e.g. 'USA' or 'UK'.
+formatted_name | string | Y | The full name including parent places, e.g. 'Glasgow, Scotland, United Kingdom'.
+
+## Errors
+
+### GET errors
 
 HTTP code | Error code | Pointer | Title | Description
 --------- | ---------- | ------- | ----- | -----------

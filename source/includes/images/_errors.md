@@ -1,7 +1,16 @@
 ## Errors
 
-HTTP code | Error code | Pointer | Title | Actions
---------- | ---------- | ------- | ----- | -------
+### Authorization errors
+
+HTTP code | Error code | Pointer | Title
+--------- | ---------- | ------- | -----
+401 | USER_LOGIN_EXPIRED | n/a | The JWT in the header has expired.
+401 | USER_UNAUTHORIZED | n/a | The user doesn't have the right permissions, or there's an authentication problem.
+
+### POST and PATCH errors
+
+HTTP code | Error code | Pointer | Title
+--------- | ---------- | ------- | -----
 400 | IMAGE_FILE_BLANK | file | File is required.
 400 | IMAGE_TITLE_BLANK | title | Title is required.
 400 | IMAGE_TITLE_TOO_LONG | title | Title cannot be more than 100 characters.
@@ -21,6 +30,9 @@ HTTP code | Error code | Pointer | Title | Actions
 400 | IMAGE_SOURCE_URL_TOO_LONG | source_url | Source url cannot be more than 250 characters.
 400 | IMAGE_USAGE_LICENSE_CODE_BLANK | usage_license_code | Usage license code is required if usage type is 'licensed'.
 400 | IMAGE_USAGE_LICENSE_CODE_INCLUSION | usage_license_code | Usage license code must be valid.
-401 | USER_LOGIN_EXPIRED | n/a | The JWT in the header has expired.
-401 | USER_UNAUTHORIZED | n/a | The user doesn't have the right permissions, or there's an authentication problem.
+
+### GET errors
+
+HTTP code | Error code | Pointer | Title
+--------- | ---------- | ------- | -----
 404 | RECORD_NOT_FOUND | n/a | Record not found.
