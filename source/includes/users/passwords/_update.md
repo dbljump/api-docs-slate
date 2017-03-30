@@ -40,6 +40,8 @@ password_confirmation | string | Required. Must match password.
 
 ### Errors
 
+Errors specific to user password resets.
+
 HTTP code | Error code | Pointer | Title | Detail
 --------- | ---------- | ------- | ----- | ------
 400 | USER_EMAIL_INVALID | email | User not found. | Invalid email address.

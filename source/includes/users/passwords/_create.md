@@ -34,6 +34,8 @@ email | string | The user's registered email. Required. Max 255 chars. Must be e
 
 ### Errors
 
+Errors specific to user password reset link requests.
+
 HTTP code | Error code | Pointer | Title | Detail
 --------- | ---------- | ------- | ----- | ------
 400 | USER_EMAIL_INVALID | email | User not found. | Invalid email address.
