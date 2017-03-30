@@ -25,3 +25,9 @@ HTTP code | Error code | Pointer | Title
 400 | USER_GENDER_TOO_LONG | gender | Gender cannot be more than 20 characters.
 400 | USER_BIRTHDAY_INCLUSION | birthday | Birthday must not be a future date, or over 100 years ago.
 400 | USER_COUNTRY_ID_INVALID | country_id | Country must be valid.
+
+### Authentication errors
+
+HTTP code | Error code | Pointer | Title
+--------- | ---------- | ------- | -----
+401 | USER_CREDENTIALS_INVALID | - | User not authorized.

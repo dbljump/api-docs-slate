@@ -74,18 +74,11 @@ Sign in an existing user. With valid credentials, returns a JSON web token (JWT)
 
 ### Request attributes
 
-Attribute | Type | Description
---------- | ---- | -----------
-email | string | The user's registered email. Required. Max 255 chars. Must be email format.
-password | string | The user's password. Required.
+Attribute | Type | Req'd? | Description
+--------- | ---- | ------ | -----------
+email | string | Y | The user's registered email. Max 255 chars. Must be email format.
+password | string | Y | The user's password.
 
 ### Success HTTP response code
 
 `200 OK`
-
-### Errors
-
-HTTP code | Error code | Pointer | Title | Detail
---------- | ---------- | ------- | ----- | ------
-400 | USER_EMAIL_BLANK | email | Email is required.
-401 | USER_CREDENTIALS_INVALID | - | User not authorized. | Invalid email and password combination.
