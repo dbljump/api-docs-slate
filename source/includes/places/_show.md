@@ -6,39 +6,23 @@
 {
   "data": {
     "id": "2894",
-    "type": "place_localities",
+    "type": "places",
     "attributes": {
+      "subtype": "localities",
+      "slug": "austin-texas-united-states",
       "name": "Austin",
-      "formatted": "Austin, Texas, United States",
-      "also_known_as": [],
-      "latitude": null,
-      "longitude": null
-    },
-    "relationships": {
-      "subdivision": {
-        "data": {
-          "id": "2599",
-          "type": "place_subdivisions"
-        }
-      },
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
-        }
-      }
+      "short_name": null,
+      "formatted": "Austin, Texas, United States"
     },
     "links": {
-      "self": "http://api.dbljump.com/places/localities/austin-texas-united-states",
-      "subdivision": "http://api.dbljump.com/places/subdivisions/texas-united-states",
-      "country": "http://api.dbljump.com/places/countries/united-states"
+      "self": "http://api.dbljump.com/places/localities/austin-texas-united-states"
     }
   },
   "meta": {
-    "keywords": "austin, texas, united states, city, town, place, city, town, place, dbljump, video games, pc games, gaming",
+    "keywords": "austin, texas, united states, city, town, place, dbljump, video games, pc games, gaming",
     "description": "Find video game companies and games industry professionals from Austin, Texas, United States at Dbljump.",
-    "created_at": "2017-03-08T17:37:15.372Z",
-    "updated_at": "2017-03-08T17:37:15.372Z"
+    "created_at": "2017-03-30T12:40:05.924Z",
+    "updated_at": "2017-03-30T12:40:05.924Z"
   }
 }
 ```

@@ -7,27 +7,13 @@
   "data": [
     {
       "id": "1",
-      "type": "place_countries",
+      "type": "places",
       "attributes": {
+        "subtype": "countries",
         "slug": "afghanistan",
-        "iso_code": "AF",
-        "short_name": null,
         "name": "Afghanistan",
-        "also_known_as": [],
-        "nationality": "Afghan",
-        "currency": null,
-        "longitude": 65,
-        "latitude": 33,
-        "created_at": "2017-03-08T17:33:22.884Z",
-        "updated_at": "2017-03-08T17:33:22.884Z"
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          }
-        }
+        "short_name": null,
+        "formatted": "Afghanistan"
       },
       "links": {
         "self": "http://api.dbljump.com/places/countries/afghanistan"
@@ -35,40 +21,40 @@
     },
     {
       "id": "2",
-      "type": "place_countries",
+      "type": "places",
       "attributes": {
+        "subtype": "countries",
         "slug": "albania",
-        "iso_code": "AL",
-        "short_name": null,
         "name": "Albania",
-        "also_known_as": [],
-        "nationality": "Albanian",
-        "currency": null,
-        "longitude": 20,
-        "latitude": 41,
-        "created_at": "2017-03-08T17:33:22.932Z",
-        "updated_at": "2017-03-08T17:33:22.932Z"
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          }
-        }
+        "short_name": null,
+        "formatted": "Albania"
       },
       "links": {
         "self": "http://api.dbljump.com/places/countries/albania"
       }
+    },
+    {
+      "id": "3",
+      "type": "places",
+      "attributes": {
+        "subtype": "countries",
+        "slug": "algeria",
+        "name": "Algeria",
+        "short_name": null,
+        "formatted": "Algeria"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/algeria"
+      }
     }
   ],
   "links": {
-    "self": "http://api.dbljump.com/places?page%5Bnumber%5D=1&page%5Bsize%5D=30",
-    "next": "http://api.dbljump.com/places?page%5Bnumber%5D=2&page%5Bsize%5D=30",
-    "last": "http://api.dbljump.com/places?page%5Bnumber%5D=98&page%5Bsize%5D=30"
+    "self": "http://api.dbljump.com/places?page%5Bnumber%5D=1&page%5Bsize%5D=3",
+    "next": "http://api.dbljump.com/places?page%5Bnumber%5D=2&page%5Bsize%5D=3",
+    "last": "http://api.dbljump.com/places?page%5Bnumber%5D=979&page%5Bsize%5D=3"
   },
   "meta": {
-    "total_items": 2
+    "total_items": 2936
   }
 }
 ```
