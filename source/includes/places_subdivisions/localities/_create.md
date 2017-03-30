@@ -82,12 +82,12 @@ Create a new locality record belonging to the given subdivision. Admin-level aut
 
 ### Request attributes
 
-Attribute | Type | Description
---------- | ---- | -----------
-name | string | Req'd. 2-250 chars. English-language common name, e.g. 'Florida'.
-also_known_as | array | Members must be 2-50 char strings. E.g. `['The Sunshine State']`.
-latitude | number/float | Between -90 and 90.
-longitude | number/float | Between -180 and 180.
+Attribute | Type | Req'd? | Description
+--------- | ---- | ------ | -----------
+name | string | Y | 2-250 chars. English-language common name, e.g. 'Los Angeles'.
+also_known_as | array | | Members must be 2-50 char strings. E.g. `['LA', 'City of Angels']`.
+latitude | number/float | | Between -90 and 90.
+longitude | number/float | | Between -180 and 180.
 
 ### Success HTTP response code
 
@@ -95,18 +95,4 @@ longitude | number/float | Between -180 and 180.
 
 ### Errors
 
-HTTP code | Error code | Pointer | Title
---------- | ---------- | ------- | -----
-400 | PLACE_SUBDIVISION_NAME_BLANK | name | Name is required.
-400 | PLACE_SUBDIVISION_NAME_TAKEN | name | There's already a subdivision with that name and parent country.
-400 | PLACE_SUBDIVISION_NAME_TOO_SHORT | name | Name must be at least 2 characters.
-400 | PLACE_SUBDIVISION_NAME_TOO_LONG | name | Name cannot be more than 50 characters.
-400 | PLACE_SUBDIVISION_ALSO_KNOWN_AS_TOO_SHORT | also_known_as | Also-known-as tags must be at least 2 characters.
-400 | PLACE_SUBDIVISION_ALSO_KNOWN_AS_TOO_LONG | also_known_as | Also-known-as tags cannot be more than 50 characters.
-400 | PLACE_SUBDIVISION_LATITUDE_GREATER_THAN_OR_EQUAL_TO | latitude | Latitude must be between -90 and 90.
-400 | PLACE_SUBDIVISION_LATITUDE_LESS_THAN_OR_EQUAL_TO | latitude | Latitude must be between -90 and 90.
-400 | PLACE_SUBDIVISION_LONGITUDE_GREATER_THAN_OR_EQUAL_TO | longitude | Longitude must be between -180 and 180.
-400 | PLACE_SUBDIVISION_LONGITUDE_LESS_THAN_OR_EQUAL_TO | longitude | Longitude must be between -180 and 180.
-401 | USER_LOGIN_EXPIRED | n/a | The JWT in the header has expired.
-401 | USER_UNAUTHORIZED | n/a | The user doesn't have the right permissions, or there's an authentication problem.
-404 | RECORD_NOT_FOUND | n/a | Record not found.
+See [Places:localities - Errors](#localities_errors).

@@ -76,3 +76,7 @@ longitude | number/float | | Between -180 and 180.
 ### Success HTTP response code
 
 `201 Created`
+
+### Errors
+
+See [Places: subdivisions - Errors](#subdivs_errors).

@@ -12,11 +12,3 @@ Delete an existing locality record. Admin-level authorization required.
 ### Success HTTP response code
 
 `204 No Content`
-
-### Errors
-
-HTTP code | Error code | Pointer | Title
---------- | ---------- | ------- | -----
-401 | USER_LOGIN_EXPIRED | n/a | The JWT in the header has expired.
-401 | USER_UNAUTHORIZED | n/a | The user isn't an admin, or there's an authentication problem.
-404 | RECORD_NOT_FOUND | n/a | Record not found.

@@ -76,9 +76,3 @@ page[size] | 30 | Select the number of images per page
 ### Success HTTP response code
 
 `200 OK`
-
-### Errors
-
-HTTP code | Error code | Pointer | Title
---------- | ---------- | ------- | -----
-404 | RECORD_NOT_FOUND | n/a | Record not found.

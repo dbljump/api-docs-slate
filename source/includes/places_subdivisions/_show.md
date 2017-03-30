@@ -59,14 +59,14 @@ Retrieve a single subdivision record. Subdivisions are publicly available. No si
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-subtype | string | Y | The place subclass. Always 'subdivisions'.
-slug | string | Y | A record ID based on the formatted name, e.g. 'california-united-states'.
-name | string | Y | English-language common name, e.g. 'California'.
+subtype | string | Y | The place subclass. Always `subdivisions`.
+slug | string | Y | A record ID based on the formatted name, e.g. `california-united-states`.
+name | string | Y | English-language common name, e.g. `California`.
 short_name | null | | Always `null`.
-formatted | string | Y | The name and parenty country name, e.g. 'California, United States'.
+formatted | string | Y | The name and parent country name, e.g. `California, United States`.
 latitude | number | | Global coordinate.
 longitude | number | | Global coordinate.
-also_known_as | array | | Other names the subdivisions is known by, e.g. `['The Golden State']`.
+also_known_as | array | | Other names the subdivision is known by, e.g. `['The Golden State']`.
 
 ### Relationships
 
