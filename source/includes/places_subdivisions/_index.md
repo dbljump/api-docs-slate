@@ -6,97 +6,136 @@
 {
   "data": [
     {
-      "id": "240",
-      "type": "place_subdivisions",
+      "id": "2237",
+      "type": "places",
       "attributes": {
+        "subtype": "subdivisions",
+        "slug": "sabha-libya",
+        "name": "Sabha",
+        "short_name": null,
+        "formatted": "Sabha, Libya",
+        "latitude": null,
+        "longitude": null,
+        "also_known_as": []
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "country": {
+          "data": {
+            "id": "117",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/libya"
+          }
+        },
+        "localities": {
+          "links": {
+            "related": "http://api.dbljump.com/places/subdivisions/sabha-libya/localities"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/subdivisions/sabha-libya"
+      }
+    },
+    {
+      "id": "240",
+      "type": "places",
+      "attributes": {
+        "subtype": "subdivisions",
+        "slug": "0-niue",
         "name": "All",
+        "short_name": null,
         "formatted": "All, Niue",
         "latitude": null,
         "longitude": null,
         "also_known_as": []
       },
       "relationships": {
-        "country": {
-          "data": {
-            "id": "151",
-            "type": "place_countries"
-          }
-        },
         "created_by": {
           "data": {
             "id": "1",
             "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "country": {
+          "data": {
+            "id": "151",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/niue"
+          }
+        },
+        "localities": {
+          "links": {
+            "related": "http://api.dbljump.com/places/subdivisions/0-niue/localities"
           }
         }
       },
       "links": {
-        "self": "http://api.dbljump.com/places/subdivisions/0-niue",
-        "country": "http://api.dbljump.com/places/countries/niue"
+        "self": "http://api.dbljump.com/places/subdivisions/0-niue"
       }
     },
     {
       "id": "241",
-      "type": "place_subdivisions",
+      "type": "places",
       "attributes": {
+        "subtype": "subdivisions",
+        "slug": "0-curacao",
         "name": "All",
+        "short_name": null,
         "formatted": "All, Curaçao",
         "latitude": null,
         "longitude": null,
         "also_known_as": []
       },
       "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
         "country": {
           "data": {
             "id": "53",
-            "type": "place_countries"
+            "type": "places"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/curacao"
           }
         },
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
+        "localities": {
+          "links": {
+            "related": "http://api.dbljump.com/places/subdivisions/0-curacao/localities"
           }
         }
       },
       "links": {
-        "self": "http://api.dbljump.com/places/subdivisions/0-curacao",
-        "country": "http://api.dbljump.com/places/countries/curacao"
-      }
-    },
-    {
-      "id": "242",
-      "type": "place_subdivisions",
-      "attributes": {
-        "name": "All",
-        "formatted": "All, Bermuda",
-        "latitude": null,
-        "longitude": null,
-        "also_known_as": []
-      },
-      "relationships": {
-        "country": {
-          "data": {
-            "id": "23",
-            "type": "place_countries"
-          }
-        },
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/subdivisions/0-bermuda",
-        "country": "http://api.dbljump.com/places/countries/bermuda"
+        "self": "http://api.dbljump.com/places/subdivisions/0-curacao"
       }
     }
   ],
   "links": {
-    "self": "http://api.dbljump.com/places/subdivisions?page%5Bnumber%5D=1&page%5Bsize%5D=30",
-    "next": "http://api.dbljump.com/places/subdivisions?page%5Bnumber%5D=2&page%5Bsize%5D=30",
-    "last": "http://api.dbljump.com/places/subdivisions?page%5Bnumber%5D=89&page%5Bsize%5D=30"
+    "self": "http://api.dbljump.com/places/subdivisions?page%5Bnumber%5D=1&page%5Bsize%5D=3",
+    "next": "http://api.dbljump.com/places/subdivisions?page%5Bnumber%5D=2&page%5Bsize%5D=3",
+    "last": "http://api.dbljump.com/places/subdivisions?page%5Bnumber%5D=881&page%5Bsize%5D=3"
   },
   "meta": {
     "total_items": 2641

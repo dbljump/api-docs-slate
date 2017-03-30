@@ -5,7 +5,7 @@
 ```JSON
 {
   "data": {
-    "type": "place_subdivisions",
+    "type": "places",
     "id": "north-puerto-rico",
     "attributes": {
       "country_id": "10",
@@ -24,9 +24,12 @@
 {
   "data": {
     "id": "269",
-    "type": "place_subdivisions",
+    "type": "places",
     "attributes": {
+      "subtype": "subdivisions",
+      "slug": "updated-subdivision-armenia",
       "name": "Updated Subdivision",
+      "short_name": null,
       "formatted": "Updated Subdivision, Armenia",
       "latitude": 3,
       "longitude": -25,
@@ -36,23 +39,71 @@
       ]
     },
     "relationships": {
-      "country": {
-        "data": {
-          "id": "10",
-          "type": "place_countries"
-        }
-      },
       "created_by": {
         "data": {
           "id": "1",
           "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/1"
+        }
+      },
+      "country": {
+        "data": {
+          "id": "10",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/armenia"
+        }
+      },
+      "localities": {
+        "links": {
+          "related": "http://api.dbljump.com/places/subdivisions/updated-subdivision-armenia/localities"
         }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/places/subdivisions/updated-subdivision-armenia",
-      "country": "http://api.dbljump.com/places/countries/armenia"
+      "self": "http://api.dbljump.com/places/subdivisions/updated-subdivision-armenia"
     }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": {
+          "url": null
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    },
+    {
+      "id": "10",
+      "type": "places",
+      "attributes": {
+        "subtype": "countries",
+        "slug": "armenia",
+        "name": "Armenia",
+        "short_name": null,
+        "formatted": "Armenia"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/armenia"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "updated subdivision, armenia, updated subdiv, changed subdiv, state, county, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from Updated Subdivision, Armenia at Dbljump.",
+    "created_at": "2017-03-30T12:38:30.707Z",
+    "updated_at": "2017-03-30T13:46:24.805Z"
   }
 }
 ```
