@@ -5,7 +5,7 @@
 ```JSON
 {
   "data": {
-    "type": "place_localities",
+    "type": "places",
     "attributes": {
       "subdivision_id": "1000",
       "name": "New City",
@@ -23,9 +23,12 @@
 {
   "data": {
     "id": "2939",
-    "type": "place_localities",
+    "type": "places",
     "attributes": {
+      "subtype": "localities",
+      "slug": "new-city-enugu-nigeria",
       "name": "New City",
+      "short_name": null,
       "formatted": "New City, Enugu, Nigeria",
       "also_known_as": [
         "That New City",
@@ -35,24 +38,89 @@
       "longitude": -45.9
     },
     "relationships": {
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/2"
+        }
+      },
+      "country": {
+        "data": {
+          "id": "150",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/nigeria"
+        }
+      },
       "subdivision": {
         "data": {
           "id": "1000",
-          "type": "place_subdivisions"
-        }
-      },
-      "created_by": {
-        "data": {
-          "id": "3",
-          "type": "users"
+          "type": "places"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/subdivisions/enugu-nigeria"
         }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/places/localities/new-city-enugu-nigeria",
-      "subdivision": "http://api.dbljump.com/places/subdivisions/enugu-nigeria",
-      "country": "http://api.dbljump.com/places/countries/nigeria"
+      "self": "http://api.dbljump.com/places/localities/new-city-enugu-nigeria"
     }
+  },
+  "included": [
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "avatar": {
+          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/2"
+      }
+    },
+    {
+      "id": "150",
+      "type": "places",
+      "attributes": {
+        "subtype": "countries",
+        "slug": "nigeria",
+        "name": "Nigeria",
+        "short_name": null,
+        "formatted": "Nigeria"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/nigeria"
+      }
+    },
+    {
+      "id": "1000",
+      "type": "places",
+      "attributes": {
+        "subtype": "subdivisions",
+        "slug": "enugu-nigeria",
+        "name": "Enugu",
+        "short_name": null,
+        "formatted": "Enugu, Nigeria"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/subdivisions/enugu-nigeria"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "new city, enugu, nigeria, that new city, the new locality, city, town, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from New City, Enugu, Nigeria at Dbljump.",
+    "created_at": "2017-03-30T13:50:25.595Z",
+    "updated_at": "2017-03-30T13:50:25.595Z"
   }
 }
 ```

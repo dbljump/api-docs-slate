@@ -5,9 +5,9 @@
 ```JSON
 {
   "data": {
-    "type": "place_subdivisions",
+    "type": "places",
     "attributes": {
-      "name": "New Subdivision",
+      "name": "Brand New Subdivision",
       "also_known_as": ["That New Subdiv", "The New Subdiv"],
       "latitude": "17.85",
       "longitude": "-20.00"
@@ -21,11 +21,14 @@
 ```JSON
 {
   "data": {
-    "id": "2938",
-    "type": "place_subdivisions",
+    "id": "2940",
+    "type": "places",
     "attributes": {
-      "name": "New Subdivision",
-      "formatted": "New Subdivision, Afghanistan",
+      "subtype": "subdivisions",
+      "slug": "brand-new-subdivision-afghanistan",
+      "name": "Brand New Subdivision",
+      "short_name": null,
+      "formatted": "Brand New Subdivision, Afghanistan",
       "latitude": 17.85,
       "longitude": -20,
       "also_known_as": [
@@ -34,23 +37,71 @@
       ]
     },
     "relationships": {
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/2"
+        }
+      },
       "country": {
         "data": {
           "id": "1",
-          "type": "place_countries"
+          "type": "places"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/afghanistan"
         }
       },
-      "created_by": {
-        "data": {
-          "id": "3",
-          "type": "users"
+      "localities": {
+        "links": {
+          "related": "http://api.dbljump.com/places/subdivisions/brand-new-subdivision-afghanistan/localities"
         }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/places/subdivisions/new-subdivision-afghanistan",
-      "country": "http://api.dbljump.com/places/countries/afghanistan"
+      "self": "http://api.dbljump.com/places/subdivisions/brand-new-subdivision-afghanistan"
     }
+  },
+  "included": [
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "avatar": {
+          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/2"
+      }
+    },
+    {
+      "id": "1",
+      "type": "places",
+      "attributes": {
+        "subtype": "countries",
+        "slug": "afghanistan",
+        "name": "Afghanistan",
+        "short_name": null,
+        "formatted": "Afghanistan"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/afghanistan"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "brand new subdivision, afghanistan, that new subdiv, the new subdiv, state, county, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from Brand New Subdivision, Afghanistan at Dbljump.",
+    "created_at": "2017-03-30T13:54:19.505Z",
+    "updated_at": "2017-03-30T13:54:19.505Z"
   }
 }
 ```

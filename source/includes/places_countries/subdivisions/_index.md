@@ -6,48 +6,104 @@
 {
   "data": [
     {
-      "id": "504",
-      "type": "place_subdivisions",
+      "id": "2940",
+      "type": "places",
       "attributes": {
-        "name": "Australian Capital Territory",
-        "formatted": "Australian Capital Territory, Australia",
-        "latitude": -35.4734679,
-        "longitude": 149.0123679,
-        "also_known_as": []
+        "subtype": "subdivisions",
+        "slug": "brand-new-subdivision-afghanistan",
+        "name": "Brand New Subdivision",
+        "short_name": null,
+        "formatted": "Brand New Subdivision, Afghanistan",
+        "latitude": 17.85,
+        "longitude": -20,
+        "also_known_as": [
+          "That New Subdiv",
+          "The New Subdiv"
+        ]
       },
       "relationships": {
         "created_by": {
           "data": {
-            "id": "1",
+            "id": "2",
             "type": "users"
           },
           "links": {
-            "related": "http://localhost:3000/users/1"
+            "related": "http://api.dbljump.com/users/2"
           }
         },
         "country": {
           "data": {
-            "id": "12",
-            "type": "place_countries"
+            "id": "1",
+            "type": "places"
           },
           "links": {
-            "related": "http://localhost:3000/places/countries/australia"
+            "related": "http://api.dbljump.com/places/countries/afghanistan"
           }
         },
         "localities": {
-          "data": []
+          "links": {
+            "related": "http://api.dbljump.com/places/subdivisions/brand-new-subdivision-afghanistan/localities"
+          }
         }
       },
       "links": {
-        "self": "http://localhost:3000/places/subdivisions/australian-capital-territory-australia"
+        "self": "http://api.dbljump.com/places/subdivisions/brand-new-subdivision-afghanistan"
       }
     },
     {
-      "id": "815",
-      "type": "place_subdivisions",
+      "id": "2938",
+      "type": "places",
       "attributes": {
-        "name": "Christmas Island",
-        "formatted": "Christmas Island, Australia",
+        "subtype": "subdivisions",
+        "slug": "new-subdivision-afghanistan",
+        "name": "New Subdivision",
+        "short_name": null,
+        "formatted": "New Subdivision, Afghanistan",
+        "latitude": 17.85,
+        "longitude": -20,
+        "also_known_as": [
+          "That New Subdiv",
+          "The New Subdiv"
+        ]
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "2",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/2"
+          }
+        },
+        "country": {
+          "data": {
+            "id": "1",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/afghanistan"
+          }
+        },
+        "localities": {
+          "links": {
+            "related": "http://api.dbljump.com/places/subdivisions/new-subdivision-afghanistan/localities"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/subdivisions/new-subdivision-afghanistan"
+      }
+    },
+    {
+      "id": "2788",
+      "type": "places",
+      "attributes": {
+        "subtype": "subdivisions",
+        "slug": "western-afghanistan",
+        "name": "Western",
+        "short_name": null,
+        "formatted": "Western, Afghanistan",
         "latitude": null,
         "longitude": null,
         "also_known_as": []
@@ -59,67 +115,36 @@
             "type": "users"
           },
           "links": {
-            "related": "http://localhost:3000/users/1"
+            "related": "http://api.dbljump.com/users/1"
           }
         },
         "country": {
-          "data": {
-            "id": "12",
-            "type": "place_countries"
-          },
-          "links": {
-            "related": "http://localhost:3000/places/countries/australia"
-          }
-        },
-        "localities": {
-          "data": []
-        }
-      },
-      "links": {
-        "self": "http://localhost:3000/places/subdivisions/christmas-island-australia"
-      }
-    },
-    {
-      "id": "834",
-      "type": "place_subdivisions",
-      "attributes": {
-        "name": "Cocos (Keeling) Islands",
-        "formatted": "Cocos (Keeling) Islands, Australia",
-        "latitude": null,
-        "longitude": null,
-        "also_known_as": []
-      },
-      "relationships": {
-        "created_by": {
           "data": {
             "id": "1",
-            "type": "users"
+            "type": "places"
           },
           "links": {
-            "related": "http://localhost:3000/users/1"
-          }
-        },
-        "country": {
-          "data": {
-            "id": "12",
-            "type": "place_countries"
-          },
-          "links": {
-            "related": "http://localhost:3000/places/countries/australia"
+            "related": "http://api.dbljump.com/places/countries/afghanistan"
           }
         },
         "localities": {
-          "data": []
+          "links": {
+            "related": "http://api.dbljump.com/places/subdivisions/western-afghanistan/localities"
+          }
         }
       },
       "links": {
-        "self": "http://localhost:3000/places/subdivisions/cocos-keeling-islands-australia"
+        "self": "http://api.dbljump.com/places/subdivisions/western-afghanistan"
       }
     }
   ],
-  "links": {},
+  "links": {
+    "self": "http://api.dbljump.com/places/countries/afghanistan/subdivisions?page%5Bnumber%5D=1&page%5Bsize%5D=3",
+    "next": "http://api.dbljump.com/places/countries/afghanistan/subdivisions?page%5Bnumber%5D=2&page%5Bsize%5D=3",
+    "last": "http://api.dbljump.com/places/countries/afghanistan/subdivisions?page%5Bnumber%5D=3&page%5Bsize%5D=3"
+  },
   "meta": {
-    "total_items": 13
+    "total_items": 9
   }
 }
 ```

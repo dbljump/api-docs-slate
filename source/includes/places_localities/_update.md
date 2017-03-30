@@ -5,7 +5,7 @@
 ```JSON
 {
   "data": {
-    "type": "place_localities",
+    "type": "places",
     "id": "matsumoto-nagano-prefecture-japan",
     "attributes": {
       "subdivision_id": "1001",
@@ -24,9 +24,12 @@
 {
   "data": {
     "id": "2936",
-    "type": "place_localities",
+    "type": "places",
     "attributes": {
+      "subtype": "localities",
+      "slug": "updated-city-epirus-greece",
       "name": "Updated City",
+      "short_name": null,
       "formatted": "Updated City, Epirus, Greece",
       "also_known_as": [
         "Updated City",
@@ -36,24 +39,89 @@
       "longitude": 89.5
     },
     "relationships": {
-      "subdivision": {
-        "data": {
-          "id": "1001",
-          "type": "place_subdivisions"
-        }
-      },
       "created_by": {
         "data": {
           "id": "1",
           "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/1"
+        }
+      },
+      "country": {
+        "data": {
+          "id": "78",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/greece"
+        }
+      },
+      "subdivision": {
+        "data": {
+          "id": "1001",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/subdivisions/epirus-greece"
         }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/places/localities/updated-city-epirus-greece",
-      "subdivision": "http://api.dbljump.com/places/subdivisions/epirus-greece",
-      "country": "http://api.dbljump.com/places/countries/greece"
+      "self": "http://api.dbljump.com/places/localities/updated-city-epirus-greece"
     }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": {
+          "url": null
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    },
+    {
+      "id": "78",
+      "type": "places",
+      "attributes": {
+        "subtype": "countries",
+        "slug": "greece",
+        "name": "Greece",
+        "short_name": null,
+        "formatted": "Greece"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/greece"
+      }
+    },
+    {
+      "id": "1001",
+      "type": "places",
+      "attributes": {
+        "subtype": "subdivisions",
+        "slug": "epirus-greece",
+        "name": "Epirus",
+        "short_name": null,
+        "formatted": "Epirus, Greece"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/subdivisions/epirus-greece"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "updated city, epirus, greece, updated city, changed locality, city, town, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from Updated City, Epirus, Greece at Dbljump.",
+    "created_at": "2017-03-30T12:40:07.612Z",
+    "updated_at": "2017-03-30T13:51:05.564Z"
   }
 }
 ```

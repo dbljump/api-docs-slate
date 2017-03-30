@@ -6,12 +6,14 @@
 {
   "data": [
     {
-      "id": "2894",
-      "type": "place_localities",
+      "id": "2925",
+      "type": "places",
       "attributes": {
-        "slug": "austin-texas-united-states",
-        "name": "Austin",
-        "formatted": "Austin, Texas, United States",
+        "subtype": "localities",
+        "slug": "tokyo-tokyo-prefecture-japan",
+        "name": "Tokyo",
+        "short_name": null,
+        "formatted": "Tokyo, Tokyo Prefecture, Japan",
         "also_known_as": [],
         "latitude": null,
         "longitude": null
@@ -28,31 +30,127 @@
         },
         "country": {
           "data": {
-            "id": "220",
-            "type": "place_countries"
+            "id": "102",
+            "type": "places"
           },
           "links": {
-            "related": "http://api.dbljump.com/places/countries/united-states"
+            "related": "http://api.dbljump.com/places/countries/japan"
           }
         },
         "subdivision": {
           "data": {
-            "id": "2599",
-            "type": "place_subdivisions"
+            "id": "2627",
+            "type": "places"
           },
           "links": {
-            "related": "http://api.dbljump.com/places/subdivisions/texas-united-states"
+            "related": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan"
           }
         }
       },
       "links": {
-        "self": "http://api.dbljump.com/places/localities/austin-texas-united-states"
+        "self": "http://api.dbljump.com/places/localities/tokyo-tokyo-prefecture-japan"
+      }
+    },
+    {
+      "id": "2926",
+      "type": "places",
+      "attributes": {
+        "subtype": "localities",
+        "slug": "chiyoda-tokyo-prefecture-japan",
+        "name": "Chiyoda",
+        "short_name": null,
+        "formatted": "Chiyoda, Tokyo Prefecture, Japan",
+        "also_known_as": [],
+        "latitude": null,
+        "longitude": null
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "country": {
+          "data": {
+            "id": "102",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/japan"
+          }
+        },
+        "subdivision": {
+          "data": {
+            "id": "2627",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/localities/chiyoda-tokyo-prefecture-japan"
+      }
+    },
+    {
+      "id": "2927",
+      "type": "places",
+      "attributes": {
+        "subtype": "localities",
+        "slug": "minato-tokyo-prefecture-japan",
+        "name": "Minato",
+        "short_name": null,
+        "formatted": "Minato, Tokyo Prefecture, Japan",
+        "also_known_as": [],
+        "latitude": null,
+        "longitude": null
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "country": {
+          "data": {
+            "id": "102",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/japan"
+          }
+        },
+        "subdivision": {
+          "data": {
+            "id": "2627",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/localities/minato-tokyo-prefecture-japan"
       }
     }
   ],
-  "links": {},
+  "links": {
+    "self": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan/localities?page%5Bnumber%5D=1&page%5Bsize%5D=3",
+    "next": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan/localities?page%5Bnumber%5D=2&page%5Bsize%5D=3",
+    "last": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan/localities?page%5Bnumber%5D=2&page%5Bsize%5D=3"
+  },
   "meta": {
-    "total_items": 1
+    "total_items": 5
   }
 }
 ```

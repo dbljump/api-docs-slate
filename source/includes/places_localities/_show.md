@@ -5,40 +5,102 @@
 ```JSON
 {
   "data": {
-    "id": "2894",
-    "type": "place_localities",
+    "id": "2936",
+    "type": "places",
     "attributes": {
-      "name": "Austin",
-      "formatted": "Austin, Texas, United States",
+      "subtype": "localities",
+      "slug": "matsumoto-nagano-prefecture-japan",
+      "name": "Matsumoto",
+      "short_name": null,
+      "formatted": "Matsumoto, Nagano Prefecture, Japan",
       "also_known_as": [],
       "latitude": null,
       "longitude": null
     },
     "relationships": {
-      "subdivision": {
-        "data": {
-          "id": "2599",
-          "type": "place_subdivisions"
-        }
-      },
       "created_by": {
         "data": {
           "id": "1",
           "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/1"
+        }
+      },
+      "country": {
+        "data": {
+          "id": "102",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/japan"
+        }
+      },
+      "subdivision": {
+        "data": {
+          "id": "1795",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/subdivisions/nagano-prefecture-japan"
         }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/places/localities/austin-texas-united-states",
-      "subdivision": "http://api.dbljump.com/places/subdivisions/texas-united-states",
-      "country": "http://api.dbljump.com/places/countries/united-states"
+      "self": "http://api.dbljump.com/places/localities/matsumoto-nagano-prefecture-japan"
     }
   },
+  "included": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": {
+          "url": null
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    },
+    {
+      "id": "102",
+      "type": "places",
+      "attributes": {
+        "subtype": "countries",
+        "slug": "japan",
+        "name": "Japan",
+        "short_name": null,
+        "formatted": "Japan"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/japan"
+      }
+    },
+    {
+      "id": "1795",
+      "type": "places",
+      "attributes": {
+        "subtype": "subdivisions",
+        "slug": "nagano-prefecture-japan",
+        "name": "Nagano Prefecture",
+        "short_name": null,
+        "formatted": "Nagano Prefecture, Japan"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/subdivisions/nagano-prefecture-japan"
+      }
+    }
+  ],
   "meta": {
-    "keywords": "austin, texas, united states, city, town, place, city, town, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from Austin, Texas, United States at Dbljump.",
-    "created_at": "2017-03-08T17:37:15.372Z",
-    "updated_at": "2017-03-08T17:37:15.372Z"
+    "keywords": "matsumoto, nagano prefecture, japan, city, town, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from Matsumoto, Nagano Prefecture, Japan at Dbljump.",
+    "created_at": "2017-03-30T12:40:07.612Z",
+    "updated_at": "2017-03-30T12:40:07.612Z"
   }
 }
 ```
