@@ -1,4 +1,4 @@
-## Get single subdivision
+## <a name="subdivs_show"></a>Get single subdivision
 
 > HTTP 200 response body
 
@@ -55,8 +55,34 @@ Retrieve a single subdivision record. Subdivisions are publicly available. No si
 
 `200 OK`
 
-### Errors
+### <a name="subdiv_response_attrs"></a>Response attributes
 
-HTTP code | Error code | Pointer | Title | Description
---------- | ---------- | ------- | ----- | -----------
-404 | RECORD_NOT_FOUND | n/a | Record not found. |
+Attribute | Type | Req'd? | Description
+--------- | ---- | ------ | -----------
+subtype | string | Y | The place subclass. Always 'subdivisions'.
+slug | string | Y | A record ID based on the formatted name, e.g. 'california-united-states'.
+name | string | Y | English-language common name, e.g. 'California'.
+short_name | null | | Always `null`.
+formatted | string | Y | The name and parenty country name, e.g. 'California, United States'.
+latitude | number | | Global coordinate.
+longitude | number | | Global coordinate.
+also_known_as | array | | Other names the subdivisions is known by, e.g. `['The Golden State']`.
+
+### Relationships
+
+Association | Record type | Relationship type
+------------ | ---------- | -----------------
+created_by | users | belongs_to
+country | places (countries) | belongs_to
+localities | places (localities) | has_many
+
+### Included
+
+Record type | Relationship | Attributes included
+----------- | ------------ | -------------------
+users | uploaded_by | username, role, given_names, family_name, avatar
+places (countries) | country | subtype, slug, name, short_name, formatted
+
+### Meta
+
+The `meta` section of the JSON response includes `keywords`, `description`, `created_at` and `updated_at` attributes.

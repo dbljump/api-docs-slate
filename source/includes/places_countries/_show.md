@@ -74,7 +74,7 @@ nationality | string | | Nationality of inhabitants, e.g. 'American'.
 
 Association | Record type | Relationship type
 ------------ | ---------- | -----------------
-created_by | users | belongs_to |
+created_by | users | belongs_to
 regions | places (regions) | has_many
 
 ### Included
