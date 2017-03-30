@@ -1,13 +1,6 @@
 ## Errors
 
-### Authorization errors
-
-HTTP code | Error code | Pointer | Title
---------- | ---------- | ------- | -----
-401 | USER_LOGIN_EXPIRED | n/a | User login token expired.
-401 | USER_UNAUTHORIZED | n/a | The user doesn't have the right permissions, or there's an authentication problem.
-
-### POST and PATCH errors
+Errors specific to creating and updating country records.
 
 HTTP code | Error code | Pointer | Title
 --------- | ---------- | ------- | -----
@@ -32,9 +25,3 @@ HTTP code | Error code | Pointer | Title
 400 | PLACE_COUNTRY_NATIONALITY_TOO_LONG | nationality | Nationality cannot be more than 30 characters.
 400 | PLACE_COUNTRY_CURRENCY_TOO_SHORT | currency | Currency must be at least 3 characters.
 400 | PLACE_COUNTRY_CURRENCY_TOO_LONG | currency | Currency cannot be more than 3 characters.
-
-### GET errors
-
-HTTP code | Error code | Pointer | Title
---------- | ---------- | ------- | -----
-404 | RECORD_NOT_FOUND | n/a | Record not found.

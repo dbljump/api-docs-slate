@@ -1,13 +1,6 @@
 ## Errors
 
-### Authorization errors
-
-HTTP code | Error code | Pointer | Title
---------- | ---------- | ------- | -----
-401 | USER_LOGIN_EXPIRED | n/a | User login token expired.
-401 | USER_UNAUTHORIZED | n/a | The user doesn't have the right permissions, or there's an authentication problem.
-
-### POST and PATCH errors
+Errors specific to creating and updating subdivision records.
 
 <aside class="notice"><code>parent_id</code> refers to <code>country_id</code> in these errors.</aside>
 
@@ -25,9 +18,3 @@ HTTP code | Error code | Pointer | Title
 400 | PLACE_SUBDIVISION_LATITUDE_LESS_THAN_OR_EQUAL_TO | latitude | Latitude must be between -90 and 90.
 400 | PLACE_SUBDIVISION_LONGITUDE_GREATER_THAN_OR_EQUAL_TO | longitude | Longitude must be between -180 and 180.
 400 | PLACE_SUBDIVISION_LONGITUDE_LESS_THAN_OR_EQUAL_TO | longitude | Longitude must be between -180 and 180.
-
-### GET errors
-
-HTTP code | Error code | Pointer | Title
---------- | ---------- | ------- | -----
-404 | RECORD_NOT_FOUND | n/a | Record not found.

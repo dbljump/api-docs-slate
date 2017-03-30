@@ -65,11 +65,3 @@ slug | string | Y | A record ID based on the formatted name, e.g. 'glasgow-scotl
 name | string | Y | The place name, e.g. 'Glasow' or 'Scotland' or 'United Kingdom'.
 short_name | array | | A commonly-used short name, e.g. 'USA' or 'UK'.
 formatted_name | string | Y | The full name including parent places, e.g. 'Glasgow, Scotland, United Kingdom'.
-
-## Errors
-
-### GET errors
-
-HTTP code | Error code | Pointer | Title | Description
---------- | ---------- | ------- | ----- | -----------
-404 | RECORD_NOT_FOUND | n/a | Record not found. |

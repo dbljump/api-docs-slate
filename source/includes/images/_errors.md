@@ -1,13 +1,6 @@
 ## Errors
 
-### Authorization errors
-
-HTTP code | Error code | Pointer | Title
---------- | ---------- | ------- | -----
-401 | USER_LOGIN_EXPIRED | n/a | The JWT in the header has expired.
-401 | USER_UNAUTHORIZED | n/a | The user doesn't have the right permissions, or there's an authentication problem.
-
-### POST and PATCH errors
+Errors specific to creating and updating image records.
 
 HTTP code | Error code | Pointer | Title
 --------- | ---------- | ------- | -----
@@ -30,9 +23,3 @@ HTTP code | Error code | Pointer | Title
 400 | IMAGE_SOURCE_URL_TOO_LONG | source_url | Source url cannot be more than 250 characters.
 400 | IMAGE_USAGE_LICENSE_CODE_BLANK | usage_license_code | Usage license code is required if usage type is 'licensed'.
 400 | IMAGE_USAGE_LICENSE_CODE_INCLUSION | usage_license_code | Usage license code must be valid.
-
-### GET errors
-
-HTTP code | Error code | Pointer | Title
---------- | ---------- | ------- | -----
-404 | RECORD_NOT_FOUND | n/a | Record not found.
