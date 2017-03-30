@@ -167,10 +167,3 @@ page[size] | 30 | Select the number of users per page
 ### Success HTTP response code
 
 `200 OK`
-
-### Errors
-
-HTTP code | Error code | Pointer | Title | Description
---------- | ---------- | ------- | ----- | -----------
-401 | USER_LOGIN_EXPIRED | n/a | n/a | The JWT in the header has expired.
-401 | USER_UNAUTHORIZED | n/a | n/a | The user isn't an admin, or there's an authentication problem.

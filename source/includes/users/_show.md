@@ -1,4 +1,4 @@
-## Get single user
+## <a name="users_show"></a>Get single user
 
 > HTTP 200 response body
 
@@ -66,10 +66,33 @@ Retrieve a single existing user account record. Any user can retrive their own a
 
 `200 OK`
 
-### Errors
+### <a name="user_response_attrs"></a>Response attributes
 
-HTTP code | Error code | Pointer | Title | Description
---------- | ---------- | ------- | ----- | -----------
-401 | USER_LOGIN_EXPIRED | n/a | n/a | The JWT in the header has expired.
-401 | USER_UNAUTHORIZED | n/a | n/a | The user doesn't have the right privileges, or there's an authentication problem.
-404 | RECORD_NOT_FOUND | n/a | Record not found. |
+Attribute | Type | Req'd? | Description
+--------- | ---- | ------ | -----------
+email | string | Y | The user's registered email address.
+username | string | Y | The user's registered username.
+role | string | Y | Authorization role. Can be `member`, `editor` or `admin`. See [Role](#user_role).
+given_names | string | | The user's given names, e.g. 'Jean Pierre'.
+family_name | string | | The user's family name, e.g. 'Blanc'.
+gender | string | | Usually `male` or `female`, but can be any string.
+avatar/url | string | | URL of the user's avatar image.
+birthday | date | | E.g. '1977-12-19'
+jwt | string | | Always `null` for this endpoint.
+
+### Relationships
+
+Association | Record type | Relationship type
+----------- | ----------- | -----------------
+country | places(countries) | belongs_to
+images | images | has_many
+
+### Included
+
+Record type | Relationship | Attributes included
+----------- | ------------ | -------------------
+places(countries) | country | subtype, slug, name, short_name, formatted
+
+### Meta
+
+The `meta` section of the JSON response includes `keywords`, `description`, `created_at`, `updated_at`, `last_signed_in_at`, `last_sign_in_ip`, `sign_in_count` and `activated_at` attributes.
