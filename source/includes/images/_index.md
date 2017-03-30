@@ -7,10 +7,13 @@
   "data": [
     {
       "id": "1",
-      "type": "image_photos",
+      "type": "images",
       "attributes": {
-        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
-        "type": "Image::Photo",
+        "subtype": "photos",
+        "slug": "nintendo-office-2006-uncategorized-moja-commonswiki",
+        "file": {
+          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg"
+        },
         "kind": "uncategorized",
         "title": "Nintendo office",
         "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
@@ -22,14 +25,16 @@
         "usage_license_url": "https://creativecommons.org/licenses/by-sa/3.0",
         "attributed_name": "Moja~commonswiki",
         "attributed_url": "",
-        "source_url": "https://en.wikipedia.org/wiki/Nintendo#/media/File:Nintendo_office.jpg",
-        "slug": "nintendo-office-2006-uncategorized-moja-commonswiki"
+        "source_url": "https://en.wikipedia.org/wiki/Nintendo#/media/File:Nintendo_office.jpg"
       },
       "relationships": {
         "uploaded_by": {
           "data": {
             "id": "1",
             "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
           }
         },
         "place": {
@@ -42,10 +47,13 @@
     },
     {
       "id": "2",
-      "type": "image_photos",
+      "type": "images",
       "attributes": {
-        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
-        "type": "Image::Photo",
+        "subtype": "photos",
+        "slug": "mario-figure-2016-uncategorized",
+        "file": {
+          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg"
+        },
         "kind": "uncategorized",
         "title": "Mario figure",
         "description": "",
@@ -57,14 +65,16 @@
         "usage_license_url": null,
         "attributed_name": null,
         "attributed_url": null,
-        "source_url": "",
-        "slug": "mario-figure-2016-uncategorized"
+        "source_url": ""
       },
       "relationships": {
         "uploaded_by": {
           "data": {
             "id": "1",
             "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
           }
         },
         "place": {

@@ -8,7 +8,7 @@
     "type": "images",
     "id": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper",
     "attributes": {
-      "type": "Image::Screen",
+      "subtype": "screens",
       "kind": "gameplay",
       "title": "New Title",
       "description": "New description.",
@@ -30,12 +30,15 @@
 ```JSON
 {
   "data": {
-    "id": "1",
-    "type": "image_photos",
+    "id": "3",
+    "type": "images",
     "attributes": {
-      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
-      "type": "Image::Photo",
-      "kind": "uncategorized",
+      "subtype": "photos",
+      "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper",
+      "file": {
+        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif"
+      },
+      "kind": "likeness",
       "title": "New Title",
       "description": "New description.",
       "year": 2000,
@@ -46,32 +49,69 @@
       "usage_license_url": "https://creativecommons.org/licenses/by/3.0/",
       "attributed_name": "New Attributed Name",
       "attributed_url": "http://www.new-site.com",
-      "source_url": "http://www.new-site/new-file.jpg",
-      "slug": "nintendo-office-2006-uncategorized-moja-commonswiki"
+      "source_url": "http://www.new-site/new-file.jpg"
     },
     "relationships": {
       "uploaded_by": {
         "data": {
-          "id": "1",
+          "id": "2",
           "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/2"
         }
       },
       "place": {
         "data": {
           "id": "3",
-          "type": "place_countries"
+          "type": "places"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/algeria"
         }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/images/nintendo-office-2006-uncategorized-moja-commonswiki"
+      "self": "http://api.dbljump.com/images/portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
     }
   },
+  "included": [
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "avatar": {
+          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/2"
+      }
+    },
+    {
+      "id": "3",
+      "type": "places",
+      "attributes": {
+        "subtype": "countries",
+        "slug": "algeria",
+        "name": "Algeria",
+        "short_name": null,
+        "formatted": "Algeria"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/algeria"
+      }
+    }
+  ],
   "meta": {
-    "keywords": "new title, 2000, 2000-01-01, new attributed name, photo, false, image, picture, media, dbljump, video games, pc games, gaming",
+    "keywords": "new title, 2000, 2000-01-01, new attributed name, photo, likeness, image, picture, media, dbljump, video games, pc games, gaming",
     "description": "'New Title' is a video game image at Dbljump.",
-    "created_at": "2017-03-08T17:37:22.384Z",
-    "updated_at": "2017-03-08T20:31:44.725Z"
+    "created_at": "2017-03-30T13:16:18.639Z",
+    "updated_at": "2017-03-30T13:25:42.131Z"
   }
 }
 ```

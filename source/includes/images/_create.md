@@ -31,10 +31,13 @@
 {
   "data": {
     "id": "3",
-    "type": "image_photos",
+    "type": "images",
     "attributes": {
-      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
-      "type": "Image::Photo",
+      "subtype": "photos",
+      "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper",
+      "file": {
+        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif"
+      },
       "kind": "likeness",
       "title": "Portrait of Takashi Tezuka",
       "description": "Takashi Tezuka in Kyoto on 2nd February 2017.",
@@ -46,20 +49,25 @@
       "usage_license_url": "https://creativecommons.org/licenses/by/4.0",
       "attributed_name": "Jonny Snapper",
       "attributed_url": "http://www.jonnys-game-pics.com",
-      "source_url": "http://www.jonnys-game-pics.com/tezuka.jpg",
-      "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+      "source_url": "http://www.jonnys-game-pics.com/tezuka.jpg"
     },
     "relationships": {
       "uploaded_by": {
         "data": {
-          "id": "5",
+          "id": "2",
           "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/2"
         }
       },
       "place": {
         "data": {
           "id": "1",
-          "type": "place_countries"
+          "type": "places"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/afghanistan"
         }
       }
     },
@@ -67,11 +75,43 @@
       "self": "http://api.dbljump.com/images/portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
     }
   },
+  "included": [
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "avatar": {
+          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/2"
+      }
+    },
+    {
+      "id": "1",
+      "type": "places",
+      "attributes": {
+        "subtype": "countries",
+        "slug": "afghanistan",
+        "name": "Afghanistan",
+        "short_name": null,
+        "formatted": "Afghanistan"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/afghanistan"
+      }
+    }
+  ],
   "meta": {
     "keywords": "portrait of takashi tezuka, 2017, 2017-02-02, jonny snapper, photo, likeness, image, picture, media, dbljump, video games, pc games, gaming",
     "description": "'Portrait of Takashi Tezuka' is a video game image at Dbljump.",
-    "created_at": "2017-03-08T20:33:17.449Z",
-    "updated_at": "2017-03-08T20:33:17.449Z"
+    "created_at": "2017-03-30T13:16:18.639Z",
+    "updated_at": "2017-03-30T13:16:18.639Z"
   }
 }
 ```
