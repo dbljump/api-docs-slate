@@ -27,12 +27,14 @@
 {
   "data": {
     "id": "5",
-    "type": "place_countries",
+    "type": "places",
     "attributes": {
+      "subtype": "countries",
       "slug": "updated-country",
-      "iso_code": "UP",
-      "short_name": "Updated",
       "name": "Updated Country",
+      "short_name": "Updated",
+      "formatted": "Updated Country",
+      "iso_code": "UP",
       "also_known_as": [
         "Edited Country",
         "Renamed Country"
@@ -40,21 +42,54 @@
       "nationality": "Updatedfolk",
       "currency": "UPD",
       "longitude": 10,
-      "latitude": 5,
-      "created_at": "2017-03-08T17:33:23.051Z",
-      "updated_at": "2017-03-10T17:17:07.482Z"
+      "latitude": 5
     },
     "relationships": {
       "created_by": {
         "data": {
           "id": "1",
           "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/1"
+        }
+      },
+      "regions": {
+        "meta": {}
+      },
+      "subdivisions": {
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/updated-country/subdivisions"
         }
       }
     },
     "links": {
       "self": "http://api.dbljump.com/places/countries/updated-country"
     }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": {
+          "url": null
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "updated country, updated, edited country, renamed country, up, updatedfolk, country, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from Updated Country at Dbljump.",
+    "created_at": "2017-03-30T12:38:20.212Z",
+    "updated_at": "2017-03-30T13:40:19.456Z"
   }
 }
 ```

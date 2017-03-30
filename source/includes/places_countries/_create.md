@@ -26,12 +26,14 @@
 {
   "data": {
     "id": "2937",
-    "type": "place_countries",
+    "type": "places",
     "attributes": {
+      "subtype": "countries",
       "slug": "new-country",
-      "iso_code": "NC",
-      "short_name": "NewC",
       "name": "New Country",
+      "short_name": "NewC",
+      "formatted": "New Country",
+      "iso_code": "NC",
       "also_known_as": [
         "That New Country",
         "The New Place"
@@ -39,21 +41,54 @@
       "nationality": "New Countryfolk",
       "currency": "NCY",
       "longitude": -150.55,
-      "latitude": 88.27,
-      "created_at": "2017-03-10T15:27:13.797Z",
-      "updated_at": "2017-03-10T15:27:13.797Z"
+      "latitude": 88.27
     },
     "relationships": {
       "created_by": {
         "data": {
-          "id": "3",
+          "id": "2",
           "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/2"
+        }
+      },
+      "regions": {
+        "meta": {}
+      },
+      "subdivisions": {
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/new-country/subdivisions"
         }
       }
     },
     "links": {
       "self": "http://api.dbljump.com/places/countries/new-country"
     }
+  },
+  "included": [
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "avatar": {
+          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/2"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "new country, newc, that new country, the new place, nc, new countryfolk, country, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from New Country at Dbljump.",
+    "created_at": "2017-03-30T13:39:33.324Z",
+    "updated_at": "2017-03-30T13:39:33.324Z"
   }
 }
 ```

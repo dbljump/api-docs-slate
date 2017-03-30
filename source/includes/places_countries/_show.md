@@ -5,38 +5,67 @@
 ```JSON
 {
   "data": {
-    "id": "220",
-    "type": "place_countries",
+    "id": "5",
+    "type": "places",
     "attributes": {
-      "slug": "united-states",
-      "iso_code": "US",
-      "short_name": "USA",
-      "name": "United States",
+      "subtype": "countries",
+      "slug": "andorra",
+      "name": "Andorra",
+      "short_name": null,
+      "formatted": "Andorra",
+      "iso_code": "AD",
       "also_known_as": [],
-      "nationality": "American",
+      "nationality": "Andorran",
       "currency": null,
-      "longitude": -97,
-      "latitude": 38,
-      "created_at": "2017-03-08T17:33:40.235Z",
-      "updated_at": "2017-03-08T17:33:40.235Z"
+      "longitude": 1.3,
+      "latitude": 42.3
     },
     "relationships": {
       "created_by": {
         "data": {
           "id": "1",
           "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/1"
+        }
+      },
+      "regions": {
+        "meta": {}
+      },
+      "subdivisions": {
+        "links": {
+          "related": "http://api.dbljump.com/places/countries/andorra/subdivisions"
         }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/places/countries/united-states"
+      "self": "http://api.dbljump.com/places/countries/andorra"
     }
   },
+  "included": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": {
+          "url": null
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    }
+  ],
   "meta": {
-    "keywords": "united states, usa, us, american, country, place, country, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from United States at Dbljump.",
-    "created_at": "2017-03-08T17:33:40.235Z",
-    "updated_at": "2017-03-08T17:33:40.235Z"
+    "keywords": "andorra, ad, andorran, country, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from Andorra at Dbljump.",
+    "created_at": "2017-03-30T12:38:20.212Z",
+    "updated_at": "2017-03-30T12:38:20.212Z"
   }
 }
 ```

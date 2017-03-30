@@ -7,25 +7,36 @@
   "data": [
     {
       "id": "232",
-      "type": "place_countries",
+      "type": "places",
       "attributes": {
+        "subtype": "countries",
         "slug": "zimbabwe",
-        "iso_code": "ZW",
-        "short_name": null,
         "name": "Zimbabwe",
+        "short_name": null,
+        "formatted": "Zimbabwe",
+        "iso_code": "ZW",
         "also_known_as": [],
         "nationality": "Zimbabwean",
         "currency": null,
         "longitude": 30,
-        "latitude": -20,
-        "created_at": "2017-03-08T17:33:40.884Z",
-        "updated_at": "2017-03-08T17:33:40.884Z"
+        "latitude": -20
       },
       "relationships": {
         "created_by": {
           "data": {
             "id": "1",
             "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "regions": {
+          "meta": {}
+        },
+        "subdivisions": {
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/zimbabwe/subdivisions"
           }
         }
       },
@@ -35,25 +46,36 @@
     },
     {
       "id": "231",
-      "type": "place_countries",
+      "type": "places",
       "attributes": {
+        "subtype": "countries",
         "slug": "zambia",
-        "iso_code": "ZM",
-        "short_name": null,
         "name": "Zambia",
+        "short_name": null,
+        "formatted": "Zambia",
+        "iso_code": "ZM",
         "also_known_as": [],
         "nationality": "Zambian",
         "currency": null,
         "longitude": 30,
-        "latitude": -15,
-        "created_at": "2017-03-08T17:33:40.824Z",
-        "updated_at": "2017-03-08T17:33:40.824Z"
+        "latitude": -15
       },
       "relationships": {
         "created_by": {
           "data": {
             "id": "1",
             "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "regions": {
+          "meta": {}
+        },
+        "subdivisions": {
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/zambia/subdivisions"
           }
         }
       },
@@ -63,25 +85,36 @@
     },
     {
       "id": "230",
-      "type": "place_countries",
+      "type": "places",
       "attributes": {
+        "subtype": "countries",
         "slug": "yemen",
-        "iso_code": "YE",
-        "short_name": null,
         "name": "Yemen",
+        "short_name": null,
+        "formatted": "Yemen",
+        "iso_code": "YE",
         "also_known_as": [],
         "nationality": "Yemeni",
         "currency": null,
         "longitude": 48,
-        "latitude": 15,
-        "created_at": "2017-03-08T17:33:40.755Z",
-        "updated_at": "2017-03-08T17:33:40.755Z"
+        "latitude": 15
       },
       "relationships": {
         "created_by": {
           "data": {
             "id": "1",
             "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "regions": {
+          "meta": {}
+        },
+        "subdivisions": {
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/yemen/subdivisions"
           }
         }
       },
@@ -91,9 +124,9 @@
     }
   ],
   "links": {
-    "self": "http://api.dbljump.com/places/countries?page%5Bnumber%5D=1&page%5Bsize%5D=30",
-    "next": "http://api.dbljump.com/places/countries?page%5Bnumber%5D=2&page%5Bsize%5D=30",
-    "last": "http://api.dbljump.com/places/countries?page%5Bnumber%5D=8&page%5Bsize%5D=30"
+    "self": "http://api.dbljump.com/places/countries?page%5Bnumber%5D=1&page%5Bsize%5D=3",
+    "next": "http://api.dbljump.com/places/countries?page%5Bnumber%5D=2&page%5Bsize%5D=3",
+    "last": "http://api.dbljump.com/places/countries?page%5Bnumber%5D=78&page%5Bsize%5D=3"
   },
   "meta": {
     "total_items": 232
