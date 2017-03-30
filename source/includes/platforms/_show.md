@@ -1,4 +1,4 @@
-## Get single platform
+## <a name="platforms_show"></a>Get single platform
 
 > HTTP 200 response body
 
@@ -57,8 +57,30 @@ Retrieve a single platform record. Platforms are publicly available. No sign-in 
 
 `200 OK`
 
-### Errors
+### <a name="platform_response_attrs"></a>Response attributes
 
-HTTP code | Error code | Pointer | Title | Description
---------- | ---------- | ------- | ----- | -----------
-404 | RECORD_NOT_FOUND | n/a | Record not found. |
+Attribute | Type | Req'd? | Description
+--------- | ---- | ------ | -----------
+slug | string | Y | A record ID based on metadata, e.g. 'sega-genesis'.
+name | string | Y | The full North American name, or nearest alternative, e.g. 'Genesis'
+short_name | string | | The common abbreviated name, e.g. 'SNES'.
+sphere | string | Y | The usual platform environment. See [Sphere](#platforms_sphere).
+kind | string | Y | Platform type. See [Kind](#platforms_kind).
+
+### Relationships
+
+Association | Record type | Relationship type
+------------ | ---------- | -----------------
+holder | companies | belongs_to
+parent | platforms | belongs_to
+created_by | users | belongs_to
+
+### Included
+
+Record type | Relationship | Attributes included
+----------- | ------------ | -------------------
+users | created_by | username, role, given_names, family_name, avatar
+
+### Meta
+
+The `meta` section of the JSON response includes `keywords`, `description`, `created_at` and `updated_at` attributes.

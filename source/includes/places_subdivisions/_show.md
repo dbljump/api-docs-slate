@@ -80,7 +80,7 @@ localities | places (localities) | has_many
 
 Record type | Relationship | Attributes included
 ----------- | ------------ | -------------------
-users | uploaded_by | username, role, given_names, family_name, avatar
+users | created_by | username, role, given_names, family_name, avatar
 places (countries) | country | subtype, slug, name, short_name, formatted
 
 ### Meta

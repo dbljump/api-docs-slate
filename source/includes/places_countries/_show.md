@@ -81,7 +81,7 @@ regions | places (regions) | has_many
 
 Record type | Relationship | Attributes included
 ----------- | ------------ | -------------------
-users | uploaded_by | username, role, given_names, family_name, avatar
+users | created_by | username, role, given_names, family_name, avatar
 
 ### Meta
 

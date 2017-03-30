@@ -1,4 +1,4 @@
-## Update a platform record
+## <a name="platforms_update"></a>Update a platform record
 
 > Request body
 
@@ -80,23 +80,15 @@ Update an existing platform record. The user must be an admin.
 
 ### Request attributes
 
-Attribute | Type | Description
---------- | ---- | -----------
-name | string | Req'd. Max 50 chars. The full North American name, or nearest alternative, e.g. 'Genesis'
-short_name | string | Max 10 chars. The common abbreviated name, e.g. 'SNES'.
-sphere | string | Req'd. Limited options. The usual platform environment, e.g. 'home' or 'arcade'.
-kind | string | Req'd. Limited options. Platform type, e.g. 'console' or 'OS'.
-holder_id | integer | Req'd. Must be a valid company ID. The platform holder, e.g. 'Sony' for PlayStation.
-parent_id | integer | Must be a valid platform ID. Used for add-ons, e.g. 'Sega CD' belongs to Sega Genesis.
+Attribute | Type | Req'd? | Description
+--------- | ---- | ------ | -----------
+name | string | Y | Max 50 chars. The full North American name, or nearest alternative, e.g. 'Genesis'
+short_name | string | | Max 10 chars. The common abbreviated name, e.g. 'SNES'.
+sphere | string | Y | The usual platform environment. See [Sphere](#platforms_sphere).
+kind | string | Y | Platform type. See [Kind](#platforms_kind).
+holder_id | integer | Y | Must be a valid company ID. The platform holder, e.g. 'Sony' for PlayStation.
+parent_id | integer | Y | Must be a valid platform ID. Used for add-ons, e.g. 'Sega CD' belongs to Sega Genesis.
 
 ### Success HTTP response code
 
 `200 OK`
-
-### Errors
-
-HTTP code | Error code | Pointer | Title
---------- | ---------- | ------- | -----
-401 | USER_LOGIN_EXPIRED | n/a | The JWT in the header has expired.
-401 | USER_UNAUTHORIZED | n/a | The user doesn't have the right permissions, or there's an authentication problem.
-404 | RECORD_NOT_FOUND | n/a | Record not found.

@@ -81,7 +81,7 @@ subdivision | places (subdivisions) | belongs_to
 
 Record type | Relationship | Attributes included
 ----------- | ------------ | -------------------
-users | uploaded_by | username, role, given_names, family_name, avatar
+users | created_by | username, role, given_names, family_name, avatar
 places (countries) | country | subtype, slug, name, short_name, formatted
 places (subdivisions) | country | subtype, slug, name, short_name, formatted
 

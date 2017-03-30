@@ -4,7 +4,7 @@ Resources related to geographic countries.
 
 ### Request attributes
 
-See [Create a new country record](#countries_create) and [Update an country record](#countries_update).
+See [Create a new country record](#countries_create) and [Update a country record](#countries_update).
 
 ### Response attributes
 
