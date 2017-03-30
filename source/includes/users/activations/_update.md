@@ -73,14 +73,16 @@ Activate a user account. This endpoint should be triggered by an activation link
 
 Attribute | Type | Description
 --------- | ---- | -----------
-id | string | User activation token. Provided by the activation link.
-email | string | The user's registered email. Provided by the activation link.
+id | string | User activation token. Provided in the activation link.
+email | string | The user's registered email. Provided in the activation link.
 
 ### Success HTTP response code
 
 `200 OK`
 
 ### Errors
+
+Errors specific to user activations.
 
 HTTP code | Error code | Pointer | Title | Detail
 --------- | ---------- | ------- | ----- | ------

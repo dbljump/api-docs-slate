@@ -25,8 +25,8 @@ Send a new account activation link by email to a user's registered email address
 
 ### Request attributes
 
-Attribute | Type | Description
---------- | ---- | -----------
+Attribute | Type | Req'd | Description
+--------- | ---- | ----- | -----------
 email | string | The user's registered email address.
 
 ### Success HTTP response code
@@ -34,6 +34,8 @@ email | string | The user's registered email address.
 `204 No Content`
 
 ### Errors
+
+Errors specific to user activation link requests.
 
 HTTP code | Error code | Pointer | Title | Detail
 --------- | ---------- | ------- | ----- | ------
