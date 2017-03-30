@@ -9,9 +9,11 @@
       "id": "2",
       "type": "images",
       "attributes": {
+        "subtype": "photos",
         "slug": "mario-figure-2016-uncategorized",
-        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
-        "type": "Image::Photo",
+        "file": {
+          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg"
+        },
         "kind": "uncategorized",
         "title": "Mario figure",
         "description": "",
@@ -47,9 +49,11 @@
       "id": "1",
       "type": "images",
       "attributes": {
+        "subtype": "photos",
         "slug": "nintendo-office-2006-uncategorized-moja-commonswiki",
-        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
-        "type": "Image::Photo",
+        "file": {
+          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg"
+        },
         "kind": "uncategorized",
         "title": "Nintendo office",
         "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",

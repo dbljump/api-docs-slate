@@ -15,7 +15,7 @@
       "family_name": "Wheatley",
       "gender": "male",
       "avatar": {
-        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703212334.jpg"
+        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
       },
       "birthday": "1980-02-14",
       "jwt": null
@@ -24,7 +24,7 @@
       "country": {
         "data": {
           "id": "219",
-          "type": "place_countries"
+          "type": "places"
         },
         "links": {
           "related": "http://api.dbljump.com/places/countries/united-kingdom"
@@ -40,15 +40,31 @@
       "self": "http://api.dbljump.com/users/2"
     }
   },
+  "included": [
+    {
+      "id": "219",
+      "type": "places",
+      "attributes": {
+        "subtype": "countries",
+        "slug": "united-kingdom",
+        "name": "United Kingdom",
+        "short_name": "UK",
+        "formatted": "United Kingdom"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/united-kingdom"
+      }
+    }
+  ],
   "meta": {
     "keywords": "neil, neil wheatley, user, dbljump, video games, pc games, gaming",
     "description": "Neil Wheatley is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-21T23:34:54.651Z",
-    "updated_at": "2017-03-21T23:47:14.034Z",
-    "last_signed_in_at": "2017-03-21T23:47:13.936Z",
-    "last_sign_in_ip": "94.4.193.77",
+    "created_at": "2017-03-30T12:40:08.338Z",
+    "updated_at": "2017-03-30T12:43:40.490Z",
+    "last_signed_in_at": "2017-03-30T12:43:39.368Z",
+    "last_sign_in_ip": "86.12.129.15",
     "sign_in_count": 1,
-    "activated_at": "2017-03-21T23:34:53.917Z"
+    "activated_at": "2017-03-30T12:40:07.621Z"
   }
 }
 ```

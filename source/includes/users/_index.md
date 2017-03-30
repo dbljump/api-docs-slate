@@ -6,6 +6,36 @@
 {
   "data": [
     {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "email": "tiki@dbljump.com",
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "gender": "Female",
+        "avatar": {
+          "url": null
+        },
+        "birthday": "1988-09-01",
+        "jwt": null
+      },
+      "relationships": {
+        "country": {
+          "data": null
+        },
+        "images": {
+          "links": {
+            "related": "http://api.dbljump.com/users/1/images"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    },
+    {
       "id": "3",
       "type": "users",
       "attributes": {
@@ -23,10 +53,7 @@
       },
       "relationships": {
         "country": {
-          "data": null,
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/united-kingdom"
-          }
+          "data": null
         },
         "images": {
           "links": {
@@ -56,10 +83,7 @@
       },
       "relationships": {
         "country": {
-          "data": null,
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/united-kingdom"
-          }
+          "data": null
         },
         "images": {
           "links": {
@@ -69,39 +93,6 @@
       },
       "links": {
         "self": "http://api.dbljump.com/users/4"
-      }
-    },
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "email": "tiki@dbljump.com",
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "gender": "Female",
-        "avatar": {
-          "url": null
-        },
-        "birthday": "1988-09-01",
-        "jwt": null
-      },
-      "relationships": {
-        "country": {
-          "data": null,
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/united-kingdom"
-          }
-        },
-        "images": {
-          "links": {
-            "related": "http://api.dbljump.com/users/1/images"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
       }
     },
     {
@@ -115,7 +106,7 @@
         "family_name": "Wheatley",
         "gender": "male",
         "avatar": {
-          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703212334.jpg"
+          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
         },
         "birthday": "1980-02-14",
         "jwt": null
@@ -124,7 +115,7 @@
         "country": {
           "data": {
             "id": "219",
-            "type": "place_countries"
+            "type": "places"
           },
           "links": {
             "related": "http://api.dbljump.com/places/countries/united-kingdom"

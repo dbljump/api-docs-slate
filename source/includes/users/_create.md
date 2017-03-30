@@ -40,7 +40,7 @@
       "country": {
         "data": null,
         "links": {
-          "related": "http://api.dbljump.com/places/countries/andorra"
+          "related": "http://api.dbljump.com/places/countries/united-kingdom"
         }
       },
       "images": {
@@ -56,8 +56,8 @@
   "meta": {
     "keywords": "new_user, new_user, user, dbljump, video games, pc games, gaming",
     "description": "new_user is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-21T23:51:23.213Z",
-    "updated_at": "2017-03-21T23:51:23.920Z",
+    "created_at": "2017-03-30T12:46:04.648Z",
+    "updated_at": "2017-03-30T12:46:05.293Z",
     "last_signed_in_at": null,
     "last_sign_in_ip": null,
     "sign_in_count": 0,

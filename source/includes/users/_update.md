@@ -5,22 +5,22 @@
 ```JSON
 {
  "data": {
-	"type": "users",
-	"id": "4",
-	"attributes": {
-		"email": "updated@email.com",
-		"username": "updated_username",
-		"password": "newpassword",
-		"password_confirmation": "newpassword",
-		"role": "editor",
-		"given_names": "Updated",
-		"family_name": "Name",
-		"gender": "male",
-		"birthday": "1985-07-20",
-		"country_id": 5,
-		"avatar_base64": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
-    "remove_avatar": "false"
-	}
+  	"type": "users",
+  	"id": "5",
+  	"attributes": {
+  		"email": "updated@email.com",
+  		"username": "updated_username",
+  		"password": "newpassword",
+  		"password_confirmation": "newpassword",
+  		"role": "editor",
+  		"given_names": "Updated",
+  		"family_name": "Name",
+  		"gender": "male",
+  		"birthday": "1985-07-20",
+  		"country_id": 5,
+  		"avatar_base64": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
+      "remove_avatar": "false"
+  	}
   }
 }
 ```
@@ -30,7 +30,7 @@
 ```JSON
 {
   "data": {
-    "id": "4",
+    "id": "5",
     "type": "users",
     "attributes": {
       "email": "updated@email.com",
@@ -40,7 +40,7 @@
       "family_name": "Name",
       "gender": "male",
       "avatar": {
-        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/4/1703212349.gif"
+        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/5/1703301248.gif"
       },
       "birthday": "1985-07-20",
       "jwt": null
@@ -49,7 +49,7 @@
       "country": {
         "data": {
           "id": "5",
-          "type": "place_countries"
+          "type": "places"
         },
         "links": {
           "related": "http://api.dbljump.com/places/countries/andorra"
@@ -57,23 +57,39 @@
       },
       "images": {
         "links": {
-          "related": "http://api.dbljump.com/users/4/images"
+          "related": "http://api.dbljump.com/users/5/images"
         }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/users/4"
+      "self": "http://api.dbljump.com/users/5"
     }
   },
+  "included": [
+    {
+      "id": "5",
+      "type": "places",
+      "attributes": {
+        "subtype": "countries",
+        "slug": "andorra",
+        "name": "Andorra",
+        "short_name": null,
+        "formatted": "Andorra"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/andorra"
+      }
+    }
+  ],
   "meta": {
     "keywords": "updated_username, updated name, user, dbljump, video games, pc games, gaming",
     "description": "Updated Name is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-21T23:34:55.501Z",
-    "updated_at": "2017-03-21T23:49:55.104Z",
+    "created_at": "2017-03-30T12:46:04.648Z",
+    "updated_at": "2017-03-30T12:48:40.380Z",
     "last_signed_in_at": null,
     "last_sign_in_ip": null,
     "sign_in_count": 0,
-    "activated_at": "2017-03-21T23:34:55.419Z"
+    "activated_at": null
   }
 }
 ```
