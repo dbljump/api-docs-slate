@@ -11,7 +11,7 @@
       "name": "Updated Name",
       "short_name": "Changed",
       "sphere": "portable",
-      "kind": "console",
+      "kind": "system",
       "holder_id": "1",
       "parent_id": "2"
     }
@@ -24,14 +24,14 @@
 ```JSON
 {
   "data": {
-    "id": "50",
+    "id": "27",
     "type": "platforms",
     "attributes": {
-      "slug": "sega-updated-name",
+      "slug": "nintendo-updated-name",
       "name": "Updated Name",
       "short_name": "Changed",
       "sphere": "portable",
-      "kind": "console"
+      "kind": "system"
     },
     "relationships": {
       "holder": {
@@ -43,28 +43,46 @@
           "type": "platforms"
         },
         "links": {
-          "related": "http://api.dbljump.com/platforms/sega-dreamcast"
+          "related": "http://api.dbljump.com/platforms/sony-playstation-2"
         }
       },
       "created_by": {
         "data": {
-          "id": "2",
+          "id": "1",
           "type": "users"
         },
         "links": {
-          "related": "http://api.dbljump.com/users/2"
+          "related": "http://api.dbljump.com/users/1"
         }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/platforms/sega-updated-name"
+      "self": "http://api.dbljump.com/platforms/nintendo-updated-name"
     }
   },
+  "included": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": {
+          "url": null
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    }
+  ],
   "meta": {
-    "keywords": "updated name, changed, sega, portable, console, platform, dbljump, video games, pc games, gaming",
-    "description": "Find out about games for Updated Name by Sega Co., Ltd. at Dbljump, the video game reference.",
-    "created_at": "2017-03-24T13:01:13.617Z",
-    "updated_at": "2017-03-24T13:01:13.617Z"
+    "keywords": "updated name, changed, nintendo, portable, system, platform, dbljump, video games, pc games, gaming",
+    "description": "Find out about games for Updated Name by Nintendo Co., Ltd. at Dbljump, the video game reference.",
+    "created_at": "2017-03-30T12:40:16.756Z",
+    "updated_at": "2017-03-30T13:34:53.017Z"
   }
 }
 ```

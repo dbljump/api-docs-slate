@@ -13,14 +13,17 @@
         "name": "PlayStation",
         "short_name": "PS",
         "sphere": "home",
-        "kind": "console"
+        "kind": "system"
       },
       "relationships": {
         "holder": {
           "meta": {}
         },
         "parent": {
-          "data": null
+          "data": null,
+          "links": {
+            "related": "http://api.dbljump.com/platforms/sega-genesis"
+          }
         },
         "created_by": {
           "data": {
@@ -44,14 +47,17 @@
         "name": "PlayStation 2",
         "short_name": "PS2",
         "sphere": "home",
-        "kind": "console"
+        "kind": "system"
       },
       "relationships": {
         "holder": {
           "meta": {}
         },
         "parent": {
-          "data": null
+          "data": null,
+          "links": {
+            "related": "http://api.dbljump.com/platforms/sega-genesis"
+          }
         },
         "created_by": {
           "data": {
@@ -75,14 +81,17 @@
         "name": "PlayStation 3",
         "short_name": "PS3",
         "sphere": "home",
-        "kind": "console"
+        "kind": "system"
       },
       "relationships": {
         "holder": {
           "meta": {}
         },
         "parent": {
-          "data": null
+          "data": null,
+          "links": {
+            "related": "http://api.dbljump.com/platforms/sega-genesis"
+          }
         },
         "created_by": {
           "data": {
@@ -100,12 +109,12 @@
     }
   ],
   "links": {
-    "self": "http://api.dbljump.com/platforms?page%5Bnumber%5D=1&page%5Bsize%5D=30",
-    "next": "http://api.dbljump.com/platforms?page%5Bnumber%5D=2&page%5Bsize%5D=30",
-    "last": "http://api.dbljump.com/platforms?page%5Bnumber%5D=2&page%5Bsize%5D=30"
+    "self": "http://api.dbljump.com/platforms?page%5Bnumber%5D=1&page%5Bsize%5D=3",
+    "next": "http://api.dbljump.com/platforms?page%5Bnumber%5D=2&page%5Bsize%5D=3",
+    "last": "http://api.dbljump.com/platforms?page%5Bnumber%5D=13&page%5Bsize%5D=3"
   },
   "meta": {
-    "total_items": 3
+    "total_items": 38
   }
 }
 ```

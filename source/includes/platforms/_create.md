@@ -59,11 +59,29 @@
       "self": "http://api.dbljump.com/platforms/nintendo-new-platform"
     }
   },
+  "included": [
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "avatar": {
+          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/2"
+      }
+    }
+  ],
   "meta": {
     "keywords": "new platform, nplat, nintendo, home, add-on, platform, dbljump, video games, pc games, gaming",
     "description": "Find out about games for New Platform by Nintendo Co., Ltd. at Dbljump, the video game reference.",
-    "created_at": "2017-03-24T13:01:13.617Z",
-    "updated_at": "2017-03-24T13:01:13.617Z"
+    "created_at": "2017-03-30T13:32:37.200Z",
+    "updated_at": "2017-03-30T13:32:37.200Z"
   }
 }
 ```

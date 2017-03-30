@@ -5,21 +5,27 @@
 ```JSON
 {
   "data": {
-    "id": "1",
+    "id": "31",
     "type": "platforms",
     "attributes": {
-      "slug": "sony-playstation",
-      "name": "PlayStation",
-      "short_name": "PS",
+      "slug": "sega-32x",
+      "name": "32X",
+      "short_name": "32X",
       "sphere": "home",
-      "kind": "console"
+      "kind": "add-on"
     },
     "relationships": {
       "holder": {
         "meta": {}
       },
       "parent": {
-        "data": null
+        "data": {
+          "id": "29",
+          "type": "platforms"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/platforms/sega-genesis"
+        }
       },
       "created_by": {
         "data": {
@@ -32,14 +38,32 @@
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/platforms/sony-playstation"
+      "self": "http://api.dbljump.com/platforms/sega-32x"
     }
   },
+  "included": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": {
+          "url": null
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    }
+  ],
   "meta": {
-    "keywords": "playstation, ps, sony, home, console, platform, dbljump, video games, pc games, gaming",
-    "description": "Find out about games for PlayStation by Sony Corporation at Dbljump, the video game reference.",
-    "created_at": "2017-03-21T23:35:02.890Z",
-    "updated_at": "2017-03-21T23:35:02.890Z"
+    "keywords": "32x, 32x, sega, home, add-on, platform, dbljump, video games, pc games, gaming",
+    "description": "Find out about games for 32X by Sega Games Co., Ltd. at Dbljump, the video game reference.",
+    "created_at": "2017-03-30T12:40:16.950Z",
+    "updated_at": "2017-03-30T12:40:16.950Z"
   }
 }
 ```
