@@ -4,7 +4,8 @@ Errors specific to creating and updating image records.
 
 HTTP code | Error code | Pointer | Title
 --------- | ---------- | ------- | -----
-400 | IMAGE_FILE_BLANK | file | File is required.
+400 | IMAGE_BASE64_FILE_BLANK | base64_file | File is required.
+400 | IMAGE_BASE64_FILE_PRESENT | base64_file | Base64 file is not accepted for this action.
 400 | IMAGE_TITLE_BLANK | title | Title is required.
 400 | IMAGE_TITLE_TOO_LONG | title | Title cannot be more than 100 characters.
 400 | IMAGE_DESCRIPTION_TOO_LONG | description | Description cannot be more than 250 characters.

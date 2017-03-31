@@ -25,6 +25,7 @@ HTTP code | Error code | Pointer | Title
 400 | USER_GENDER_TOO_LONG | gender | Gender cannot be more than 20 characters.
 400 | USER_BIRTHDAY_INCLUSION | birthday | Birthday must not be a future date, or over 100 years ago.
 400 | USER_COUNTRY_ID_INVALID | country_id | Country must be valid.
+400 | USER_BASE64_FILE_INVALID | base64_file | Base64 file must be in the correct format.
 
 ### Authentication errors
 

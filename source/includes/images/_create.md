@@ -129,7 +129,7 @@ Upload a new image. User must be an editor or admin.
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-file | string (base64) | Y | Image file encoded as base64. See [File](#image_file).
+base64_file | string | Y | Image file encoded as base64. See [File](#image_file).
 subtype | string | Y | Must be 'artworks', 'docs', 'photos', or 'screens'.
 kind | string | Y | A subcategory related to the given subtype. See [Kind](#image_kind).
 title | string | Y | Max 100 chars.
