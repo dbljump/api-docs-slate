@@ -18,7 +18,7 @@
   		"gender": "male",
   		"birthday": "1985-07-20",
   		"country_id": 5,
-  		"base64_image": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
+  		"base64_file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
       "remove_avatar": "false"
   	}
   }
@@ -119,7 +119,7 @@ family_name | string | | Any 1-20 chars.
 gender | string | | Any 1-20 chars. Client could suggest 'male' or 'female'.
 birthday | date | | Format 'YYYY-MM-DD'. Must not be a future date or > 100 years ago.
 country_id | integer | | Must be a valid country record ID.
-base64_image | string | | Base64 encoded JPEG, GIF or PNG. Any size (needs review). Use to upload `avatar`.
+base64_file | string | | Base64 encoded JPEG, GIF or PNG. Any size (needs review). Use to upload `avatar`.
 remove_avatar | boolean | | Set as true to remove the avatar.
 
 ### <a name="user_role"></a>Role
