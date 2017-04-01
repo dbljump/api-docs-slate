@@ -7,7 +7,7 @@
   "data": {
     "type": "images",
     "attributes": {
-      "file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
+      "base64_file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
       "subtype": "photos",
       "kind": "likeness",
       "title": "Portrait of Takashi Tezuka",
