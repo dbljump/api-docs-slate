@@ -34,11 +34,11 @@
     "type": "images",
     "attributes": {
       "subtype": "photos",
-      "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper",
+      "slug": "new-title-screen",
       "file": {
         "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif"
       },
-      "kind": "likeness",
+      "kind": "uncategorized",
       "title": "New Title",
       "description": "New description.",
       "year": 2000,
@@ -72,7 +72,7 @@
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/images/portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+      "self": "http://api.dbljump.com/images/new-title-screen"
     }
   },
   "included": [
@@ -132,7 +132,7 @@ The `file` attribute cannot be updated. A new image file can only be uploaded wi
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 subtype | string | Y | Must be 'artworks', 'docs', 'photos', or 'screens'.
-kind | string | Y | A subcategory related to the given subtype. See [Kind](#image_kind).
+kind | string | Y | A subcategory related to the given subtype. Reset to `uncategorized` if `subtype` is changed. See [Kind](#image_kind).
 title | string | Y | Max 100 chars.
 description | string | | Max 250 chars.
 year | integer | | 1800 to present year.
