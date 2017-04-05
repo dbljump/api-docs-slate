@@ -14,12 +14,19 @@
       "description": "New description.",
       "year": "",
       "date": "2000-01-01",
-      "place_id": "3",
       "usage_type": "licensed",
       "usage_license_code": "cc_by_3_0",
       "attributed_name": "New Attributed Name",
       "attributed_url": "http://www.new-site.com",
       "source_url": "http://www.new-site/new-file.jpg"
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "3",
+          "type": "places"
+        }
+      }
     }
   }
 }
@@ -143,6 +150,14 @@ usage_license_code | string | * | Req'd if usage_type is 'licensed'. See [Usage 
 attributed_name | string | * | Image owner's name. Max 100 chars. Req'd if usage_type is 'licensed'.
 attributed_url | string | | The owner's website. Max 250 chars.
 source_url | string | * | Req'd if usage_type is 'licensed'. Max 250 chars. URL of image source.
+
+### Relationships
+
+Check this section's code example to see how to update these relationships.
+
+Name | Relationship | Req'd? | JSON:API type | Description
+---- | ------------ | ------ | ------------- | ----------
+place | belongs_to | | places | A [place record](#places_intro) the image is associated with.
 
 ### Success HTTP response code
 

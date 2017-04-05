@@ -14,12 +14,19 @@
       "description": "Takashi Tezuka in Kyoto on 2nd February 2017.",
       "year": "",
       "date": "2017-02-02",
-      "place_id": "1",
       "usage_type": "licensed",
       "usage_license_code": "cc_by_4_0",
       "attributed_name": "Jonny Snapper",
       "attributed_url": "http://www.jonnys-game-pics.com",
       "source_url": "http://www.jonnys-game-pics.com/tezuka.jpg"
+    },
+    "relationships": {
+      "place": {
+        "data": {
+          "id": "1",
+          "type": "places"
+        }
+      }
     }
   }
 }
@@ -136,12 +143,19 @@ title | string | Y | Max 100 chars.
 description | string | | Max 250 chars.
 year | integer | | 1800 to present year.
 date | date | | 1800-01-01 to present year.
-place_id | belongs_to | | Must be a valid place ID.
 usage_type | string | Y | Must be 'free', 'fair', or 'licensed'. See [Usage type](#image_usage_type).
 usage_license_code | string | * | Req'd if usage_type is 'licensed'. See [Usage license](#image_usage_license).
 attributed_name | string | * | Image owner's name. Max 100 chars. Req'd if usage_type is 'licensed'.
 attributed_url | string | | The owner's website. Max 250 chars.
 source_url | string | * | Req'd if usage_type is 'licensed'. Max 250 chars. URL of image source.
+
+### Relationships
+
+Check this section's code example to see how to update these relationships.
+
+Name | Relationship | Req'd? | JSON:API type | Description
+---- | ------------ | ------ | ------------- | ----------
+place | belongs_to | | places | A [place record](#places_intro) the image is associated with.
 
 ### <a name="image_file"></a>File
 
