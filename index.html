@@ -3330,8 +3330,20 @@ Successful responses include the following HTTP header.<br /><br />
       "short_name": "NPlat",
       "sphere": "home",
       "kind": "add-on",
-      "holder_id": "1",
-      "parent_id": "13"
+    }
+    "relationships": {
+      "holder": {
+        "data": {
+          "id": null,
+          "type": "companies"
+        }
+      },
+      "parent": {
+        "data": {
+          "id": "13",
+          "type": "platforms"
+        }
+      }
     }
   }
 }
@@ -3446,17 +3458,34 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Y</td>
 <td>Platform type. See <a href="#platforms_kind">Kind</a>.</td>
 </tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
 <tr>
-<td>holder_id</td>
-<td>integer</td>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>holder</td>
+<td>belongs_to</td>
 <td>Y</td>
-<td>Must be a valid company ID. The platform holder, e.g. &#39;Sony&rsquo; for PlayStation.</td>
+<td>companies</td>
+<td>Must be a valid company. The platform holder, e.g. &#39;Sony&rsquo; for PlayStation.</td>
 </tr>
 <tr>
-<td>parent_id</td>
-<td>integer</td>
-<td>Y</td>
-<td>Must be a valid platform ID. Used for add-ons, e.g. &#39;Sega CD&rsquo; belongs to Sega Genesis.</td>
+<td>parent</td>
+<td>belongs_to</td>
+<td></td>
+<td>platforms</td>
+<td>Must be a valid platform. Used for add-ons, e.g. &#39;Sega CD&rsquo; belongs to Sega Genesis.</td>
 </tr>
 </tbody></table>
 
@@ -3533,9 +3562,21 @@ Successful responses include the following HTTP header.<br /><br />
       "name": "Updated Name",
       "short_name": "Changed",
       "sphere": "portable",
-      "kind": "system",
-      "holder_id": "1",
-      "parent_id": "2"
+      "kind": "system"
+    },
+    "relationships": {
+      "holder": {
+        "data": {
+          "id": null,
+          "type": "companies"
+        }
+      },
+      "parent": {
+        "data": {
+          "id": "2",
+          "type": "platforms"
+        }
+      }
     }
   }
 }
@@ -3650,17 +3691,34 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Y</td>
 <td>Platform type. See <a href="#platforms_kind">Kind</a>.</td>
 </tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
 <tr>
-<td>holder_id</td>
-<td>integer</td>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>holder</td>
+<td>belongs_to</td>
 <td>Y</td>
-<td>Must be a valid company ID. The platform holder, e.g. &#39;Sony&rsquo; for PlayStation.</td>
+<td>companies</td>
+<td>Must be a valid company. The platform holder, e.g. &#39;Sony&rsquo; for PlayStation.</td>
 </tr>
 <tr>
-<td>parent_id</td>
-<td>integer</td>
-<td>Y</td>
-<td>Must be a valid platform ID. Used for add-ons, e.g. &#39;Sega CD&rsquo; belongs to Sega Genesis.</td>
+<td>parent</td>
+<td>belongs_to</td>
+<td></td>
+<td>platforms</td>
+<td>Must be a valid platform. Used for add-ons, e.g. &#39;Sega CD&rsquo; belongs to Sega Genesis.</td>
 </tr>
 </tbody></table>
 
@@ -3754,19 +3812,19 @@ Successful responses include the following HTTP header.<br /><br />
 <tr>
 <td>400</td>
 <td>PLATFORM_HOLDER_ID_BLANK</td>
-<td>holder_id</td>
+<td>relationships/holder/data/id</td>
 <td>Holder is required.</td>
 </tr>
 <tr>
 <td>400</td>
 <td>PLATFORM_HOLDER_ID_INVALID</td>
-<td>holder_id</td>
+<td>relationships/holder/data/id</td>
 <td>Holder ID must be a valid company ID.</td>
 </tr>
 <tr>
 <td>400</td>
 <td>PLATFORM_PARENT_ID_INVALID</td>
-<td>parent_id</td>
+<td>relationships/parent/data/id</td>
 <td>Parent ID must be a valid platform ID.</td>
 </tr>
 </tbody></table>
