@@ -11,8 +11,20 @@
       "short_name": "NPlat",
       "sphere": "home",
       "kind": "add-on",
-      "holder_id": "1",
-      "parent_id": "13"
+    }
+    "relationships": {
+      "holder": {
+        "data": {
+          "id": null,
+          "type": "companies"
+        }
+      },
+      "parent": {
+        "data": {
+          "id": "13",
+          "type": "platforms"
+        }
+      }
     }
   }
 }
@@ -101,8 +113,15 @@ name | string | Y | Max 50 chars. The full North American name, or nearest alter
 short_name | string | | Max 10 chars. The common abbreviated name, e.g. 'SNES'.
 sphere | string | Y | The usual platform environment. See [Sphere](#platforms_sphere).
 kind | string | Y | Platform type. See [Kind](#platforms_kind).
-holder_id | integer | Y | Must be a valid company ID. The platform holder, e.g. 'Sony' for PlayStation.
-parent_id | integer | Y | Must be a valid platform ID. Used for add-ons, e.g. 'Sega CD' belongs to Sega Genesis.
+
+### Relationships
+
+Check this section's code example to see how to update these relationships.
+
+Name | Relationship | Req'd? | JSON:API type | Description
+---- | ------------ | ------ | ------------- | ----------
+holder | belongs_to | Y | companies | Must be a valid company. The platform holder, e.g. 'Sony' for PlayStation.
+parent | belongs_to | |  platforms | Must be a valid platform. Used for add-ons, e.g. 'Sega CD' belongs to Sega Genesis.
 
 ### <a name="platforms_sphere"></a>Sphere
 
