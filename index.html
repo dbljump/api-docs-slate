@@ -690,9 +690,16 @@ Successful responses include the following HTTP header.<br /><br />
         "family_name": "Name",
         "gender": "male",
         "birthday": "1985-07-20",
-        "country_id": 5,
         "base64_file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
       "remove_avatar": "false"
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "5",
+          "type": "places"
+        }
+      }
     }
   }
 }
@@ -843,12 +850,6 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Format &#39;YYYY-MM-DD&rsquo;. Must not be a future date or &gt; 100 years ago.</td>
 </tr>
 <tr>
-<td>country_id</td>
-<td>integer</td>
-<td></td>
-<td>Must be a valid country record ID.</td>
-</tr>
-<tr>
 <td>base64_file</td>
 <td>string</td>
 <td></td>
@@ -859,6 +860,28 @@ Successful responses include the following HTTP header.<br /><br />
 <td>boolean</td>
 <td></td>
 <td>Set as true to remove the avatar.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>country</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>A <a href="#countries_intro">country record</a>, e.g. the user&rsquo;s birth country.</td>
 </tr>
 </tbody></table>
 
@@ -1162,7 +1185,7 @@ Successful responses include the following HTTP header.<br /><br />
 <tr>
 <td>400</td>
 <td>USER_COUNTRY_ID_INVALID</td>
-<td>country_id</td>
+<td>relationships/country/data/id</td>
 <td>Country must be valid.</td>
 </tr>
 <tr>
