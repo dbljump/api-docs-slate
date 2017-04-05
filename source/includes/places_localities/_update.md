@@ -80,9 +80,7 @@
         "role": "admin",
         "given_names": "Tiki",
         "family_name": "the Kiwi",
-        "avatar": {
-          "url": null
-        }
+        "avatar": null
       },
       "links": {
         "self": "http://api.dbljump.com/users/1"

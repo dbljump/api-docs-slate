@@ -75,9 +75,7 @@
         "role": "admin",
         "given_names": "Neil",
         "family_name": "Wheatley",
-        "avatar": {
-          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
-        }
+        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
       },
       "links": {
         "self": "http://api.dbljump.com/users/2"
