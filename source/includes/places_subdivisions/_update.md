@@ -8,11 +8,18 @@
     "type": "places",
     "id": "north-puerto-rico",
     "attributes": {
-      "country_id": "10",
       "name": "Updated Subdivision",
       "also_known_as": ["Updated Subdiv", "Changed Subdiv"],
       "latitude": "3.0",
       "longitude": "-25.00"
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "10",
+          "type": "places"
+        }
+      }
     }
   }
 }
@@ -119,11 +126,18 @@ Update an existing subdivision record. The user must be an admin.
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-country_id | integer | Y | ID of parent country.
 name | string | Y | 2-250 chars. English-language common name, e.g. 'Florida'.
 also_known_as | array | | Members must be 2-50 char strings. E.g. `['The Sunshine State']`.
 latitude | number/float | | Between -90 and 90.
 longitude | number/float | | Between -180 and 180.
+
+### Relationships
+
+Check this section's code example to see how to update these relationships.
+
+Name | Relationship | Req'd? | JSON:API type | Description
+---- | ------------ | ------ | ------------- | ----------
+country | belongs_to | Y | places | The [country](#countries_intro) this subdivision is in.
 
 ### Success HTTP response code
 

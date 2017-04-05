@@ -7,11 +7,18 @@
   "data": {
     "type": "places",
     "attributes": {
-      "subdivision_id": "1000",
       "name": "New City",
       "also_known_as": ["That New City", "The New Locality"],
       "latitude": "81.3",
       "longitude": "-45.9"
+    },
+    "relationships": {
+      "subdivision": {
+        "data": {
+          "id": "1000",
+          "type": "places"
+        }
+      }
     }
   }
 }
@@ -136,11 +143,18 @@ Create a new locality record. Admin-level authorization required.
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-subdivision_id | integer | Y | ID of parent subdivision.
 name | string | Y | 2-250 chars. English-language common name, e.g. 'Los Angeles'.
 also_known_as | array | | Members must be 2-50 char strings. E.g. `['LA', 'City of Angels']`.
 latitude | number/float | | Between -90 and 90.
 longitude | number/float | | Between -180 and 180.
+
+### Relationships
+
+Check this section's code example to see how to update these relationships.
+
+Name | Relationship | Req'd? | JSON:API type | Description
+---- | ------------ | ------ | ------------- | ----------
+subdivision | belongs_to | Y | places | The [subdivision](#subdivs_intro) this locality is in.
 
 ### Success HTTP response code
 

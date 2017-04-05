@@ -8,11 +8,18 @@
     "type": "places",
     "id": "matsumoto-nagano-prefecture-japan",
     "attributes": {
-      "subdivision_id": "1001",
       "name": "Updated City",
       "also_known_as": ["Updated City", "Changed Locality"],
       "latitude": "24.0",
       "longitude": "89.5"
+    },
+    "relationships": {
+      "subdivision": {
+        "data": {
+          "id": "1001",
+          "type": "places"
+        }
+      }
     }
   }
 }
@@ -137,11 +144,18 @@ Update an existing locality record. The user must be an admin.
 
 Attribute | Type | Description
 --------- | ---- | -----------
-subdivision_id | integer | Y | ID of parent subdivision.
 name | string | Y | 2-250 chars. English-language common name, e.g. 'Los Angeles'.
 also_known_as | array | | Members must be 2-50 char strings. E.g. `['LA', 'City of Angels']`.
 latitude | number/float | | Between -90 and 90.
 longitude | number/float | | Between -180 and 180.
+
+### Relationships
+
+Check this section's code example to see how to update these relationships.
+
+Name | Relationship | Req'd? | JSON:API type | Description
+---- | ------------ | ------ | ------------- | ----------
+subdivision | belongs_to | Y | places | The [subdivision](#subdivs_intro) this locality is in.
 
 ### Success HTTP response code
 

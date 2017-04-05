@@ -7,11 +7,18 @@
   "data": {
     "type": "places",
     "attributes": {
-      "country_id": "1",
       "name": "New Subdivision",
       "also_known_as": ["That New Subdiv", "The New Subdiv"],
       "latitude": "17.85",
       "longitude": "-20.00"
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "1",
+          "type": "places"
+        }
+      }
     }
   }
 }
@@ -118,11 +125,18 @@ Create a new subdivision record. Admin-level authorization required.
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-country_id | integer | Y | ID of parent country.
 name | string | Y | 2-250 chars. English-language common name, e.g. 'Florida'.
 also_known_as | array | | Members must be 2-50 char strings. E.g. `['The Sunshine State']`.
 latitude | number/float | | Between -90 and 90.
 longitude | number/float | | Between -180 and 180.
+
+### Relationships
+
+Check this section's code example to see how to update these relationships.
+
+Name | Relationship | Req'd? | JSON:API type | Description
+---- | ------------ | ------ | ------------- | ----------
+country | belongs_to | Y | places | The [country](#countries_intro) this subdivision is in.
 
 ### Success HTTP response code
 

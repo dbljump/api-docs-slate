@@ -2,12 +2,12 @@
 
 Errors specific to creating and updating subdivision records.
 
-<aside class="notice"><code>parent_id</code> refers to <code>country_id</code> in these errors.</aside>
+<aside class="notice"><code>country_id</code> may be aliased as <code>parent_id</code> in these errors.</aside>
 
 HTTP code | Error code | Pointer | Title
 --------- | ---------- | ------- | -----
-400 | PLACE_SUBDIVISION_PARENT_ID_BLANK | parent_id | Country ID is required.
-400 | PLACE_SUBDIVISION_COUNTRY_ID_INVALID | country_id | Country ID must be a valid country record.
+400 | PLACE_SUBDIVISION_COUNTRY_ID_BLANK | relationships/country/data/id | Country ID is required.
+400 | PLACE_SUBDIVISION_COUNTRY_ID_INVALID | relationships/country/data/id | Country ID must be a valid country record.
 400 | PLACE_SUBDIVISION_NAME_BLANK | name | Name is required.
 400 | PLACE_SUBDIVISION_NAME_TAKEN | name | There's already a subdivision with that name and parent country.
 400 | PLACE_SUBDIVISION_NAME_TOO_SHORT | name | Name must be at least 2 characters.
