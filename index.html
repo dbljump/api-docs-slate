@@ -5656,11 +5656,18 @@ Successful responses include the following HTTP header.<br /><br />
   "data": {
     "type": "places",
     "attributes": {
-      "country_id": "1",
       "name": "New Subdivision",
       "also_known_as": ["That New Subdiv", "The New Subdiv"],
       "latitude": "17.85",
       "longitude": "-20.00"
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "1",
+          "type": "places"
+        }
+      }
     }
   }
 }
@@ -5774,12 +5781,6 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>country_id</td>
-<td>integer</td>
-<td>Y</td>
-<td>ID of parent country.</td>
-</tr>
-<tr>
 <td>name</td>
 <td>string</td>
 <td>Y</td>
@@ -5805,6 +5806,28 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>country</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>places</td>
+<td>The <a href="#countries_intro">country</a> this subdivision is in.</td>
+</tr>
+</tbody></table>
+
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">201 Created</code></p>
@@ -5819,11 +5842,18 @@ Successful responses include the following HTTP header.<br /><br />
     "type": "places",
     "id": "north-puerto-rico",
     "attributes": {
-      "country_id": "10",
       "name": "Updated Subdivision",
       "also_known_as": ["Updated Subdiv", "Changed Subdiv"],
       "latitude": "3.0",
       "longitude": "-25.00"
+    },
+    "relationships": {
+      "country": {
+        "data": {
+          "id": "10",
+          "type": "places"
+        }
+      }
     }
   }
 }
@@ -5937,12 +5967,6 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>country_id</td>
-<td>integer</td>
-<td>Y</td>
-<td>ID of parent country.</td>
-</tr>
-<tr>
 <td>name</td>
 <td>string</td>
 <td>Y</td>
@@ -5965,6 +5989,28 @@ Successful responses include the following HTTP header.<br /><br />
 <td>number/float</td>
 <td></td>
 <td>Between -180 and 180.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>country</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>places</td>
+<td>The <a href="#countries_intro">country</a> this subdivision is in.</td>
 </tr>
 </tbody></table>
 
@@ -6362,7 +6408,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <p>Errors specific to creating and updating subdivision records.</p>
 
-<aside class="notice"><code>parent_id</code> refers to <code>country_id</code> in these errors.</aside>
+<aside class="notice"><code>country_id</code> may be aliased as <code>parent_id</code> in these errors.</aside>
 
 <table><thead>
 <tr>
@@ -6374,14 +6420,14 @@ Successful responses include the following HTTP header.<br /><br />
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>PLACE_SUBDIVISION_PARENT_ID_BLANK</td>
-<td>parent_id</td>
+<td>PLACE_SUBDIVISION_COUNTRY_ID_BLANK</td>
+<td>relationships/country/data/id</td>
 <td>Country ID is required.</td>
 </tr>
 <tr>
 <td>400</td>
 <td>PLACE_SUBDIVISION_COUNTRY_ID_INVALID</td>
-<td>country_id</td>
+<td>relationships/country/data/id</td>
 <td>Country ID must be a valid country record.</td>
 </tr>
 <tr>
@@ -6894,11 +6940,18 @@ Successful responses include the following HTTP header.<br /><br />
   "data": {
     "type": "places",
     "attributes": {
-      "subdivision_id": "1000",
       "name": "New City",
       "also_known_as": ["That New City", "The New Locality"],
       "latitude": "81.3",
       "longitude": "-45.9"
+    },
+    "relationships": {
+      "subdivision": {
+        "data": {
+          "id": "1000",
+          "type": "places"
+        }
+      }
     }
   }
 }
@@ -7030,12 +7083,6 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>subdivision_id</td>
-<td>integer</td>
-<td>Y</td>
-<td>ID of parent subdivision.</td>
-</tr>
-<tr>
 <td>name</td>
 <td>string</td>
 <td>Y</td>
@@ -7061,6 +7108,28 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subdivision</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>places</td>
+<td>The <a href="#subdivs_intro">subdivision</a> this locality is in.</td>
+</tr>
+</tbody></table>
+
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">201 Created</code></p>
@@ -7075,11 +7144,18 @@ Successful responses include the following HTTP header.<br /><br />
     "type": "places",
     "id": "matsumoto-nagano-prefecture-japan",
     "attributes": {
-      "subdivision_id": "1001",
       "name": "Updated City",
       "also_known_as": ["Updated City", "Changed Locality"],
       "latitude": "24.0",
       "longitude": "89.5"
+    },
+    "relationships": {
+      "subdivision": {
+        "data": {
+          "id": "1001",
+          "type": "places"
+        }
+      }
     }
   }
 }
@@ -7210,11 +7286,6 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>subdivision_id</td>
-<td>integer</td>
-<td>Y</td>
-</tr>
-<tr>
 <td>name</td>
 <td>string</td>
 <td>Y</td>
@@ -7233,6 +7304,28 @@ Successful responses include the following HTTP header.<br /><br />
 <td>longitude</td>
 <td>number/float</td>
 <td></td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subdivision</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>places</td>
+<td>The <a href="#subdivs_intro">subdivision</a> this locality is in.</td>
 </tr>
 </tbody></table>
 
