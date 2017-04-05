@@ -1037,6 +1037,160 @@ Successful responses include the following HTTP header.<br /><br />
 
 <p><code class="prettyprint">200 OK</code></p>
 
+          <h2 id="errors">Errors</h2>
+
+<p>Errors specific to registering, updating and authenticating user accounts.</p>
+
+<h3 id="post-and-patch-errors">POST and PATCH errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_BLANK</td>
+<td>username</td>
+<td>Username is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_INVALID</td>
+<td>username</td>
+<td>Username can only contain letters, numbers, and underscores.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_TAKEN</td>
+<td>username</td>
+<td>Username has already been taken.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_TOO_SHORT</td>
+<td>username</td>
+<td>Username cannot be less than 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_USERNAME_TOO_LONG</td>
+<td>username</td>
+<td>Username cannot be more than 24 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_BLANK</td>
+<td>email</td>
+<td>Email is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_INVALID</td>
+<td>email</td>
+<td>Email must be a valid address.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_TAKEN</td>
+<td>email</td>
+<td>Email has already been taken.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_EMAIL_TOO_LONG</td>
+<td>email</td>
+<td>Username cannot be more than 255 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_ROLE_INVALID</td>
+<td>role</td>
+<td>Role must be &lsquo;member&rsquo;, &#39;editor&rsquo;, or &#39;admin&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_BLANK</td>
+<td>password</td>
+<td>Password is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_TOO_SHORT</td>
+<td>password</td>
+<td>Password cannot be less than 8 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_TOO_LONG</td>
+<td>password</td>
+<td>Password cannot be more than 24 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_PASSWORD_CONFIRMATION_CONFIRMATION</td>
+<td>password_confirmation</td>
+<td>Password and confirmation must match.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_GIVEN_NAMES_TOO_LONG</td>
+<td>given_names</td>
+<td>Given name cannot be more than 20 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_FAMILY_NAME_TOO_LONG</td>
+<td>family_name</td>
+<td>Family name cannot be more than 20 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_GENDER_TOO_LONG</td>
+<td>gender</td>
+<td>Gender cannot be more than 20 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_BIRTHDAY_INCLUSION</td>
+<td>birthday</td>
+<td>Birthday must not be a future date, or over 100 years ago.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_COUNTRY_ID_INVALID</td>
+<td>country_id</td>
+<td>Country must be valid.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>USER_BASE64_FILE_INVALID</td>
+<td>base64_file</td>
+<td>Base64 file must be in the correct format.</td>
+</tr>
+</tbody></table>
+
+<h3 id="authentication-errors">Authentication errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>USER_CREDENTIALS_INVALID</td>
+<td>-</td>
+<td>User not authorized.</td>
+</tr>
+</tbody></table>
+
           <h1 id="users-authentications">Users: authentications</h1>
 
 <p>Resources related to user sign-ins.</p>
@@ -2447,11 +2601,11 @@ Successful responses include the following HTTP header.<br /><br />
     "type": "images",
     "attributes": {
       "subtype": "photos",
-      "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper",
+      "slug": "new-title-screen",
       "file": {
         "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif"
       },
-      "kind": "likeness",
+      "kind": "uncategorized",
       "title": "New Title",
       "description": "New description.",
       "year": 2000,
@@ -2485,7 +2639,7 @@ Successful responses include the following HTTP header.<br /><br />
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/images/portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+      "self": "http://api.dbljump.com/images/new-title-screen"
     }
   },
   "included": [
@@ -2561,7 +2715,7 @@ Successful responses include the following HTTP header.<br /><br />
 <td>kind</td>
 <td>string</td>
 <td>Y</td>
-<td>A subcategory related to the given subtype. See <a href="#image_kind">Kind</a>.</td>
+<td>A subcategory related to the given subtype. Reset to <code class="prettyprint">uncategorized</code> if <code class="prettyprint">subtype</code> is changed. See <a href="#image_kind">Kind</a>.</td>
 </tr>
 <tr>
 <td>title</td>
