@@ -25,3 +25,4 @@ HTTP code | Error code | Pointer | Title
 400 | IMAGE_SOURCE_URL_TOO_LONG | source_url | Source url cannot be more than 250 characters.
 400 | IMAGE_USAGE_LICENSE_CODE_BLANK | usage_license_code | Usage license code is required if usage type is 'licensed'.
 400 | IMAGE_USAGE_LICENSE_CODE_INCLUSION | usage_license_code | Usage license code must be valid.
+400 | IMAGE_PLACE_ID_INVALID | relationships/place/data/id | Must be a valid place ID.

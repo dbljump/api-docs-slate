@@ -42,9 +42,7 @@
     "attributes": {
       "subtype": "photos",
       "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper",
-      "file": {
-        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif"
-      },
+      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
       "kind": "likeness",
       "title": "Portrait of Takashi Tezuka",
       "description": "Takashi Tezuka in Kyoto on 2nd February 2017.",
@@ -91,9 +89,7 @@
         "role": "admin",
         "given_names": "Neil",
         "family_name": "Wheatley",
-        "avatar": {
-          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
-        }
+        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
       },
       "links": {
         "self": "http://api.dbljump.com/users/2"

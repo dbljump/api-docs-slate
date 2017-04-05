@@ -42,9 +42,7 @@
     "attributes": {
       "subtype": "photos",
       "slug": "new-title-screen",
-      "file": {
-        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif"
-      },
+      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
       "kind": "uncategorized",
       "title": "New Title",
       "description": "New description.",
@@ -91,9 +89,7 @@
         "role": "admin",
         "given_names": "Neil",
         "family_name": "Wheatley",
-        "avatar": {
-          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
-        }
+        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
       },
       "links": {
         "self": "http://api.dbljump.com/users/2"
@@ -144,7 +140,6 @@ title | string | Y | Max 100 chars.
 description | string | | Max 250 chars.
 year | integer | | 1800 to present year.
 date | date | | 1800-01-01 to present year.
-place_id | belongs_to | | Must be a valid place ID.
 usage_type | string | Y | Must be 'free', 'fair', or 'licensed'. See [Usage type](#image_usage_type).
 usage_license_code | string | * | Req'd if usage_type is 'licensed'. See [Usage license](#image_usage_license).
 attributed_name | string | * | Image owner's name. Max 100 chars. Req'd if usage_type is 'licensed'.

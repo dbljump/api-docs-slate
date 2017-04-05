@@ -10,9 +10,7 @@
     "attributes": {
       "subtype": "photos",
       "slug": "mario-figure-2016-uncategorized",
-      "file": {
-        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg"
-      },
+      "file": "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
       "kind": "uncategorized",
       "title": "Mario figure",
       "description": "",
@@ -53,9 +51,7 @@
         "role": "admin",
         "given_names": "Tiki",
         "family_name": "the Kiwi",
-        "avatar": {
-          "url": null
-        }
+        "avatar": null
       },
       "links": {
         "self": "http://api.dbljump.com/users/1"
