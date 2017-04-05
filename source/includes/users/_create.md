@@ -30,9 +30,7 @@
       "given_names": null,
       "family_name": null,
       "gender": null,
-      "avatar": {
-        "url": null
-      },
+      "avatar": null,
       "birthday": null,
       "jwt": null
     },

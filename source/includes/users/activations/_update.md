@@ -28,9 +28,7 @@
       "given_names": null,
       "family_name": null,
       "gender": null,
-      "avatar": {
-        "url": null
-      },
+      "avatar": null,
       "birthday": null,
       "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VyX3JvbGUiOiJtZW1iZXIiLCJleHBpcnkiOiIyMDE3LTAzLTIyIDIzOjU1OjMyICswMDAwIn0.WqLjZkgyEh3Trv2U9q2PDBkbY4toWPJx02zbqTSn540"
     },

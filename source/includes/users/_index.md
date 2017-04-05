@@ -15,9 +15,7 @@
         "given_names": "Tiki",
         "family_name": "the Kiwi",
         "gender": "Female",
-        "avatar": {
-          "url": null
-        },
+        "avatar": null,
         "birthday": "1988-09-01",
         "jwt": null
       },
@@ -45,9 +43,7 @@
         "given_names": null,
         "family_name": null,
         "gender": null,
-        "avatar": {
-          "url": null
-        },
+        "avatar": null,
         "birthday": null,
         "jwt": null
       },
@@ -75,9 +71,7 @@
         "given_names": null,
         "family_name": null,
         "gender": null,
-        "avatar": {
-          "url": null
-        },
+        "avatar": null,
         "birthday": null,
         "jwt": null
       },
@@ -105,9 +99,7 @@
         "given_names": "Neil",
         "family_name": "Wheatley",
         "gender": "male",
-        "avatar": {
-          "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
-        },
+        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg",
         "birthday": "1980-02-14",
         "jwt": null
       },

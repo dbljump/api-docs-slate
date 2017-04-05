@@ -46,9 +46,7 @@
       "given_names": "Updated",
       "family_name": "Name",
       "gender": "male",
-      "avatar": {
-        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/5/1703301248.gif"
-      },
+      "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/5/1703301248.gif",
       "birthday": "1985-07-20",
       "jwt": null
     },

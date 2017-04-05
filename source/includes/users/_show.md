@@ -14,9 +14,7 @@
       "given_names": "Neil",
       "family_name": "Wheatley",
       "gender": "male",
-      "avatar": {
-        "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
-      },
+      "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg",
       "birthday": "1980-02-14",
       "jwt": null
     },
@@ -92,7 +90,7 @@ role | string | Y | Authorization role. Can be `member`, `editor` or `admin`. Se
 given_names | string | | The user's given names, e.g. 'Jean Pierre'.
 family_name | string | | The user's family name, e.g. 'Blanc'.
 gender | string | | Usually `male` or `female`, but can be any string.
-avatar/url | string | | URL of the user's avatar image.
+avatar | string | | URL of the user's avatar image.
 birthday | date | | E.g. '1977-12-19'
 jwt | string | | Always `null` for this endpoint.
 
