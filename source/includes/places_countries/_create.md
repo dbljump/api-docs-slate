@@ -104,7 +104,7 @@ Create a new country record. Admin-level authorization required.
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-name | string | Y | Unique. 2-250 chars. English-language common name, e.g. 'United States'.
+name | string | Y | Unique. 2-50 chars. English-language common name, e.g. 'United States'.
 iso_code | string | Y | Unique. 2 chars. ISO 3166-1 country code.
 short_name | string | | Unique. 2-20 chars. Common short name, e.g. 'USA'.
 also_known_as | array | | Members must be 2-50 char strings. E.g. `['US', 'America']`.
