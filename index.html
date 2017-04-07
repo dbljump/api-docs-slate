@@ -4022,6 +4022,1009 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
+          <h1 id="places-regions"><a name="regions_intro"></a>Places: regions</h1>
+
+<p>Resources related to geographic regions (groups of countries).</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<p>See <a href="#regions_create">Create a new region record</a> and <a href="#regions_update">Update a region record</a>.</p>
+
+<h3 id="response-attributes">Response attributes</h3>
+
+<p>See <a href="#regions_show">Get single region</a></p>
+
+          <h2 id="get-all-regions">Get all regions</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": [
+    {
+      "id": "2937",
+      "type": "places",
+      "attributes": {
+        "subtype": "regions",
+        "slug": "new-region",
+        "name": "New Region",
+        "short_name": "NR",
+        "formatted": "New Region",
+        "latitude": 5,
+        "longitude": -35,
+        "also_known_as": [
+          "That New Region",
+          "The Newest"
+        ]
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "2",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/2"
+          }
+        },
+        "countries": {
+          "data": [
+            {
+              "id": "7",
+              "type": "places"
+            },
+            {
+              "id": "27",
+              "type": "places"
+            }
+          ],
+          "links": {
+            "related": "http://api.dbljump.com/places/regions/new-region/countries"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/regions/new-region"
+      }
+    },
+    {
+      "id": "239",
+      "type": "places",
+      "attributes": {
+        "subtype": "regions",
+        "slug": "australia-and-new-zealand",
+        "name": "Australia and New Zealand",
+        "short_name": "Aus&amp;NZ",
+        "formatted": "Australia and New Zealand",
+        "latitude": null,
+        "longitude": null,
+        "also_known_as": []
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "countries": {
+          "data": [
+            {
+              "id": "12",
+              "type": "places"
+            },
+            {
+              "id": "147",
+              "type": "places"
+            }
+          ],
+          "links": {
+            "related": "http://api.dbljump.com/places/regions/australia-and-new-zealand/countries"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/regions/australia-and-new-zealand"
+      }
+    },
+    {
+      "id": "238",
+      "type": "places",
+      "attributes": {
+        "subtype": "regions",
+        "slug": "us-and-canada",
+        "name": "US and Canada",
+        "short_name": "US&amp;Ca",
+        "formatted": "US and Canada",
+        "latitude": null,
+        "longitude": null,
+        "also_known_as": []
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "countries": {
+          "data": [
+            {
+              "id": "36",
+              "type": "places"
+            },
+            {
+              "id": "220",
+              "type": "places"
+            }
+          ],
+          "links": {
+            "related": "http://api.dbljump.com/places/regions/us-and-canada/countries"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/regions/us-and-canada"
+      }
+    }
+  ],
+  "links": {
+    "self": "http://api.dbljump.com/places/regions?page%5Bnumber%5D=1&amp;page%5Bsize%5D=3",
+    "next": "http://api.dbljump.com/places/regions?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3",
+    "last": "http://api.dbljump.com/places/regions?page%5Bnumber%5D=3&amp;page%5Bsize%5D=3"
+  },
+  "meta": {
+    "total_items": 8
+  }
+}
+</code></pre>
+<p>Retrieve all regions. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /places/regions</code></p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number</td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of images per page</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-single-region"><a name="regions_show"></a>Get single region</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "233",
+    "type": "places",
+    "attributes": {
+      "subtype": "regions",
+      "slug": "north-america",
+      "name": "North America",
+      "short_name": "NA",
+      "formatted": "North America",
+      "latitude": null,
+      "longitude": null,
+      "also_known_as": []
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/1"
+        }
+      },
+      "countries": {
+        "data": [
+          {
+            "id": "36",
+            "type": "places"
+          },
+          {
+            "id": "133",
+            "type": "places"
+          },
+          {
+            "id": "220",
+            "type": "places"
+          }
+        ],
+        "links": {
+          "related": "http://api.dbljump.com/places/regions/north-america/countries"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/regions/north-america"
+    }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": null
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "north america, na, place, geography, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from North America at Dbljump.",
+    "created_at": "2017-04-05T13:55:46.235Z",
+    "updated_at": "2017-04-05T13:55:46.235Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single region record. Regions are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /places/regions/{slug}</code> (replace <code class="prettyprint">{slug}</code> with country record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="response-attributes"><a name="region_response_attrs"></a>Response attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subtype</td>
+<td>string</td>
+<td>Y</td>
+<td>The place subclass. Always &lsquo;regions&rsquo;.</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>string</td>
+<td>Y</td>
+<td>A record ID based on the formatted name, e.g. &#39;north-america&rsquo;.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Y</td>
+<td>English-language common name, e.g. &#39;North America&rsquo;.</td>
+</tr>
+<tr>
+<td>short_name</td>
+<td>string</td>
+<td></td>
+<td>A common short name, e.g. &#39;NA&rsquo;.</td>
+</tr>
+<tr>
+<td>formatted</td>
+<td>string</td>
+<td>Y</td>
+<td>Has the same value as <code class="prettyprint">name</code>.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td></td>
+<td>Other names the country is known by, e.g. <code class="prettyprint">[&#39;Norteamérica&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td></td>
+<td>Global coordinate.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td></td>
+<td>Global coordinate.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>Record type</th>
+<th>Relationship type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>created_by</td>
+<td>users</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>countries</td>
+<td>places (countries)</td>
+<td>has_many</td>
+</tr>
+</tbody></table>
+
+<h3 id="included">Included</h3>
+
+<table><thead>
+<tr>
+<th>Record type</th>
+<th>Relationship</th>
+<th>Attributes included</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>users</td>
+<td>created_by</td>
+<td>username, role, given_names, family_name, avatar</td>
+</tr>
+</tbody></table>
+
+<h3 id="meta">Meta</h3>
+
+<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
+
+          <h2 id="create-a-new-region-record"><a name="regions_create"></a>Create a new region record</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "places",
+    "attributes": {
+      "name": "New Region",
+      "short_name": "NR",
+      "also_known_as": ["That New Region", "The Newest"],
+      "latitude": "5.0",
+      "longitude": "-35.00"
+    },
+    "relationships": {
+        "countries": {
+            "data": [
+          { "type": "places", "id": "7" },
+          { "type": "places", "id": "27" }
+        ]
+        }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 201 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "2937",
+    "type": "places",
+    "attributes": {
+      "subtype": "regions",
+      "slug": "new-region",
+      "name": "New Region",
+      "short_name": "NR",
+      "formatted": "New Region",
+      "latitude": 5,
+      "longitude": -35,
+      "also_known_as": [
+        "That New Region",
+        "The Newest"
+      ]
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/2"
+        }
+      },
+      "countries": {
+        "data": [
+          {
+            "id": "7",
+            "type": "places"
+          },
+          {
+            "id": "27",
+            "type": "places"
+          }
+        ],
+        "links": {
+          "related": "http://api.dbljump.com/places/regions/new-region/countries"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/regions/new-region"
+    }
+  },
+  "included": [
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1704070637.jpeg"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/2"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "new region, nr, that new region, the newest, place, geography, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from New Region at Dbljump.",
+    "created_at": "2017-04-07T10:51:36.588Z",
+    "updated_at": "2017-04-07T10:51:36.588Z"
+  }
+}
+</code></pre>
+<p>Create a new region record. Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /places/regions</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Y</td>
+<td>Unique. 2-50 chars. English-language common name, e.g. &lsquo;North America&rsquo;.</td>
+</tr>
+<tr>
+<td>short_name</td>
+<td>string</td>
+<td></td>
+<td>Unique. 2-20 chars. Common short name, e.g. &#39;NA&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td></td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;Norteamérica&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td></td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td></td>
+<td>Between -180 and 180.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>countries</td>
+<td>has_many</td>
+<td></td>
+<td>places (countries)</td>
+<td>The <a href="#countries_intro">countries</a> that belong to this region.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="update-a-region-record"><a name="regions_update"></a>Update a region record</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "places",
+    "id": "europe",
+    "attributes": {
+      "name": "Updated Region",
+      "short_name": "UR",
+      "also_known_as": ["Edited Region", "Changed Region"],
+      "latitude": "7.7",
+      "longitude": "-65.4"
+    },
+    "relationships": {
+        "countries": {
+            "data": [
+          { "type": "places", "id": "5" },
+          { "type": "places", "id": "50" }
+        ]
+        }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "234",
+    "type": "places",
+    "attributes": {
+      "subtype": "regions",
+      "slug": "updated-region",
+      "name": "Updated Region",
+      "short_name": "UR",
+      "formatted": "Updated Region",
+      "latitude": 7.7,
+      "longitude": -65.4,
+      "also_known_as": [
+        "Edited Region",
+        "Changed Region"
+      ]
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/1"
+        }
+      },
+      "countries": {
+        "data": [
+          {
+            "id": "5",
+            "type": "places"
+          },
+          {
+            "id": "50",
+            "type": "places"
+          }
+        ],
+        "links": {
+          "related": "http://api.dbljump.com/places/regions/updated-region/countries"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/regions/updated-region"
+    }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": null
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "updated region, ur, edited region, changed region, place, geography, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from Updated Region at Dbljump.",
+    "created_at": "2017-04-05T13:55:46.264Z",
+    "updated_at": "2017-04-07T10:56:46.781Z"
+  }
+}
+</code></pre>
+<p>Update an existing region record. The user must be an admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /places/regions/{slug}</code> (replace <code class="prettyprint">{slug}</code> with region record slug)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Y</td>
+<td>Unique. 2-50 chars. English-language common name, e.g. &lsquo;North America&rsquo;.</td>
+</tr>
+<tr>
+<td>short_name</td>
+<td>string</td>
+<td></td>
+<td>Unique. 2-20 chars. Common short name, e.g. &#39;NA&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td></td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;Norteamérica&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td></td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td></td>
+<td>Between -180 and 180.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>countries</td>
+<td>has_many</td>
+<td></td>
+<td>places (countries)</td>
+<td>The <a href="#countries_intro">countries</a> that belong to this region.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="delete-a-region-record">Delete a region record</h2>
+
+<p>Delete an existing region record. Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /places/regions/{slug}</code> (replace <code class="prettyprint">{slug}</code> with region record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+          <h2 id="region-countries-get-all">Region countries: get all</h2>
+
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": [
+    {
+      "id": "12",
+      "type": "places",
+      "attributes": {
+        "subtype": "countries",
+        "slug": "australia",
+        "name": "Australia",
+        "short_name": null,
+        "formatted": "Australia",
+        "iso_code": "AU",
+        "also_known_as": [],
+        "nationality": "Australian",
+        "currency": null,
+        "longitude": 133,
+        "latitude": -27
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "regions": {
+          "data": [
+            {
+              "id": "239",
+              "type": "places"
+            }
+          ],
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/australia/regions"
+          }
+        },
+        "subdivisions": {
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/australia/subdivisions"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/australia"
+      }
+    },
+    {
+      "id": "147",
+      "type": "places",
+      "attributes": {
+        "subtype": "countries",
+        "slug": "new-zealand",
+        "name": "New Zealand",
+        "short_name": null,
+        "formatted": "New Zealand",
+        "iso_code": "NZ",
+        "also_known_as": [],
+        "nationality": "New Zealander",
+        "currency": null,
+        "longitude": 174,
+        "latitude": -41
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        },
+        "regions": {
+          "data": [
+            {
+              "id": "239",
+              "type": "places"
+            }
+          ],
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/new-zealand/regions"
+          }
+        },
+        "subdivisions": {
+          "links": {
+            "related": "http://api.dbljump.com/places/countries/new-zealand/subdivisions"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/countries/new-zealand"
+      }
+    }
+  ],
+  "links": {},
+  "meta": {
+    "total_items": 2
+  }
+}
+</code></pre>
+<p>Retrieve all countries belonging to the given region. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /places/regions/{region-slug}/countries</code> (replace <code class="prettyprint">{region-slug}</code> with region record slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number</td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of images per page</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="errors">Errors</h2>
+
+<p>Errors specific to creating and updating region records.</p>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>PLACE_REGION_NAME_BLANK</td>
+<td>name</td>
+<td>Name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_REGION_NAME_TAKEN</td>
+<td>name</td>
+<td>There&rsquo;s already a region with that name.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_REGION_NAME_TOO_SHORT</td>
+<td>name</td>
+<td>Name must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_REGION_NAME_TOO_LONG</td>
+<td>name</td>
+<td>Name cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_REGION_SHORT_NAME_TAKEN</td>
+<td>short_name</td>
+<td>There&rsquo;s already a region with that short name.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_REGION_SHORT_NAME_TOO_SHORT</td>
+<td>short_name</td>
+<td>Short name must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_REGION_SHORT_NAME_TOO_LONG</td>
+<td>short_name</td>
+<td>Short name cannot be more than 20 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_REGION_ALSO_KNOWN_AS_TOO_SHORT</td>
+<td>also_known_as</td>
+<td>Also-known-as tags must be at least 2 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_REGION_ALSO_KNOWN_AS_TOO_LONG</td>
+<td>also_known_as</td>
+<td>Also-known-as tags cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_REGION_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_REGION_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>latitude</td>
+<td>Latitude must be between -90 and 90.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_REGION_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_REGION_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>longitude</td>
+<td>Longitude must be between -180 and 180.</td>
+</tr>
+</tbody></table>
+
           <h1 id="places-countries"><a name="countries_intro"></a>Places: countries</h1>
 
 <p>Resources related to geographic countries.</p>
@@ -4524,7 +5527,7 @@ Successful responses include the following HTTP header.<br /><br />
 <td>name</td>
 <td>string</td>
 <td>Y</td>
-<td>Unique. 2-250 chars. English-language common name, e.g. &lsquo;United States&rsquo;.</td>
+<td>Unique. 2-50 chars. English-language common name, e.g. &lsquo;United States&rsquo;.</td>
 </tr>
 <tr>
 <td>iso_code</td>
@@ -4574,7 +5577,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <p><code class="prettyprint">201 Created</code></p>
 
-          <h2 id="update-a-country-record">Update a country record</h2>
+          <h2 id="update-a-country-record"><a name="countries_update"></a>Update a country record</h2>
 
 <blockquote>
 <p>Request body</p>
@@ -7438,17 +8441,6 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
-          <h1 id="places-regions"><a name="regions_intro"></a>Places: regions</h1>
-
-<p>Resources related to geographic regions (groups of countries).</p>
-
-<aside class="notice">Docs will be written when the regions controller is done.</aside>
-
-          
-          
-          
-          
-          
           <h1 id="errors">Errors</h1>
 
 <p>General errors not specific to one part of the application.</p>
