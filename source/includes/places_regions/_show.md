@@ -3,6 +3,77 @@
 > HTTP 200 response body
 
 ```JSON
+{
+  "data": {
+    "id": "233",
+    "type": "places",
+    "attributes": {
+      "subtype": "regions",
+      "slug": "north-america",
+      "name": "North America",
+      "short_name": "NA",
+      "formatted": "North America",
+      "latitude": null,
+      "longitude": null,
+      "also_known_as": []
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/1"
+        }
+      },
+      "countries": {
+        "data": [
+          {
+            "id": "36",
+            "type": "places"
+          },
+          {
+            "id": "133",
+            "type": "places"
+          },
+          {
+            "id": "220",
+            "type": "places"
+          }
+        ],
+        "links": {
+          "related": "http://api.dbljump.com/places/regions/north-america/countries"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/regions/north-america"
+    }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": null
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "north america, na, place, geography, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from North America at Dbljump.",
+    "created_at": "2017-04-05T13:55:46.235Z",
+    "updated_at": "2017-04-05T13:55:46.235Z"
+  }
+}
 ```
 
 Retrieve a single region record. Regions are publicly available. No sign-in is required.

@@ -8,11 +8,19 @@
     "type": "places",
     "attributes": {
       "name": "New Region",
-      "short_name": "NR"
+      "short_name": "NR",
       "also_known_as": ["That New Region", "The Newest"],
       "latitude": "5.0",
       "longitude": "-35.00"
-    }
+    },
+    "relationships": {
+  		"countries": {
+  			"data": [
+          { "type": "places", "id": "7" },
+          { "type": "places", "id": "27" }
+        ]
+  		}
+  	}
   }
 }
 ```
@@ -20,6 +28,76 @@
 > HTTP 201 response body
 
 ```JSON
+{
+  "data": {
+    "id": "2937",
+    "type": "places",
+    "attributes": {
+      "subtype": "regions",
+      "slug": "new-region",
+      "name": "New Region",
+      "short_name": "NR",
+      "formatted": "New Region",
+      "latitude": 5,
+      "longitude": -35,
+      "also_known_as": [
+        "That New Region",
+        "The Newest"
+      ]
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/2"
+        }
+      },
+      "countries": {
+        "data": [
+          {
+            "id": "7",
+            "type": "places"
+          },
+          {
+            "id": "27",
+            "type": "places"
+          }
+        ],
+        "links": {
+          "related": "http://api.dbljump.com/places/regions/new-region/countries"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/regions/new-region"
+    }
+  },
+  "included": [
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1704070637.jpeg"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/2"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "new region, nr, that new region, the newest, place, geography, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from New Region at Dbljump.",
+    "created_at": "2017-04-07T10:51:36.588Z",
+    "updated_at": "2017-04-07T10:51:36.588Z"
+  }
+}
 ```
 
 Create a new region record. Admin-level authorization required.
