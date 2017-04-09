@@ -48,4 +48,4 @@ subtype | string | Y | The place subclass. Either 'countries', 'subdivisions', o
 slug | string | Y | A record ID based on the formatted name, e.g. 'glasgow-scotland-united-kingdom'.
 name | string | Y | The place name, e.g. 'Glasow' or 'Scotland' or 'United Kingdom'.
 short_name | array | | A commonly-used short name, e.g. 'USA' or 'UK'.
-formatted_name | string | Y | The full name including parent places, e.g. 'Glasgow, Scotland, United Kingdom'.
+formatted | string | Y | The full name including parent places, e.g. 'Glasgow, Scotland, United Kingdom'.
