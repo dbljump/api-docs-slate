@@ -4015,12 +4015,244 @@ Successful responses include the following HTTP header.<br /><br />
 <td>A commonly-used short name, e.g. &#39;USA&rsquo; or &#39;UK&rsquo;.</td>
 </tr>
 <tr>
-<td>formatted_name</td>
+<td>formatted</td>
 <td>string</td>
 <td>Y</td>
 <td>The full name including parent places, e.g. &#39;Glasgow, Scotland, United Kingdom&rsquo;.</td>
 </tr>
 </tbody></table>
+
+          <h2 id="create-a-new-place-record"><a name="places_create"></a>Create a new place record</h2>
+
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "places",
+    "attributes": {
+      "kind": "subdivision",
+      "name": "Maryland",
+      "short_name": "MD",
+      "also_known_as": ["Old Line State", "Chesapeake Bay State"],
+      "latitude": "38.0",
+      "longitude": "-77.0",
+      "iso_code": "",
+      "currency": "",
+      "nationality": ""
+    },
+    "relationships": {
+      "parent": {
+        "data": {
+          "id": "220",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 201 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "2937",
+    "type": "places",
+    "attributes": {
+      "kind": "subdivision",
+      "slug": "maryland-united-states",
+      "name": "Maryland",
+      "short_name": "MD",
+      "formatted": "Maryland, United States",
+      "iso_code": "",
+      "also_known_as": [
+        "Old Line State",
+        "Chesapeake Bay State"
+      ],
+      "nationality": "",
+      "currency": "",
+      "latitude": 38.0,
+      "longitude": -77.0
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/2"
+        }
+      },
+      "parent": {
+        "data": {
+          "id": "220",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/places/united-states"
+        }
+      },
+      "children": {
+        "links": {
+          "related": "http://api.dbljump.com/places/maryland-united-states/children"
+        }
+      }
+    },
+    "links": {
+      "self": "http://api.dbljump.com/places/maryland-united-states"
+    }
+  },
+  "included": [
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/2"
+      }
+    },
+    {
+      "id": "1",
+      "type": "places",
+      "attributes": {
+        "subtype": "country",
+        "slug": "united-states",
+        "name": "United States",
+        "short_name": "USA",
+        "formatted": "United States"
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/united-states"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "maryland, md, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from Maryland, United States at Dbljump.",
+    "created_at": "2017-03-30T13:39:33.324Z",
+    "updated_at": "2017-03-30T13:39:33.324Z"
+  }
+}
+</code></pre>
+<p>Create a new place record. Use the <code class="prettyprint">kind</code> attribute to set whether the place is a region (i.e. a group of countries), country, subdivision (i.e. a state or county), or locality (i.e. a town or city). Admin-level authorization required.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /places</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<p>We could cut the country-only <code class="prettyprint">currency</code>, <code class="prettyprint">iso_code</code> and <code class="prettyprint">nationality</code> attributes, I don&rsquo;t know what we&rsquo;ll even use these for tbh.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be &lsquo;region&rsquo;, &#39;country&rsquo;, &#39;subdivision&rsquo;, or &#39;locality&rsquo;.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Y</td>
+<td>Unique. 2-50 chars. English-language common name, e.g. &#39;United States&rsquo;.</td>
+</tr>
+<tr>
+<td>short_name</td>
+<td>string</td>
+<td></td>
+<td>Unique. 2-20 chars. Common short name, e.g. &#39;USA&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td></td>
+<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;US&#39;, &#39;America&#39;]</code>.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number/float</td>
+<td></td>
+<td>Between -90 and 90.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number/float</td>
+<td></td>
+<td>Between -180 and 180.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td></td>
+<td>COUNTRY ONLY. Must be 3 chars. ISO 4217 currency code, e.g. &#39;USD&rsquo;.</td>
+</tr>
+<tr>
+<td>iso_code</td>
+<td>string</td>
+<td>Y</td>
+<td>COUNTRY ONLY. Unique. 2 chars. ISO 3166-1 country code.</td>
+</tr>
+<tr>
+<td>nationality</td>
+<td>string</td>
+<td></td>
+<td>COUNTRY ONLY. 2-30 chars. English-lang common term, e.g. &#39;American&rsquo;.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Country-region relationships would be handled with their own endpoint, probably <code class="prettyprint">/places/relationships/country-regions</code>.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>parent</td>
+<td>belongs_to</td>
+<td>For subdivs and localities</td>
+<td>places</td>
+<td>The country a subdivision is in, or the subdivision a locality is in.</td>
+</tr>
+<tr>
+<td>children</td>
+<td>has_many</td>
+<td></td>
+<td>places</td>
+<td>The subdivs in a country, or the localities in a subdivision</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
 
           <h1 id="places-regions"><a name="regions_intro"></a>Places: regions</h1>
 
