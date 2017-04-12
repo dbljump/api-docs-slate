@@ -1,4 +1,4 @@
-## Get all places
+## <a name="places_index"></a>Get all places
 
 > HTTP 200 response body
 
@@ -72,6 +72,7 @@ Retrieve all places. Automatically paginated.
 
 Parameter | Default | Description
 --------- | ------- | -----------
+filter[field] | null | Filter search by field, e.g. `/places?filter[kind]=country,region`
 page[number] | 1 | Select the page number
 page[size] | 30 | Select the number of images per page
 
