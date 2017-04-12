@@ -3841,7 +3841,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <p>See <a href="#places_show">Get single place</a>.</p>
 
-          <h2 id="get-all-places">Get all places</h2>
+          <h2 id="get-all-places"><a name="places_index"></a>Get all places</h2>
 
 <blockquote>
 <p>HTTP 200 response body</p>
@@ -3921,6 +3921,11 @@ Successful responses include the following HTTP header.<br /><br />
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>filter[field]</td>
+<td>null</td>
+<td>Filter search by field, e.g. <code class="prettyprint">/places?filter[kind]=country,region</code></td>
+</tr>
 <tr>
 <td>page[number]</td>
 <td>1</td>
