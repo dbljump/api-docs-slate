@@ -102,6 +102,7 @@ Retrieve all images. Automatically paginated.
 
 Parameter | Default | Description
 --------- | ------- | -----------
+fields[images] | All fields | Return only specified fields, e.g. `/images?fields[images]=file,title`
 page[number] | 1 | Select the page number
 page[size] | 30 | Select the number of images per page
 

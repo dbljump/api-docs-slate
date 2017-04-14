@@ -137,6 +137,7 @@ Retrieve all places. Automatically paginated.
 
 Parameter | Default | Description
 --------- | ------- | -----------
+fields[places] | All fields | Return only specified fields, e.g. `/places?fields[places]=name,formatted`
 filter[field] | null | Filter search by field, e.g. `/places?filter[kind]=country,region`
 page[number] | 1 | Select the page number
 page[size] | 30 | Select the number of images per page

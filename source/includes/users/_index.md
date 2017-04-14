@@ -144,6 +144,7 @@ Retrieve all users. Automatically paginated. Admin-level authorization required.
 
 Parameter | Default | Description
 --------- | ------- | -----------
+fields[users] | All fields | Return only specified fields, e.g. `/users?fields[users]=username,avatar`
 page[number] | 1 | Select the page number
 page[size] | 30 | Select the number of users per page
 

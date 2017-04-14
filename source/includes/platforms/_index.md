@@ -132,6 +132,7 @@ Retrieve all platforms. Automatically paginated.
 
 Parameter | Default | Description
 --------- | ------- | -----------
+fields[platforms] | All fields | Return only specified fields, e.g. `/platforms/?fields[platforms]=name,short_name`
 page[number] | 1 | Select the page number
 page[size] | 30 | Select the number of platforms per page
 

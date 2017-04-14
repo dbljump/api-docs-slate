@@ -209,6 +209,7 @@ Retrieve all places that belong to a given places, i.e. countries that belong to
 
 Parameter | Default | Description
 --------- | ------- | -----------
+fields[places] | All fields | Return only specified fields, e.g. `/places/asia/children?fields[places]=name,formatted`
 page[number] | 1 | Select the page number
 page[size] | 30 | Select the number of images per page
 
