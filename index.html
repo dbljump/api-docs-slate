@@ -3833,9 +3833,42 @@ Successful responses include the following HTTP header.<br /><br />
 
 <p>Resources related to places.</p>
 
-<p><code class="prettyprint">/places</code> includes all place records: <a href="#regions_intro">regions</a> (i.e. groups of countries), <a href="#countries_intro">countries</a>, <a href="#subdivs_intro">subdivisions</a> (e.g. states and counties), and <a href="#localities_intro">localities</a> (e.g. cities and towns).</p>
+<h3 id="kinds-of-place">Kinds of place</h3>
 
-<p><a href="#regions_intro">Region</a>, <a href="#countries_intro">country</a>, <a href="#subdivs_intro">subdivision</a>, and <a href="#localities_intro">locality</a> records must be created, updated, and deleted via their own model-specific routes.</p>
+<p>There are four kinds of place, determined by the value of the <code class="prettyprint">kind</code> attribute.</p>
+
+<table><thead>
+<tr>
+<th>Kind</th>
+<th>Description</th>
+<th>Relationships</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Region</td>
+<td>A group of countries</td>
+<td>Has many country <code class="prettyprint">children</code>.</td>
+</tr>
+<tr>
+<td>Country</td>
+<td>A country, e.g. Japan</td>
+<td>Belongs to many <code class="prettyprint">regions</code>. Has many subdivision <code class="prettyprint">children</code>.</td>
+</tr>
+<tr>
+<td>Subdivision</td>
+<td>An administrative area of a country, e.g. a county or state</td>
+<td>Belongs to a <code class="prettyprint">parent</code> country. Has many locality <code class="prettyprint">children</code>.</td>
+</tr>
+<tr>
+<td>Locality</td>
+<td>A city or town</td>
+<td>Belongs to a <code class="prettyprint">parent</code> subdivision.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<p>See <a href="#places_create">Create a new place record</a> and <a href="#places_update">Update a place record</a>.</p>
 
 <h3 id="response-attributes">Response attributes</h3>
 
@@ -3844,60 +3877,125 @@ Successful responses include the following HTTP header.<br /><br />
           <h2 id="get-all-places"><a name="places_index"></a>Get all places</h2>
 
 <blockquote>
-<p>HTTP 200 response body</p>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
+<pre class="highlight plaintext"><code># GET /places?page[size]=2&amp;filter[kind]=subdivision
+
+{
   "data": [
     {
-      "id": "1",
+      "id": "2237",
       "type": "places",
       "attributes": {
-        "subtype": "countries",
-        "slug": "afghanistan",
-        "name": "Afghanistan",
+        "kind": "subdivision",
+        "slug": "sabha-libya",
+        "name": "Sabha",
+        "formatted": "Sabha, Libya",
         "short_name": null,
-        "formatted": "Afghanistan"
+        "also_known_as": [],
+        "latitude": null,
+        "longitude": null,
+        "iso_code": null
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "117",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/libya"
+          }
+        },
+        "children": {
+          "data": [],
+          "links": {
+            "related": "http://api.dbljump.com/places/sabha-libya/children"
+          }
+        },
+        "regions": {
+          "data": [
+            {
+              "id": "236",
+              "type": "places"
+            }
+          ],
+          "links": {
+            "related": "http://api.dbljump.com/places/sabha-libya/regions"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        }
       },
       "links": {
-        "self": "http://api.dbljump.com/places/countries/afghanistan"
+        "self": "http://api.dbljump.com/places/sabha-libya"
       }
     },
     {
-      "id": "2",
+      "id": "240",
       "type": "places",
       "attributes": {
-        "subtype": "countries",
-        "slug": "albania",
-        "name": "Albania",
+        "kind": "subdivision",
+        "slug": "0-niue",
+        "name": "All",
+        "formatted": "All, Niue",
         "short_name": null,
-        "formatted": "Albania"
+        "also_known_as": [],
+        "latitude": null,
+        "longitude": null,
+        "iso_code": null
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "151",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/niue"
+          }
+        },
+        "children": {
+          "data": [],
+          "links": {
+            "related": "http://api.dbljump.com/places/0-niue/children"
+          }
+        },
+        "regions": {
+          "data": [],
+          "links": {
+            "related": "http://api.dbljump.com/places/0-niue/regions"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        }
       },
       "links": {
-        "self": "http://api.dbljump.com/places/countries/albania"
-      }
-    },
-    {
-      "id": "3",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "algeria",
-        "name": "Algeria",
-        "short_name": null,
-        "formatted": "Algeria"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/algeria"
+        "self": "http://api.dbljump.com/places/0-niue"
       }
     }
   ],
   "links": {
-    "self": "http://api.dbljump.com/places?page%5Bnumber%5D=1&amp;page%5Bsize%5D=3",
-    "next": "http://api.dbljump.com/places?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3",
-    "last": "http://api.dbljump.com/places?page%5Bnumber%5D=979&amp;page%5Bsize%5D=3"
+    "self": "http://api.dbljump.com/places?filter%5Bkind%5D=subdivision&amp;page%5Bnumber%5D=1&amp;page%5Bsize%5D=2",
+    "next": "http://api.dbljump.com/places?filter%5Bkind%5D=subdivision&amp;page%5Bnumber%5D=2&amp;page%5Bsize%5D=2",
+    "last": "http://api.dbljump.com/places?filter%5Bkind%5D=subdivision&amp;page%5Bnumber%5D=1321&amp;page%5Bsize%5D=2"
   },
   "meta": {
-    "total_items": 2936
+    "total_items": 2937
   }
 }
 </code></pre>
@@ -3945,28 +4043,109 @@ Successful responses include the following HTTP header.<br /><br />
           <h2 id="get-single-place"><a name="places_show"></a>Get single place</h2>
 
 <blockquote>
-<p>HTTP 200 response body</p>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
+<pre class="highlight plaintext"><code># GET /places/united-states
+
+{
   "data": {
-    "id": "2894",
+    "id": "220",
     "type": "places",
     "attributes": {
-      "subtype": "localities",
-      "slug": "austin-texas-united-states",
-      "name": "Austin",
-      "short_name": null,
-      "formatted": "Austin, Texas, United States"
+      "kind": "country",
+      "slug": "united-states",
+      "name": "United States",
+      "formatted": "United States",
+      "short_name": "USA",
+      "also_known_as": [],
+      "latitude": 38,
+      "longitude": -97,
+      "iso_code": "US"
+    },
+    "relationships": {
+      "parent": {
+        "data": null,
+        "links": {
+          "related": "http://api.dbljump.com/places/united-states"
+        }
+      },
+      "children": {
+        "data": [
+          {
+            "id": "329",
+            "type": "places"
+          },
+          {
+            "id": "335",
+            "type": "places"
+          },
+          {
+            "id": "398",
+            "type": "places"
+          },
+          {
+            "id": "460",
+            "type": "places"
+          },
+          {
+            "id": "461",
+            "type": "places"
+          }
+        ],
+        "links": {
+          "related": "http://api.dbljump.com/places/united-states/children"
+        }
+      },
+      "regions": {
+        "data": [
+          {
+            "id": "233",
+            "type": "places"
+          },
+          {
+            "id": "238",
+            "type": "places"
+          }
+        ],
+        "links": {
+          "related": "http://api.dbljump.com/places/united-states/regions"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/1"
+        }
+      }
     },
     "links": {
-      "self": "http://api.dbljump.com/places/localities/austin-texas-united-states"
+      "self": "http://api.dbljump.com/places/united-states"
     }
   },
+  "included": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": null
+      },
+      "links": {
+        "self": "http://api.dbljump.com/users/1"
+      }
+    }
+  ],
   "meta": {
-    "keywords": "austin, texas, united states, city, town, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from Austin, Texas, United States at Dbljump.",
-    "created_at": "2017-03-30T12:40:05.924Z",
-    "updated_at": "2017-03-30T12:40:05.924Z"
+    "keywords": "united states, usa, us, american, country, place, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from United States at Dbljump.",
+    "created_at": "2017-04-05T13:55:45.684Z",
+    "updated_at": "2017-04-05T13:55:45.684Z"
   }
 }
 </code></pre>
@@ -3996,10 +4175,10 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>subtype</td>
+<td>kind</td>
 <td>string</td>
 <td>Y</td>
-<td>The place subclass. Either &lsquo;countries&rsquo;, &#39;subdivisions&rsquo;, or &#39;localities&rsquo;.</td>
+<td>The place classification. Either &lsquo;region&rsquo;, &#39;country&rsquo;, &#39;subdivision&rsquo;, or &#39;locality&rsquo;.</td>
 </tr>
 <tr>
 <td>slug</td>
@@ -4011,13 +4190,7 @@ Successful responses include the following HTTP header.<br /><br />
 <td>name</td>
 <td>string</td>
 <td>Y</td>
-<td>The place name, e.g. &#39;Glasow&rsquo; or &#39;Scotland&rsquo; or &#39;United Kingdom&rsquo;.</td>
-</tr>
-<tr>
-<td>short_name</td>
-<td>array</td>
-<td></td>
-<td>A commonly-used short name, e.g. &#39;USA&rsquo; or &#39;UK&rsquo;.</td>
+<td>The place name, e.g. &#39;Glasow&rsquo; or &#39;Scotland&rsquo; or &#39;United Kingdom&rsquo; or &#39;Europe&rsquo;.</td>
 </tr>
 <tr>
 <td>formatted</td>
@@ -4025,12 +4198,98 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Y</td>
 <td>The full name including parent places, e.g. &#39;Glasgow, Scotland, United Kingdom&rsquo;.</td>
 </tr>
+<tr>
+<td>short_name</td>
+<td>string</td>
+<td></td>
+<td>A commonly-used short name, e.g. &#39;USA&rsquo;, &#39;UK&rsquo;, &#39;CA&rsquo;, &#39;LA&rsquo;.</td>
+</tr>
+<tr>
+<td>also_known_as</td>
+<td>array</td>
+<td></td>
+<td>An array of aliases, e.g. <code class="prettyprint">[&#39;Nippon&#39;, &#39;日本&#39;]</code> for Japan.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>number</td>
+<td></td>
+<td>Geographic coordinate.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>number</td>
+<td></td>
+<td>Geographic coordinate.</td>
+</tr>
+<tr>
+<td>iso_code</td>
+<td>string</td>
+<td>Countries only</td>
+<td>2-character ISO 3166-1 code. Countries only.</td>
+</tr>
 </tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Record type</th>
+<th>Relationship type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>created_by</td>
+<td>users</td>
+<td>belongs_to</td>
+<td>The user that created the record.</td>
+</tr>
+<tr>
+<td>parent</td>
+<td>places</td>
+<td>belongs_to</td>
+<td>The country a subdivision is in; he subdivision a locality is in; null for countries and regions.</td>
+</tr>
+<tr>
+<td>children</td>
+<td>places</td>
+<td>has_many</td>
+<td>The countries inside a region; the subdivisions inside a country; the localities inside a subdivision; null for localities.</td>
+</tr>
+<tr>
+<td>regions</td>
+<td>places</td>
+<td>has_many</td>
+<td>The regions that a country, subdivision, or locality belong to. Null for regions.</td>
+</tr>
+</tbody></table>
+
+<h3 id="included">Included</h3>
+
+<table><thead>
+<tr>
+<th>Record type</th>
+<th>Relationship</th>
+<th>Attributes included</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>users</td>
+<td>created_by</td>
+<td>username, role, given_names, family_name, avatar</td>
+</tr>
+</tbody></table>
+
+<h3 id="meta">Meta</h3>
+
+<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
 
           <h2 id="create-a-new-place-record"><a name="places_create"></a>Create a new place record</h2>
 
 <blockquote>
-<p>Request body</p>
+<p>Request body | <code class="prettyprint">POST /places</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -4042,9 +4301,7 @@ Successful responses include the following HTTP header.<br /><br />
       "also_known_as": ["Old Line State", "Chesapeake Bay State"],
       "latitude": "38.0",
       "longitude": "-77.0",
-      "iso_code": "",
-      "currency": "",
-      "nationality": ""
+      "iso_code": ""
     },
     "relationships": {
       "parent": {
@@ -4058,7 +4315,7 @@ Successful responses include the following HTTP header.<br /><br />
 }
 </code></pre>
 <blockquote>
-<p>HTTP 201 response body</p>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -4123,20 +4380,6 @@ Successful responses include the following HTTP header.<br /><br />
       "links": {
         "self": "http://api.dbljump.com/users/2"
       }
-    },
-    {
-      "id": "1",
-      "type": "places",
-      "attributes": {
-        "subtype": "country",
-        "slug": "united-states",
-        "name": "United States",
-        "short_name": "USA",
-        "formatted": "United States"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/united-states"
-      }
     }
   ],
   "meta": {
@@ -4147,11 +4390,11 @@ Successful responses include the following HTTP header.<br /><br />
   }
 }
 </code></pre>
-<p>Create a new place record. Use the <code class="prettyprint">kind</code> attribute to set whether the place is a region (i.e. a group of countries), country, subdivision (i.e. a state or county), or locality (i.e. a town or city). Admin-level authorization required.</p>
+<p>Create a new place record. Use the <code class="prettyprint">kind</code> attribute to set whether the place is a region (i.e. a group of countries), country, subdivision (i.e. a state or county), or locality (i.e. a town or city). Admin-level authorization required, or editor-level if <code class="prettyprint">kind == &#39;locality&#39;</code>.</p>
 
 <ul>
 <li>User authentication: required</li>
-<li>Authorization level: admin</li>
+<li>Authorization level: admin for <code class="prettyprint">region</code>, <code class="prettyprint">country</code> or <code class="prettyprint">subdivision</code>; editor for <code class="prettyprint">locality</code> records.</li>
 </ul>
 
 <h3 id="http-request">HTTP request</h3>
@@ -4159,8 +4402,6 @@ Successful responses include the following HTTP header.<br /><br />
 <p><code class="prettyprint">POST /places</code></p>
 
 <h3 id="request-attributes">Request attributes</h3>
-
-<p>We could cut the country-only <code class="prettyprint">currency</code>, <code class="prettyprint">iso_code</code> and <code class="prettyprint">nationality</code> attributes, I don&rsquo;t know what we&rsquo;ll even use these for tbh.</p>
 
 <table><thead>
 <tr>
@@ -4196,39 +4437,25 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 <tr>
 <td>latitude</td>
-<td>number/float</td>
+<td>number</td>
 <td></td>
 <td>Between -90 and 90.</td>
 </tr>
 <tr>
 <td>longitude</td>
-<td>number/float</td>
+<td>number</td>
 <td></td>
 <td>Between -180 and 180.</td>
 </tr>
 <tr>
-<td>currency</td>
-<td>string</td>
-<td></td>
-<td>COUNTRY ONLY. Must be 3 chars. ISO 4217 currency code, e.g. &#39;USD&rsquo;.</td>
-</tr>
-<tr>
 <td>iso_code</td>
 <td>string</td>
-<td>Y</td>
-<td>COUNTRY ONLY. Unique. 2 chars. ISO 3166-1 country code.</td>
-</tr>
-<tr>
-<td>nationality</td>
-<td>string</td>
-<td></td>
-<td>COUNTRY ONLY. 2-30 chars. English-lang common term, e.g. &#39;American&rsquo;.</td>
+<td>Country-only</td>
+<td>Unique. 2 chars. ISO 3166-1 country code.</td>
 </tr>
 </tbody></table>
 
 <h3 id="relationships">Relationships</h3>
-
-<p>Country-region relationships would be handled with their own endpoint, probably <code class="prettyprint">/places/relationships/country-regions</code>.</p>
 
 <table><thead>
 <tr>
@@ -4242,16 +4469,16 @@ Successful responses include the following HTTP header.<br /><br />
 <tr>
 <td>parent</td>
 <td>belongs_to</td>
-<td>For subdivs and localities</td>
+<td>Subdivisions and localities only</td>
 <td>places</td>
-<td>The country a subdivision is in, or the subdivision a locality is in.</td>
+<td>The country a subdivision is in; the subdivision a locality is in.</td>
 </tr>
 <tr>
 <td>children</td>
 <td>has_many</td>
 <td></td>
 <td>places</td>
-<td>The subdivs in a country, or the localities in a subdivision</td>
+<td>The countries inside a region.</td>
 </tr>
 </tbody></table>
 
@@ -4259,651 +4486,100 @@ Successful responses include the following HTTP header.<br /><br />
 
 <p><code class="prettyprint">201 Created</code></p>
 
-          <h1 id="places-regions"><a name="regions_intro"></a>Places: regions</h1>
-
-<p>Resources related to geographic regions (groups of countries).</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<p>See <a href="#regions_create">Create a new region record</a> and <a href="#regions_update">Update a region record</a>.</p>
-
-<h3 id="response-attributes">Response attributes</h3>
-
-<p>See <a href="#regions_show">Get single region</a></p>
-
-          <h2 id="get-all-regions">Get all regions</h2>
+          <h2 id="update-a-place-record"><a name="places_update"></a>Update a place record</h2>
 
 <blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": [
-    {
-      "id": "2937",
-      "type": "places",
-      "attributes": {
-        "subtype": "regions",
-        "slug": "new-region",
-        "name": "New Region",
-        "short_name": "NR",
-        "formatted": "New Region",
-        "latitude": 5,
-        "longitude": -35,
-        "also_known_as": [
-          "That New Region",
-          "The Newest"
-        ]
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "2",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/2"
-          }
-        },
-        "countries": {
-          "data": [
-            {
-              "id": "7",
-              "type": "places"
-            },
-            {
-              "id": "27",
-              "type": "places"
-            }
-          ],
-          "links": {
-            "related": "http://api.dbljump.com/places/regions/new-region/countries"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/regions/new-region"
-      }
-    },
-    {
-      "id": "239",
-      "type": "places",
-      "attributes": {
-        "subtype": "regions",
-        "slug": "australia-and-new-zealand",
-        "name": "Australia and New Zealand",
-        "short_name": "Aus&amp;NZ",
-        "formatted": "Australia and New Zealand",
-        "latitude": null,
-        "longitude": null,
-        "also_known_as": []
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "countries": {
-          "data": [
-            {
-              "id": "12",
-              "type": "places"
-            },
-            {
-              "id": "147",
-              "type": "places"
-            }
-          ],
-          "links": {
-            "related": "http://api.dbljump.com/places/regions/australia-and-new-zealand/countries"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/regions/australia-and-new-zealand"
-      }
-    },
-    {
-      "id": "238",
-      "type": "places",
-      "attributes": {
-        "subtype": "regions",
-        "slug": "us-and-canada",
-        "name": "US and Canada",
-        "short_name": "US&amp;Ca",
-        "formatted": "US and Canada",
-        "latitude": null,
-        "longitude": null,
-        "also_known_as": []
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "countries": {
-          "data": [
-            {
-              "id": "36",
-              "type": "places"
-            },
-            {
-              "id": "220",
-              "type": "places"
-            }
-          ],
-          "links": {
-            "related": "http://api.dbljump.com/places/regions/us-and-canada/countries"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/regions/us-and-canada"
-      }
-    }
-  ],
-  "links": {
-    "self": "http://api.dbljump.com/places/regions?page%5Bnumber%5D=1&amp;page%5Bsize%5D=3",
-    "next": "http://api.dbljump.com/places/regions?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3",
-    "last": "http://api.dbljump.com/places/regions?page%5Bnumber%5D=3&amp;page%5Bsize%5D=3"
-  },
-  "meta": {
-    "total_items": 8
-  }
-}
-</code></pre>
-<p>Retrieve all regions. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /places/regions</code></p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number</td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of images per page</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="get-single-region"><a name="regions_show"></a>Get single region</h2>
-
-<blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "233",
-    "type": "places",
-    "attributes": {
-      "subtype": "regions",
-      "slug": "north-america",
-      "name": "North America",
-      "short_name": "NA",
-      "formatted": "North America",
-      "latitude": null,
-      "longitude": null,
-      "also_known_as": []
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/users/1"
-        }
-      },
-      "countries": {
-        "data": [
-          {
-            "id": "36",
-            "type": "places"
-          },
-          {
-            "id": "133",
-            "type": "places"
-          },
-          {
-            "id": "220",
-            "type": "places"
-          }
-        ],
-        "links": {
-          "related": "http://api.dbljump.com/places/regions/north-america/countries"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/places/regions/north-america"
-    }
-  },
-  "included": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "north america, na, place, geography, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from North America at Dbljump.",
-    "created_at": "2017-04-05T13:55:46.235Z",
-    "updated_at": "2017-04-05T13:55:46.235Z"
-  }
-}
-</code></pre>
-<p>Retrieve a single region record. Regions are publicly available. No sign-in is required.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /places/regions/{slug}</code> (replace <code class="prettyprint">{slug}</code> with country record slug)</p>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-<h3 id="response-attributes"><a name="region_response_attrs"></a>Response attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>subtype</td>
-<td>string</td>
-<td>Y</td>
-<td>The place subclass. Always &lsquo;regions&rsquo;.</td>
-</tr>
-<tr>
-<td>slug</td>
-<td>string</td>
-<td>Y</td>
-<td>A record ID based on the formatted name, e.g. &#39;north-america&rsquo;.</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>English-language common name, e.g. &#39;North America&rsquo;.</td>
-</tr>
-<tr>
-<td>short_name</td>
-<td>string</td>
-<td></td>
-<td>A common short name, e.g. &#39;NA&rsquo;.</td>
-</tr>
-<tr>
-<td>formatted</td>
-<td>string</td>
-<td>Y</td>
-<td>Has the same value as <code class="prettyprint">name</code>.</td>
-</tr>
-<tr>
-<td>also_known_as</td>
-<td>array</td>
-<td></td>
-<td>Other names the country is known by, e.g. <code class="prettyprint">[&#39;Norteamérica&#39;]</code>.</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>number/float</td>
-<td></td>
-<td>Global coordinate.</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>number/float</td>
-<td></td>
-<td>Global coordinate.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<table><thead>
-<tr>
-<th>Association</th>
-<th>Record type</th>
-<th>Relationship type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>created_by</td>
-<td>users</td>
-<td>belongs_to</td>
-</tr>
-<tr>
-<td>countries</td>
-<td>places (countries)</td>
-<td>has_many</td>
-</tr>
-</tbody></table>
-
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>users</td>
-<td>created_by</td>
-<td>username, role, given_names, family_name, avatar</td>
-</tr>
-</tbody></table>
-
-<h3 id="meta">Meta</h3>
-
-<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
-
-          <h2 id="create-a-new-region-record"><a name="regions_create"></a>Create a new region record</h2>
-
-<blockquote>
-<p>Request body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "places",
-    "attributes": {
-      "name": "New Region",
-      "short_name": "NR",
-      "also_known_as": ["That New Region", "The Newest"],
-      "latitude": "5.0",
-      "longitude": "-35.00"
-    },
-    "relationships": {
-        "countries": {
-            "data": [
-          { "type": "places", "id": "7" },
-          { "type": "places", "id": "27" }
-        ]
-        }
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>HTTP 201 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "2937",
-    "type": "places",
-    "attributes": {
-      "subtype": "regions",
-      "slug": "new-region",
-      "name": "New Region",
-      "short_name": "NR",
-      "formatted": "New Region",
-      "latitude": 5,
-      "longitude": -35,
-      "also_known_as": [
-        "That New Region",
-        "The Newest"
-      ]
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "2",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/users/2"
-        }
-      },
-      "countries": {
-        "data": [
-          {
-            "id": "7",
-            "type": "places"
-          },
-          {
-            "id": "27",
-            "type": "places"
-          }
-        ],
-        "links": {
-          "related": "http://api.dbljump.com/places/regions/new-region/countries"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/places/regions/new-region"
-    }
-  },
-  "included": [
-    {
-      "id": "2",
-      "type": "users",
-      "attributes": {
-        "username": "neil",
-        "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1704070637.jpeg"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/2"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "new region, nr, that new region, the newest, place, geography, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from New Region at Dbljump.",
-    "created_at": "2017-04-07T10:51:36.588Z",
-    "updated_at": "2017-04-07T10:51:36.588Z"
-  }
-}
-</code></pre>
-<p>Create a new region record. Admin-level authorization required.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">POST /places/regions</code></p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>Unique. 2-50 chars. English-language common name, e.g. &lsquo;North America&rsquo;.</td>
-</tr>
-<tr>
-<td>short_name</td>
-<td>string</td>
-<td></td>
-<td>Unique. 2-20 chars. Common short name, e.g. &#39;NA&rsquo;.</td>
-</tr>
-<tr>
-<td>also_known_as</td>
-<td>array</td>
-<td></td>
-<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;Norteamérica&#39;]</code>.</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -90 and 90.</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -180 and 180.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>countries</td>
-<td>has_many</td>
-<td></td>
-<td>places (countries)</td>
-<td>The <a href="#countries_intro">countries</a> that belong to this region.</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">201 Created</code></p>
-
-          <h2 id="update-a-region-record"><a name="regions_update"></a>Update a region record</h2>
-
-<blockquote>
-<p>Request body</p>
+<p>Request body | <code class="prettyprint">PATCH /places/europe</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
     "type": "places",
     "id": "europe",
     "attributes": {
-      "name": "Updated Region",
-      "short_name": "UR",
-      "also_known_as": ["Edited Region", "Changed Region"],
-      "latitude": "7.7",
-      "longitude": "-65.4"
+      "name": "New Name",
+      "short_name": "Short",
+      "also_known_as": ["Edited Region", "Renamed Region"],
+      "latitude": "54.5",
+      "longitude": "15.3",
+      "iso_code": ""
     },
     "relationships": {
-        "countries": {
-            "data": [
-          { "type": "places", "id": "5" },
-          { "type": "places", "id": "50" }
+      "children": {
+        "data": [
+          { "type": "places", "id": "219" },
+          { "type": "places", "id": "71" },
+          { "type": "places", "id": "75" }
         ]
-        }
+      }
     }
   }
 }
 </code></pre>
 <blockquote>
-<p>HTTP 200 response body</p>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
     "id": "234",
     "type": "places",
     "attributes": {
-      "subtype": "regions",
-      "slug": "updated-region",
-      "name": "Updated Region",
-      "short_name": "UR",
-      "formatted": "Updated Region",
-      "latitude": 7.7,
-      "longitude": -65.4,
+      "kind": "region",
+      "slug": "new-name",
+      "name": "New Name",
+      "formatted": "New Name",
+      "short_name": "Short",
       "also_known_as": [
         "Edited Region",
-        "Changed Region"
-      ]
+        "Renamed Region"
+      ],
+      "latitude": 54.5,
+      "longitude": 15.3,
+      "iso_code": ""
     },
     "relationships": {
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
-        },
+      "parent": {
+        "data": null,
         "links": {
-          "related": "http://api.dbljump.com/users/1"
+          "related": "http://api.dbljump.com/places/niue"
         }
       },
-      "countries": {
+      "children": {
         "data": [
           {
-            "id": "5",
+            "id": "219",
             "type": "places"
           },
           {
-            "id": "50",
+            "id": "71",
+            "type": "places"
+          },
+          {
+            "id": "75",
             "type": "places"
           }
         ],
         "links": {
-          "related": "http://api.dbljump.com/places/regions/updated-region/countries"
+          "related": "http://api.dbljump.com/places/new-name/children"
+        }
+      },
+      "regions": {
+        "data": null,
+        "links": {
+          "related": "http://api.dbljump.com/places/new-name/regions"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://api.dbljump.com/users/1"
         }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/places/regions/updated-region"
+      "self": "http://api.dbljump.com/places/new-name"
     }
   },
   "included": [
@@ -4923,999 +4599,23 @@ Successful responses include the following HTTP header.<br /><br />
     }
   ],
   "meta": {
-    "keywords": "updated region, ur, edited region, changed region, place, geography, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from Updated Region at Dbljump.",
+    "keywords": "new name, short, edited region, renamed region, , place, geography, dbljump, video games, pc games, gaming",
+    "description": "Find video game companies and games industry professionals from New Name at Dbljump.",
     "created_at": "2017-04-05T13:55:46.264Z",
-    "updated_at": "2017-04-07T10:56:46.781Z"
+    "updated_at": "2017-04-14T09:48:24.498Z"
   }
 }
 </code></pre>
-<p>Update an existing region record. The user must be an admin.</p>
+<p>Update an existing place record. The user must be an admin, except for <code class="prettyprint">locality</code> records that were created by the current user. The <code class="prettyprint">kind</code> attribute cannot be changed.</p>
 
 <ul>
 <li>User authentication: required</li>
-<li>Authorization level: admin</li>
+<li>Authorization level: admin, except for <code class="prettyprint">locality</code> records that were created by the current user.</li>
 </ul>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">PATCH /places/regions/{slug}</code> (replace <code class="prettyprint">{slug}</code> with region record slug)</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>Unique. 2-50 chars. English-language common name, e.g. &lsquo;North America&rsquo;.</td>
-</tr>
-<tr>
-<td>short_name</td>
-<td>string</td>
-<td></td>
-<td>Unique. 2-20 chars. Common short name, e.g. &#39;NA&rsquo;.</td>
-</tr>
-<tr>
-<td>also_known_as</td>
-<td>array</td>
-<td></td>
-<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;Norteamérica&#39;]</code>.</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -90 and 90.</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -180 and 180.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>countries</td>
-<td>has_many</td>
-<td></td>
-<td>places (countries)</td>
-<td>The <a href="#countries_intro">countries</a> that belong to this region.</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="delete-a-region-record">Delete a region record</h2>
-
-<p>Delete an existing region record. Admin-level authorization required.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">DELETE /places/regions/{slug}</code> (replace <code class="prettyprint">{slug}</code> with region record slug)</p>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">204 No Content</code></p>
-
-          <h2 id="region-countries-get-all">Region countries: get all</h2>
-
-<blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": [
-    {
-      "id": "12",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "australia",
-        "name": "Australia",
-        "short_name": null,
-        "formatted": "Australia",
-        "iso_code": "AU",
-        "also_known_as": [],
-        "nationality": "Australian",
-        "currency": null,
-        "longitude": 133,
-        "latitude": -27
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "regions": {
-          "data": [
-            {
-              "id": "239",
-              "type": "places"
-            }
-          ],
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/australia/regions"
-          }
-        },
-        "subdivisions": {
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/australia/subdivisions"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/australia"
-      }
-    },
-    {
-      "id": "147",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "new-zealand",
-        "name": "New Zealand",
-        "short_name": null,
-        "formatted": "New Zealand",
-        "iso_code": "NZ",
-        "also_known_as": [],
-        "nationality": "New Zealander",
-        "currency": null,
-        "longitude": 174,
-        "latitude": -41
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "regions": {
-          "data": [
-            {
-              "id": "239",
-              "type": "places"
-            }
-          ],
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/new-zealand/regions"
-          }
-        },
-        "subdivisions": {
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/new-zealand/subdivisions"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/new-zealand"
-      }
-    }
-  ],
-  "links": {},
-  "meta": {
-    "total_items": 2
-  }
-}
-</code></pre>
-<p>Retrieve all countries belonging to the given region. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /places/regions/{region-slug}/countries</code> (replace <code class="prettyprint">{region-slug}</code> with region record slug)</p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number</td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of images per page</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="errors">Errors</h2>
-
-<p>Errors specific to creating and updating region records.</p>
-
-<table><thead>
-<tr>
-<th>HTTP code</th>
-<th>Error code</th>
-<th>Pointer</th>
-<th>Title</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>PLACE_REGION_NAME_BLANK</td>
-<td>name</td>
-<td>Name is required.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_REGION_NAME_TAKEN</td>
-<td>name</td>
-<td>There&rsquo;s already a region with that name.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_REGION_NAME_TOO_SHORT</td>
-<td>name</td>
-<td>Name must be at least 2 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_REGION_NAME_TOO_LONG</td>
-<td>name</td>
-<td>Name cannot be more than 50 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_REGION_SHORT_NAME_TAKEN</td>
-<td>short_name</td>
-<td>There&rsquo;s already a region with that short name.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_REGION_SHORT_NAME_TOO_SHORT</td>
-<td>short_name</td>
-<td>Short name must be at least 2 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_REGION_SHORT_NAME_TOO_LONG</td>
-<td>short_name</td>
-<td>Short name cannot be more than 20 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_REGION_ALSO_KNOWN_AS_TOO_SHORT</td>
-<td>also_known_as</td>
-<td>Also-known-as tags must be at least 2 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_REGION_ALSO_KNOWN_AS_TOO_LONG</td>
-<td>also_known_as</td>
-<td>Also-known-as tags cannot be more than 50 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_REGION_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
-<td>latitude</td>
-<td>Latitude must be between -90 and 90.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_REGION_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
-<td>latitude</td>
-<td>Latitude must be between -90 and 90.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_REGION_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
-<td>longitude</td>
-<td>Longitude must be between -180 and 180.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_REGION_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
-<td>longitude</td>
-<td>Longitude must be between -180 and 180.</td>
-</tr>
-</tbody></table>
-
-          <h1 id="places-countries"><a name="countries_intro"></a>Places: countries</h1>
-
-<p>Resources related to geographic countries.</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<p>See <a href="#countries_create">Create a new country record</a> and <a href="#countries_update">Update a country record</a>.</p>
-
-<h3 id="response-attributes">Response attributes</h3>
-
-<p>See <a href="#countries_show">Get single country</a></p>
-
-          <h2 id="get-all-countries">Get all countries</h2>
-
-<blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": [
-    {
-      "id": "232",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "zimbabwe",
-        "name": "Zimbabwe",
-        "short_name": null,
-        "formatted": "Zimbabwe",
-        "iso_code": "ZW",
-        "also_known_as": [],
-        "nationality": "Zimbabwean",
-        "currency": null,
-        "longitude": 30,
-        "latitude": -20
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "regions": {
-          "meta": {}
-        },
-        "subdivisions": {
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/zimbabwe/subdivisions"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/zimbabwe"
-      }
-    },
-    {
-      "id": "231",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "zambia",
-        "name": "Zambia",
-        "short_name": null,
-        "formatted": "Zambia",
-        "iso_code": "ZM",
-        "also_known_as": [],
-        "nationality": "Zambian",
-        "currency": null,
-        "longitude": 30,
-        "latitude": -15
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "regions": {
-          "meta": {}
-        },
-        "subdivisions": {
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/zambia/subdivisions"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/zambia"
-      }
-    },
-    {
-      "id": "230",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "yemen",
-        "name": "Yemen",
-        "short_name": null,
-        "formatted": "Yemen",
-        "iso_code": "YE",
-        "also_known_as": [],
-        "nationality": "Yemeni",
-        "currency": null,
-        "longitude": 48,
-        "latitude": 15
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "regions": {
-          "meta": {}
-        },
-        "subdivisions": {
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/yemen/subdivisions"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/yemen"
-      }
-    }
-  ],
-  "links": {
-    "self": "http://api.dbljump.com/places/countries?page%5Bnumber%5D=1&amp;page%5Bsize%5D=3",
-    "next": "http://api.dbljump.com/places/countries?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3",
-    "last": "http://api.dbljump.com/places/countries?page%5Bnumber%5D=78&amp;page%5Bsize%5D=3"
-  },
-  "meta": {
-    "total_items": 232
-  }
-}
-</code></pre>
-<p>Retrieve all countries. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /places/countries</code></p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number</td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of images per page</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="get-single-country"><a name="countries_show"></a>Get single country</h2>
-
-<blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "5",
-    "type": "places",
-    "attributes": {
-      "subtype": "countries",
-      "slug": "andorra",
-      "name": "Andorra",
-      "short_name": null,
-      "formatted": "Andorra",
-      "iso_code": "AD",
-      "also_known_as": [],
-      "nationality": "Andorran",
-      "currency": null,
-      "longitude": 1.3,
-      "latitude": 42.3
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/users/1"
-        }
-      },
-      "regions": {
-        "meta": {}
-      },
-      "subdivisions": {
-        "links": {
-          "related": "http://api.dbljump.com/places/countries/andorra/subdivisions"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/places/countries/andorra"
-    }
-  },
-  "included": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "andorra, ad, andorran, country, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from Andorra at Dbljump.",
-    "created_at": "2017-03-30T12:38:20.212Z",
-    "updated_at": "2017-03-30T12:38:20.212Z"
-  }
-}
-</code></pre>
-<p>Retrieve a single country record. Countries are publicly available. No sign-in is required.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /places/countries/{slug}</code> (replace <code class="prettyprint">{slug}</code> with country record slug)</p>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-<h3 id="response-attributes"><a name="country_response_attrs"></a>Response attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>subtype</td>
-<td>string</td>
-<td>Y</td>
-<td>The place subclass. Always &lsquo;countries&rsquo;.</td>
-</tr>
-<tr>
-<td>slug</td>
-<td>string</td>
-<td>Y</td>
-<td>A record ID based on the formatted name, e.g. &#39;united-states&rsquo;.</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>English-language common name, e.g. &#39;United States&rsquo;.</td>
-</tr>
-<tr>
-<td>iso_code</td>
-<td>string</td>
-<td>Y</td>
-<td>The country&rsquo;s ISO 3166-1 country code.</td>
-</tr>
-<tr>
-<td>short_name</td>
-<td>string</td>
-<td></td>
-<td>A common short name, e.g. &#39;USA&rsquo;.</td>
-</tr>
-<tr>
-<td>formatted</td>
-<td>string</td>
-<td>Y</td>
-<td>Has the same value as <code class="prettyprint">name</code>.</td>
-</tr>
-<tr>
-<td>also_known_as</td>
-<td>array</td>
-<td></td>
-<td>Other names the country is known by, e.g. <code class="prettyprint">[&#39;US&#39;, &#39;America&#39;]</code>.</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>number/float</td>
-<td></td>
-<td>Global coordinate.</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>number/float</td>
-<td></td>
-<td>Global coordinate.</td>
-</tr>
-<tr>
-<td>currency</td>
-<td>string</td>
-<td></td>
-<td>The national currency&rsquo;s ISO 4217 code, e.g. &#39;USD&rsquo;.</td>
-</tr>
-<tr>
-<td>nationality</td>
-<td>string</td>
-<td></td>
-<td>Nationality of inhabitants, e.g. &#39;American&rsquo;.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<table><thead>
-<tr>
-<th>Association</th>
-<th>Record type</th>
-<th>Relationship type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>created_by</td>
-<td>users</td>
-<td>belongs_to</td>
-</tr>
-<tr>
-<td>regions</td>
-<td>places (regions)</td>
-<td>has_many</td>
-</tr>
-</tbody></table>
-
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>users</td>
-<td>created_by</td>
-<td>username, role, given_names, family_name, avatar</td>
-</tr>
-</tbody></table>
-
-<h3 id="meta">Meta</h3>
-
-<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
-
-          <h2 id="create-a-new-country-record"><a name="countries_create"></a>Create a new country record</h2>
-
-<blockquote>
-<p>Request body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "places",
-    "attributes": {
-      "name": "New Country",
-      "iso_code": "NC",
-      "short_name": "NewC",
-      "also_known_as": ["That New Country", "The New Place"],
-      "latitude": "88.27",
-      "longitude": "-150.55",
-      "currency": "NCY",
-      "nationality": "New Countryfolk"
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>HTTP 201 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "2937",
-    "type": "places",
-    "attributes": {
-      "subtype": "countries",
-      "slug": "new-country",
-      "name": "New Country",
-      "short_name": "NewC",
-      "formatted": "New Country",
-      "iso_code": "NC",
-      "also_known_as": [
-        "That New Country",
-        "The New Place"
-      ],
-      "nationality": "New Countryfolk",
-      "currency": "NCY",
-      "longitude": -150.55,
-      "latitude": 88.27
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "2",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/users/2"
-        }
-      },
-      "regions": {
-        "meta": {}
-      },
-      "subdivisions": {
-        "links": {
-          "related": "http://api.dbljump.com/places/countries/new-country/subdivisions"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/places/countries/new-country"
-    }
-  },
-  "included": [
-    {
-      "id": "2",
-      "type": "users",
-      "attributes": {
-        "username": "neil",
-        "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/2"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "new country, newc, that new country, the new place, nc, new countryfolk, country, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from New Country at Dbljump.",
-    "created_at": "2017-03-30T13:39:33.324Z",
-    "updated_at": "2017-03-30T13:39:33.324Z"
-  }
-}
-</code></pre>
-<p>Create a new country record. Admin-level authorization required.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">POST /places/countries</code></p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>Unique. 2-50 chars. English-language common name, e.g. &lsquo;United States&rsquo;.</td>
-</tr>
-<tr>
-<td>iso_code</td>
-<td>string</td>
-<td>Y</td>
-<td>Unique. 2 chars. ISO 3166-1 country code.</td>
-</tr>
-<tr>
-<td>short_name</td>
-<td>string</td>
-<td></td>
-<td>Unique. 2-20 chars. Common short name, e.g. &#39;USA&rsquo;.</td>
-</tr>
-<tr>
-<td>also_known_as</td>
-<td>array</td>
-<td></td>
-<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;US&#39;, &#39;America&#39;]</code>.</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -90 and 90.</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -180 and 180.</td>
-</tr>
-<tr>
-<td>currency</td>
-<td>string</td>
-<td></td>
-<td>Must be 3 chars. ISO 4217 currency code, e.g. &#39;USD&rsquo;.</td>
-</tr>
-<tr>
-<td>nationality</td>
-<td>string</td>
-<td></td>
-<td>2-30 chars. English-lang common term, e.g. &#39;American&rsquo;.</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">201 Created</code></p>
-
-          <h2 id="update-a-country-record"><a name="countries_update"></a>Update a country record</h2>
-
-<blockquote>
-<p>Request body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "place_countries",
-    "id": "andorra",
-    "attributes": {
-      "name": "Updated Country",
-      "iso_code": "UP",
-      "short_name": "Updated",
-      "also_known_as": ["Edited Country", "Renamed Country"],
-      "latitude": "5.0",
-      "longitude": "10.0",
-      "currency": "UPD",
-      "nationality": "Updatedfolk"
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "5",
-    "type": "places",
-    "attributes": {
-      "subtype": "countries",
-      "slug": "updated-country",
-      "name": "Updated Country",
-      "short_name": "Updated",
-      "formatted": "Updated Country",
-      "iso_code": "UP",
-      "also_known_as": [
-        "Edited Country",
-        "Renamed Country"
-      ],
-      "nationality": "Updatedfolk",
-      "currency": "UPD",
-      "longitude": 10,
-      "latitude": 5
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/users/1"
-        }
-      },
-      "regions": {
-        "meta": {}
-      },
-      "subdivisions": {
-        "links": {
-          "related": "http://api.dbljump.com/places/countries/updated-country/subdivisions"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/places/countries/updated-country"
-    }
-  },
-  "included": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "updated country, updated, edited country, renamed country, up, updatedfolk, country, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from Updated Country at Dbljump.",
-    "created_at": "2017-03-30T12:38:20.212Z",
-    "updated_at": "2017-03-30T13:40:19.456Z"
-  }
-}
-</code></pre>
-<p>Update an existing country record. The user must be an admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">PATCH /places/countries/{slug}</code> (replace <code class="prettyprint">{slug}</code> with country record slug)</p>
+<p><code class="prettyprint">PATCH /places/{slug}</code> (replace <code class="prettyprint">{slug}</code> with place record slug)</p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -5934,12 +4634,6 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Unique. 2-250 chars. English-language common name, e.g. &lsquo;United States&rsquo;.</td>
 </tr>
 <tr>
-<td>iso_code</td>
-<td>string</td>
-<td>Y</td>
-<td>Unique. 2 chars. ISO 3166-1 country code.</td>
-</tr>
-<tr>
 <td>short_name</td>
 <td>string</td>
 <td></td>
@@ -5964,16 +4658,37 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Between -180 and 180.</td>
 </tr>
 <tr>
-<td>currency</td>
+<td>iso_code</td>
 <td>string</td>
-<td></td>
-<td>Must be 3 chars. ISO 4217 currency code, e.g. &#39;USD&rsquo;.</td>
+<td>Country-only</td>
+<td>Unique. 2 chars. ISO 3166-1 country code.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>parent</td>
+<td>belongs_to</td>
+<td>Subdivisions and localities only</td>
+<td>places</td>
+<td>The country a subdivision is in; the subdivision a locality is in.</td>
 </tr>
 <tr>
-<td>nationality</td>
-<td>string</td>
+<td>children</td>
+<td>has_many</td>
 <td></td>
-<td>2-30 chars. English-lang common term, e.g. &#39;American&rsquo;.</td>
+<td>places</td>
+<td>The countries inside a region.</td>
 </tr>
 </tbody></table>
 
@@ -5981,9 +4696,9 @@ Successful responses include the following HTTP header.<br /><br />
 
 <p><code class="prettyprint">200 OK</code></p>
 
-          <h2 id="delete-a-country-record">Delete a country record</h2>
+          <h2 id="delete-a-place-record">Delete a place record</h2>
 
-<p>Delete an existing country record. Admin-level authorization required.</p>
+<p>Delete an existing place record. Admin-level authorization required.</p>
 
 <ul>
 <li>User authentication: required</li>
@@ -5992,123 +4707,66 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">DELETE /places/countries/{slug}</code> (replace <code class="prettyprint">{slug}</code> with country record slug)</p>
+<p><code class="prettyprint">DELETE /places/{slug}</code> (replace <code class="prettyprint">{slug}</code> with place record slug)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">204 No Content</code></p>
 
-          <h2 id="country-subdivisions-get-all">Country subdivisions: get all</h2>
+          <h2 id="get-all-place-children"><a name="places_children_index"></a>Get all place children</h2>
 
 <blockquote>
-<p>HTTP 200 response body</p>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
+<pre class="highlight plaintext"><code># GET /places/united-states/children?page[size]=3
+
+{
   "data": [
     {
-      "id": "2940",
+      "id": "329",
       "type": "places",
       "attributes": {
-        "subtype": "subdivisions",
-        "slug": "brand-new-subdivision-afghanistan",
-        "name": "Brand New Subdivision",
+        "kind": "subdivision",
+        "slug": "alabama-united-states",
+        "name": "Alabama",
+        "formatted": "Alabama, United States",
         "short_name": null,
-        "formatted": "Brand New Subdivision, Afghanistan",
-        "latitude": 17.85,
-        "longitude": -20,
-        "also_known_as": [
-          "That New Subdiv",
-          "The New Subdiv"
-        ]
+        "also_known_as": [],
+        "latitude": 32.3182314,
+        "longitude": -86.902298,
+        "iso_code": null
       },
       "relationships": {
-        "created_by": {
+        "parent": {
           "data": {
-            "id": "2",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/2"
-          }
-        },
-        "country": {
-          "data": {
-            "id": "1",
+            "id": "220",
             "type": "places"
           },
           "links": {
-            "related": "http://api.dbljump.com/places/countries/afghanistan"
+            "related": "http://api.dbljump.com/places/united-states"
           }
         },
-        "localities": {
+        "children": {
+          "data": [],
           "links": {
-            "related": "http://api.dbljump.com/places/subdivisions/brand-new-subdivision-afghanistan/localities"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/subdivisions/brand-new-subdivision-afghanistan"
-      }
-    },
-    {
-      "id": "2938",
-      "type": "places",
-      "attributes": {
-        "subtype": "subdivisions",
-        "slug": "new-subdivision-afghanistan",
-        "name": "New Subdivision",
-        "short_name": null,
-        "formatted": "New Subdivision, Afghanistan",
-        "latitude": 17.85,
-        "longitude": -20,
-        "also_known_as": [
-          "That New Subdiv",
-          "The New Subdiv"
-        ]
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "2",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/2"
+            "related": "http://api.dbljump.com/places/alabama-united-states/children"
           }
         },
-        "country": {
-          "data": {
-            "id": "1",
-            "type": "places"
-          },
+        "regions": {
+          "data": [
+            {
+              "id": "238",
+              "type": "places"
+            },
+            {
+              "id": "233",
+              "type": "places"
+            }
+          ],
           "links": {
-            "related": "http://api.dbljump.com/places/countries/afghanistan"
+            "related": "http://api.dbljump.com/places/alabama-united-states/regions"
           }
         },
-        "localities": {
-          "links": {
-            "related": "http://api.dbljump.com/places/subdivisions/new-subdivision-afghanistan/localities"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/subdivisions/new-subdivision-afghanistan"
-      }
-    },
-    {
-      "id": "2788",
-      "type": "places",
-      "attributes": {
-        "subtype": "subdivisions",
-        "slug": "western-afghanistan",
-        "name": "Western",
-        "short_name": null,
-        "formatted": "Western, Afghanistan",
-        "latitude": null,
-        "longitude": null,
-        "also_known_as": []
-      },
-      "relationships": {
         "created_by": {
           "data": {
             "id": "1",
@@ -6117,38 +4775,142 @@ Successful responses include the following HTTP header.<br /><br />
           "links": {
             "related": "http://api.dbljump.com/users/1"
           }
-        },
-        "country": {
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/alabama-united-states"
+      }
+    },
+    {
+      "id": "335",
+      "type": "places",
+      "attributes": {
+        "kind": "subdivision",
+        "slug": "alaska-united-states",
+        "name": "Alaska",
+        "formatted": "Alaska, United States",
+        "short_name": null,
+        "also_known_as": [],
+        "latitude": 64.2008413,
+        "longitude": -149.4936733,
+        "iso_code": null
+      },
+      "relationships": {
+        "parent": {
           "data": {
-            "id": "1",
+            "id": "220",
             "type": "places"
           },
           "links": {
-            "related": "http://api.dbljump.com/places/countries/afghanistan"
+            "related": "http://api.dbljump.com/places/united-states"
           }
         },
-        "localities": {
+        "children": {
+          "data": [],
           "links": {
-            "related": "http://api.dbljump.com/places/subdivisions/western-afghanistan/localities"
+            "related": "http://api.dbljump.com/places/alaska-united-states/children"
+          }
+        },
+        "regions": {
+          "data": [
+            {
+              "id": "238",
+              "type": "places"
+            },
+            {
+              "id": "233",
+              "type": "places"
+            }
+          ],
+          "links": {
+            "related": "http://api.dbljump.com/places/alaska-united-states/regions"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
           }
         }
       },
       "links": {
-        "self": "http://api.dbljump.com/places/subdivisions/western-afghanistan"
+        "self": "http://api.dbljump.com/places/alaska-united-states"
+      }
+    },
+    {
+      "id": "398",
+      "type": "places",
+      "attributes": {
+        "kind": "subdivision",
+        "slug": "american-samoa-united-states",
+        "name": "American Samoa",
+        "formatted": "American Samoa, United States",
+        "short_name": null,
+        "also_known_as": [],
+        "latitude": 21.3239718,
+        "longitude": -157.876498,
+        "iso_code": null
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "220",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/united-states"
+          }
+        },
+        "children": {
+          "data": [],
+          "links": {
+            "related": "http://api.dbljump.com/places/american-samoa-united-states/children"
+          }
+        },
+        "regions": {
+          "data": [
+            {
+              "id": "238",
+              "type": "places"
+            },
+            {
+              "id": "233",
+              "type": "places"
+            }
+          ],
+          "links": {
+            "related": "http://api.dbljump.com/places/american-samoa-united-states/regions"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/american-samoa-united-states"
       }
     }
   ],
   "links": {
-    "self": "http://api.dbljump.com/places/countries/afghanistan/subdivisions?page%5Bnumber%5D=1&amp;page%5Bsize%5D=3",
-    "next": "http://api.dbljump.com/places/countries/afghanistan/subdivisions?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3",
-    "last": "http://api.dbljump.com/places/countries/afghanistan/subdivisions?page%5Bnumber%5D=3&amp;page%5Bsize%5D=3"
+    "self": "http://api.dbljump.com/places/united-states/children?page%5Bnumber%5D=1&amp;page%5Bsize%5D=3",
+    "next": "http://api.dbljump.com/places/united-states/children?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3",
+    "last": "http://api.dbljump.com/places/united-states/children?page%5Bnumber%5D=20&amp;page%5Bsize%5D=3"
   },
   "meta": {
-    "total_items": 9
+    "total_items": 60
   }
 }
 </code></pre>
-<p>Retrieve all subdivisions belonging to the given country. Automatically paginated.</p>
+<p>Retrieve all places that belong to a given places, i.e. countries that belong to a region; subdivisions that belong to a country; and localities that belong to a subdivision. Returns a <code class="prettyprint">404</code> error for localities, which do not have children. Automatically paginated.</p>
 
 <ul>
 <li>User authentication: not required</li>
@@ -6157,7 +4919,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /places/countries/{country-slug}/subdivisions</code> (replace <code class="prettyprint">{country-slug}</code> with country record slug)</p>
+<p><code class="prettyprint">GET /places/{place-slug}/children</code></p>
 
 <h3 id="url-query-parameters">URL query parameters</h3>
 
@@ -6184,168 +4946,171 @@ Successful responses include the following HTTP header.<br /><br />
 
 <p><code class="prettyprint">200 OK</code></p>
 
-          <h2 id="country-subdivisions-create-new">Country subdivisions: create new</h2>
+          <h2 id="get-all-place-regions"><a name="places_regions_index"></a>Get all place regions</h2>
 
 <blockquote>
-<p>Request body</p>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "places",
-    "attributes": {
-      "name": "Brand New Subdivision",
-      "also_known_as": ["That New Subdiv", "The New Subdiv"],
-      "latitude": "17.85",
-      "longitude": "-20.00"
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>HTTP 201 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "2940",
-    "type": "places",
-    "attributes": {
-      "subtype": "subdivisions",
-      "slug": "brand-new-subdivision-afghanistan",
-      "name": "Brand New Subdivision",
-      "short_name": null,
-      "formatted": "Brand New Subdivision, Afghanistan",
-      "latitude": 17.85,
-      "longitude": -20,
-      "also_known_as": [
-        "That New Subdiv",
-        "The New Subdiv"
-      ]
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "2",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/users/2"
-        }
-      },
-      "country": {
-        "data": {
-          "id": "1",
-          "type": "places"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/places/countries/afghanistan"
-        }
-      },
-      "localities": {
-        "links": {
-          "related": "http://api.dbljump.com/places/subdivisions/brand-new-subdivision-afghanistan/localities"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/places/subdivisions/brand-new-subdivision-afghanistan"
-    }
-  },
-  "included": [
+<pre class="highlight plaintext"><code># GET /places/united-states/regions
+
+{
+  "data": [
     {
-      "id": "2",
-      "type": "users",
-      "attributes": {
-        "username": "neil",
-        "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/2"
-      }
-    },
-    {
-      "id": "1",
+      "id": "238",
       "type": "places",
       "attributes": {
-        "subtype": "countries",
-        "slug": "afghanistan",
-        "name": "Afghanistan",
-        "short_name": null,
-        "formatted": "Afghanistan"
+        "kind": "region",
+        "slug": "us-and-canada",
+        "name": "US and Canada",
+        "formatted": "US and Canada",
+        "short_name": "US&amp;Ca",
+        "also_known_as": [],
+        "latitude": null,
+        "longitude": null,
+        "iso_code": null
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        },
+        "children": {
+          "data": [
+            {
+              "id": "36",
+              "type": "places"
+            },
+            {
+              "id": "220",
+              "type": "places"
+            }
+          ],
+          "links": {
+            "related": "http://api.dbljump.com/places/us-and-canada/children"
+          }
+        },
+        "regions": {
+          "data": null,
+          "links": {
+            "related": "http://api.dbljump.com/places/us-and-canada/regions"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        }
       },
       "links": {
-        "self": "http://api.dbljump.com/places/countries/afghanistan"
+        "self": "http://api.dbljump.com/places/us-and-canada"
+      }
+    },
+    {
+      "id": "233",
+      "type": "places",
+      "attributes": {
+        "kind": "region",
+        "slug": "north-america",
+        "name": "North America",
+        "formatted": "North America",
+        "short_name": "NA",
+        "also_known_as": [],
+        "latitude": null,
+        "longitude": null,
+        "iso_code": null
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        },
+        "children": {
+          "data": [
+            {
+              "id": "36",
+              "type": "places"
+            },
+            {
+              "id": "133",
+              "type": "places"
+            },
+            {
+              "id": "220",
+              "type": "places"
+            }
+          ],
+          "links": {
+            "related": "http://api.dbljump.com/places/north-america/children"
+          }
+        },
+        "regions": {
+          "data": null,
+          "links": {
+            "related": "http://api.dbljump.com/places/north-america/regions"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://api.dbljump.com/places/north-america"
       }
     }
   ],
+  "links": {},
   "meta": {
-    "keywords": "brand new subdivision, afghanistan, that new subdiv, the new subdiv, state, county, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from Brand New Subdivision, Afghanistan at Dbljump.",
-    "created_at": "2017-03-30T13:54:19.505Z",
-    "updated_at": "2017-03-30T13:54:19.505Z"
+    "total_items": 2
   }
 }
 </code></pre>
-<p>Create a new subdivision record belonging to the given country. Admin-level authorization required.</p>
+<p>Retrieve all regions that a given country belongs to. Returns a <code class="prettyprint">404</code> error for regions, subdivision, and localities. Automatically paginated.</p>
 
 <ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
 </ul>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /places/countries/{country-slug}/subdivisions</code> (replace <code class="prettyprint">{country-slug}</code> with country record slug)</p>
+<p><code class="prettyprint">GET /places/{place-slug}/regions</code></p>
 
-<h3 id="request-attributes">Request attributes</h3>
+<h3 id="url-query-parameters">URL query parameters</h3>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
+<th>Parameter</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>2-250 chars. English-language common name, e.g. &lsquo;Florida&rsquo;.</td>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number</td>
 </tr>
 <tr>
-<td>also_known_as</td>
-<td>array</td>
-<td></td>
-<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;The Sunshine State&#39;]</code>.</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -90 and 90.</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -180 and 180.</td>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of images per page</td>
 </tr>
 </tbody></table>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
-<p><code class="prettyprint">201 Created</code></p>
-
-<h3 id="errors">Errors</h3>
-
-<p>See <a href="#subdivs_errors">Places: subdivisions - Errors</a>.</p>
+<p><code class="prettyprint">200 OK</code></p>
 
           <h2 id="errors">Errors</h2>
 
-<p>Errors specific to creating and updating country records.</p>
+<p>Errors specific to creating and updating place records.</p>
 
 <table><thead>
 <tr>
@@ -6357,2324 +5122,159 @@ Successful responses include the following HTTP header.<br /><br />
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_NAME_BLANK</td>
+<td>PLACE_KIND_BLANK</td>
+<td>kind</td>
+<td>Kind is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_KIND_INCLUSION</td>
+<td>kind</td>
+<td>Kind must be &lsquo;region&rsquo;, &#39;country&rsquo;, &#39;subdivision&rsquo; or &#39;locality&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_KIND_PRESENT</td>
+<td>kind</td>
+<td>Kind cannot be changed.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_NAME_BLANK</td>
 <td>name</td>
 <td>Name is required.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_NAME_TAKEN</td>
+<td>PLACE_NAME_TAKEN</td>
 <td>name</td>
-<td>There&rsquo;s already a country with that name.</td>
+<td>Name has already been taken.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_NAME_TOO_SHORT</td>
+<td>PLACE_NAME_TOO_SHORT</td>
 <td>name</td>
 <td>Name must be at least 2 characters.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_NAME_TOO_LONG</td>
+<td>PLACE_NAME_TOO_LONG</td>
 <td>name</td>
 <td>Name cannot be more than 50 characters.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_SHORT_NAME_TAKEN</td>
+<td>PLACE_SHORT_NAME_TAKEN</td>
 <td>short_name</td>
-<td>There&rsquo;s already a country with that short name.</td>
+<td>Short name has already been taken.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_SHORT_NAME_TOO_SHORT</td>
+<td>PLACE_SHORT_NAME_TOO_SHORT</td>
 <td>short_name</td>
 <td>Short name must be at least 2 characters.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_SHORT_NAME_TOO_LONG</td>
+<td>PLACE_SHORT_NAME_TOO_LONG</td>
 <td>short_name</td>
 <td>Short name cannot be more than 20 characters.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_ALSO_KNOWN_AS_TOO_SHORT</td>
+<td>PLACE_ALSO_KNOWN_AS_TOO_SHORT</td>
 <td>also_known_as</td>
 <td>Also-known-as tags must be at least 2 characters.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_ALSO_KNOWN_AS_TOO_LONG</td>
+<td>PLACE_ALSO_KNOWN_AS_TOO_LONG</td>
 <td>also_known_as</td>
 <td>Also-known-as tags cannot be more than 50 characters.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>PLACE_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
 <td>latitude</td>
 <td>Latitude must be between -90 and 90.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>PLACE_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
 <td>latitude</td>
 <td>Latitude must be between -90 and 90.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
+<td>PLACE_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
 <td>longitude</td>
 <td>Longitude must be between -180 and 180.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
+<td>PLACE_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
 <td>longitude</td>
 <td>Longitude must be between -180 and 180.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_ISO_CODE_BLANK</td>
+<td>PLACE_ISO_CODE_BLANK</td>
 <td>iso_code</td>
-<td>ISO code is required.</td>
+<td>ISO code is required for country records.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_ISO_CODE_TAKEN</td>
+<td>PLACE_ISO_CODE_PRESENT</td>
+<td>iso_code</td>
+<td>ISO code is only used by country records.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PLACE_ISO_CODE_TAKEN</td>
 <td>iso_code</td>
 <td>There&rsquo;s already a country with that ISO code.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_ISO_CODE_TOO_SHORT</td>
+<td>PLACE_ISO_CODE_TOO_SHORT</td>
 <td>iso_code</td>
-<td>ISO code must be at least 2 characters.</td>
+<td>ISO code must be 2 characters long.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_ISO_CODE_TOO_LONG</td>
+<td>PLACE_ISO_CODE_TOO_LONG</td>
 <td>iso_code</td>
-<td>ISO code cannot be more than 2 characters.</td>
+<td>ISO code must be 2 characters long.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_NATIONALITY_TOO_SHORT</td>
-<td>nationality</td>
-<td>Nationality must be at least 2 characters.</td>
+<td>PLACE_PARENT_BLANK</td>
+<td>relationships/parent/data/id</td>
+<td>Parent is required for subdivisions and localities.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_NATIONALITY_TOO_LONG</td>
-<td>nationality</td>
-<td>Nationality cannot be more than 30 characters.</td>
+<td>PLACE_PARENT_PRESENT</td>
+<td>relationships/parent/data/id</td>
+<td>Regions and countries cannot have a parent place.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_CURRENCY_TOO_SHORT</td>
-<td>currency</td>
-<td>Currency must be at least 3 characters.</td>
+<td>PLACE_PARENT_INVALID</td>
+<td>relationships/parent/data/id</td>
+<td>That parent place ID isn&rsquo;t valid.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_COUNTRY_CURRENCY_TOO_LONG</td>
-<td>currency</td>
-<td>Currency cannot be more than 3 characters.</td>
-</tr>
-</tbody></table>
-
-          <h1 id="places-subdivisions"><a name="subdivs_intro"></a>Places: subdivisions</h1>
-
-<p>Resources related to geographic subdivisions (e.g. states and counties).</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<p>See <a href="#subdivs_create">Create a new subdivision record</a> and <a href="#subdivs_update">Update a subdivision record</a>.</p>
-
-<h3 id="response-attributes">Response attributes</h3>
-
-<p>See <a href="#subdivs_show">Get single subdivision</a>.</p>
-
-          <h2 id="get-all-subdivisions">Get all subdivisions</h2>
-
-<blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": [
-    {
-      "id": "2237",
-      "type": "places",
-      "attributes": {
-        "subtype": "subdivisions",
-        "slug": "sabha-libya",
-        "name": "Sabha",
-        "short_name": null,
-        "formatted": "Sabha, Libya",
-        "latitude": null,
-        "longitude": null,
-        "also_known_as": []
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "country": {
-          "data": {
-            "id": "117",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/libya"
-          }
-        },
-        "localities": {
-          "links": {
-            "related": "http://api.dbljump.com/places/subdivisions/sabha-libya/localities"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/subdivisions/sabha-libya"
-      }
-    },
-    {
-      "id": "240",
-      "type": "places",
-      "attributes": {
-        "subtype": "subdivisions",
-        "slug": "0-niue",
-        "name": "All",
-        "short_name": null,
-        "formatted": "All, Niue",
-        "latitude": null,
-        "longitude": null,
-        "also_known_as": []
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "country": {
-          "data": {
-            "id": "151",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/niue"
-          }
-        },
-        "localities": {
-          "links": {
-            "related": "http://api.dbljump.com/places/subdivisions/0-niue/localities"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/subdivisions/0-niue"
-      }
-    },
-    {
-      "id": "241",
-      "type": "places",
-      "attributes": {
-        "subtype": "subdivisions",
-        "slug": "0-curacao",
-        "name": "All",
-        "short_name": null,
-        "formatted": "All, Curaçao",
-        "latitude": null,
-        "longitude": null,
-        "also_known_as": []
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "country": {
-          "data": {
-            "id": "53",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/curacao"
-          }
-        },
-        "localities": {
-          "links": {
-            "related": "http://api.dbljump.com/places/subdivisions/0-curacao/localities"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/subdivisions/0-curacao"
-      }
-    }
-  ],
-  "links": {
-    "self": "http://api.dbljump.com/places/subdivisions?page%5Bnumber%5D=1&amp;page%5Bsize%5D=3",
-    "next": "http://api.dbljump.com/places/subdivisions?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3",
-    "last": "http://api.dbljump.com/places/subdivisions?page%5Bnumber%5D=881&amp;page%5Bsize%5D=3"
-  },
-  "meta": {
-    "total_items": 2641
-  }
-}
-</code></pre>
-<p>Retrieve all subdivisions. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /places/subdivisions</code></p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number</td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of images per page</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="get-single-subdivision"><a name="subdivs_show"></a>Get single subdivision</h2>
-
-<blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "2599",
-    "type": "places",
-    "attributes": {
-      "subtype": "subdivisions",
-      "slug": "texas-united-states",
-      "name": "Texas",
-      "short_name": null,
-      "formatted": "Texas, United States",
-      "latitude": 31.9685988,
-      "longitude": -99.9018131,
-      "also_known_as": []
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/users/1"
-        }
-      },
-      "country": {
-        "data": {
-          "id": "220",
-          "type": "places"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/places/countries/united-states"
-        }
-      },
-      "localities": {
-        "links": {
-          "related": "http://api.dbljump.com/places/subdivisions/texas-united-states/localities"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/places/subdivisions/texas-united-states"
-    }
-  },
-  "included": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
-    },
-    {
-      "id": "220",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "united-states",
-        "name": "United States",
-        "short_name": "USA",
-        "formatted": "United States"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/united-states"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "texas, united states, state, county, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from Texas, United States at Dbljump.",
-    "created_at": "2017-03-30T12:39:55.300Z",
-    "updated_at": "2017-03-30T12:39:55.300Z"
-  }
-}
-</code></pre>
-<p>Retrieve a single subdivision record. Subdivisions are publicly available. No sign-in is required.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /places/subdivisions/{slug}</code> (replace <code class="prettyprint">{slug}</code> with subdivision record slug)</p>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-<h3 id="response-attributes"><a name="subdiv_response_attrs"></a>Response attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>subtype</td>
-<td>string</td>
-<td>Y</td>
-<td>The place subclass. Always <code class="prettyprint">subdivisions</code>.</td>
-</tr>
-<tr>
-<td>slug</td>
-<td>string</td>
-<td>Y</td>
-<td>A record ID based on the formatted name, e.g. <code class="prettyprint">california-united-states</code>.</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>English-language common name, e.g. <code class="prettyprint">California</code>.</td>
-</tr>
-<tr>
-<td>short_name</td>
-<td>null</td>
-<td></td>
-<td>Always <code class="prettyprint">null</code>.</td>
-</tr>
-<tr>
-<td>formatted</td>
-<td>string</td>
-<td>Y</td>
-<td>The name and parent country name, e.g. <code class="prettyprint">California, United States</code>.</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>number</td>
-<td></td>
-<td>Global coordinate.</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>number</td>
-<td></td>
-<td>Global coordinate.</td>
-</tr>
-<tr>
-<td>also_known_as</td>
-<td>array</td>
-<td></td>
-<td>Other names the subdivision is known by, e.g. <code class="prettyprint">[&#39;The Golden State&#39;]</code>.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<table><thead>
-<tr>
-<th>Association</th>
-<th>Record type</th>
-<th>Relationship type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>created_by</td>
-<td>users</td>
-<td>belongs_to</td>
-</tr>
-<tr>
-<td>country</td>
-<td>places (countries)</td>
-<td>belongs_to</td>
-</tr>
-<tr>
-<td>localities</td>
-<td>places (localities)</td>
-<td>has_many</td>
-</tr>
-</tbody></table>
-
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>users</td>
-<td>created_by</td>
-<td>username, role, given_names, family_name, avatar</td>
-</tr>
-<tr>
-<td>places (countries)</td>
-<td>country</td>
-<td>subtype, slug, name, short_name, formatted</td>
-</tr>
-</tbody></table>
-
-<h3 id="meta">Meta</h3>
-
-<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
-
-          <h2 id="create-a-new-subdivision-record"><a name="subdivs_create"></a>Create a new subdivision record</h2>
-
-<blockquote>
-<p>Request body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "places",
-    "attributes": {
-      "name": "New Subdivision",
-      "also_known_as": ["That New Subdiv", "The New Subdiv"],
-      "latitude": "17.85",
-      "longitude": "-20.00"
-    },
-    "relationships": {
-      "country": {
-        "data": {
-          "id": "1",
-          "type": "places"
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>HTTP 201 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "2938",
-    "type": "places",
-    "attributes": {
-      "subtype": "subdivisions",
-      "slug": "new-subdivision-afghanistan",
-      "name": "New Subdivision",
-      "short_name": null,
-      "formatted": "New Subdivision, Afghanistan",
-      "latitude": 17.85,
-      "longitude": -20,
-      "also_known_as": [
-        "That New Subdiv",
-        "The New Subdiv"
-      ]
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "2",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/users/2"
-        }
-      },
-      "country": {
-        "data": {
-          "id": "1",
-          "type": "places"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/places/countries/afghanistan"
-        }
-      },
-      "localities": {
-        "links": {
-          "related": "http://api.dbljump.com/places/subdivisions/new-subdivision-afghanistan/localities"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/places/subdivisions/new-subdivision-afghanistan"
-    }
-  },
-  "included": [
-    {
-      "id": "2",
-      "type": "users",
-      "attributes": {
-        "username": "neil",
-        "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/2"
-      }
-    },
-    {
-      "id": "1",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "afghanistan",
-        "name": "Afghanistan",
-        "short_name": null,
-        "formatted": "Afghanistan"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/afghanistan"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "new subdivision, afghanistan, that new subdiv, the new subdiv, state, county, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from New Subdivision, Afghanistan at Dbljump.",
-    "created_at": "2017-03-30T13:45:33.826Z",
-    "updated_at": "2017-03-30T13:45:33.826Z"
-  }
-}
-</code></pre>
-<p>Create a new subdivision record. Admin-level authorization required.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">POST /places/subdivisions</code></p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>2-250 chars. English-language common name, e.g. &lsquo;Florida&rsquo;.</td>
-</tr>
-<tr>
-<td>also_known_as</td>
-<td>array</td>
-<td></td>
-<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;The Sunshine State&#39;]</code>.</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -90 and 90.</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -180 and 180.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>country</td>
-<td>belongs_to</td>
-<td>Y</td>
-<td>places</td>
-<td>The <a href="#countries_intro">country</a> this subdivision is in.</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">201 Created</code></p>
-
-          <h2 id="update-a-subdivision-record"><a name="subdivs_update"></a>Update a subdivision record</h2>
-
-<blockquote>
-<p>Request body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "places",
-    "id": "north-puerto-rico",
-    "attributes": {
-      "name": "Updated Subdivision",
-      "also_known_as": ["Updated Subdiv", "Changed Subdiv"],
-      "latitude": "3.0",
-      "longitude": "-25.00"
-    },
-    "relationships": {
-      "country": {
-        "data": {
-          "id": "10",
-          "type": "places"
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "269",
-    "type": "places",
-    "attributes": {
-      "subtype": "subdivisions",
-      "slug": "updated-subdivision-armenia",
-      "name": "Updated Subdivision",
-      "short_name": null,
-      "formatted": "Updated Subdivision, Armenia",
-      "latitude": 3,
-      "longitude": -25,
-      "also_known_as": [
-        "Updated Subdiv",
-        "Changed Subdiv"
-      ]
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/users/1"
-        }
-      },
-      "country": {
-        "data": {
-          "id": "10",
-          "type": "places"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/places/countries/armenia"
-        }
-      },
-      "localities": {
-        "links": {
-          "related": "http://api.dbljump.com/places/subdivisions/updated-subdivision-armenia/localities"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/places/subdivisions/updated-subdivision-armenia"
-    }
-  },
-  "included": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
-    },
-    {
-      "id": "10",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "armenia",
-        "name": "Armenia",
-        "short_name": null,
-        "formatted": "Armenia"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/armenia"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "updated subdivision, armenia, updated subdiv, changed subdiv, state, county, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from Updated Subdivision, Armenia at Dbljump.",
-    "created_at": "2017-03-30T12:38:30.707Z",
-    "updated_at": "2017-03-30T13:46:24.805Z"
-  }
-}
-</code></pre>
-<p>Update an existing subdivision record. The user must be an admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">PATCH /places/subdivisions/{slug}</code> (replace <code class="prettyprint">{slug}</code> with subdivision record slug)</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>2-250 chars. English-language common name, e.g. &lsquo;Florida&rsquo;.</td>
-</tr>
-<tr>
-<td>also_known_as</td>
-<td>array</td>
-<td></td>
-<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;The Sunshine State&#39;]</code>.</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -90 and 90.</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -180 and 180.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>country</td>
-<td>belongs_to</td>
-<td>Y</td>
-<td>places</td>
-<td>The <a href="#countries_intro">country</a> this subdivision is in.</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="delete-a-subdivision-record">Delete a subdivision record</h2>
-
-<p>Delete an existing subdivision record. Admin-level authorization required.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">DELETE /places/subdivisions/{slug}</code> (replace <code class="prettyprint">{slug}</code> with subdivision record slug)</p>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">204 No Content</code></p>
-
-          <h2 id="subdivision-localities-get-all">Subdivision localities: get all</h2>
-
-<blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": [
-    {
-      "id": "2925",
-      "type": "places",
-      "attributes": {
-        "subtype": "localities",
-        "slug": "tokyo-tokyo-prefecture-japan",
-        "name": "Tokyo",
-        "short_name": null,
-        "formatted": "Tokyo, Tokyo Prefecture, Japan",
-        "also_known_as": [],
-        "latitude": null,
-        "longitude": null
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "country": {
-          "data": {
-            "id": "102",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/japan"
-          }
-        },
-        "subdivision": {
-          "data": {
-            "id": "2627",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/localities/tokyo-tokyo-prefecture-japan"
-      }
-    },
-    {
-      "id": "2926",
-      "type": "places",
-      "attributes": {
-        "subtype": "localities",
-        "slug": "chiyoda-tokyo-prefecture-japan",
-        "name": "Chiyoda",
-        "short_name": null,
-        "formatted": "Chiyoda, Tokyo Prefecture, Japan",
-        "also_known_as": [],
-        "latitude": null,
-        "longitude": null
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "country": {
-          "data": {
-            "id": "102",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/japan"
-          }
-        },
-        "subdivision": {
-          "data": {
-            "id": "2627",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/localities/chiyoda-tokyo-prefecture-japan"
-      }
-    },
-    {
-      "id": "2927",
-      "type": "places",
-      "attributes": {
-        "subtype": "localities",
-        "slug": "minato-tokyo-prefecture-japan",
-        "name": "Minato",
-        "short_name": null,
-        "formatted": "Minato, Tokyo Prefecture, Japan",
-        "also_known_as": [],
-        "latitude": null,
-        "longitude": null
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "country": {
-          "data": {
-            "id": "102",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/japan"
-          }
-        },
-        "subdivision": {
-          "data": {
-            "id": "2627",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/localities/minato-tokyo-prefecture-japan"
-      }
-    }
-  ],
-  "links": {
-    "self": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan/localities?page%5Bnumber%5D=1&amp;page%5Bsize%5D=3",
-    "next": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan/localities?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3",
-    "last": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan/localities?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3"
-  },
-  "meta": {
-    "total_items": 5
-  }
-}
-</code></pre>
-<p>Retrieve all localities belonging to the given subdivision. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /places/subdivisions/{subdivision-slug}/localities</code> (replace <code class="prettyprint">{subdivision-slug}</code> with subdivision record slug)</p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number</td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of images per page</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="subdivision-localities-create-new">Subdivision localities: create new</h2>
-
-<blockquote>
-<p>Request body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "places",
-    "attributes": {
-      "name": "New City",
-      "also_known_as": ["That New City", "The New Locality"],
-      "latitude": "70.3",
-      "longitude": "-45.5"
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>HTTP 201 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "2941",
-    "type": "places",
-    "attributes": {
-      "subtype": "localities",
-      "slug": "new-city-tokyo-prefecture-japan",
-      "name": "New City",
-      "short_name": null,
-      "formatted": "New City, Tokyo Prefecture, Japan",
-      "also_known_as": [
-        "That New City",
-        "The New Locality"
-      ],
-      "latitude": 70.3,
-      "longitude": -45.5
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "2",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/users/2"
-        }
-      },
-      "country": {
-        "data": {
-          "id": "102",
-          "type": "places"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/places/countries/japan"
-        }
-      },
-      "subdivision": {
-        "data": {
-          "id": "2627",
-          "type": "places"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/places/localities/new-city-tokyo-prefecture-japan"
-    }
-  },
-  "included": [
-    {
-      "id": "2",
-      "type": "users",
-      "attributes": {
-        "username": "neil",
-        "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/2"
-      }
-    },
-    {
-      "id": "102",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "japan",
-        "name": "Japan",
-        "short_name": null,
-        "formatted": "Japan"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/japan"
-      }
-    },
-    {
-      "id": "2627",
-      "type": "places",
-      "attributes": {
-        "subtype": "subdivisions",
-        "slug": "tokyo-prefecture-japan",
-        "name": "Tokyo Prefecture",
-        "short_name": null,
-        "formatted": "Tokyo Prefecture, Japan"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/subdivisions/tokyo-prefecture-japan"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "new city, tokyo prefecture, japan, that new city, the new locality, city, town, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from New City, Tokyo Prefecture, Japan at Dbljump.",
-    "created_at": "2017-03-30T13:57:23.909Z",
-    "updated_at": "2017-03-30T13:57:23.909Z"
-  }
-}
-</code></pre>
-<p>Create a new locality record belonging to the given subdivision. Admin-level authorization required.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">POST /places/subdivisions/{subdivision-slug}/localities</code> (replace <code class="prettyprint">{subdivision-slug}</code> with subdivision record slug)</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>2-250 chars. English-language common name, e.g. &lsquo;Los Angeles&rsquo;.</td>
-</tr>
-<tr>
-<td>also_known_as</td>
-<td>array</td>
-<td></td>
-<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;LA&#39;, &#39;City of Angels&#39;]</code>.</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -90 and 90.</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -180 and 180.</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">201 Created</code></p>
-
-<h3 id="errors">Errors</h3>
-
-<p>See <a href="#localities_errors">Places:localities - Errors</a>.</p>
-
-          <h2 id="errors"><a name="subdivs_errors"></a>Errors</h2>
-
-<p>Errors specific to creating and updating subdivision records.</p>
-
-<aside class="notice"><code>country_id</code> may be aliased as <code>parent_id</code> in these errors.</aside>
-
-<table><thead>
-<tr>
-<th>HTTP code</th>
-<th>Error code</th>
-<th>Pointer</th>
-<th>Title</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>PLACE_SUBDIVISION_COUNTRY_ID_BLANK</td>
-<td>relationships/country/data/id</td>
-<td>Country ID is required.</td>
+<td>PLACE_CHILDREN_PRESENT</td>
+<td>relationships/parent/data/id</td>
+<td>Localities cannot cannot contain child places.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PLACE_SUBDIVISION_COUNTRY_ID_INVALID</td>
-<td>relationships/country/data/id</td>
-<td>Country ID must be a valid country record.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_SUBDIVISION_NAME_BLANK</td>
-<td>name</td>
-<td>Name is required.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_SUBDIVISION_NAME_TAKEN</td>
-<td>name</td>
-<td>There&rsquo;s already a subdivision with that name and parent country.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_SUBDIVISION_NAME_TOO_SHORT</td>
-<td>name</td>
-<td>Name must be at least 2 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_SUBDIVISION_NAME_TOO_LONG</td>
-<td>name</td>
-<td>Name cannot be more than 50 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_SUBDIVISION_ALSO_KNOWN_AS_TOO_SHORT</td>
-<td>also_known_as</td>
-<td>Also-known-as tags must be at least 2 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_SUBDIVISION_ALSO_KNOWN_AS_TOO_LONG</td>
-<td>also_known_as</td>
-<td>Also-known-as tags cannot be more than 50 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_SUBDIVISION_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
-<td>latitude</td>
-<td>Latitude must be between -90 and 90.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_SUBDIVISION_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
-<td>latitude</td>
-<td>Latitude must be between -90 and 90.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_SUBDIVISION_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
-<td>longitude</td>
-<td>Longitude must be between -180 and 180.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_SUBDIVISION_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
-<td>longitude</td>
-<td>Longitude must be between -180 and 180.</td>
-</tr>
-</tbody></table>
-
-          <h1 id="places-localities"><a name="localities_intro"></a>Places: localities</h1>
-
-<p>Resources related to geographic localities (e.g. cities and towns).</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<p>See <a href="#localities_create">Create a new locality record</a> and <a href="#localities_update">Update a locality record</a>.</p>
-
-<h3 id="response-attributes">Response attributes</h3>
-
-<p>See <a href="#localities_show">Get single locality</a>.</p>
-
-          <h2 id="get-all-localities">Get all localities</h2>
-
-<blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": [
-    {
-      "id": "2936",
-      "type": "places",
-      "attributes": {
-        "subtype": "localities",
-        "slug": "matsumoto-nagano-prefecture-japan",
-        "name": "Matsumoto",
-        "short_name": null,
-        "formatted": "Matsumoto, Nagano Prefecture, Japan",
-        "also_known_as": [],
-        "latitude": null,
-        "longitude": null
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "country": {
-          "data": {
-            "id": "102",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/japan"
-          }
-        },
-        "subdivision": {
-          "data": {
-            "id": "1795",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/subdivisions/nagano-prefecture-japan"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/localities/matsumoto-nagano-prefecture-japan"
-      }
-    },
-    {
-      "id": "2935",
-      "type": "places",
-      "attributes": {
-        "subtype": "localities",
-        "slug": "nagano-nagano-prefecture-japan",
-        "name": "Nagano",
-        "short_name": null,
-        "formatted": "Nagano, Nagano Prefecture, Japan",
-        "also_known_as": [],
-        "latitude": null,
-        "longitude": null
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "country": {
-          "data": {
-            "id": "102",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/japan"
-          }
-        },
-        "subdivision": {
-          "data": {
-            "id": "1795",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/subdivisions/nagano-prefecture-japan"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/localities/nagano-nagano-prefecture-japan"
-      }
-    },
-    {
-      "id": "2934",
-      "type": "places",
-      "attributes": {
-        "subtype": "localities",
-        "slug": "sapporo-hokkaido-prefecture-japan",
-        "name": "Sapporo",
-        "short_name": null,
-        "formatted": "Sapporo, Hokkaido Prefecture, Japan",
-        "also_known_as": [],
-        "latitude": null,
-        "longitude": null
-      },
-      "relationships": {
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "country": {
-          "data": {
-            "id": "102",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/japan"
-          }
-        },
-        "subdivision": {
-          "data": {
-            "id": "1232",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/subdivisions/hokkaido-prefecture-japan"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/localities/sapporo-hokkaido-prefecture-japan"
-      }
-    }
-  ],
-  "links": {
-    "self": "http://api.dbljump.com/places/localities?page%5Bnumber%5D=1&amp;page%5Bsize%5D=3",
-    "next": "http://api.dbljump.com/places/localities?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3",
-    "last": "http://api.dbljump.com/places/localities?page%5Bnumber%5D=19&amp;page%5Bsize%5D=3"
-  },
-  "meta": {
-    "total_items": 56
-  }
-}
-</code></pre>
-<p>Retrieve all localities. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /places/localities</code></p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number</td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of images per page</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="get-single-locality"><a name="localities_show"></a>Get single locality</h2>
-
-<blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "2936",
-    "type": "places",
-    "attributes": {
-      "subtype": "localities",
-      "slug": "matsumoto-nagano-prefecture-japan",
-      "name": "Matsumoto",
-      "short_name": null,
-      "formatted": "Matsumoto, Nagano Prefecture, Japan",
-      "also_known_as": [],
-      "latitude": null,
-      "longitude": null
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/users/1"
-        }
-      },
-      "country": {
-        "data": {
-          "id": "102",
-          "type": "places"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/places/countries/japan"
-        }
-      },
-      "subdivision": {
-        "data": {
-          "id": "1795",
-          "type": "places"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/places/subdivisions/nagano-prefecture-japan"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/places/localities/matsumoto-nagano-prefecture-japan"
-    }
-  },
-  "included": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
-    },
-    {
-      "id": "102",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "japan",
-        "name": "Japan",
-        "short_name": null,
-        "formatted": "Japan"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/japan"
-      }
-    },
-    {
-      "id": "1795",
-      "type": "places",
-      "attributes": {
-        "subtype": "subdivisions",
-        "slug": "nagano-prefecture-japan",
-        "name": "Nagano Prefecture",
-        "short_name": null,
-        "formatted": "Nagano Prefecture, Japan"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/subdivisions/nagano-prefecture-japan"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "matsumoto, nagano prefecture, japan, city, town, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from Matsumoto, Nagano Prefecture, Japan at Dbljump.",
-    "created_at": "2017-03-30T12:40:07.612Z",
-    "updated_at": "2017-03-30T12:40:07.612Z"
-  }
-}
-</code></pre>
-<p>Retrieve a single locality record. Localities are publicly available. No sign-in is required.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /places/localities/{slug}</code> (replace <code class="prettyprint">{slug}</code> with locality record slug)</p>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-<h3 id="response-attributes"><a name="subdiv_response_attrs"></a>Response attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>subtype</td>
-<td>string</td>
-<td>Y</td>
-<td>The place subclass. Always <code class="prettyprint">localities</code>.</td>
-</tr>
-<tr>
-<td>slug</td>
-<td>string</td>
-<td>Y</td>
-<td>A record ID based on the formatted name, e.g. <code class="prettyprint">los-angeles-california-united-states</code>.</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>English-language common name, e.g. <code class="prettyprint">Los Angeles</code>.</td>
-</tr>
-<tr>
-<td>short_name</td>
-<td>null</td>
-<td></td>
-<td>Always <code class="prettyprint">null</code>.</td>
-</tr>
-<tr>
-<td>formatted</td>
-<td>string</td>
-<td>Y</td>
-<td>The name and parent subdivision and country names, e.g. <code class="prettyprint">Los Angeles, California, United States</code>.</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>number</td>
-<td></td>
-<td>Global coordinate.</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>number</td>
-<td></td>
-<td>Global coordinate.</td>
-</tr>
-<tr>
-<td>also_known_as</td>
-<td>array</td>
-<td></td>
-<td>Other names the locality is known by, e.g. <code class="prettyprint">[&#39;LA&#39;, &#39;City of Angels&#39;]</code>.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<table><thead>
-<tr>
-<th>Association</th>
-<th>Record type</th>
-<th>Relationship type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>created_by</td>
-<td>users</td>
-<td>belongs_to</td>
-</tr>
-<tr>
-<td>country</td>
-<td>places (countries)</td>
-<td>belongs_to</td>
-</tr>
-<tr>
-<td>subdivision</td>
-<td>places (subdivisions)</td>
-<td>belongs_to</td>
-</tr>
-</tbody></table>
-
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>users</td>
-<td>created_by</td>
-<td>username, role, given_names, family_name, avatar</td>
-</tr>
-<tr>
-<td>places (countries)</td>
-<td>country</td>
-<td>subtype, slug, name, short_name, formatted</td>
-</tr>
-<tr>
-<td>places (subdivisions)</td>
-<td>country</td>
-<td>subtype, slug, name, short_name, formatted</td>
-</tr>
-</tbody></table>
-
-<h3 id="meta">Meta</h3>
-
-<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
-
-          <h2 id="create-a-new-locality-record"><a name="localities_create"></a>Create a new locality record</h2>
-
-<blockquote>
-<p>Request body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "places",
-    "attributes": {
-      "name": "New City",
-      "also_known_as": ["That New City", "The New Locality"],
-      "latitude": "81.3",
-      "longitude": "-45.9"
-    },
-    "relationships": {
-      "subdivision": {
-        "data": {
-          "id": "1000",
-          "type": "places"
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>HTTP 201 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "2939",
-    "type": "places",
-    "attributes": {
-      "subtype": "localities",
-      "slug": "new-city-enugu-nigeria",
-      "name": "New City",
-      "short_name": null,
-      "formatted": "New City, Enugu, Nigeria",
-      "also_known_as": [
-        "That New City",
-        "The New Locality"
-      ],
-      "latitude": 81.3,
-      "longitude": -45.9
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "2",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/users/2"
-        }
-      },
-      "country": {
-        "data": {
-          "id": "150",
-          "type": "places"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/places/countries/nigeria"
-        }
-      },
-      "subdivision": {
-        "data": {
-          "id": "1000",
-          "type": "places"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/places/subdivisions/enugu-nigeria"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/places/localities/new-city-enugu-nigeria"
-    }
-  },
-  "included": [
-    {
-      "id": "2",
-      "type": "users",
-      "attributes": {
-        "username": "neil",
-        "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/2"
-      }
-    },
-    {
-      "id": "150",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "nigeria",
-        "name": "Nigeria",
-        "short_name": null,
-        "formatted": "Nigeria"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/nigeria"
-      }
-    },
-    {
-      "id": "1000",
-      "type": "places",
-      "attributes": {
-        "subtype": "subdivisions",
-        "slug": "enugu-nigeria",
-        "name": "Enugu",
-        "short_name": null,
-        "formatted": "Enugu, Nigeria"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/subdivisions/enugu-nigeria"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "new city, enugu, nigeria, that new city, the new locality, city, town, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from New City, Enugu, Nigeria at Dbljump.",
-    "created_at": "2017-03-30T13:50:25.595Z",
-    "updated_at": "2017-03-30T13:50:25.595Z"
-  }
-}
-</code></pre>
-<p>Create a new locality record. Admin-level authorization required.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">POST /places/localities</code></p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>2-250 chars. English-language common name, e.g. &lsquo;Los Angeles&rsquo;.</td>
-</tr>
-<tr>
-<td>also_known_as</td>
-<td>array</td>
-<td></td>
-<td>Members must be 2-50 char strings. E.g. <code class="prettyprint">[&#39;LA&#39;, &#39;City of Angels&#39;]</code>.</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -90 and 90.</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>number/float</td>
-<td></td>
-<td>Between -180 and 180.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>subdivision</td>
-<td>belongs_to</td>
-<td>Y</td>
-<td>places</td>
-<td>The <a href="#subdivs_intro">subdivision</a> this locality is in.</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">201 Created</code></p>
-
-          <h2 id="update-a-locality-record"><a name="localities_update"></a>Update a locality record</h2>
-
-<blockquote>
-<p>Request body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "places",
-    "id": "matsumoto-nagano-prefecture-japan",
-    "attributes": {
-      "name": "Updated City",
-      "also_known_as": ["Updated City", "Changed Locality"],
-      "latitude": "24.0",
-      "longitude": "89.5"
-    },
-    "relationships": {
-      "subdivision": {
-        "data": {
-          "id": "1001",
-          "type": "places"
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "2936",
-    "type": "places",
-    "attributes": {
-      "subtype": "localities",
-      "slug": "updated-city-epirus-greece",
-      "name": "Updated City",
-      "short_name": null,
-      "formatted": "Updated City, Epirus, Greece",
-      "also_known_as": [
-        "Updated City",
-        "Changed Locality"
-      ],
-      "latitude": 24,
-      "longitude": 89.5
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/users/1"
-        }
-      },
-      "country": {
-        "data": {
-          "id": "78",
-          "type": "places"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/places/countries/greece"
-        }
-      },
-      "subdivision": {
-        "data": {
-          "id": "1001",
-          "type": "places"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/places/subdivisions/epirus-greece"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/places/localities/updated-city-epirus-greece"
-    }
-  },
-  "included": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
-    },
-    {
-      "id": "78",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "greece",
-        "name": "Greece",
-        "short_name": null,
-        "formatted": "Greece"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/greece"
-      }
-    },
-    {
-      "id": "1001",
-      "type": "places",
-      "attributes": {
-        "subtype": "subdivisions",
-        "slug": "epirus-greece",
-        "name": "Epirus",
-        "short_name": null,
-        "formatted": "Epirus, Greece"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/subdivisions/epirus-greece"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "updated city, epirus, greece, updated city, changed locality, city, town, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from Updated City, Epirus, Greece at Dbljump.",
-    "created_at": "2017-03-30T12:40:07.612Z",
-    "updated_at": "2017-03-30T13:51:05.564Z"
-  }
-}
-</code></pre>
-<p>Update an existing locality record. The user must be an admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">PATCH /places/localities/{slug}</code> (replace <code class="prettyprint">{slug}</code> with locality record slug)</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-</tr>
-<tr>
-<td>also_known_as</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>number/float</td>
-<td></td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>number/float</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>subdivision</td>
-<td>belongs_to</td>
-<td>Y</td>
-<td>places</td>
-<td>The <a href="#subdivs_intro">subdivision</a> this locality is in.</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="delete-a-locality-record">Delete a locality record</h2>
-
-<p>Delete an existing locality record. Admin-level authorization required.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">DELETE /places/localities/{slug}</code> (replace <code class="prettyprint">{slug}</code> with locality record slug)</p>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">204 No Content</code></p>
-
-          <h2 id="errors"><a name="localities_errors"></a>Errors</h2>
-
-<p>Errors specific to creating and updating locality records.</p>
-
-<aside class="notice"><code>parent_id</code> refers to <code>subdivision_id</code> in these errors.</aside>
-
-<table><thead>
-<tr>
-<th>HTTP code</th>
-<th>Error code</th>
-<th>Pointer</th>
-<th>Title</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>PLACE_LOCALITY_PARENT_ID_BLANK</td>
-<td>parent_id</td>
-<td>Subdivision ID is required.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_LOCALITY_PARENT_ID_INVALID</td>
-<td>parent_id</td>
-<td>Subdivision ID must be a valid subdivision record.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_LOCALITY_NAME_BLANK</td>
-<td>name</td>
-<td>Name is required.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_LOCALITY_NAME_TAKEN</td>
-<td>name</td>
-<td>There&rsquo;s already a locality with that name and parent subdivision.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_LOCALITY_NAME_TOO_SHORT</td>
-<td>name</td>
-<td>Name must be at least 2 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_LOCALITY_NAME_TOO_LONG</td>
-<td>name</td>
-<td>Name cannot be more than 50 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_LOCALITY_ALSO_KNOWN_AS_TOO_SHORT</td>
-<td>also_known_as</td>
-<td>Also-known-as tags must be at least 2 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_LOCALITY_ALSO_KNOWN_AS_TOO_LONG</td>
-<td>also_known_as</td>
-<td>Also-known-as tags cannot be more than 50 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_LOCALITY_LATITUDE_GREATER_THAN_OR_EQUAL_TO</td>
-<td>latitude</td>
-<td>Latitude must be between -90 and 90.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_LOCALITY_LATITUDE_LESS_THAN_OR_EQUAL_TO</td>
-<td>latitude</td>
-<td>Latitude must be between -90 and 90.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_LOCALITY_LONGITUDE_GREATER_THAN_OR_EQUAL_TO</td>
-<td>longitude</td>
-<td>Longitude must be between -180 and 180.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>PLACE_LOCALITY_LONGITUDE_LESS_THAN_OR_EQUAL_TO</td>
-<td>longitude</td>
-<td>Longitude must be between -180 and 180.</td>
+<td>PLACE_CHILDREN_INVALID</td>
+<td>relationships/parent/data/id</td>
+<td>At least one of the child place IDs isn&rsquo;t valid.</td>
 </tr>
 </tbody></table>
 
