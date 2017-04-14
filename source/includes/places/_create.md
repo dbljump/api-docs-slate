@@ -1,6 +1,6 @@
 ## <a name="places_create"></a>Create a new place record
 
-> Request body
+> Request body | `POST /places`
 
 ```JSON
 {
@@ -13,9 +13,7 @@
       "also_known_as": ["Old Line State", "Chesapeake Bay State"],
       "latitude": "38.0",
       "longitude": "-77.0",
-      "iso_code": "",
-      "currency": "",
-      "nationality": ""
+      "iso_code": ""
     },
     "relationships": {
       "parent": {
@@ -29,7 +27,7 @@
 }
 ```
 
-> HTTP 201 response body
+> Response body | `HTTP 201`
 
 ```JSON
 {
@@ -95,20 +93,6 @@
       "links": {
         "self": "http://api.dbljump.com/users/2"
       }
-    },
-    {
-      "id": "1",
-      "type": "places",
-      "attributes": {
-        "subtype": "country",
-        "slug": "united-states",
-        "name": "United States",
-        "short_name": "USA",
-        "formatted": "United States"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/united-states"
-      }
     }
   ],
   "meta": {
@@ -120,10 +104,10 @@
 }
 ```
 
-Create a new place record. Use the `kind` attribute to set whether the place is a region (i.e. a group of countries), country, subdivision (i.e. a state or county), or locality (i.e. a town or city). Admin-level authorization required.
+Create a new place record. Use the `kind` attribute to set whether the place is a region (i.e. a group of countries), country, subdivision (i.e. a state or county), or locality (i.e. a town or city). Admin-level authorization required, or editor-level if `kind == 'locality'`.
 
 * User authentication: required
-* Authorization level: admin
+* Authorization level: admin for `region`, `country` or `subdivision`; editor for `locality` records.
 
 ### HTTP request
 
@@ -131,28 +115,22 @@ Create a new place record. Use the `kind` attribute to set whether the place is 
 
 ### Request attributes
 
-We could cut the country-only `currency`, `iso_code` and `nationality` attributes, I don't know what we'll even use these for tbh.
-
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 kind | string | Y | Must be 'region', 'country', 'subdivision', or 'locality'.
 name | string | Y | Unique. 2-50 chars. English-language common name, e.g. 'United States'.
 short_name | string | | Unique. 2-20 chars. Common short name, e.g. 'USA'.
 also_known_as | array | | Members must be 2-50 char strings. E.g. `['US', 'America']`.
-latitude | number/float | | Between -90 and 90.
-longitude | number/float | | Between -180 and 180.
-currency | string | | COUNTRY ONLY. Must be 3 chars. ISO 4217 currency code, e.g. 'USD'.
-iso_code | string | Y | COUNTRY ONLY. Unique. 2 chars. ISO 3166-1 country code.
-nationality | string | | COUNTRY ONLY. 2-30 chars. English-lang common term, e.g. 'American'.
+latitude | number | | Between -90 and 90.
+longitude | number | | Between -180 and 180.
+iso_code | string | Country-only | Unique. 2 chars. ISO 3166-1 country code.
 
 ### Relationships
 
-Country-region relationships would be handled with their own endpoint, probably `/places/relationships/country-regions`.
-
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | ----------
-parent | belongs_to | For subdivs and localities | places | The country a subdivision is in, or the subdivision a locality is in.
-children | has_many | | places | The subdivs in a country, or the localities in a subdivision
+parent | belongs_to | Subdivisions and localities only | places | The country a subdivision is in; the subdivision a locality is in.
+children | has_many | | places | The countries inside a region.
 
 ### Success HTTP response code
 

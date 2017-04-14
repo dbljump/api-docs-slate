@@ -1,60 +1,125 @@
 ## <a name="places_index"></a>Get all places
 
-> HTTP 200 response body
+> Response body | `HTTP 200`
 
 ```JSON
+# GET /places?page[size]=2&filter[kind]=subdivision
+
 {
   "data": [
     {
-      "id": "1",
+      "id": "2237",
       "type": "places",
       "attributes": {
-        "subtype": "countries",
-        "slug": "afghanistan",
-        "name": "Afghanistan",
+        "kind": "subdivision",
+        "slug": "sabha-libya",
+        "name": "Sabha",
+        "formatted": "Sabha, Libya",
         "short_name": null,
-        "formatted": "Afghanistan"
+        "also_known_as": [],
+        "latitude": null,
+        "longitude": null,
+        "iso_code": null
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "117",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/libya"
+          }
+        },
+        "children": {
+          "data": [],
+          "links": {
+            "related": "http://api.dbljump.com/places/sabha-libya/children"
+          }
+        },
+        "regions": {
+          "data": [
+            {
+              "id": "236",
+              "type": "places"
+            }
+          ],
+          "links": {
+            "related": "http://api.dbljump.com/places/sabha-libya/regions"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        }
       },
       "links": {
-        "self": "http://api.dbljump.com/places/countries/afghanistan"
+        "self": "http://api.dbljump.com/places/sabha-libya"
       }
     },
     {
-      "id": "2",
+      "id": "240",
       "type": "places",
       "attributes": {
-        "subtype": "countries",
-        "slug": "albania",
-        "name": "Albania",
+        "kind": "subdivision",
+        "slug": "0-niue",
+        "name": "All",
+        "formatted": "All, Niue",
         "short_name": null,
-        "formatted": "Albania"
+        "also_known_as": [],
+        "latitude": null,
+        "longitude": null,
+        "iso_code": null
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "151",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/places/niue"
+          }
+        },
+        "children": {
+          "data": [],
+          "links": {
+            "related": "http://api.dbljump.com/places/0-niue/children"
+          }
+        },
+        "regions": {
+          "data": [],
+          "links": {
+            "related": "http://api.dbljump.com/places/0-niue/regions"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://api.dbljump.com/users/1"
+          }
+        }
       },
       "links": {
-        "self": "http://api.dbljump.com/places/countries/albania"
-      }
-    },
-    {
-      "id": "3",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "algeria",
-        "name": "Algeria",
-        "short_name": null,
-        "formatted": "Algeria"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/algeria"
+        "self": "http://api.dbljump.com/places/0-niue"
       }
     }
   ],
   "links": {
-    "self": "http://api.dbljump.com/places?page%5Bnumber%5D=1&page%5Bsize%5D=3",
-    "next": "http://api.dbljump.com/places?page%5Bnumber%5D=2&page%5Bsize%5D=3",
-    "last": "http://api.dbljump.com/places?page%5Bnumber%5D=979&page%5Bsize%5D=3"
+    "self": "http://api.dbljump.com/places?filter%5Bkind%5D=subdivision&page%5Bnumber%5D=1&page%5Bsize%5D=2",
+    "next": "http://api.dbljump.com/places?filter%5Bkind%5D=subdivision&page%5Bnumber%5D=2&page%5Bsize%5D=2",
+    "last": "http://api.dbljump.com/places?filter%5Bkind%5D=subdivision&page%5Bnumber%5D=1321&page%5Bsize%5D=2"
   },
   "meta": {
-    "total_items": 2936
+    "total_items": 2937
   }
 }
 ```
