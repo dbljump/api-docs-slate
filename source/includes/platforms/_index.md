@@ -132,9 +132,10 @@ Retrieve all platforms. Automatically paginated.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-fields[platforms] | All fields | Return only specified fields, e.g. `/platforms/?fields[platforms]=name,short_name`
-page[number] | 1 | Select the page number
-page[size] | 30 | Select the number of platforms per page
+fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[platforms]=name,short_name`
+filter[{field}] | All records | Filter search by field, e.g. `?filter[name]=Tokyo Prefecture`
+page[number] | 1 | Select the page number, e.g. `?page[number]=3`
+page[size] | 30 | Select the number of records per page, e.g. `?page[size]=20`
 
 ### Success HTTP response code
 

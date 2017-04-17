@@ -209,9 +209,10 @@ Retrieve all places that belong to a given places, i.e. countries that belong to
 
 Parameter | Default | Description
 --------- | ------- | -----------
-fields[places] | All fields | Return only specified fields, e.g. `/places/asia/children?fields[places]=name,formatted`
-page[number] | 1 | Select the page number
-page[size] | 30 | Select the number of images per page
+fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[places]=name,formatted`
+filter[{field}] | All records | Filter search by field, e.g. `?filter[name]=Tokyo Prefecture`
+page[number] | 1 | Select the page number, e.g. `?page[number]=3`
+page[size] | 30 | Select the number of records per page, e.g. `?page[size]=20`
 
 ### Success HTTP response code
 

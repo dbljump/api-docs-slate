@@ -138,9 +138,10 @@ Retrieve all regions that a given country belongs to. Returns a `404` error for 
 
 Parameter | Default | Description
 --------- | ------- | -----------
-fields[places] | All fields | Return only specified fields, e.g. `/places/japan/regions?fields[images]=name`
-page[number] | 1 | Select the page number
-page[size] | 30 | Select the number of images per page
+fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[places]=formatted`
+filter[{field}] | All records | Filter search by field, e.g. `?filter[name]=Asia`
+page[number] | 1 | Select the page number, e.g. `?page[number]=3`
+page[size] | 30 | Select the number of records per page, e.g. `?page[size]=20`
 
 ### Success HTTP response code
 

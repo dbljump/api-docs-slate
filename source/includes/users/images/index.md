@@ -102,8 +102,10 @@ Retrieve all images uploaded by the given user. Automatically paginated.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-page[number] | 1 | Select the page number
-page[size] | 30 | Select the number of images per page
+fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[images]=file,title`
+filter[{field}] | All records | Filter search by field, e.g. `?filter[kind]=logo`
+page[number] | 1 | Select the page number, e.g. `?page[number]=3`
+page[size] | 30 | Select the number of records per page, e.g. `?page[size]=20`
 
 ### Success HTTP response code
 

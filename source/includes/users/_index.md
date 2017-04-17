@@ -144,9 +144,10 @@ Retrieve all users. Automatically paginated. Admin-level authorization required.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-fields[users] | All fields | Return only specified fields, e.g. `/users?fields[users]=username,avatar`
-page[number] | 1 | Select the page number
-page[size] | 30 | Select the number of users per page
+fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[users]=username,avatar`
+filter[{field}] | All records | Filter search by field, e.g. `?filter[role]=admin`
+page[number] | 1 | Select the page number, e.g. `?page[number]=3`, e.g. `?page[number]=3`
+page[size] | 30 | Select the number of records per page, e.g. `?page[size]=20`
 
 ### Success HTTP response code
 
