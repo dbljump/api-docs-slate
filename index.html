@@ -1897,10 +1897,9 @@ Successful responses include the following HTTP header.<br /><br />
       "id": "1",
       "type": "images",
       "attributes": {
-        "subtype": "photos",
         "slug": "nintendo-office-2006-uncategorized-moja-commonswiki",
         "file": "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
-        "kind": "uncategorized",
+        "kind": "photo",
         "title": "Nintendo office",
         "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
         "year": 2006,
@@ -1935,10 +1934,9 @@ Successful responses include the following HTTP header.<br /><br />
       "id": "2",
       "type": "images",
       "attributes": {
-        "subtype": "photos",
         "slug": "mario-figure-2016-uncategorized",
         "file": "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
-        "kind": "uncategorized",
+        "kind": "photo",
         "title": "Mario figure",
         "description": "",
         "year": 2016,
@@ -2032,10 +2030,9 @@ Successful responses include the following HTTP header.<br /><br />
     "id": "2",
     "type": "images",
     "attributes": {
-      "subtype": "photos",
       "slug": "mario-figure-2016-uncategorized",
       "file": "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
-      "kind": "uncategorized",
+      "kind": "photo",
       "title": "Mario figure",
       "description": "",
       "year": 2016,
@@ -2116,28 +2113,22 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>file/url</td>
+<td>file</td>
 <td>string</td>
 <td>Y</td>
 <td>Image URL, usually at AWS.</td>
 </tr>
 <tr>
-<td>subtype</td>
-<td>string</td>
-<td>Y</td>
-<td>The image subclass. Either &lsquo;artworks&rsquo;, &#39;docs&rsquo;, &#39;photos&rsquo;, or &#39;screens&rsquo;.</td>
-</tr>
-<tr>
 <td>slug</td>
 <td>string</td>
 <td>Y</td>
-<td>A record ID based on metadata, e.g. &#39;photo-of-hideo-kojima&rsquo;.</td>
+<td>A record ID based on metadata, e.g. &lsquo;photo-of-hideo-kojima&rsquo;.</td>
 </tr>
 <tr>
 <td>kind</td>
 <td>string</td>
 <td>Y</td>
-<td>A further subcategory related to subtype. See <a href="#image_kind">Kind</a>.</td>
+<td>See <a href="#image_kind">Kind</a>.</td>
 </tr>
 <tr>
 <td>title</td>
@@ -2251,8 +2242,7 @@ Successful responses include the following HTTP header.<br /><br />
     "type": "images",
     "attributes": {
       "base64_file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
-      "subtype": "photos",
-      "kind": "likeness",
+      "kind": "photo",
       "title": "Portrait of Takashi Tezuka",
       "description": "Takashi Tezuka in Kyoto on 2nd February 2017.",
       "year": "",
@@ -2282,10 +2272,9 @@ Successful responses include the following HTTP header.<br /><br />
     "id": "3",
     "type": "images",
     "attributes": {
-      "subtype": "photos",
       "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper",
       "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
-      "kind": "likeness",
+      "kind": "photo",
       "title": "Portrait of Takashi Tezuka",
       "description": "Takashi Tezuka in Kyoto on 2nd February 2017.",
       "year": 2017,
@@ -2388,16 +2377,10 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Image file encoded as base64. See <a href="#image_file">File</a>.</td>
 </tr>
 <tr>
-<td>subtype</td>
-<td>string</td>
-<td>Y</td>
-<td>Must be &lsquo;artworks&rsquo;, &#39;docs&rsquo;, &#39;photos&rsquo;, or &#39;screens&rsquo;.</td>
-</tr>
-<tr>
 <td>kind</td>
 <td>string</td>
 <td>Y</td>
-<td>A subcategory related to the given subtype. See <a href="#image_kind">Kind</a>.</td>
+<td>See <a href="#image_kind">Kind</a>.</td>
 </tr>
 <tr>
 <td>title</td>
@@ -2427,7 +2410,7 @@ Successful responses include the following HTTP header.<br /><br />
 <td>usage_type</td>
 <td>string</td>
 <td>Y</td>
-<td>Must be &#39;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
+<td>Must be &lsquo;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
 </tr>
 <tr>
 <td>usage_license_code</td>
@@ -2487,29 +2470,41 @@ Successful responses include the following HTTP header.<br /><br />
 
 <h3 id="kind"><a name="image_kind"></a>Kind</h3>
 
-<p>The <code class="prettyprint">kind</code> attribute is a subcategory of <code class="prettyprint">subtype</code>. Acceptable values are shown below.</p>
+<p>The <code class="prettyprint">kind</code> attribute accepts the following values.</p>
 
 <table><thead>
 <tr>
-<th>Subtype</th>
-<th>Acceptable kind values</th>
+<th>Kind</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>artworks</td>
-<td>boxart, logo, poster, production, uncategorized</td>
+<td>artwork</td>
+<td>Miscellaneous artwork, e.g. production design drawings or promotional art</td>
 </tr>
 <tr>
-<td>docs</td>
-<td>publication, slides, text, uncategorized</td>
+<td>boxart</td>
+<td>Official box art from various regions</td>
 </tr>
 <tr>
-<td>photos</td>
-<td>event, likeness, place, product, uncategorized</td>
+<td>doc</td>
+<td>Image of a document, e.g. a leaked presentation slide</td>
 </tr>
 <tr>
-<td>screens</td>
-<td>credits, gameplay, title, uncategorized</td>
+<td>logo</td>
+<td>Usually a company or game logo</td>
+</tr>
+<tr>
+<td>photo</td>
+<td>A photograph</td>
+</tr>
+<tr>
+<td>poster</td>
+<td>A game poster</td>
+</tr>
+<tr>
+<td>screen</td>
+<td>A screenshot from a game</td>
 </tr>
 </tbody></table>
 
@@ -2618,8 +2613,7 @@ Successful responses include the following HTTP header.<br /><br />
     "type": "images",
     "id": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper",
     "attributes": {
-      "subtype": "screens",
-      "kind": "gameplay",
+      "kind": "screen",
       "title": "New Title",
       "description": "New description.",
       "year": "",
@@ -2649,10 +2643,9 @@ Successful responses include the following HTTP header.<br /><br />
     "id": "3",
     "type": "images",
     "attributes": {
-      "subtype": "photos",
       "slug": "new-title-screen",
       "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
-      "kind": "uncategorized",
+      "kind": "screen",
       "title": "New Title",
       "description": "New description.",
       "year": 2000,
@@ -2720,7 +2713,7 @@ Successful responses include the following HTTP header.<br /><br />
     }
   ],
   "meta": {
-    "keywords": "new title, 2000, 2000-01-01, new attributed name, photo, likeness, image, picture, media, dbljump, video games, pc games, gaming",
+    "keywords": "new title, 2000, 2000-01-01, new attributed name, screen, image, picture, media, dbljump, video games, pc games, gaming",
     "description": "'New Title' is a video game image at Dbljump.",
     "created_at": "2017-03-30T13:16:18.639Z",
     "updated_at": "2017-03-30T13:25:42.131Z"
@@ -2751,16 +2744,10 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>subtype</td>
-<td>string</td>
-<td>Y</td>
-<td>Must be &lsquo;artworks&rsquo;, &#39;docs&rsquo;, &#39;photos&rsquo;, or &#39;screens&rsquo;.</td>
-</tr>
-<tr>
 <td>kind</td>
 <td>string</td>
 <td>Y</td>
-<td>A subcategory related to the given subtype. Reset to <code class="prettyprint">uncategorized</code> if <code class="prettyprint">subtype</code> is changed. See <a href="#image_kind">Kind</a>.</td>
+<td>See <a href="#image_kind">Kind</a>.</td>
 </tr>
 <tr>
 <td>title</td>
@@ -2790,7 +2777,7 @@ Successful responses include the following HTTP header.<br /><br />
 <td>usage_type</td>
 <td>string</td>
 <td>Y</td>
-<td>Must be &#39;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
+<td>Must be &lsquo;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
 </tr>
 <tr>
 <td>usage_license_code</td>
@@ -2911,18 +2898,6 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 <tr>
 <td>400</td>
-<td>IMAGE_SUBTYPE_BLANK</td>
-<td>type</td>
-<td>Subtype is required.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>IMAGE_SUBTYPE_INCLUSION</td>
-<td>type</td>
-<td>Subtype must be &lsquo;artworks&rsquo;, &#39;docs&rsquo;, &#39;photos&rsquo; or &#39;screens&rsquo;.</td>
-</tr>
-<tr>
-<td>400</td>
 <td>IMAGE_KIND_BLANK</td>
 <td>kind</td>
 <td>Kind is required.</td>
@@ -2931,7 +2906,7 @@ Successful responses include the following HTTP header.<br /><br />
 <td>400</td>
 <td>IMAGE_KIND_INCLUSION</td>
 <td>kind</td>
-<td>Kind must be a valid value for this image type.</td>
+<td>Kind must be a valid value.</td>
 </tr>
 <tr>
 <td>400</td>
@@ -2955,7 +2930,7 @@ Successful responses include the following HTTP header.<br /><br />
 <td>400</td>
 <td>IMAGE_USAGE_TYPE_INCLUSION</td>
 <td>usage_type</td>
-<td>Usage type must be &#39;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;.</td>
+<td>Usage type must be &lsquo;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;.</td>
 </tr>
 <tr>
 <td>400</td>
