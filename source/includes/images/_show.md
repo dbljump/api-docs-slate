@@ -8,10 +8,9 @@
     "id": "2",
     "type": "images",
     "attributes": {
-      "subtype": "photos",
       "slug": "mario-figure-2016-uncategorized",
       "file": "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
-      "kind": "uncategorized",
+      "kind": "photo",
       "title": "Mario figure",
       "description": "",
       "year": 2016,
@@ -84,10 +83,9 @@ Retrieve a single image record. Images are publicly available. No sign-in is req
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-file/url | string | Y | Image URL, usually at AWS.
-subtype | string | Y | The image subclass. Either 'artworks', 'docs', 'photos', or 'screens'.
+file | string | Y | Image URL, usually at AWS.
 slug | string | Y | A record ID based on metadata, e.g. 'photo-of-hideo-kojima'.
-kind | string | Y | A further subcategory related to subtype. See [Kind](#image_kind).
+kind | string | Y | See [Kind](#image_kind).
 title | string | Y | The image title.
 description | string | | The image description.
 year | integer | | Year the image was created.

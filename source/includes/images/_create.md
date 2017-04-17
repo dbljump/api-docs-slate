@@ -8,8 +8,7 @@
     "type": "images",
     "attributes": {
       "base64_file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
-      "subtype": "photos",
-      "kind": "likeness",
+      "kind": "photo",
       "title": "Portrait of Takashi Tezuka",
       "description": "Takashi Tezuka in Kyoto on 2nd February 2017.",
       "year": "",
@@ -40,10 +39,9 @@
     "id": "3",
     "type": "images",
     "attributes": {
-      "subtype": "photos",
       "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper",
       "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
-      "kind": "likeness",
+      "kind": "photo",
       "title": "Portrait of Takashi Tezuka",
       "description": "Takashi Tezuka in Kyoto on 2nd February 2017.",
       "year": 2017,
@@ -133,8 +131,7 @@ Upload a new image. User must be an editor or admin.
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 base64_file | string | Y | Image file encoded as base64. See [File](#image_file).
-subtype | string | Y | Must be 'artworks', 'docs', 'photos', or 'screens'.
-kind | string | Y | A subcategory related to the given subtype. See [Kind](#image_kind).
+kind | string | Y | See [Kind](#image_kind).
 title | string | Y | Max 100 chars.
 description | string | | Max 250 chars.
 year | integer | | 1800 to present year.
@@ -163,14 +160,18 @@ place | belongs_to | | places | A [place record](#places_intro) the image is ass
 
 ### <a name="image_kind"></a>Kind
 
-The `kind` attribute is a subcategory of `subtype`. Acceptable values are shown below.
+The `kind` attribute accepts the following values.
 
-Subtype | Acceptable kind values
-------- | ----------------------
-artworks | boxart, logo, poster, production, uncategorized
-docs | publication, slides, text, uncategorized
-photos | event, likeness, place, product, uncategorized
-screens | credits, gameplay, title, uncategorized
+Kind | Description
+---- | -----------
+artwork | Miscellaneous artwork, e.g. production design drawings or promotional art
+boxart | Official box art from various regions
+doc | Image of a document, e.g. a leaked presentation slide
+logo | Usually a company or game logo
+photo | A photograph
+poster | A game poster
+screen  | A screenshot from a game
+
 
 ### <a name="image_usage_type"></a>Usage type
 

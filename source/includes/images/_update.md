@@ -8,8 +8,7 @@
     "type": "images",
     "id": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper",
     "attributes": {
-      "subtype": "screens",
-      "kind": "gameplay",
+      "kind": "screen",
       "title": "New Title",
       "description": "New description.",
       "year": "",
@@ -40,10 +39,9 @@
     "id": "3",
     "type": "images",
     "attributes": {
-      "subtype": "photos",
       "slug": "new-title-screen",
       "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
-      "kind": "uncategorized",
+      "kind": "screen",
       "title": "New Title",
       "description": "New description.",
       "year": 2000,
@@ -111,7 +109,7 @@
     }
   ],
   "meta": {
-    "keywords": "new title, 2000, 2000-01-01, new attributed name, photo, likeness, image, picture, media, dbljump, video games, pc games, gaming",
+    "keywords": "new title, 2000, 2000-01-01, new attributed name, screen, image, picture, media, dbljump, video games, pc games, gaming",
     "description": "'New Title' is a video game image at Dbljump.",
     "created_at": "2017-03-30T13:16:18.639Z",
     "updated_at": "2017-03-30T13:25:42.131Z"
@@ -134,8 +132,7 @@ The `file` attribute cannot be updated. A new image file can only be uploaded wi
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-subtype | string | Y | Must be 'artworks', 'docs', 'photos', or 'screens'.
-kind | string | Y | A subcategory related to the given subtype. Reset to `uncategorized` if `subtype` is changed. See [Kind](#image_kind).
+kind | string | Y | See [Kind](#image_kind).
 title | string | Y | Max 100 chars.
 description | string | | Max 250 chars.
 year | integer | | 1800 to present year.
