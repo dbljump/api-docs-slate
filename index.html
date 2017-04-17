@@ -299,19 +299,24 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>fields[users]</td>
+<td>fields[{record-type}]</td>
 <td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">/users?fields[users]=username,avatar</code></td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[users]=username,avatar</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[role]=admin</code></td>
 </tr>
 <tr>
 <td>page[number]</td>
 <td>1</td>
-<td>Select the page number</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code>, e.g. <code class="prettyprint">?page[number]=3</code></td>
 </tr>
 <tr>
 <td>page[size]</td>
 <td>30</td>
-<td>Select the number of users per page</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
 </tr>
 </tbody></table>
 
@@ -1032,14 +1037,24 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[images]=file,title</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=logo</code></td>
+</tr>
+<tr>
 <td>page[number]</td>
 <td>1</td>
-<td>Select the page number</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
 </tr>
 <tr>
 <td>page[size]</td>
 <td>30</td>
-<td>Select the number of images per page</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
 </tr>
 </tbody></table>
 
@@ -1982,19 +1997,24 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>fields[images]</td>
+<td>fields[{record-type}]</td>
 <td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">/images?fields[images]=file,title</code></td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[images]=file,title</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=logo</code></td>
 </tr>
 <tr>
 <td>page[number]</td>
 <td>1</td>
-<td>Select the page number</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
 </tr>
 <tr>
 <td>page[size]</td>
 <td>30</td>
-<td>Select the number of images per page</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
 </tr>
 </tbody></table>
 
@@ -3142,19 +3162,24 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>fields[platforms]</td>
+<td>fields[{record-type}]</td>
 <td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">/platforms/?fields[platforms]=name,short_name</code></td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[platforms]=name,short_name</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[name]=Tokyo Prefecture</code></td>
 </tr>
 <tr>
 <td>page[number]</td>
 <td>1</td>
-<td>Select the page number</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
 </tr>
 <tr>
 <td>page[size]</td>
 <td>30</td>
-<td>Select the number of platforms per page</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
 </tr>
 </tbody></table>
 
@@ -4035,24 +4060,24 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>fields[places]</td>
+<td>fields[{record-type}]</td>
 <td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">/places?fields[places]=name,formatted</code></td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[places]=name,formatted</code></td>
 </tr>
 <tr>
-<td>filter[field]</td>
-<td>null</td>
-<td>Filter search by field, e.g. <code class="prettyprint">/places?filter[kind]=country,region</code></td>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=country,region</code></td>
 </tr>
 <tr>
 <td>page[number]</td>
 <td>1</td>
-<td>Select the page number</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
 </tr>
 <tr>
 <td>page[size]</td>
 <td>30</td>
-<td>Select the number of images per page</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
 </tr>
 </tbody></table>
 
@@ -4951,19 +4976,24 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>fields[places]</td>
+<td>fields[{record-type}]</td>
 <td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">/places/asia/children?fields[places]=name,formatted</code></td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[places]=name,formatted</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[name]=Tokyo Prefecture</code></td>
 </tr>
 <tr>
 <td>page[number]</td>
 <td>1</td>
-<td>Select the page number</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
 </tr>
 <tr>
 <td>page[size]</td>
 <td>30</td>
-<td>Select the number of images per page</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
 </tr>
 </tbody></table>
 
@@ -5118,19 +5148,24 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>fields[places]</td>
+<td>fields[{record-type}]</td>
 <td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">/places/japan/regions?fields[images]=name</code></td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[places]=formatted</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[name]=Asia</code></td>
 </tr>
 <tr>
 <td>page[number]</td>
 <td>1</td>
-<td>Select the page number</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
 </tr>
 <tr>
 <td>page[size]</td>
 <td>30</td>
-<td>Select the number of images per page</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
 </tr>
 </tbody></table>
 

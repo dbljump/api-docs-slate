@@ -109,14 +109,24 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[images]=file,title</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=logo</code></td>
+</tr>
+<tr>
 <td>page[number]</td>
 <td>1</td>
-<td>Select the page number</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
 </tr>
 <tr>
 <td>page[size]</td>
 <td>30</td>
-<td>Select the number of images per page</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
 </tr>
 </tbody></table>
 
