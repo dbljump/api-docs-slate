@@ -1,4 +1,4 @@
-# <a name="images_intro"></a>Images
+# <a name="images_intro"></a>Media: Images
 
 Resources related to images.
 

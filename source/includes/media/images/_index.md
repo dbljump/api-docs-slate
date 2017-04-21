@@ -1,17 +1,19 @@
 ## Get all images
 
-> HTTP 200 response body
+> Response body | `HTTP 200`
 
 ```JSON
+# GET /media/images?page[size]=2
+
 {
   "data": [
     {
       "id": "1",
       "type": "images",
       "attributes": {
-        "slug": "nintendo-office-2006-uncategorized-moja-commonswiki",
-        "file": "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
         "kind": "photo",
+        "slug": "nintendo-office-photo",
+        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
         "title": "Nintendo office",
         "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
         "year": 2006,
@@ -35,20 +37,23 @@
           }
         },
         "place": {
-          "data": null
+          "data": null,
+          "links": {
+            "related": "http://api.dbljump.com/places/afghanistan"
+          }
         }
       },
       "links": {
-        "self": "http://api.dbljump.com/images/nintendo-office-2006-uncategorized-moja-commonswiki"
+        "self": "http://api.dbljump.com/media/images/nintendo-office-photo"
       }
     },
     {
       "id": "2",
       "type": "images",
       "attributes": {
-        "slug": "mario-figure-2016-uncategorized",
-        "file": "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
         "kind": "photo",
+        "slug": "mario-figure-photo",
+        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
         "title": "Mario figure",
         "description": "",
         "year": 2016,
@@ -72,17 +77,24 @@
           }
         },
         "place": {
-          "data": null
+          "data": null,
+          "links": {
+            "related": "http://api.dbljump.com/places/afghanistan"
+          }
         }
       },
       "links": {
-        "self": "http://api.dbljump.com/images/mario-figure-2016-uncategorized"
+        "self": "http://api.dbljump.com/media/images/mario-figure-photo"
       }
     }
   ],
-  "links": {},
+  "links": {
+    "self": "http://api.dbljump.com/media/images?page%5Bnumber%5D=1&page%5Bsize%5D=2",
+    "next": "http://api.dbljump.com/media/images?page%5Bnumber%5D=2&page%5Bsize%5D=2",
+    "last": "http://api.dbljump.com/media/images?page%5Bnumber%5D=2&page%5Bsize%5D=2"
+  },
   "meta": {
-    "total_items": 2
+    "total_items": 3
   }
 }
 ```
@@ -94,7 +106,7 @@ Retrieve all images. Automatically paginated.
 
 ### HTTP request
 
-`GET /images`
+`GET /media/images`
 
 ### URL query parameters
 

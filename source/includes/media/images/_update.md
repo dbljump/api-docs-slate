@@ -1,6 +1,6 @@
 ## <a name="images_update"></a>Update an image record
 
-> Request body
+> Request body | `PATCH /media/images/nintendo-office-photo`
 
 ```JSON
 {
@@ -31,17 +31,17 @@
 }
 ```
 
-> HTTP 200 response body
+> Response body | `HTTP 200`
 
 ```JSON
 {
   "data": {
-    "id": "3",
+    "id": "1",
     "type": "images",
     "attributes": {
-      "slug": "new-title-screen",
-      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
       "kind": "screen",
+      "slug": "new-title-screen",
+      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
       "title": "New Title",
       "description": "New description.",
       "year": 2000,
@@ -57,62 +57,45 @@
     "relationships": {
       "uploaded_by": {
         "data": {
-          "id": "2",
+          "id": "1",
           "type": "users"
         },
         "links": {
-          "related": "http://api.dbljump.com/users/2"
+          "related": "http://api.dbljump.com/users/1"
         }
       },
       "place": {
-        "data": {
-          "id": "3",
-          "type": "places"
-        },
+        "data": null,
         "links": {
-          "related": "http://api.dbljump.com/places/algeria"
+          "related": "http://api.dbljump.com/places/afghanistan"
         }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/images/new-title-screen"
+      "self": "http://api.dbljump.com/media/images/new-title-screen"
     }
   },
   "included": [
     {
-      "id": "2",
+      "id": "1",
       "type": "users",
       "attributes": {
-        "username": "neil",
+        "username": "tikithekiwi",
         "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": null
       },
       "links": {
-        "self": "http://api.dbljump.com/users/2"
-      }
-    },
-    {
-      "id": "3",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "algeria",
-        "name": "Algeria",
-        "short_name": null,
-        "formatted": "Algeria"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/algeria"
+        "self": "http://api.dbljump.com/users/1"
       }
     }
   ],
   "meta": {
-    "keywords": "new title, 2000, 2000-01-01, new attributed name, screen, image, picture, media, dbljump, video games, pc games, gaming",
+    "keywords": "new title, screen, 2000, 2000-01-01, new attributed name, image, picture, media, dbljump, video games, pc games, gaming",
     "description": "'New Title' is a video game image at Dbljump.",
-    "created_at": "2017-03-30T13:16:18.639Z",
-    "updated_at": "2017-03-30T13:25:42.131Z"
+    "created_at": "2017-04-21T09:27:46.355Z",
+    "updated_at": "2017-04-21T09:34:24.055Z"
   }
 }
 ```
@@ -126,7 +109,7 @@ The `file` attribute cannot be updated. A new image file can only be uploaded wi
 
 ### HTTP request
 
-`PATCH /images/{slug}` (replace `{slug}` with image record slug)
+`PATCH /media/images/{slug}` (replace `{slug}` with image record slug)
 
 ### Request attributes
 

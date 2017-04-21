@@ -1,6 +1,6 @@
 ## <a name="images_create"></a>Upload a new image
 
-> Request body
+> Request body | `POST /media/images`
 
 ```JSON
 {
@@ -31,7 +31,7 @@
 }
 ```
 
-> HTTP 201 response body
+> Response body | `HTTP 201`
 
 ```JSON
 {
@@ -39,9 +39,9 @@
     "id": "3",
     "type": "images",
     "attributes": {
-      "slug": "portrait-of-takashi-tezuka-2017-likeness-jonny-snapper",
-      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
       "kind": "photo",
+      "slug": "portrait-of-takashi-tezuka-photo",
+      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
       "title": "Portrait of Takashi Tezuka",
       "description": "Takashi Tezuka in Kyoto on 2nd February 2017.",
       "year": 2017,
@@ -75,7 +75,7 @@
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/images/portrait-of-takashi-tezuka-2017-likeness-jonny-snapper"
+      "self": "http://api.dbljump.com/media/images/portrait-of-takashi-tezuka-photo"
     }
   },
   "included": [
@@ -87,7 +87,7 @@
         "role": "admin",
         "given_names": "Neil",
         "family_name": "Wheatley",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
+        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1704210927.jpg"
       },
       "links": {
         "self": "http://api.dbljump.com/users/2"
@@ -97,22 +97,22 @@
       "id": "1",
       "type": "places",
       "attributes": {
-        "subtype": "countries",
+        "kind": "country",
         "slug": "afghanistan",
         "name": "Afghanistan",
-        "short_name": null,
-        "formatted": "Afghanistan"
+        "formatted": "Afghanistan",
+        "short_name": null
       },
       "links": {
-        "self": "http://api.dbljump.com/places/countries/afghanistan"
+        "self": "http://api.dbljump.com/places/afghanistan"
       }
     }
   ],
   "meta": {
-    "keywords": "portrait of takashi tezuka, 2017, 2017-02-02, jonny snapper, photo, likeness, image, picture, media, dbljump, video games, pc games, gaming",
+    "keywords": "portrait of takashi tezuka, photo, 2017, 2017-02-02, jonny snapper, image, picture, media, dbljump, video games, pc games, gaming",
     "description": "'Portrait of Takashi Tezuka' is a video game image at Dbljump.",
-    "created_at": "2017-03-30T13:16:18.639Z",
-    "updated_at": "2017-03-30T13:16:18.639Z"
+    "created_at": "2017-04-21T09:32:01.323Z",
+    "updated_at": "2017-04-21T09:32:01.323Z"
   }
 }
 ```
@@ -124,7 +124,7 @@ Upload a new image. User must be an editor or admin.
 
 ### HTTP request
 
-`POST /images`
+`POST /media/images`
 
 ### Request attributes
 

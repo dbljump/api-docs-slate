@@ -1,16 +1,18 @@
 ## <a name="images_show"></a>Get single image
 
-> HTTP 200 response body
+> Response body | `HTTP 200`
 
 ```JSON
+# GET /media/images/mario-figure-photo
+
 {
   "data": {
     "id": "2",
     "type": "images",
     "attributes": {
-      "slug": "mario-figure-2016-uncategorized",
-      "file": "url": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
       "kind": "photo",
+      "slug": "mario-figure-photo",
+      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
       "title": "Mario figure",
       "description": "",
       "year": 2016,
@@ -34,11 +36,14 @@
         }
       },
       "place": {
-        "data": null
+        "data": null,
+        "links": {
+          "related": "http://api.dbljump.com/places/afghanistan"
+        }
       }
     },
     "links": {
-      "self": "http://api.dbljump.com/images/mario-figure-2016-uncategorized"
+      "self": "http://api.dbljump.com/media/images/mario-figure-photo"
     }
   },
   "included": [
@@ -58,10 +63,10 @@
     }
   ],
   "meta": {
-    "keywords": "mario figure, 2016, 2016-07-30, photo, image, picture, media, dbljump, video games, pc games, gaming",
+    "keywords": "mario figure, photo, 2016, 2016-07-30, image, picture, media, dbljump, video games, pc games, gaming",
     "description": "'Mario figure' is a video game image at Dbljump.",
-    "created_at": "2017-03-30T12:40:13.387Z",
-    "updated_at": "2017-03-30T12:40:13.387Z"
+    "created_at": "2017-04-21T09:27:48.640Z",
+    "updated_at": "2017-04-21T09:27:48.640Z"
   }
 }
 ```
@@ -73,7 +78,7 @@ Retrieve a single image record. Images are publicly available. No sign-in is req
 
 ### HTTP request
 
-`GET /images/{slug}` (replace `{slug}` with image record slug)
+`GET /media/images/{slug}` (replace `{slug}` with image record slug)
 
 ### Success HTTP response code
 
