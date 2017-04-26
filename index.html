@@ -134,6 +134,992 @@ This API uses <a href="https://jwt.io" target="_blank">JSON web tokens (JWT)</a>
 Successful responses include the following HTTP header.<br /><br />
 <code>Content-Type:application/vnd.api+json; charset=utf-8</code></aside>
 
+          <h1 id="articles-people"><a name="people_intro"></a>Articles: People</h1>
+
+<p>Resources related to people articles.</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<p>See <a href="#people_create">Create a new person</a> and <a href="#people_update">Update a person</a>.</p>
+
+<h3 id="response-attributes">Response attributes</h3>
+
+<p>See <a href="#people_show">Get a single person</a></p>
+
+          <h2 id="get-all-people">Get all people</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/people?page[size]=3
+
+{
+  "data": [
+    {
+      "id": "44",
+      "type": "people",
+      "attributes": {
+        "display_title": "Hideki Kamiya",
+        "description": "Hideki Kamiya is a game designer and director known for his work with Capcom and as a co-founder of PlatinumGames.",
+        "gender": "male",
+        "birth_date": "1970-12-19",
+        "birth_year": 1970,
+        "dead": null,
+        "death_date": null,
+        "death_year": null,
+        "slug": "hideki-kamiya"
+      },
+      "relationships": {
+        "birth_place": {
+          "data": {
+            "id": "2936",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://localhost:3000/places/matsumoto-nagano-prefecture-japan"
+          }
+        },
+        "death_place": {
+          "data": null
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/people/hideki-kamiya"
+      }
+    },
+    {
+      "id": "43",
+      "type": "people",
+      "attributes": {
+        "display_title": "Corrinne Yu",
+        "description": "Corrinne Yu is an American game programmer known for her work on the Halo series, with Sony development studio Naughty Dog, and with Amazon.",
+        "gender": "female",
+        "birth_date": null,
+        "birth_year": null,
+        "dead": null,
+        "death_date": null,
+        "death_year": null,
+        "slug": "corrinne-yu"
+      },
+      "relationships": {
+        "birth_place": {
+          "data": {
+            "id": "90",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://localhost:3000/places/hong-kong"
+          }
+        },
+        "death_place": {
+          "data": null
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/people/corrinne-yu"
+      }
+    },
+    {
+      "id": "42",
+      "type": "people",
+      "attributes": {
+        "display_title": "Tim Sweeney",
+        "description": "Tim Sweeney is an American game programmer and the founder of Epic Games. He is best known for his work on the Unreal Engine.",
+        "gender": "male",
+        "birth_date": null,
+        "birth_year": 1970,
+        "dead": null,
+        "death_date": null,
+        "death_year": null,
+        "slug": "tim-sweeney"
+      },
+      "relationships": {
+        "birth_place": {
+          "data": {
+            "id": "2890",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://localhost:3000/places/potomac-maryland-united-states"
+          }
+        },
+        "death_place": {
+          "data": null
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/people/tim-sweeney"
+      }
+    }
+  ],
+  "links": {
+    "self": "http://localhost:3000/articles/people?page%5Bnumber%5D=1&amp;page%5Bsize%5D=3",
+    "next": "http://localhost:3000/articles/people?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3",
+    "last": "http://localhost:3000/articles/people?page%5Bnumber%5D=8&amp;page%5Bsize%5D=3"
+  },
+  "meta": {
+    "total_items": 24
+  }
+}
+</code></pre>
+<p>Retrieve all people articles. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/people</code></p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[people]=display_name,description</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[gender]=female</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-a-single-person"><a name="people_show"></a>Get a single person</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/people/hideki-kamiya
+
+{
+  "data": {
+    "id": "44",
+    "type": "people",
+    "attributes": {
+      "display_title": "Hideki Kamiya",
+      "description": "Hideki Kamiya is a game designer and director known for his work with Capcom and as a co-founder of PlatinumGames.",
+      "gender": "male",
+      "birth_date": "1970-12-19",
+      "birth_year": 1970,
+      "dead": null,
+      "death_date": null,
+      "death_year": null,
+      "slug": "hideki-kamiya"
+    },
+    "relationships": {
+      "birth_place": {
+        "data": {
+          "id": "2936",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/matsumoto-nagano-prefecture-japan"
+        }
+      },
+      "death_place": {
+        "data": null
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/1"
+        }
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/articles/people/hideki-kamiya"
+    }
+  },
+  "included": [
+    {
+      "id": "2936",
+      "type": "places",
+      "attributes": {
+        "name": "Matsumoto",
+        "formatted": "Matsumoto, Nagano Prefecture, Japan"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/matsumoto-nagano-prefecture-japan"
+      }
+    },
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": null
+      },
+      "links": {
+        "self": "http://localhost:3000/users/1"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "hideki kamiya, 1970, 1970-12-19, matsumoto, nagano prefecture, japan, person, profile, biography, games, dbljump, video games, pc games, gaming",
+    "description": "Find Hideki Kamiya's game credits, biography, images and facts at Dbljump, the video game reference.",
+    "created_at": "2017-04-24T09:09:17.259Z",
+    "updated_at": "2017-04-24T09:09:17.259Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single person article. People are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/people/{slug}</code> (replace <code class="prettyprint">{slug}</code> with record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="response-attributes"><a name="person_response_attrs"></a>Response attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>display_title</td>
+<td>string</td>
+<td>Y</td>
+<td>The article title, usually the person&rsquo;s name.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>text</td>
+<td></td>
+<td>A short biography up to 800 chars.</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>string</td>
+<td></td>
+<td>Must be &lsquo;male&rsquo;, &#39;female&rsquo;, &#39;transman&rsquo; or &#39;transwoman&rsquo;.</td>
+</tr>
+<tr>
+<td>birth_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>birth_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>dead</td>
+<td>boolean</td>
+<td></td>
+<td>True if the person is dead.</td>
+</tr>
+<tr>
+<td>death_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>death_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>string</td>
+<td>Y</td>
+<td>A record ID based on the display_title.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>Record type</th>
+<th>Relationship type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>birth_place</td>
+<td>places</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>death_place</td>
+<td>places</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>created_by</td>
+<td>users</td>
+<td>belongs_to</td>
+</tr>
+</tbody></table>
+
+<h3 id="included">Included</h3>
+
+<table><thead>
+<tr>
+<th>Record type</th>
+<th>Relationship</th>
+<th>Attributes included</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>users</td>
+<td>created_by</td>
+<td>username, role, given_names, family_name, avatar</td>
+</tr>
+<tr>
+<td>places</td>
+<td>birth_place</td>
+<td>name, formatted</td>
+</tr>
+<tr>
+<td>places</td>
+<td>death_place</td>
+<td>name, formatted</td>
+</tr>
+</tbody></table>
+
+<h3 id="meta">Meta</h3>
+
+<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
+
+          <h2 id="create-a-new-person"><a name="people_create"></a>Create a new person</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/people</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "people",
+    "attributes": {
+      "display_title": "New Person",
+      "description": "New Person is a new person, and this describes them.",
+      "gender": "female",
+      "birth_date": "1965-09-12",
+      "birth_year": "",
+      "dead": "",
+      "death_date": "2012-05-18",
+      "death_year": ""
+    },
+    "relationships": {
+      "birth_place": {
+        "data": {
+          "id": "2883",
+          "type": "places"
+        }
+      },
+      "death_place": {
+        "data": {
+          "id": "2932",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "48",
+    "type": "people",
+    "attributes": {
+      "display_title": "New Person",
+      "description": "New Person is a new person, and this describes them.",
+      "gender": "female",
+      "birth_date": "1965-09-12",
+      "birth_year": 1965,
+      "dead": true,
+      "death_date": "2012-05-18",
+      "death_year": 2012,
+      "slug": "new-person"
+    },
+    "relationships": {
+      "birth_place": {
+        "data": {
+          "id": "2883",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/los-angeles-california-united-states"
+        }
+      },
+      "death_place": {
+        "data": {
+          "id": "2932",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/2"
+        }
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/articles/people/new-person"
+    }
+  },
+  "included": [
+    {
+      "id": "2883",
+      "type": "places",
+      "attributes": {
+        "name": "Los Angeles",
+        "formatted": "Los Angeles, California, United States"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/los-angeles-california-united-states"
+      }
+    },
+    {
+      "id": "2932",
+      "type": "places",
+      "attributes": {
+        "name": "Kyoto",
+        "formatted": "Kyoto, Kyoto Prefecture, Japan"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+      }
+    },
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "avatar": "http://localhost:3000/uploads/user_avatar/2/1704241009.jpg"
+      },
+      "links": {
+        "self": "http://localhost:3000/users/2"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "new person, 1965, 1965-09-12, los angeles, california, united states, person, profile, biography, games, dbljump, video games, pc games, gaming",
+    "description": "Find New Person's game credits, biography, images and facts at Dbljump, the video game reference.",
+    "created_at": "2017-04-26T16:42:37.944Z",
+    "updated_at": "2017-04-26T16:42:37.944Z"
+  }
+}
+</code></pre>
+<p>Create a new person article. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/people</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>display_title</td>
+<td>string</td>
+<td>Y</td>
+<td>1-250 characters.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>text</td>
+<td></td>
+<td>1-800 characters.</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>string</td>
+<td></td>
+<td>Must be &lsquo;male&rsquo;, &#39;female&rsquo;, &#39;transman&rsquo; or &#39;transwoman&rsquo;.</td>
+</tr>
+<tr>
+<td>birth_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>birth_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>dead</td>
+<td>boolean</td>
+<td></td>
+<td>True if the person is dead.</td>
+</tr>
+<tr>
+<td>death_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>death_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>birth_place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country, subdivision, or locality.</td>
+</tr>
+<tr>
+<td>death_place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country, subdivision, or locality.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="update-a-person"><a name="people_update"></a>Update a person</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">PATCH /articles/people/hideki-kamiya</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "people",
+    "id": "hideki-kamiya",
+    "attributes": {
+      "display_title": "Changed Name",
+      "description": "Updated description for an updated article.",
+      "gender": "transwoman",
+      "birth_date": "1960-09-12",
+      "birth_year": "",
+      "dead": "",
+      "death_date": "",
+      "death_year": "2015"
+    },
+    "relationships": {
+      "birth_place": {
+        "data": {
+          "id": "25",
+          "type": "places"
+        }
+      },
+      "death_place": {
+        "data": {
+          "id": "2933",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "44",
+    "type": "people",
+    "attributes": {
+      "display_title": "Changed Name",
+      "description": "Updated description for an updated article.",
+      "gender": "transwoman",
+      "birth_date": "1960-09-12",
+      "birth_year": 1960,
+      "dead": true,
+      "death_date": null,
+      "death_year": 2015,
+      "slug": "changed-name"
+    },
+    "relationships": {
+      "birth_place": {
+        "data": {
+          "id": "25",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/bolivia"
+        }
+      },
+      "death_place": {
+        "data": {
+          "id": "2933",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/1"
+        }
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/articles/people/changed-name"
+    }
+  },
+  "included": [
+    {
+      "id": "25",
+      "type": "places",
+      "attributes": {
+        "name": "Bolivia",
+        "formatted": "Bolivia"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/bolivia"
+      }
+    },
+    {
+      "id": "2933",
+      "type": "places",
+      "attributes": {
+        "name": "Sonobe",
+        "formatted": "Sonobe, Kyoto Prefecture, Japan"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
+      }
+    },
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": null
+      },
+      "links": {
+        "self": "http://localhost:3000/users/1"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "changed name, 1960, 1960-09-12, bolivia, person, profile, biography, games, dbljump, video games, pc games, gaming",
+    "description": "Find Changed Name's game credits, biography, images and facts at Dbljump, the video game reference.",
+    "created_at": "2017-04-24T09:09:17.259Z",
+    "updated_at": "2017-04-26T21:38:21.753Z"
+  }
+}
+</code></pre>
+<p>Update an existing person article. The user must be an editor.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /articles/people/{slug}</code> (replace <code class="prettyprint">{slug}</code> with record slug)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>display_title</td>
+<td>string</td>
+<td>Y</td>
+<td>1-250 characters.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>text</td>
+<td></td>
+<td>1-800 characters.</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>string</td>
+<td></td>
+<td>Must be &lsquo;male&rsquo;, &#39;female&rsquo;, &#39;transman&rsquo; or &#39;transwoman&rsquo;.</td>
+</tr>
+<tr>
+<td>birth_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>birth_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>dead</td>
+<td>boolean</td>
+<td></td>
+<td>True if the person is dead.</td>
+</tr>
+<tr>
+<td>death_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>death_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>birth_place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country, subdivision, or locality.</td>
+</tr>
+<tr>
+<td>death_place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country, subdivision, or locality.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="delete-a-person"><a name="people_delete"></a>Delete a person</h2>
+
+<p>Delete an existing person article. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /articles/people/{slug}</code> (replace <code class="prettyprint">{slug}</code> with record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+          <h2 id="errors"><a name="people_errors"></a>Errors</h2>
+
+<p>Errors specific to creating and updating person articles.</p>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>PERSON_DISPLAY_TITLE_BLANK</td>
+<td>display_title</td>
+<td>Display title is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_DISPLAY_TITLE_TOO_LONG</td>
+<td>display_title</td>
+<td>Display title cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_DESCRIPTION_TOO_LONG</td>
+<td>description</td>
+<td>Description cannot be more than 800 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_GENDER_INCLUSION</td>
+<td>gender</td>
+<td>Gender must be &lsquo;male&rsquo;, &#39;female&rsquo;, &#39;transman&rsquo; or &#39;transwoman&rsquo;.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_BIRTH_DATE_INCLUSION</td>
+<td>birth_date</td>
+<td>Birth date must be a past date not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_BIRTH_YEAR_INCLUSION</td>
+<td>birth_year</td>
+<td>Birth year must be a past year not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_DEATH_DATE_INCLUSION</td>
+<td>death_date</td>
+<td>Death date must be a past date not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_DEATH_DATE_INVALID</td>
+<td>death_date</td>
+<td>Death date must not be eariler than birth date.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_DEATH_YEAR_INCLUSION</td>
+<td>death_year</td>
+<td>Death year must be a past year not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_DEATH_YEAR_INVALID</td>
+<td>death_year</td>
+<td>Death year must not be eariler than birth year.</td>
+</tr>
+</tbody></table>
+
           <h1 id="users"><a name="users_intro"></a>Users</h1>
 
 <p>Resources related to user accounts.</p>
