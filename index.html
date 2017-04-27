@@ -312,7 +312,7 @@ Successful responses include the following HTTP header.<br /><br />
 <tr>
 <td>fields[{record-type}]</td>
 <td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[people]=display_name,description</code></td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[people]=display_title,description</code></td>
 </tr>
 <tr>
 <td>filter[{field}]</td>
@@ -1117,6 +1117,920 @@ Successful responses include the following HTTP header.<br /><br />
 <td>PERSON_DEATH_YEAR_INVALID</td>
 <td>death_year</td>
 <td>Death year must not be eariler than birth year.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="articles-companies"><a name="companies_intro"></a>Articles: Companies</h1>
+
+<p>Resources related to company articles.</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<p>See <a href="#companies_create">Create a new company</a> and <a href="#companies_update">Update a company</a>.</p>
+
+<h3 id="response-attributes">Response attributes</h3>
+
+<p>See <a href="#companies_show">Get a single company</a></p>
+
+          <h2 id="get-all-companies">Get all companies</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/companies?page[size]=2
+
+{
+  "data": [
+    {
+      "id": "20",
+      "type": "companies",
+      "attributes": {
+        "display_title": "Google Inc.",
+        "description": "Google is an American technology company best known in the gaming world for its Android mobile platform.",
+        "founded_date": null,
+        "founded_year": 1998,
+        "closed": null,
+        "closed_date": null,
+        "closed_year": null,
+        "slug": "google-inc"
+      },
+      "relationships": {
+        "founded_place": {
+          "data": {
+            "id": "2888",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://localhost:3000/places/mountain-view-california-united-states"
+          }
+        },
+        "hq_place": {
+          "data": null
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/companies/google-inc"
+      }
+    },
+    {
+      "id": "19",
+      "type": "companies",
+      "attributes": {
+        "display_title": "Apple Inc.",
+        "description": "Apple is an American technology company best known within the gaming world for its iOS and Mac platforms.",
+        "founded_date": null,
+        "founded_year": 1976,
+        "closed": null,
+        "closed_date": null,
+        "closed_year": null,
+        "slug": "apple-inc"
+      },
+      "relationships": {
+        "founded_place": {
+          "data": {
+            "id": "2887",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://localhost:3000/places/cupertino-california-united-states"
+          }
+        },
+        "hq_place": {
+          "data": null
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/companies/apple-inc"
+      }
+    }
+  ],
+  "links": {
+    "self": "http://localhost:3000/articles/companies?page%5Bnumber%5D=1&amp;page%5Bsize%5D=2",
+    "next": "http://localhost:3000/articles/companies?page%5Bnumber%5D=2&amp;page%5Bsize%5D=2",
+    "last": "http://localhost:3000/articles/companies?page%5Bnumber%5D=10&amp;page%5Bsize%5D=2"
+  },
+  "meta": {
+    "total_items": 20
+  }
+}
+</code></pre>
+<p>Retrieve all company articles. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/companies</code></p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[companies]=display_title,description</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[closed]=true</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-a-single-company"><a name="companies_show"></a>Get a single company</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/companies/nintendo-co-ltd
+
+{
+  "data": {
+    "id": "1",
+    "type": "companies",
+    "attributes": {
+      "display_title": "Nintendo Co., Ltd.",
+      "description": "Nintendo is a Japanese video game hardware and software company founded in 1889.",
+      "founded_date": null,
+      "founded_year": 1889,
+      "closed": null,
+      "closed_date": null,
+      "closed_year": null,
+      "slug": "nintendo-co-ltd"
+    },
+    "relationships": {
+      "founded_place": {
+        "data": {
+          "id": "2932",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+        }
+      },
+      "hq_place": {
+        "data": null
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/1"
+        }
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+    }
+  },
+  "included": [
+    {
+      "id": "2932",
+      "type": "places",
+      "attributes": {
+        "name": "Kyoto",
+        "formatted": "Kyoto, Kyoto Prefecture, Japan"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+      }
+    },
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": null
+      },
+      "links": {
+        "self": "http://localhost:3000/users/1"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "nintendo co., ltd., 1889, kyoto, kyoto prefecture, japan, company, profile, biography, trivia, dbljump, video games, pc games, gaming",
+    "description": "Find Nintendo Co., Ltd.'s game credits, profile, images and facts at Dbljump, the video game reference.",
+    "created_at": "2017-04-24T09:09:13.501Z",
+    "updated_at": "2017-04-24T09:09:13.501Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single company article. Companies are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/companies/{slug}</code> (replace <code class="prettyprint">{slug}</code> with record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="response-attributes"><a name="person_response_attrs"></a>Response attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>display_title</td>
+<td>string</td>
+<td>Y</td>
+<td>The article title, usually the company name.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>text</td>
+<td></td>
+<td>A short biography up to 800 chars.</td>
+</tr>
+<tr>
+<td>founded_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>founded_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>closed</td>
+<td>boolean</td>
+<td></td>
+<td>True if the company has closed.</td>
+</tr>
+<tr>
+<td>closed_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>closed_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>string</td>
+<td>Y</td>
+<td>A record ID based on the display_title.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>Record type</th>
+<th>Relationship type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>founded_place</td>
+<td>places</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>hq_place</td>
+<td>places</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>created_by</td>
+<td>users</td>
+<td>belongs_to</td>
+</tr>
+</tbody></table>
+
+<h3 id="included">Included</h3>
+
+<table><thead>
+<tr>
+<th>Record type</th>
+<th>Relationship</th>
+<th>Attributes included</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>users</td>
+<td>created_by</td>
+<td>username, role, given_names, family_name, avatar</td>
+</tr>
+<tr>
+<td>places</td>
+<td>founded_place</td>
+<td>name, formatted</td>
+</tr>
+<tr>
+<td>places</td>
+<td>hq_place</td>
+<td>name, formatted</td>
+</tr>
+</tbody></table>
+
+<h3 id="meta">Meta</h3>
+
+<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
+
+          <h2 id="create-a-new-company"><a name="comanies_create"></a>Create a new company</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/companies</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "companies",
+    "attributes": {
+      "display_title": "New Company",
+      "description": "New Company is a new company, and this describes it.",
+      "founded_date": "1965-09-12",
+      "founded_year": "",
+      "closed": "",
+      "closed_date": "2012-05-18",
+      "closed_year": ""
+    },
+    "relationships": {
+      "founded_place": {
+        "data": {
+          "id": "2883",
+          "type": "places"
+        }
+      },
+      "hq_place": {
+        "data": {
+          "id": "2932",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "49",
+    "type": "companies",
+    "attributes": {
+      "display_title": "New Company",
+      "description": "New Company is a new company, and this describes it.",
+      "founded_date": "1965-09-12",
+      "founded_year": 1965,
+      "closed": true,
+      "closed_date": "2012-05-18",
+      "closed_year": 2012,
+      "slug": "new-company"
+    },
+    "relationships": {
+      "founded_place": {
+        "data": {
+          "id": "2883",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/los-angeles-california-united-states"
+        }
+      },
+      "hq_place": {
+        "data": {
+          "id": "2932",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/2"
+        }
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/articles/companies/new-company"
+    }
+  },
+  "included": [
+    {
+      "id": "2883",
+      "type": "places",
+      "attributes": {
+        "name": "Los Angeles",
+        "formatted": "Los Angeles, California, United States"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/los-angeles-california-united-states"
+      }
+    },
+    {
+      "id": "2932",
+      "type": "places",
+      "attributes": {
+        "name": "Kyoto",
+        "formatted": "Kyoto, Kyoto Prefecture, Japan"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+      }
+    },
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "avatar": "http://localhost:3000/uploads/user_avatar/2/1704241009.jpg"
+      },
+      "links": {
+        "self": "http://localhost:3000/users/2"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "new company, 1965, los angeles, california, united states, kyoto, kyoto prefecture, japan, company, profile, biography, trivia, dbljump, video games, pc games, gaming",
+    "description": "Find New Company's game credits, profile, images and facts at Dbljump, the video game reference.",
+    "created_at": "2017-04-27T09:04:34.137Z",
+    "updated_at": "2017-04-27T09:04:34.137Z"
+  }
+}
+</code></pre>
+<p>Create a new company article. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/companies</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>display_title</td>
+<td>string</td>
+<td>Y</td>
+<td>1-250 characters.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>text</td>
+<td></td>
+<td>1-800 characters.</td>
+</tr>
+<tr>
+<td>founded_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>founded_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>closed</td>
+<td>boolean</td>
+<td></td>
+<td>True if the company has closed.</td>
+</tr>
+<tr>
+<td>closed_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>closed_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>founded_place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country, subdivision, or locality.</td>
+</tr>
+<tr>
+<td>closed_place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country, subdivision, or locality.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="update-a-company"><a name="companies_update"></a>Update a company</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">PATCH /articles/companies/microsoft-corporation</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "companies",
+    "id": "microsoft-corporation",
+    "attributes": {
+      "display_title": "Changed Name",
+      "description": "Updated description for an updated article.",
+      "founded_date": "1940-09-12",
+      "founded_year": "",
+      "dead": "",
+      "closed_date": "2013-04-05",
+      "closed_year": ""
+    },
+    "relationships": {
+      "founded_place": {
+        "data": {
+          "id": "25",
+          "type": "places"
+        }
+      },
+      "hq_place": {
+        "data": {
+          "id": "2933",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "4",
+    "type": "companies",
+    "attributes": {
+      "display_title": "Changed Name",
+      "description": "Updated description for an updated article.",
+      "founded_date": "1940-09-12",
+      "founded_year": 1940,
+      "closed": true,
+      "closed_date": "2013-04-05",
+      "closed_year": 2013,
+      "slug": "changed-name-3b1258ec-cc74-41f3-966c-c075bb634a16"
+    },
+    "relationships": {
+      "founded_place": {
+        "data": {
+          "id": "25",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/bolivia"
+        }
+      },
+      "hq_place": {
+        "data": {
+          "id": "2933",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/1"
+        }
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/articles/companies/changed-name-3b1258ec-cc74-41f3-966c-c075bb634a16"
+    }
+  },
+  "included": [
+    {
+      "id": "25",
+      "type": "places",
+      "attributes": {
+        "name": "Bolivia",
+        "formatted": "Bolivia"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/bolivia"
+      }
+    },
+    {
+      "id": "2933",
+      "type": "places",
+      "attributes": {
+        "name": "Sonobe",
+        "formatted": "Sonobe, Kyoto Prefecture, Japan"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
+      }
+    },
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": null
+      },
+      "links": {
+        "self": "http://localhost:3000/users/1"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "changed name, 1940, bolivia, sonobe, kyoto prefecture, japan, company, profile, biography, trivia, dbljump, video games, pc games, gaming",
+    "description": "Find Changed Name's game credits, profile, images and facts at Dbljump, the video game reference.",
+    "created_at": "2017-04-24T09:09:13.538Z",
+    "updated_at": "2017-04-27T09:14:35.444Z"
+  }
+}
+</code></pre>
+<p>Update an existing company article. The user must be an editor.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /articles/companies/{slug}</code> (replace <code class="prettyprint">{slug}</code> with record slug)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>display_title</td>
+<td>string</td>
+<td>Y</td>
+<td>1-250 characters.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>text</td>
+<td></td>
+<td>1-800 characters.</td>
+</tr>
+<tr>
+<td>founded_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>founded_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>closed</td>
+<td>boolean</td>
+<td></td>
+<td>True if the company has closed.</td>
+</tr>
+<tr>
+<td>closed_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>closed_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>birth_place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country, subdivision, or locality.</td>
+</tr>
+<tr>
+<td>death_place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country, subdivision, or locality.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="delete-a-company"><a name="companies_delete"></a>Delete a company</h2>
+
+<p>Delete an existing company article. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /articles/companies/{slug}</code> (replace <code class="prettyprint">{slug}</code> with record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+          <h2 id="errors"><a name="companies_errors"></a>Errors</h2>
+
+<p>Errors specific to creating and updating company articles.</p>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>COMPANY_DISPLAY_TITLE_BLANK</td>
+<td>display_title</td>
+<td>Display title is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_DISPLAY_TITLE_TOO_LONG</td>
+<td>display_title</td>
+<td>Display title cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_DESCRIPTION_TOO_LONG</td>
+<td>description</td>
+<td>Description cannot be more than 800 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_FOUNDED_DATE_INCLUSION</td>
+<td>founded_date</td>
+<td>Founded date must be a past date not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_FOUNDED_YEAR_INCLUSION</td>
+<td>founded_year</td>
+<td>Founded year must be a past year not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_CLOSED_DATE_INCLUSION</td>
+<td>closed_date</td>
+<td>Closed date must be a past date not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_CLOSED_DATE_INVALID</td>
+<td>closed_date</td>
+<td>Closed date must not be eariler than founded date.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_CLOSED_YEAR_INCLUSION</td>
+<td>closed_year</td>
+<td>Closed year must be a past year not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_CLOSED_YEAR_INVALID</td>
+<td>closed_year</td>
+<td>Closed year must not be eariler than founded year.</td>
 </tr>
 </tbody></table>
 
