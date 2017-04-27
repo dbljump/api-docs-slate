@@ -17,7 +17,7 @@ Note that setup instructions are based on those in the [Slate readme at Github](
 ```
 #either run this to run locally
 bundle install
-bundle exec middleman server
+middleman server
 
 # OR run this to run with vagrant
 vagrant up

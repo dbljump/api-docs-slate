@@ -155,7 +155,7 @@ Retrieve all people articles. Automatically paginated.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[people]=display_name,description`
+fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[people]=display_title,description`
 filter[{field}] | All records | Filter search by field, e.g. `?filter[gender]=female`
 page[number] | 1 | Select the page number, e.g. `?page[number]=3`
 page[size] | 30 | Select the number of records per page, e.g. `?page[size]=20`
