@@ -95,7 +95,7 @@ Retrieve a single company article. Companies are publicly available. No sign-in 
 
 `200 OK`
 
-### <a name="person_response_attrs"></a>Response attributes
+### <a name="company_response_attrs"></a>Response attributes
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
