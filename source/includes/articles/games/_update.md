@@ -1,4 +1,4 @@
-## <a name="games_update"></a>Update a company
+## <a name="games_update"></a>Update a game
 
 > Request body | `PATCH /articles/games/pong`
 
