@@ -134,6 +134,582 @@ This API uses <a href="https://jwt.io" target="_blank">JSON web tokens (JWT)</a>
 Successful responses include the following HTTP header.<br /><br />
 <code>Content-Type:application/vnd.api+json; charset=utf-8</code></aside>
 
+          <h1 id="articles-games"><a name="games_intro"></a>Articles: Games</h1>
+
+<p>Resources related to game articles.</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<p>See <a href="#games_create">Create a new game</a> and <a href="#games_update">Update a game</a>.</p>
+
+<h3 id="response-attributes">Response attributes</h3>
+
+<p>See <a href="#games_show">Get a single game</a></p>
+
+          <h2 id="get-all-games">Get all games</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/games?page[size]=2
+
+{
+  "data": [
+    {
+      "id": "45",
+      "type": "games",
+      "attributes": {
+        "display_title": "Pong",
+        "description": "Pong is a table tennis sports game and is one of the earliest arcade video games.",
+        "release_date": "1972-11-29",
+        "release_year": 1972,
+        "slug": "pong"
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/games/pong"
+      }
+    },
+    {
+      "id": "46",
+      "type": "games",
+      "attributes": {
+        "display_title": "The Wonderful 101",
+        "description": "The Wonderful 101 is an action-adventure video game developed by Platinum Games for the Nintendo Wii U.",
+        "release_date": "2013-08-23",
+        "release_year": 2013,
+        "slug": "the-wonderful-101"
+      },
+      "relationships": {
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "users"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/games/the-wonderful-101"
+      }
+    }
+  ],
+  "links": {
+    "self": "http://localhost:3000/articles/games?page%5Bnumber%5D=1&amp;page%5Bsize%5D=2",
+    "next": "http://localhost:3000/articles/games?page%5Bnumber%5D=2&amp;page%5Bsize%5D=2",
+    "last": "http://localhost:3000/articles/games?page%5Bnumber%5D=2&amp;page%5Bsize%5D=2"
+  },
+  "meta": {
+    "total_items": 3
+  }
+}
+</code></pre>
+<p>Retrieve all game articles. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/games</code></p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[games]=display_title,release_date</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[release_year]=2015</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-a-single-game"><a name="games_show"></a>Get a single game</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/games/the-wonderful-101
+
+{
+  "data": {
+    "id": "46",
+    "type": "games",
+    "attributes": {
+      "display_title": "The Wonderful 101",
+      "description": "The Wonderful 101 is an action-adventure video game developed by Platinum Games for the Nintendo Wii U.",
+      "release_date": "2013-08-23",
+      "release_year": 2013,
+      "slug": "the-wonderful-101"
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/1"
+        }
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/articles/games/the-wonderful-101"
+    }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": null
+      },
+      "links": {
+        "self": "http://localhost:3000/users/1"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "the wonderful 101, 2013, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
+    "description": "Find The Wonderful 101 trivia, screenshots, credits and other info at Dbljump, the video game reference.",
+    "created_at": "2017-04-24T09:09:19.130Z",
+    "updated_at": "2017-04-24T09:09:19.130Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single game article. Games are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/games/{slug}</code> (replace <code class="prettyprint">{slug}</code> with record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="response-attributes"><a name="person_response_attrs"></a>Response attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>display_title</td>
+<td>string</td>
+<td>Y</td>
+<td>The article title, usually the company name.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>text</td>
+<td></td>
+<td>A short biography up to 800 chars.</td>
+</tr>
+<tr>
+<td>release_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>release_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>Record type</th>
+<th>Relationship type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>created_by</td>
+<td>users</td>
+<td>belongs_to</td>
+</tr>
+</tbody></table>
+
+<h3 id="included">Included</h3>
+
+<table><thead>
+<tr>
+<th>Record type</th>
+<th>Relationship</th>
+<th>Attributes included</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>users</td>
+<td>created_by</td>
+<td>username, role, given_names, family_name, avatar</td>
+</tr>
+</tbody></table>
+
+<h3 id="meta">Meta</h3>
+
+<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
+
+          <h2 id="create-a-new-game"><a name="games_create"></a>Create a new game</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/games</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "games",
+    "attributes": {
+      "display_title": "New Game",
+      "description": "New Game is an action game developed by some company or other.",
+      "release_date": "2015-01-03",
+      "release_year": ""
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "50",
+    "type": "games",
+    "attributes": {
+      "display_title": "New Game",
+      "description": "New Game is an action game developed by some company or other.",
+      "release_date": "2015-01-03",
+      "release_year": 2015,
+      "slug": "new-game"
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/2"
+        }
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/articles/games/new-game"
+    }
+  },
+  "included": [
+    {
+      "id": "2",
+      "type": "users",
+      "attributes": {
+        "username": "neil",
+        "role": "admin",
+        "given_names": "Neil",
+        "family_name": "Wheatley",
+        "avatar": "http://localhost:3000/uploads/user_avatar/2/1704241009.jpg"
+      },
+      "links": {
+        "self": "http://localhost:3000/users/2"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "new game, 2015, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
+    "description": "Find New Game trivia, screenshots, credits and other info at Dbljump, the video game reference.",
+    "created_at": "2017-04-29T20:07:27.367Z",
+    "updated_at": "2017-04-29T20:07:27.367Z"
+  }
+}
+</code></pre>
+<p>Create a new game article. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/games</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>display_title</td>
+<td>string</td>
+<td>Y</td>
+<td>1-250 characters.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>text</td>
+<td></td>
+<td>1-800 characters.</td>
+</tr>
+<tr>
+<td>release_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>release_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="update-a-company"><a name="games_update"></a>Update a company</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">PATCH /articles/games/pong</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "games",
+    "id": "pong",
+    "attributes": {
+      "display_title": "Changed Name",
+      "description": "Updated description for an updated article.",
+      "release_date": "1995-11-17",
+      "release_year": ""
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "45",
+    "type": "games",
+    "attributes": {
+      "display_title": "Changed Name",
+      "description": "Updated description for an updated article.",
+      "release_date": "1995-11-17",
+      "release_year": 1995,
+      "slug": "changed-name-72d6b822-372c-4f99-93b5-98d17ac0acf1"
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/1"
+        }
+      }
+    },
+    "links": {
+      "self": "http://localhost:3000/articles/games/changed-name-72d6b822-372c-4f99-93b5-98d17ac0acf1"
+    }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+        "username": "tikithekiwi",
+        "role": "admin",
+        "given_names": "Tiki",
+        "family_name": "the Kiwi",
+        "avatar": null
+      },
+      "links": {
+        "self": "http://localhost:3000/users/1"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "changed name, 1995, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
+    "description": "Find Changed Name trivia, screenshots, credits and other info at Dbljump, the video game reference.",
+    "created_at": "2017-04-24T09:09:19.087Z",
+    "updated_at": "2017-04-29T20:10:31.175Z"
+  }
+}
+</code></pre>
+<p>Update an existing game article. The user must be an editor.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /articles/games/{slug}</code> (replace <code class="prettyprint">{slug}</code> with record slug)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>display_title</td>
+<td>string</td>
+<td>Y</td>
+<td>1-250 characters.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>text</td>
+<td></td>
+<td>1-800 characters.</td>
+</tr>
+<tr>
+<td>release_date</td>
+<td>date</td>
+<td></td>
+<td>Between 1st Jan 1800 and the present.</td>
+</tr>
+<tr>
+<td>release_year</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="delete-a-game"><a name="games_delete"></a>Delete a game</h2>
+
+<p>Delete an existing game article. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /articles/games/{slug}</code> (replace <code class="prettyprint">{slug}</code> with record slug)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+          <h2 id="errors"><a name="games_errors"></a>Errors</h2>
+
+<p>Errors specific to creating and updating game articles.</p>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>GAME_DISPLAY_TITLE_BLANK</td>
+<td>display_title</td>
+<td>Display title is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_DISPLAY_TITLE_TOO_LONG</td>
+<td>display_title</td>
+<td>Display title cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_DESCRIPTION_TOO_LONG</td>
+<td>description</td>
+<td>Description cannot be more than 800 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_RELEASE_DATE_INCLUSION</td>
+<td>release_date</td>
+<td>Release date must be a past date not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_RELEASE_YEAR_INCLUSION</td>
+<td>release_year</td>
+<td>Release year must be a past year not before 1800.</td>
+</tr>
+</tbody></table>
+
           <h1 id="articles-people"><a name="people_intro"></a>Articles: People</h1>
 
 <p>Resources related to people articles.</p>
@@ -1376,7 +1952,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <p><code class="prettyprint">200 OK</code></p>
 
-<h3 id="response-attributes"><a name="person_response_attrs"></a>Response attributes</h3>
+<h3 id="response-attributes"><a name="company_response_attrs"></a>Response attributes</h3>
 
 <table><thead>
 <tr>
@@ -2031,6 +2607,736 @@ Successful responses include the following HTTP header.<br /><br />
 <td>COMPANY_CLOSED_YEAR_INVALID</td>
 <td>closed_year</td>
 <td>Closed year must not be eariler than founded year.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="articles-company-names"><a name="company_names_intro"></a>Articles: Company Names</h1>
+
+<p>Resources related to company names.</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<p>See <a href="#company_names_create">Create a new company name</a> and <a href="#company_names_update">Update a company name</a>.</p>
+
+<h3 id="response-attributes">Response attributes</h3>
+
+<p>See <a href="#company_names_show">Get a single company name</a></p>
+
+          <h2 id="get-all-of-a-company-39-s-names">Get all of a company&rsquo;s names</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/companies/nintendo-co-ltd/names?page[size]=2
+
+{
+  "data": [
+    {
+      "id": "1",
+      "type": "company_names",
+      "attributes": {
+        "name": "任天堂株式会社",
+        "kind": "name",
+        "writing_system": "Japanese",
+        "year_adopted": null,
+        "dropped": null,
+        "year_dropped": null
+      },
+      "relationships": {
+        "place": {
+          "data": null
+        }
+      }
+    },
+    {
+      "id": "2",
+      "type": "company_names",
+      "attributes": {
+        "name": "Nintendō Kabushiki gaisha",
+        "kind": "name",
+        "writing_system": "Latin",
+        "year_adopted": null,
+        "dropped": true,
+        "year_dropped": null
+      },
+      "relationships": {
+        "place": {
+          "data": null
+        }
+      }
+    }
+  ],
+  "links": {
+    "self": "http://localhost:3000/articles/companies/nintendo-co-ltd/names?page%5Bnumber%5D=1&amp;page%5Bsize%5D=2",
+    "next": "http://localhost:3000/articles/companies/nintendo-co-ltd/names?page%5Bnumber%5D=2&amp;page%5Bsize%5D=2",
+    "last": "http://localhost:3000/articles/companies/nintendo-co-ltd/names?page%5Bnumber%5D=3&amp;page%5Bsize%5D=2"
+  },
+  "meta": {
+    "total_items": 5
+  }
+}
+</code></pre>
+<p>Retrieve all of a given company&rsquo;s names. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/companies/{company-slug}/names</code> (replace <code class="prettyprint">{company-slug}</code> with parent company record slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[company_names]=name</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[dropped]=true</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-a-single-company-name"><a name="company_names_show"></a>Get a single company name</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/company_names/5
+
+{
+  "data": {
+    "id": "5",
+    "type": "company_names",
+    "attributes": {
+      "name": "Nintendo",
+      "kind": "styled",
+      "writing_system": "Latin",
+      "year_adopted": null,
+      "dropped": null,
+      "year_dropped": null
+    },
+    "relationships": {
+      "company": {
+        "data": {
+          "id": "1",
+          "type": "companies"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+        }
+      },
+      "place": {
+        "data": null
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "companies",
+      "attributes": {
+        "display_title": "Nintendo Co., Ltd."
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "nintendo, nintendo co., ltd., name, title, alias, dbljump, video games, pc games, gaming",
+    "description": "Nintendo is an alternate name or title for Nintendo Co., Ltd.. Learn more at Dbljump, the video game reference.",
+    "created_at": "2017-04-24T09:09:13.793Z",
+    "updated_at": "2017-04-24T09:09:13.793Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single company name. Company names are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/company_names/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="response-attributes"><a name="company_names_response_attrs"></a>Response attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Y</td>
+<td>The name.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Y</td>
+<td>The name classification. Must be &lsquo;name&rsquo;, &#39;styled&rsquo; or &#39;alias&rsquo;.</td>
+</tr>
+<tr>
+<td>writing_system</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be an accepted value, e.g. &#39;Latin&rsquo;, &#39;Japanese&rsquo; etc.</td>
+</tr>
+<tr>
+<td>year_adopted</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>dropped</td>
+<td>boolean</td>
+<td></td>
+<td>True if the name has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
+</tr>
+<tr>
+<td>year_dropped</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>Record type</th>
+<th>Relationship type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>places</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>company</td>
+<td>companies</td>
+<td>belongs_to</td>
+</tr>
+</tbody></table>
+
+<h3 id="included">Included</h3>
+
+<table><thead>
+<tr>
+<th>Record type</th>
+<th>Relationship</th>
+<th>Attributes included</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>places</td>
+<td>place</td>
+<td>name</td>
+</tr>
+<tr>
+<td>companies</td>
+<td>company</td>
+<td>display_title</td>
+</tr>
+</tbody></table>
+
+<h3 id="meta">Meta</h3>
+
+<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
+
+          <h2 id="create-a-new-company-name"><a name="comany_names_create"></a>Create a new company name</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/companies/nintendo-co-ltd/names</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "company_names",
+    "attributes": {
+      "name": "New Name",
+      "kind": "name",
+      "writing_system": "Latin",
+      "year_adopted": "2010",
+      "dropped": "",
+      "year_dropped": "2017"
+    },
+    "relationships": {
+      "place": {
+        "data": {
+          "id": "17",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "61",
+    "type": "company_names",
+    "attributes": {
+      "name": "New Name",
+      "kind": "name",
+      "writing_system": "Latin",
+      "year_adopted": 2010,
+      "dropped": true,
+      "year_dropped": 2017
+    },
+    "relationships": {
+      "company": {
+        "data": {
+          "id": "1",
+          "type": "companies"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+        }
+      },
+      "place": {
+        "data": {
+          "id": "17",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/bangladesh"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "companies",
+      "attributes": {
+        "display_title": "Nintendo Co., Ltd."
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+      }
+    },
+    {
+      "id": "17",
+      "type": "places",
+      "attributes": {
+        "name": "Bangladesh",
+        "formatted": "Bangladesh"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/bangladesh"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "new name, nintendo co., ltd., bangladesh, name, title, alias, dbljump, video games, pc games, gaming",
+    "description": "New Name is an alternate name or title for Nintendo Co., Ltd.. Learn more at Dbljump, the video game reference.",
+    "created_at": "2017-05-03T10:05:55.948Z",
+    "updated_at": "2017-05-03T10:05:55.948Z"
+  }
+}
+</code></pre>
+<p>Create a new name record for a given company. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/companies/{company-slug}/names</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Y</td>
+<td>1-250 characters.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Y</td>
+<td>The name classification. Must be &lsquo;name&rsquo;, &#39;styled&rsquo; or &#39;alias&rsquo;.</td>
+</tr>
+<tr>
+<td>writing_system</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be an accepted value.</td>
+</tr>
+<tr>
+<td>year_adopted</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>dropped</td>
+<td>boolean</td>
+<td></td>
+<td>True if the name has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
+</tr>
+<tr>
+<td>year_dropped</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country or region.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="update-a-company-name"><a name="company_names_update"></a>Update a company name</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">PATCH /articles/company_names/7</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "company_names",
+    "id": "7",
+    "attributes": {
+      "name": "アップデート",
+      "kind": "styled",
+      "writing_system": "Japanese",
+      "year_adopted": "1995",
+      "dropped": "true",
+      "year_dropped": ""
+    },
+    "relationships": {
+      "place": {
+        "data": {
+          "id": "102",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "7",
+    "type": "company_names",
+    "attributes": {
+      "name": "アップデート",
+      "kind": "styled",
+      "writing_system": "Japanese",
+      "year_adopted": 1995,
+      "dropped": true,
+      "year_dropped": null
+    },
+    "relationships": {
+      "company": {
+        "data": {
+          "id": "2",
+          "type": "companies"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/companies/sega-games-co-ltd"
+        }
+      },
+      "place": {
+        "data": {
+          "id": "102",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/japan"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "2",
+      "type": "companies",
+      "attributes": {
+        "display_title": "Sega Games Co., Ltd."
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/companies/sega-games-co-ltd"
+      }
+    },
+    {
+      "id": "102",
+      "type": "places",
+      "attributes": {
+        "name": "Japan"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/japan"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "アップデート, sega games co., ltd., japan, name, title, alias, dbljump, video games, pc games, gaming",
+    "description": "アップデート is an alternate name or title for Sega Games Co., Ltd.. Learn more at Dbljump, the video game reference.",
+    "created_at": "2017-04-24T09:09:13.815Z",
+    "updated_at": "2017-05-03T10:28:40.939Z"
+  }
+}
+</code></pre>
+<p>Update an existing company name. The user must be an editor.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /articles/company_names/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Y</td>
+<td>1-250 characters.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Y</td>
+<td>The name classification. Must be &lsquo;name&rsquo;, &#39;styled&rsquo; or &#39;alias&rsquo;.</td>
+</tr>
+<tr>
+<td>writing_system</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be an accepted value.</td>
+</tr>
+<tr>
+<td>year_adopted</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>dropped</td>
+<td>boolean</td>
+<td></td>
+<td>True if the name has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
+</tr>
+<tr>
+<td>year_dropped</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country or region.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="delete-a-company-name"><a name="company_names_delete"></a>Delete a company name</h2>
+
+<p>Delete an existing company name. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /articles/company_names/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+          <h2 id="errors"><a name="company_names_errors"></a>Errors</h2>
+
+<p>Errors specific to creating and updating company names.</p>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>COMPANY_NAME_NAME_BLANK</td>
+<td>name</td>
+<td>Name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NAME_NAME_TOO_LONG</td>
+<td>name</td>
+<td>Name cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NAME_NAME_TAKEN</td>
+<td>name</td>
+<td>Name must be unique to its parent company.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NAME_KIND_BLANK</td>
+<td>kind</td>
+<td>Kind is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NAME_KIND_INCLUSION</td>
+<td>kind</td>
+<td>Kind must be an accepted value.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NAME_WRITING_SYSTEM_BLANK</td>
+<td>writing_system</td>
+<td>Writing system is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NAME_WRITING_SYSTEM_INCLUSION</td>
+<td>writing_system</td>
+<td>Writing system must be an accepted value.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NAME_YEAR_ADOPTED_INCLUSION</td>
+<td>year_adopted</td>
+<td>Year adopted must be a past year not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NAME_YEAR_DROPPED_INCLUSION</td>
+<td>year_dropped</td>
+<td>Year dropped must be a past year not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NAME_YEAR_DROPPED_INVALID</td>
+<td>year_dropped</td>
+<td>Year dropped must not be earlier than year adopted.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NAME_PLACE_ID_INVALID</td>
+<td>data/relationships/place/data/id</td>
+<td>Place ID must be a valid country or region ID.</td>
 </tr>
 </tbody></table>
 
