@@ -1380,6 +1380,736 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
+          <h1 id="articles-game-titles"><a name="game_titles_intro"></a>Articles: Game Titles</h1>
+
+<p>Resources related to game titles.</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<p>See <a href="#game_titles_create">Create a new game title</a> and <a href="#game_titles_update">Update a game title</a>.</p>
+
+<h3 id="response-attributes">Response attributes</h3>
+
+<p>See <a href="#game_titles_show">Get a single game title</a></p>
+
+          <h2 id="get-all-of-a-game-39-s-titles">Get all of a game&rsquo;s titles</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/games/the-wonderful-101/titles?page[size]=2
+
+{
+  "data": [
+    {
+      "id": "58",
+      "type": "game_titles",
+      "attributes": {
+        "title": "Project P-100",
+        "kind": "working",
+        "writing_system": "Latin"
+      },
+      "relationships": {
+        "game": {
+          "data": {
+            "id": "46",
+            "type": "games"
+          },
+          "links": {
+            "related": "http://localhost:3000/articles/games/the-wonderful-101"
+          }
+        },
+        "place": {
+          "data": null
+        },
+        "version": {
+          "data": null
+        }
+      }
+    },
+    {
+      "id": "59",
+      "type": "game_titles",
+      "attributes": {
+        "title": "Za Wandafuru Wan Ō Wan",
+        "kind": "title",
+        "writing_system": "Latin"
+      },
+      "relationships": {
+        "game": {
+          "data": {
+            "id": "46",
+            "type": "games"
+          },
+          "links": {
+            "related": "http://localhost:3000/articles/games/the-wonderful-101"
+          }
+        },
+        "place": {
+          "data": {
+            "id": "102",
+            "type": "places"
+          },
+          "links": {
+            "related": "http://localhost:3000/places/japan"
+          }
+        },
+        "version": {
+          "data": null
+        }
+      }
+    }
+  ],
+  "links": {
+    "self": "http://localhost:3000/articles/games/the-wonderful-101/titles?page%5Bnumber%5D=1&amp;page%5Bsize%5D=2",
+    "next": "http://localhost:3000/articles/games/the-wonderful-101/titles?page%5Bnumber%5D=2&amp;page%5Bsize%5D=2",
+    "last": "http://localhost:3000/articles/games/the-wonderful-101/titles?page%5Bnumber%5D=2&amp;page%5Bsize%5D=2"
+  },
+  "meta": {
+    "total_items": 3
+  }
+}
+</code></pre>
+<p>Retrieve all of a given game&rsquo;s titles. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/games/{game-slug}/titles</code> (replace <code class="prettyprint">{game-slug}</code> with parent game record slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[company_names]=title</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=working</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-a-single-game-title"><a name="game_titles_show"></a>Get a single game title</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/game_titles/58
+
+{
+  "data": {
+    "id": "58",
+    "type": "game_titles",
+    "attributes": {
+      "title": "Project P-100",
+      "kind": "working",
+      "writing_system": "Latin"
+    },
+    "relationships": {
+      "game": {
+        "data": {
+          "id": "46",
+          "type": "games"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/games/the-wonderful-101"
+        }
+      },
+      "place": {
+        "data": null,
+        "links": {
+          "related": "http://localhost:3000/places/bangladesh"
+        }
+      },
+      "version": {
+        "data": null,
+        "links": {
+          "related": "http://localhost:3000/articles/game_versions/2"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "46",
+      "type": "games",
+      "attributes": {
+        "display_title": "The Wonderful 101"
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/games/the-wonderful-101"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "project p-100, the wonderful 101, name, title, alias, dbljump, video games, pc games, gaming",
+    "description": "Project P-100 is an alternate name or title for The Wonderful 101. Learn more at Dbljump, the video game reference.",
+    "created_at": "2017-04-24T09:09:19.450Z",
+    "updated_at": "2017-04-24T09:09:19.450Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single game title. Game titles are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/game_titles/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="response-attributes"><a name="game_titles_response_attrs"></a>Response attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Y</td>
+<td>The title.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Y</td>
+<td>The name classification. Must be &lsquo;title&rsquo;, &#39;working&rsquo; or &#39;translated&rsquo;.</td>
+</tr>
+<tr>
+<td>writing_system</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be an accepted value, e.g. &#39;Latin&rsquo;, &#39;Japanese&rsquo; etc.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>Record type</th>
+<th>Relationship type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>places</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>company</td>
+<td>companies</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>version</td>
+<td>game_versions</td>
+<td>belongs_to</td>
+</tr>
+</tbody></table>
+
+<h3 id="included">Included</h3>
+
+<table><thead>
+<tr>
+<th>Record type</th>
+<th>Relationship</th>
+<th>Attributes included</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>places</td>
+<td>place</td>
+<td>name</td>
+</tr>
+<tr>
+<td>games</td>
+<td>game</td>
+<td>display_title</td>
+</tr>
+</tbody></table>
+
+<h3 id="meta">Meta</h3>
+
+<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
+
+          <h2 id="create-a-new-game-title"><a name="game_titles_create"></a>Create a new game title</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/games/dark-souls/titles</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "game_titles",
+    "attributes": {
+      "title": "New Title",
+      "kind": "title",
+      "writing_system": "Latin"
+    },
+    "relationships": {
+      "place": {
+        "data": {
+          "id": "17",
+          "type": "places"
+        }
+      },
+      "version": {
+        "data": {
+          "id": "2",
+          "type": "game_versions"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "62",
+    "type": "game_titles",
+    "attributes": {
+      "title": "New Title",
+      "kind": "title",
+      "writing_system": "Latin"
+    },
+    "relationships": {
+      "game": {
+        "data": {
+          "id": "47",
+          "type": "games"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/games/dark-souls"
+        }
+      },
+      "place": {
+        "data": {
+          "id": "17",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/bangladesh"
+        }
+      },
+      "version": {
+        "data": {
+          "id": "2",
+          "type": "versions"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/game_versions/2"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "47",
+      "type": "games",
+      "attributes": {
+        "display_title": "Dark Souls"
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/games/dark-souls"
+      }
+    },
+    {
+      "id": "17",
+      "type": "places",
+      "attributes": {
+        "name": "Bangladesh"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/bangladesh"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "new title, dark souls, bangladesh, name, title, alias, dbljump, video games, pc games, gaming",
+    "description": "New Title is an alternate name or title for Dark Souls. Learn more at Dbljump, the video game reference.",
+    "created_at": "2017-05-13T12:43:38.980Z",
+    "updated_at": "2017-05-13T12:43:38.980Z"
+  }
+}
+</code></pre>
+<p>Create a new title record for a given game. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/games/{game-slug}/titles</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Y</td>
+<td>1-250 characters.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Y</td>
+<td>The name classification. Must be &lsquo;title&rsquo;, &#39;working&rsquo; or &#39;translated&rsquo;.</td>
+</tr>
+<tr>
+<td>writing_system</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be an accepted value.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country or region.</td>
+</tr>
+<tr>
+<td>version</td>
+<td>belongs_to</td>
+<td></td>
+<td>game_versions</td>
+<td>Version must belong to same game as title.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="update-a-game-title"><a name="game_titles_update"></a>Update a game title</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">PATCH /articles/game_titles/58</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "game_titles",
+    "id": "58",
+    "attributes": {
+      "title": "アップデート",
+      "kind": "title",
+      "writing_system": "Japanese"
+    },
+    "relationships": {
+      "place": {
+        "data": {
+          "id": "102",
+          "type": "places"
+        }
+      },
+      "version": {
+        "data": {
+          "id": "1",
+          "type": "game_versions"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "58",
+    "type": "game_titles",
+    "attributes": {
+      "title": "アップデート",
+      "kind": "title",
+      "writing_system": "Japanese"
+    },
+    "relationships": {
+      "game": {
+        "data": {
+          "id": "46",
+          "type": "games"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/games/the-wonderful-101"
+        }
+      },
+      "place": {
+        "data": {
+          "id": "102",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/japan"
+        }
+      },
+      "version": {
+        "data": {
+          "id": "1",
+          "type": "versions"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/game_versions/1"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "46",
+      "type": "games",
+      "attributes": {
+        "display_title": "The Wonderful 101"
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/games/the-wonderful-101"
+      }
+    },
+    {
+      "id": "102",
+      "type": "places",
+      "attributes": {
+        "name": "Japan"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/japan"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "アップデート, the wonderful 101, japan, name, title, alias, dbljump, video games, pc games, gaming",
+    "description": "アップデート is an alternate name or title for The Wonderful 101. Learn more at Dbljump, the video game reference.",
+    "created_at": "2017-04-24T09:09:19.450Z",
+    "updated_at": "2017-05-13T12:58:30.190Z"
+  }
+}
+</code></pre>
+<p>Update an existing game title. The user must be an editor.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /articles/game_titles/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Y</td>
+<td>1-250 characters.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Y</td>
+<td>The name classification. Must be &lsquo;title&rsquo;, &#39;working&rsquo; or &#39;translated&rsquo;.</td>
+</tr>
+<tr>
+<td>writing_system</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be an accepted value.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country or region.</td>
+</tr>
+<tr>
+<td>version</td>
+<td>belongs_to</td>
+<td></td>
+<td>game_versions</td>
+<td>Version must belong to same game as title.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="delete-a-game-title"><a name="game_titles_delete"></a>Delete a game title</h2>
+
+<p>Delete an existing game title. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /articles/game_titles/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+          <h2 id="errors"><a name="game_titles_errors"></a>Errors</h2>
+
+<p>Errors specific to creating and updating game titles.</p>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>GAME_TITLE_TITLE_BLANK</td>
+<td>title</td>
+<td>Title is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_TITLE_TITLE_TOO_LONG</td>
+<td>title</td>
+<td>Title cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_TITLE_TITLE_TAKEN</td>
+<td>title</td>
+<td>Title must be unique to its parent company.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_TITLE_KIND_BLANK</td>
+<td>kind</td>
+<td>Kind is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_TITLE_KIND_INCLUSION</td>
+<td>kind</td>
+<td>Kind must be an accepted value.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_TITLE_WRITING_SYSTEM_BLANK</td>
+<td>writing_system</td>
+<td>Writing system is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_TITLE_WRITING_SYSTEM_INCLUSION</td>
+<td>writing_system</td>
+<td>Writing system must be an accepted value.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_TITLE_PLACE_ID_INVALID</td>
+<td>data/relationships/place/data/id</td>
+<td>Place ID must be a valid country or region ID.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_TITLE_VERSION_ID_INVALID</td>
+<td>data/relationships/version/data/id</td>
+<td>Version ID must belong to the parent game.</td>
+</tr>
+</tbody></table>
+
           <h1 id="articles-people"><a name="people_intro"></a>Articles: People</h1>
 
 <p>Resources related to people articles.</p>
@@ -2363,6 +3093,769 @@ Successful responses include the following HTTP header.<br /><br />
 <td>PERSON_DEATH_YEAR_INVALID</td>
 <td>death_year</td>
 <td>Death year must not be eariler than birth year.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="articles-person-names"><a name="person_names_intro"></a>Articles: Person Names</h1>
+
+<p>Resources related to person names.</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<p>See <a href="#person_names_create">Create a new person name</a> and <a href="#person_names_update">Update a person name</a>.</p>
+
+<h3 id="response-attributes">Response attributes</h3>
+
+<p>See <a href="#person_names_show">Get a single person name</a></p>
+
+          <h2 id="get-all-of-a-person-39-s-names">Get all of a person&rsquo;s names</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/people/satoru-iwata/names?page[size]=2
+
+{
+  "data": [
+    {
+      "id": "41",
+      "type": "person_names",
+      "attributes": {
+        "display_name": "岩田 聡",
+        "given_names": "聡",
+        "family_name": "岩田",
+        "kind": "name",
+        "writing_system": "Japanese",
+        "year_adopted": null,
+        "dropped": null,
+        "year_dropped": null
+      },
+      "relationships": {
+        "person": {
+          "data": {
+            "id": "26",
+            "type": "people"
+          },
+          "links": {
+            "related": "http://localhost:3000/articles/people/satoru-iwata"
+          }
+        },
+        "place": {
+          "data": null
+        }
+      }
+    }
+  ],
+  "links": {},
+  "meta": {
+    "total_items": 1
+  }
+}
+</code></pre>
+<p>Retrieve all of a given person&rsquo;s names. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/people/{person-slug}/names</code> (replace <code class="prettyprint">{person-slug}</code> with parent person record slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[person_names]=display_name</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[dropped]=true</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-a-single-person-name"><a name="person_names_show"></a>Get a single person name</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/person_names/41
+
+{
+  "data": {
+    "id": "41",
+    "type": "person_names",
+    "attributes": {
+      "display_name": "岩田 聡",
+      "given_names": "聡",
+      "family_name": "岩田",
+      "kind": "name",
+      "writing_system": "Japanese",
+      "year_adopted": null,
+      "dropped": null,
+      "year_dropped": null
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "id": "26",
+          "type": "people"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/people/satoru-iwata"
+        }
+      },
+      "place": {
+        "data": null
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "26",
+      "type": "people",
+      "attributes": {
+        "display_title": "Satoru Iwata"
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/people/satoru-iwata"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "岩田 聡, satoru iwata, name, title, alias, dbljump, video games, pc games, gaming",
+    "description": "岩田 聡 is an alternate name or title for Satoru Iwata. Learn more at Dbljump, the video game reference.",
+    "created_at": "2017-04-24T09:09:17.343Z",
+    "updated_at": "2017-04-24T09:09:17.343Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single person name. Person names are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/person_names/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="response-attributes"><a name="person_names_response_attrs"></a>Response attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>display_name</td>
+<td>string</td>
+<td>Y</td>
+<td>The name.</td>
+</tr>
+<tr>
+<td>given_names</td>
+<td>string</td>
+<td>Y</td>
+<td>1-50 characters.</td>
+</tr>
+<tr>
+<td>family_name</td>
+<td>string</td>
+<td></td>
+<td>1-50 characters.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Y</td>
+<td>The name classification. Must be &lsquo;name&rsquo;, &#39;styled&rsquo; or &#39;alias&rsquo;.</td>
+</tr>
+<tr>
+<td>writing_system</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be an accepted value, e.g. &#39;Latin&rsquo;, &#39;Japanese&rsquo; etc.</td>
+</tr>
+<tr>
+<td>year_adopted</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>dropped</td>
+<td>boolean</td>
+<td></td>
+<td>True if the name has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
+</tr>
+<tr>
+<td>year_dropped</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>Record type</th>
+<th>Relationship type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>places</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>person</td>
+<td>people</td>
+<td>belongs_to</td>
+</tr>
+</tbody></table>
+
+<h3 id="included">Included</h3>
+
+<table><thead>
+<tr>
+<th>Record type</th>
+<th>Relationship</th>
+<th>Attributes included</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>places</td>
+<td>place</td>
+<td>name</td>
+</tr>
+<tr>
+<td>people</td>
+<td>person</td>
+<td>display_title</td>
+</tr>
+</tbody></table>
+
+<h3 id="meta">Meta</h3>
+
+<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
+
+          <h2 id="create-a-new-person-name"><a name="person_names_create"></a>Create a new person name</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/people/shigeru-miyamoto/names</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "person_names",
+    "attributes": {
+      "given_names": "Shiggy",
+      "family_name": "Shaboo",
+      "kind": "nickname",
+      "writing_system": "Latin",
+      "year_adopted": "1968",
+      "dropped": "",
+      "year_dropped": "1972"
+    },
+    "relationships": {
+      "place": {
+        "data": {
+          "id": "102",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "63",
+    "type": "person_names",
+    "attributes": {
+      "display_name": "Shiggy Shaboo",
+      "given_names": "Shiggy",
+      "family_name": "Shaboo",
+      "kind": "nickname",
+      "writing_system": "Latin",
+      "year_adopted": 1968,
+      "dropped": true,
+      "year_dropped": 1972
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "id": "21",
+          "type": "people"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/people/shigeru-miyamoto"
+        }
+      },
+      "place": {
+        "data": {
+          "id": "102",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/japan"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "21",
+      "type": "people",
+      "attributes": {
+        "display_title": "Shigeru Miyamoto"
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/people/shigeru-miyamoto"
+      }
+    },
+    {
+      "id": "102",
+      "type": "places",
+      "attributes": {
+        "name": "Japan"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/japan"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "shiggy shaboo, shigeru miyamoto, japan, name, title, alias, dbljump, video games, pc games, gaming",
+    "description": "Shiggy Shaboo is an alternate name or title for Shigeru Miyamoto. Learn more at Dbljump, the video game reference.",
+    "created_at": "2017-05-13T13:08:28.650Z",
+    "updated_at": "2017-05-13T13:08:28.650Z"
+  }
+}
+</code></pre>
+<p>Create a new name record for a given person. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/people/{person-slug}/names</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>given_names</td>
+<td>string</td>
+<td>Y</td>
+<td>1-50 characters.</td>
+</tr>
+<tr>
+<td>family_name</td>
+<td>string</td>
+<td></td>
+<td>1-50 characters.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Y</td>
+<td>The name classification. Must be &lsquo;name&rsquo;, &#39;fullname&rsquo; or &#39;nickname&rsquo;.</td>
+</tr>
+<tr>
+<td>writing_system</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be an accepted value.</td>
+</tr>
+<tr>
+<td>year_adopted</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>dropped</td>
+<td>boolean</td>
+<td></td>
+<td>True if the name has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
+</tr>
+<tr>
+<td>year_dropped</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country or region.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="update-a-person-name"><a name="person_names_update"></a>Update a person name</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">PATCH /articles/person_names/41</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "person_names",
+    "id": "41",
+    "attributes": {
+      "given_names": "アップデート",
+      "family_name": "カタカナ",
+      "kind": "fullname",
+      "writing_system": "Japanese",
+      "year_adopted": "1995",
+      "dropped": "true",
+      "year_dropped": ""
+    },
+    "relationships": {
+      "place": {
+        "data": {
+          "id": "102",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "41",
+    "type": "person_names",
+    "attributes": {
+      "display_name": "カタカナ アップデート",
+      "given_names": "アップデート",
+      "family_name": "カタカナ",
+      "kind": "fullname",
+      "writing_system": "Japanese",
+      "year_adopted": 1995,
+      "dropped": true,
+      "year_dropped": null
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "id": "26",
+          "type": "people"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/people/satoru-iwata"
+        }
+      },
+      "place": {
+        "data": {
+          "id": "102",
+          "type": "places"
+        },
+        "links": {
+          "related": "http://localhost:3000/places/japan"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "26",
+      "type": "people",
+      "attributes": {
+        "display_title": "Satoru Iwata"
+      },
+      "links": {
+        "self": "http://localhost:3000/articles/people/satoru-iwata"
+      }
+    },
+    {
+      "id": "102",
+      "type": "places",
+      "attributes": {
+        "name": "Japan"
+      },
+      "links": {
+        "self": "http://localhost:3000/places/japan"
+      }
+    }
+  ],
+  "meta": {
+    "keywords": "カタカナ アップデート, satoru iwata, japan, name, title, alias, dbljump, video games, pc games, gaming",
+    "description": "カタカナ アップデート is an alternate name or title for Satoru Iwata. Learn more at Dbljump, the video game reference.",
+    "created_at": "2017-04-24T09:09:17.343Z",
+    "updated_at": "2017-05-13T13:21:47.547Z"
+  }
+}
+</code></pre>
+<p>Update an existing person name. The user must be an editor.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /articles/person_names/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>given_names</td>
+<td>string</td>
+<td>Y</td>
+<td>1-50 characters.</td>
+</tr>
+<tr>
+<td>family_name</td>
+<td>string</td>
+<td></td>
+<td>1-50 characters.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Y</td>
+<td>The name classification. Must be &lsquo;name&rsquo;, &#39;fullname&rsquo; or &#39;nickname&rsquo;.</td>
+</tr>
+<tr>
+<td>writing_system</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be an accepted value.</td>
+</tr>
+<tr>
+<td>year_adopted</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+<tr>
+<td>dropped</td>
+<td>boolean</td>
+<td></td>
+<td>True if the name has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
+</tr>
+<tr>
+<td>year_dropped</td>
+<td>integer</td>
+<td></td>
+<td>Between 1800 and the present year.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>Can be a country or region.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="delete-a-person-name"><a name="person_names_delete"></a>Delete a person name</h2>
+
+<p>Delete an existing person name. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /articles/person_names/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+          <h2 id="errors"><a name="person_names_errors"></a>Errors</h2>
+
+<p>Errors specific to creating and updating person names.</p>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>PERSON_NAME_GIVEN_NAMES_BLANK</td>
+<td>name</td>
+<td>Given names is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NAME_GIVEN_NAMES_TOO_LONG</td>
+<td>name</td>
+<td>Given names cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NAME_FAMILY_NAME_BLANK</td>
+<td>name</td>
+<td>Family name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NAME_FAMILY_NAME_TOO_LONG</td>
+<td>name</td>
+<td>Family name cannot be more than 50 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NAME_DISPLAY_NAME_TAKEN</td>
+<td>name</td>
+<td>This person already has a name record with that given names and family name combination.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NAME_KIND_BLANK</td>
+<td>kind</td>
+<td>Kind is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NAME_KIND_INCLUSION</td>
+<td>kind</td>
+<td>Kind must be an accepted value.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NAME_WRITING_SYSTEM_BLANK</td>
+<td>writing_system</td>
+<td>Writing system is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NAME_WRITING_SYSTEM_INCLUSION</td>
+<td>writing_system</td>
+<td>Writing system must be an accepted value.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NAME_YEAR_ADOPTED_INCLUSION</td>
+<td>year_adopted</td>
+<td>Year adopted must be a past year not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NAME_YEAR_DROPPED_INCLUSION</td>
+<td>year_dropped</td>
+<td>Year dropped must be a past year not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NAME_YEAR_DROPPED_INVALID</td>
+<td>year_dropped</td>
+<td>Year dropped must not be earlier than year adopted.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NAME_PLACE_ID_INVALID</td>
+<td>data/relationships/place/data/id</td>
+<td>Place ID must be a valid country or region ID.</td>
 </tr>
 </tbody></table>
 
@@ -3555,7 +5048,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
 
-          <h2 id="create-a-new-company-name"><a name="comany_names_create"></a>Create a new company name</h2>
+          <h2 id="create-a-new-company-name"><a name="company_names_create"></a>Create a new company name</h2>
 
 <blockquote>
 <p>Request body | <code class="prettyprint">POST /articles/companies/nintendo-co-ltd/names</code></p>
