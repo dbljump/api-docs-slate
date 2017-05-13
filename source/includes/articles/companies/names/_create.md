@@ -1,4 +1,4 @@
-## <a name="comany_names_create"></a>Create a new company name
+## <a name="company_names_create"></a>Create a new company name
 
 > Request body | `POST /articles/companies/nintendo-co-ltd/names`
 

@@ -1,11 +1,11 @@
-# <a name="company_names_intro"></a>Articles: Company Names
+# <a name="person_names_intro"></a>Articles: Person Names
 
-Resources related to company names.
+Resources related to person names.
 
 ### Request attributes
 
-See [Create a new company name](#company_names_create) and [Update a company name](#company_names_update).
+See [Create a new person name](#person_names_create) and [Update a person name](#person_names_update).
 
 ### Response attributes
 
-See [Get a single company name](#company_names_show)
+See [Get a single person name](#person_names_show)

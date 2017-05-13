@@ -1,13 +1,13 @@
-## <a name="company_names_delete"></a>Delete a company name
+## <a name="person_names_delete"></a>Delete a person name
 
-Delete an existing company name. User must be an editor or admin.
+Delete an existing person name. User must be an editor or admin.
 
 * User authentication: required
 * Authorization level: editor or admin
 
 ### HTTP request
 
-`DELETE /articles/company_names/{id}` (replace `{id}` with record ID)
+`DELETE /articles/person_names/{id}` (replace `{id}` with record ID)
 
 ### Success HTTP response code
 

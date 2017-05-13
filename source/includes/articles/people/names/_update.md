@@ -1,15 +1,16 @@
-## <a name="company_names_update"></a>Update a company name
+## <a name="person_names_update"></a>Update a person name
 
-> Request body | `PATCH /articles/company_names/7`
+> Request body | `PATCH /articles/person_names/41`
 
 ```JSON
 {
   "data": {
-    "type": "company_names",
-    "id": "7",
+    "type": "person_names",
+    "id": "41",
     "attributes": {
-      "name": "アップデート",
-      "kind": "styled",
+      "given_names": "アップデート",
+      "family_name": "カタカナ",
+      "kind": "fullname",
       "writing_system": "Japanese",
       "year_adopted": "1995",
       "dropped": "true",
@@ -32,24 +33,26 @@
 ```JSON
 {
   "data": {
-    "id": "7",
-    "type": "company_names",
+    "id": "41",
+    "type": "person_names",
     "attributes": {
-      "name": "アップデート",
-      "kind": "styled",
+      "display_name": "カタカナ アップデート",
+      "given_names": "アップデート",
+      "family_name": "カタカナ",
+      "kind": "fullname",
       "writing_system": "Japanese",
       "year_adopted": 1995,
       "dropped": true,
       "year_dropped": null
     },
     "relationships": {
-      "company": {
+      "person": {
         "data": {
-          "id": "2",
-          "type": "companies"
+          "id": "26",
+          "type": "people"
         },
         "links": {
-          "related": "http://localhost:3000/articles/companies/sega-games-co-ltd"
+          "related": "http://localhost:3000/articles/people/satoru-iwata"
         }
       },
       "place": {
@@ -65,13 +68,13 @@
   },
   "included": [
     {
-      "id": "2",
-      "type": "companies",
+      "id": "26",
+      "type": "people",
       "attributes": {
-        "display_title": "Sega Games Co., Ltd."
+        "display_title": "Satoru Iwata"
       },
       "links": {
-        "self": "http://localhost:3000/articles/companies/sega-games-co-ltd"
+        "self": "http://localhost:3000/articles/people/satoru-iwata"
       }
     },
     {
@@ -86,29 +89,30 @@
     }
   ],
   "meta": {
-    "keywords": "アップデート, sega games co., ltd., japan, name, title, alias, dbljump, video games, pc games, gaming",
-    "description": "アップデート is an alternate name or title for Sega Games Co., Ltd.. Learn more at Dbljump, the video game reference.",
-    "created_at": "2017-04-24T09:09:13.815Z",
-    "updated_at": "2017-05-03T10:28:40.939Z"
+    "keywords": "カタカナ アップデート, satoru iwata, japan, name, title, alias, dbljump, video games, pc games, gaming",
+    "description": "カタカナ アップデート is an alternate name or title for Satoru Iwata. Learn more at Dbljump, the video game reference.",
+    "created_at": "2017-04-24T09:09:17.343Z",
+    "updated_at": "2017-05-13T13:21:47.547Z"
   }
 }
 ```
 
-Update an existing company name. The user must be an editor.
+Update an existing person name. The user must be an editor.
 
 * User authentication: required
 * Authorization level: admin
 
 ### HTTP request
 
-`PATCH /articles/company_names/{id}` (replace `{id}` with record ID)
+`PATCH /articles/person_names/{id}` (replace `{id}` with record ID)
 
 ### Request attributes
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-name | string | Y | 1-250 characters.
-kind | string | Y | The name classification. Must be 'name', 'styled' or 'alias'.
+given_names | string | Y | 1-50 characters.
+family_name | string |  | 1-50 characters.
+kind | string | Y | The name classification. Must be 'name', 'fullname' or 'nickname'.
 writing_system | string | Y | Must be an accepted value.
 year_adopted | integer | | Between 1800 and the present year.
 dropped | boolean | | True if the name has been dropped. Auto-sets true if `year_dropped` present.

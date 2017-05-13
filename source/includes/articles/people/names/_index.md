@@ -1,17 +1,19 @@
-## Get all of a company's names
+## Get all of a person's names
 
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/companies/nintendo-co-ltd/names?page[size]=2
+# GET /articles/people/satoru-iwata/names?page[size]=2
 
 {
   "data": [
     {
-      "id": "1",
-      "type": "company_names",
+      "id": "41",
+      "type": "person_names",
       "attributes": {
-        "name": "任天堂株式会社",
+        "display_name": "岩田 聡",
+        "given_names": "聡",
+        "family_name": "岩田",
         "kind": "name",
         "writing_system": "Japanese",
         "year_adopted": null,
@@ -19,54 +21,42 @@
         "year_dropped": null
       },
       "relationships": {
-        "place": {
-          "data": null
-        }
-      }
-    },
-    {
-      "id": "2",
-      "type": "company_names",
-      "attributes": {
-        "name": "Nintendō Kabushiki gaisha",
-        "kind": "name",
-        "writing_system": "Latin",
-        "year_adopted": null,
-        "dropped": true,
-        "year_dropped": null
-      },
-      "relationships": {
+        "person": {
+          "data": {
+            "id": "26",
+            "type": "people"
+          },
+          "links": {
+            "related": "http://localhost:3000/articles/people/satoru-iwata"
+          }
+        },
         "place": {
           "data": null
         }
       }
     }
   ],
-  "links": {
-    "self": "http://localhost:3000/articles/companies/nintendo-co-ltd/names?page%5Bnumber%5D=1&page%5Bsize%5D=2",
-    "next": "http://localhost:3000/articles/companies/nintendo-co-ltd/names?page%5Bnumber%5D=2&page%5Bsize%5D=2",
-    "last": "http://localhost:3000/articles/companies/nintendo-co-ltd/names?page%5Bnumber%5D=3&page%5Bsize%5D=2"
-  },
+  "links": {},
   "meta": {
-    "total_items": 5
+    "total_items": 1
   }
 }
 ```
 
-Retrieve all of a given company's names. Automatically paginated.
+Retrieve all of a given person's names. Automatically paginated.
 
 * User authentication: not required
 * Authorization level: n/a
 
 ### HTTP request
 
-`GET /articles/companies/{company-slug}/names` (replace `{company-slug}` with parent company record slug)
+`GET /articles/people/{person-slug}/names` (replace `{person-slug}` with parent person record slug)
 
 ### URL query parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[company_names]=name`
+fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[person_names]=display_name`
 filter[{field}] | All records | Filter search by field, e.g. `?filter[dropped]=true`
 page[number] | 1 | Select the page number, e.g. `?page[number]=3`
 page[size] | 30 | Select the number of records per page, e.g. `?page[size]=20`
