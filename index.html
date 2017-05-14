@@ -284,10 +284,37 @@ Successful responses include the following HTTP header.<br /><br />
       "created_by": {
         "data": {
           "id": "1",
-          "type": "users"
+          "type": "created_bies"
         },
         "links": {
           "related": "http://localhost:3000/users/1"
+        }
+      },
+      "genres": {
+        "data": [
+          {
+            "id": "1",
+            "type": "genres"
+          },
+          {
+            "id": "2",
+            "type": "genres"
+          },
+          {
+            "id": "23",
+            "type": "genres"
+          }
+        ]
+      },
+      "versions": {
+        "data": [
+          {
+            "id": "1",
+            "type": "game_versions"
+          }
+        ],
+        "links": {
+          "related": "http://localhost:3000/articles/games/the-wonderful-101/versions"
         }
       }
     },
@@ -308,6 +335,39 @@ Successful responses include the following HTTP header.<br /><br />
       },
       "links": {
         "self": "http://localhost:3000/users/1"
+      }
+    },
+    {
+      "id": "1",
+      "type": "genres",
+      "attributes": {
+        "name": "action",
+        "short_name": ""
+      },
+      "links": {
+        "self": "http://localhost:3000/genres/action"
+      }
+    },
+    {
+      "id": "2",
+      "type": "genres",
+      "attributes": {
+        "name": "adventure",
+        "short_name": ""
+      },
+      "links": {
+        "self": "http://localhost:3000/genres/adventure"
+      }
+    },
+    {
+      "id": "23",
+      "type": "genres",
+      "attributes": {
+        "name": "comedy",
+        "short_name": ""
+      },
+      "links": {
+        "self": "http://localhost:3000/genres/comedy"
       }
     }
   ],
@@ -384,6 +444,11 @@ Successful responses include the following HTTP header.<br /><br />
 <td>users</td>
 <td>belongs_to</td>
 </tr>
+<tr>
+<td>genres</td>
+<td>genres</td>
+<td>has_many</td>
+</tr>
 </tbody></table>
 
 <h3 id="included">Included</h3>
@@ -399,6 +464,11 @@ Successful responses include the following HTTP header.<br /><br />
 <td>users</td>
 <td>created_by</td>
 <td>username, role, given_names, family_name, avatar</td>
+</tr>
+<tr>
+<td>genres</td>
+<td>genres</td>
+<td>name, short_name</td>
 </tr>
 </tbody></table>
 
@@ -476,7 +546,7 @@ Successful responses include the following HTTP header.<br /><br />
   }
 }
 </code></pre>
-<p>Create a new game article. User must be an editor or admin.</p>
+<p>Create a new game article. User must be an editor or admin. The genres relationship cannot be edited.</p>
 
 <ul>
 <li>User authentication: required</li>
@@ -541,6 +611,14 @@ Successful responses include the following HTTP header.<br /><br />
       "description": "Updated description for an updated article.",
       "release_date": "1995-11-17",
       "release_year": ""
+    },
+    "relationships": {
+      "genres": {
+        "data": {
+          { "type": "genres", "id": "5" },
+          { "type": "genres", "id": "12" }
+        }
+      }
     }
   }
 }
@@ -550,28 +628,51 @@ Successful responses include the following HTTP header.<br /><br />
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "id": "45",
+    "id": "46",
     "type": "games",
     "attributes": {
       "display_title": "Changed Name",
       "description": "Updated description for an updated article.",
       "release_date": "1995-11-17",
       "release_year": 1995,
-      "slug": "changed-name-72d6b822-372c-4f99-93b5-98d17ac0acf1"
+      "slug": "changed-name-69659741-129d-4da5-9a80-98abd30ec586"
     },
     "relationships": {
       "created_by": {
         "data": {
           "id": "1",
-          "type": "users"
+          "type": "created_bies"
         },
         "links": {
           "related": "http://localhost:3000/users/1"
         }
+      },
+      "genres": {
+        "data": [
+          {
+            "id": "5",
+            "type": "genres"
+          },
+          {
+            "id": "12",
+            "type": "genres"
+          }
+        ]
+      },
+      "versions": {
+        "data": [
+          {
+            "id": "1",
+            "type": "game_versions"
+          }
+        ],
+        "links": {
+          "related": "http://localhost:3000/articles/games/changed-name-69659741-129d-4da5-9a80-98abd30ec586/versions"
+        }
       }
     },
     "links": {
-      "self": "http://localhost:3000/articles/games/changed-name-72d6b822-372c-4f99-93b5-98d17ac0acf1"
+      "self": "http://localhost:3000/articles/games/changed-name-69659741-129d-4da5-9a80-98abd30ec586"
     }
   },
   "included": [
@@ -588,17 +689,39 @@ Successful responses include the following HTTP header.<br /><br />
       "links": {
         "self": "http://localhost:3000/users/1"
       }
+    },
+    {
+      "id": "5",
+      "type": "genres",
+      "attributes": {
+        "name": "educational",
+        "short_name": ""
+      },
+      "links": {
+        "self": "http://localhost:3000/genres/educational"
+      }
+    },
+    {
+      "id": "12",
+      "type": "genres",
+      "attributes": {
+        "name": "role-playing game",
+        "short_name": "RPG"
+      },
+      "links": {
+        "self": "http://localhost:3000/genres/role-playing-game"
+      }
     }
   ],
   "meta": {
     "keywords": "changed name, 1995, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
     "description": "Find Changed Name trivia, screenshots, credits and other info at Dbljump, the video game reference.",
-    "created_at": "2017-04-24T09:09:19.087Z",
-    "updated_at": "2017-04-29T20:10:31.175Z"
+    "created_at": "2017-04-24T09:09:19.130Z",
+    "updated_at": "2017-05-14T21:45:39.016Z"
   }
 }
 </code></pre>
-<p>Update an existing game article. The user must be an editor.</p>
+<p>Update an existing game article. The user must be an editor. The genres relationship can be edited.</p>
 
 <ul>
 <li>User authentication: required</li>
@@ -665,6 +788,149 @@ Successful responses include the following HTTP header.<br /><br />
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">204 No Content</code></p>
+
+          <h2 id="game-genres-get-all">Game genres: get all</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/games/dark-souls/genres
+
+{
+  "data": [
+    {
+      "id": "1",
+      "type": "genres",
+      "attributes": {
+        "name": "action",
+        "short_name": "",
+        "also_known_as": [],
+        "slug": "action"
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "created_bies"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/genres/action"
+      }
+    },
+    {
+      "id": "12",
+      "type": "genres",
+      "attributes": {
+        "name": "role-playing game",
+        "short_name": "RPG",
+        "also_known_as": [],
+        "slug": "role-playing-game"
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "created_bies"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/genres/role-playing-game"
+      }
+    },
+    {
+      "id": "20",
+      "type": "genres",
+      "attributes": {
+        "name": "fantasy",
+        "short_name": "",
+        "also_known_as": [],
+        "slug": "fantasy"
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "created_bies"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      },
+      "links": {
+        "self": "http://localhost:3000/genres/fantasy"
+      }
+    }
+  ],
+  "links": {},
+  "meta": {
+    "total_items": 3
+  }
+}
+</code></pre>
+<p>Retrieve all genres belonging to a given game. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/games/{game_slug}/genres</code> (replace <code class="prettyprint">{game_slug}</code> with game record slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[genres]=name,short_name</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[name]=action</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
 
           <h2 id="errors"><a name="games_errors"></a>Errors</h2>
 
