@@ -12,6 +12,14 @@
       "description": "Updated description for an updated article.",
       "release_date": "1995-11-17",
       "release_year": ""
+    },
+    "relationships": {
+      "genres": {
+        "data": {
+          { "type": "genres", "id": "5" },
+          { "type": "genres", "id": "12" }
+        }
+      }
     }
   }
 }
@@ -22,28 +30,51 @@
 ```JSON
 {
   "data": {
-    "id": "45",
+    "id": "46",
     "type": "games",
     "attributes": {
       "display_title": "Changed Name",
       "description": "Updated description for an updated article.",
       "release_date": "1995-11-17",
       "release_year": 1995,
-      "slug": "changed-name-72d6b822-372c-4f99-93b5-98d17ac0acf1"
+      "slug": "changed-name-69659741-129d-4da5-9a80-98abd30ec586"
     },
     "relationships": {
       "created_by": {
         "data": {
           "id": "1",
-          "type": "users"
+          "type": "created_bies"
         },
         "links": {
           "related": "http://localhost:3000/users/1"
         }
+      },
+      "genres": {
+        "data": [
+          {
+            "id": "5",
+            "type": "genres"
+          },
+          {
+            "id": "12",
+            "type": "genres"
+          }
+        ]
+      },
+      "versions": {
+        "data": [
+          {
+            "id": "1",
+            "type": "game_versions"
+          }
+        ],
+        "links": {
+          "related": "http://localhost:3000/articles/games/changed-name-69659741-129d-4da5-9a80-98abd30ec586/versions"
+        }
       }
     },
     "links": {
-      "self": "http://localhost:3000/articles/games/changed-name-72d6b822-372c-4f99-93b5-98d17ac0acf1"
+      "self": "http://localhost:3000/articles/games/changed-name-69659741-129d-4da5-9a80-98abd30ec586"
     }
   },
   "included": [
@@ -60,18 +91,40 @@
       "links": {
         "self": "http://localhost:3000/users/1"
       }
+    },
+    {
+      "id": "5",
+      "type": "genres",
+      "attributes": {
+        "name": "educational",
+        "short_name": ""
+      },
+      "links": {
+        "self": "http://localhost:3000/genres/educational"
+      }
+    },
+    {
+      "id": "12",
+      "type": "genres",
+      "attributes": {
+        "name": "role-playing game",
+        "short_name": "RPG"
+      },
+      "links": {
+        "self": "http://localhost:3000/genres/role-playing-game"
+      }
     }
   ],
   "meta": {
     "keywords": "changed name, 1995, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
     "description": "Find Changed Name trivia, screenshots, credits and other info at Dbljump, the video game reference.",
-    "created_at": "2017-04-24T09:09:19.087Z",
-    "updated_at": "2017-04-29T20:10:31.175Z"
+    "created_at": "2017-04-24T09:09:19.130Z",
+    "updated_at": "2017-05-14T21:45:39.016Z"
   }
 }
 ```
 
-Update an existing game article. The user must be an editor.
+Update an existing game article. The user must be an editor. The genres relationship can be edited.
 
 * User authentication: required
 * Authorization level: admin

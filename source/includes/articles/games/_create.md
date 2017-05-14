@@ -70,7 +70,7 @@
 }
 ```
 
-Create a new game article. User must be an editor or admin.
+Create a new game article. User must be an editor or admin. The genres relationship cannot be edited.
 
 * User authentication: required
 * Authorization level: editor or admin

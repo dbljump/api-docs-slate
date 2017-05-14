@@ -20,10 +20,37 @@
       "created_by": {
         "data": {
           "id": "1",
-          "type": "users"
+          "type": "created_bies"
         },
         "links": {
           "related": "http://localhost:3000/users/1"
+        }
+      },
+      "genres": {
+        "data": [
+          {
+            "id": "1",
+            "type": "genres"
+          },
+          {
+            "id": "2",
+            "type": "genres"
+          },
+          {
+            "id": "23",
+            "type": "genres"
+          }
+        ]
+      },
+      "versions": {
+        "data": [
+          {
+            "id": "1",
+            "type": "game_versions"
+          }
+        ],
+        "links": {
+          "related": "http://localhost:3000/articles/games/the-wonderful-101/versions"
         }
       }
     },
@@ -44,6 +71,39 @@
       },
       "links": {
         "self": "http://localhost:3000/users/1"
+      }
+    },
+    {
+      "id": "1",
+      "type": "genres",
+      "attributes": {
+        "name": "action",
+        "short_name": ""
+      },
+      "links": {
+        "self": "http://localhost:3000/genres/action"
+      }
+    },
+    {
+      "id": "2",
+      "type": "genres",
+      "attributes": {
+        "name": "adventure",
+        "short_name": ""
+      },
+      "links": {
+        "self": "http://localhost:3000/genres/adventure"
+      }
+    },
+    {
+      "id": "23",
+      "type": "genres",
+      "attributes": {
+        "name": "comedy",
+        "short_name": ""
+      },
+      "links": {
+        "self": "http://localhost:3000/genres/comedy"
       }
     }
   ],
@@ -83,12 +143,14 @@ release_year | integer | | Between 1800 and the present year.
 Association | Record type | Relationship type
 ------------ | ---------- | -----------------
 created_by | users | belongs_to
+genres | genres | has_many
 
 ### Included
 
 Record type | Relationship | Attributes included
 ----------- | ------------ | -------------------
 users | created_by | username, role, given_names, family_name, avatar
+genres | genres | name, short_name
 
 ### Meta
 
