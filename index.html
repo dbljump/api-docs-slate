@@ -2376,6 +2376,690 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
+          <h1 id="articles-game-notes"><a name="game_notes_intro"></a>Articles: Game Notes</h1>
+
+<p>Resources related to game notes. Notes are trivia, stories or facts about a game.</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<p>See <a href="#game_notes_create">Create a new game note</a> and <a href="#game_notes_update">Update a game note</a>.</p>
+
+<h3 id="response-attributes">Response attributes</h3>
+
+<p>See <a href="#game_notes_show">Get a single game note</a></p>
+
+          <h2 id="get-all-of-a-game-39-s-titles">Get all of a game&rsquo;s titles</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/games/the-wonderful-101/notes?page[size]=2
+
+{
+  "data": [
+    {
+      "id": "12",
+      "type": "game_notes",
+      "attributes": {
+        "category": "Development",
+        "body": "Was originally intended to feature an all-star cast of Nintendo characters.",
+        "cite_url": "https://www.unseen64.net/2014/10/24/wiiu-the-wonderful-101-beta-development",
+        "cite_title": "The Wonderful 101 [Beta / Concept – Wii U]",
+        "cite_website": "Unseen64"
+      },
+      "relationships": {
+        "game": {
+          "data": {
+            "id": "46",
+            "type": "games"
+          },
+          "links": {
+            "related": "http://localhost:3000/articles/games/the-wonderful-101"
+          }
+        },
+        "version": {
+          "data": null,
+          "links": {
+            "related": "http://localhost:3000/articles/game_versions/2"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "created_bies"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      }
+    }
+  ],
+  "links": {},
+  "meta": {
+    "total_items": 1
+  }
+}
+</code></pre>
+<p>Retrieve all of a given game&rsquo;s notes. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/games/{game-slug}/notes</code> (replace <code class="prettyprint">{game-slug}</code> with parent game record slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[game_notes]=body</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[category]=Development</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-a-single-game-note"><a name="game_notes_show"></a>Get a single game note</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/game_notes/12
+
+{
+  "data": {
+    "id": "12",
+    "type": "game_notes",
+    "attributes": {
+      "category": "Development",
+      "body": "Was originally intended to feature an all-star cast of Nintendo characters.",
+      "cite_url": "https://www.unseen64.net/2014/10/24/wiiu-the-wonderful-101-beta-development",
+      "cite_title": "The Wonderful 101 [Beta / Concept – Wii U]",
+      "cite_website": "Unseen64"
+    },
+    "relationships": {
+      "game": {
+        "data": {
+          "id": "46",
+          "type": "games"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/games/the-wonderful-101"
+        }
+      },
+      "version": {
+        "data": null,
+        "links": {
+          "related": "http://localhost:3000/articles/game_versions/2"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "created_bies"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/1"
+        }
+      }
+    }
+  },
+  "meta": {
+    "keywords": "the wonderful 101, notes, trivia, facts, dbljump, video games, pc games, gaming",
+    "description": "Was originally intended to feature an all-star cast of Nintendo characters.",
+    "created_at": "2017-05-17T21:40:11.512Z",
+    "updated_at": "2017-05-17T21:40:11.512Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single game note. Game notes are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/game_notes/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="response-attributes"><a name="game_notes_response_attrs"></a>Response attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category</td>
+<td>string</td>
+<td>Y</td>
+<td>The note category.</td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>Y</td>
+<td>The note text. 5-2000 chars.</td>
+</tr>
+<tr>
+<td>cite_url</td>
+<td>string</td>
+<td></td>
+<td>The URL of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_title</td>
+<td>string</td>
+<td></td>
+<td>The title of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_website</td>
+<td>string</td>
+<td></td>
+<td>The name of the source website. 1-100 chars.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>Record type</th>
+<th>Relationship type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>game</td>
+<td>games</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>version</td>
+<td>game_versions</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>created_by</td>
+<td>users</td>
+<td>belongs_to</td>
+</tr>
+</tbody></table>
+
+<h3 id="meta">Meta</h3>
+
+<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
+
+          <h2 id="create-a-new-game-note"><a name="game_notes_create"></a>Create a new game note</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/games/dark-souls/notes</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "game_notes",
+    "attributes": {
+      "category": "Development",
+      "body": "The note text.",
+      "cite_url": "http://ign.com/article",
+      "cite_title": "The Article Title",
+      "cite_website": "IGN"
+    },
+    "relationships": {
+      "version": {
+        "data": {
+          "id": "2",
+          "type": "game_versions"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "13",
+    "type": "game_notes",
+    "attributes": {
+      "category": "Development",
+      "body": "The note text.",
+      "cite_url": "http://ign.com/article",
+      "cite_title": "The Article Title",
+      "cite_website": "IGN"
+    },
+    "relationships": {
+      "game": {
+        "data": {
+          "id": "47",
+          "type": "games"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/games/dark-souls"
+        }
+      },
+      "version": {
+        "data": {
+          "id": "2",
+          "type": "versions"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/game_versions/2"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "users"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/2"
+        }
+      }
+    }
+  },
+  "meta": {
+    "keywords": "dark souls, notes, trivia, facts, dbljump, video games, pc games, gaming",
+    "description": "The note text.",
+    "created_at": "2017-05-17T21:44:11.984Z",
+    "updated_at": "2017-05-17T21:44:11.984Z"
+  }
+}
+</code></pre>
+<p>Create a new note for a given game. A note is a fact, story or piece of trivia about a game. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/games/{game-slug}/notes</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category</td>
+<td>string</td>
+<td>Y</td>
+<td>The note category. Must be an accepted value.</td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>Y</td>
+<td>The note text. 5-2000 chars.</td>
+</tr>
+<tr>
+<td>cite_url</td>
+<td>string</td>
+<td></td>
+<td>The URL of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_title</td>
+<td>string</td>
+<td></td>
+<td>The title of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_website</td>
+<td>string</td>
+<td></td>
+<td>The name of the source website. 1-100 chars.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>version</td>
+<td>belongs_to</td>
+<td></td>
+<td>game_versions</td>
+<td>Version must belong to same game as note.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="update-a-game-note"><a name="game_notes_update"></a>Update a game note</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">PATCH /articles/game_notes/12</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "12",
+    "type": "game_notes",
+    "attributes": {
+      "category": "Development",
+      "body": "Updated note text.",
+      "cite_url": "http://ign.com/article",
+      "cite_title": "The Article Title",
+      "cite_website": "IGN"
+    },
+    "relationships": {
+      "game": {
+        "data": {
+          "id": "46",
+          "type": "games"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/games/the-wonderful-101"
+        }
+      },
+      "version": {
+        "data": {
+          "id": "1",
+          "type": "versions"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/game_versions/1"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "created_bies"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/1"
+        }
+      }
+    }
+  },
+  "meta": {
+    "keywords": "the wonderful 101, notes, trivia, facts, dbljump, video games, pc games, gaming",
+    "description": "Updated note text.",
+    "created_at": "2017-05-17T21:40:11.512Z",
+    "updated_at": "2017-05-17T22:36:47.774Z"
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "12",
+    "type": "game_notes",
+    "attributes": {
+      "category": "Development",
+      "body": "Updated note text.",
+      "cite_url": "http://ign.com/article",
+      "cite_title": "The Article Title",
+      "cite_website": "IGN"
+    },
+    "relationships": {
+      "game": {
+        "data": {
+          "id": "46",
+          "type": "games"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/games/the-wonderful-101"
+        }
+      },
+      "version": {
+        "data": {
+          "id": "1",
+          "type": "versions"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/game_versions/1"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "created_bies"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/1"
+        }
+      }
+    }
+  },
+  "meta": {
+    "keywords": "the wonderful 101, notes, trivia, facts, dbljump, video games, pc games, gaming",
+    "description": "Updated note text.",
+    "created_at": "2017-05-17T21:40:11.512Z",
+    "updated_at": "2017-05-17T22:36:47.774Z"
+  }
+}
+</code></pre>
+<p>Update an existing game note. The user must be an editor.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /articles/game_notes/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category</td>
+<td>string</td>
+<td>Y</td>
+<td>The note category. Must be an accepted value.</td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>Y</td>
+<td>The note text. 5-2000 chars.</td>
+</tr>
+<tr>
+<td>cite_url</td>
+<td>string</td>
+<td></td>
+<td>The URL of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_title</td>
+<td>string</td>
+<td></td>
+<td>The title of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_website</td>
+<td>string</td>
+<td></td>
+<td>The name of the source website. 1-100 chars.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>version</td>
+<td>belongs_to</td>
+<td></td>
+<td>game_versions</td>
+<td>Version must belong to same game as title.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="delete-a-game-note"><a name="game_notes_delete"></a>Delete a game note</h2>
+
+<p>Delete an existing game note. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /articles/game_notes/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+          <h2 id="errors"><a name="game_notes_errors"></a>Errors</h2>
+
+<p>Errors specific to creating and updating game notes.</p>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>GAME_NOTE_VERSION_ID_INVALID</td>
+<td>data/relationships/version/data/id</td>
+<td>Version ID must belong to the parent game.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_NOTE_CATEGORY_BLANK</td>
+<td>category</td>
+<td>Category is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_NOTE_CATEGORY_INCLUSION</td>
+<td>category</td>
+<td>Category must be an accepted value.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_NOTE_BODY_BLANK</td>
+<td>body</td>
+<td>Body is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_NOTE_BODY_TOO_SHORT</td>
+<td>body</td>
+<td>Body cannot be less than 5 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_NOTE_BODY_TOO_LONG</td>
+<td>body</td>
+<td>Body cannot be more than 8000 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_NOTE_CITE_URL_TOO_SHORT</td>
+<td>cite_url</td>
+<td>Cite URL cannot be less than 5 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_NOTE_CITE_URL_TOO_LONG</td>
+<td>cite_url</td>
+<td>Cite URL cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_NOTE_CITE_TITLE_TOO_LONG</td>
+<td>cite_title</td>
+<td>Cite title cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_NOTE_CITE_WEBSITE_TOO_LONG</td>
+<td>cite_website</td>
+<td>Cite website cannot be more than 100 characters.</td>
+</tr>
+</tbody></table>
+
           <h1 id="articles-people"><a name="people_intro"></a>Articles: People</h1>
 
 <p>Resources related to people articles.</p>
@@ -4125,6 +4809,562 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
+          <h1 id="articles-person-notes"><a name="person_notes_intro"></a>Articles: Person Notes</h1>
+
+<p>Resources related to person notes. Notes are trivia, stories or facts about a person.</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<p>See <a href="#person_notes_create">Create a new person note</a> and <a href="#person_notes_update">Update a person note</a>.</p>
+
+<h3 id="response-attributes">Response attributes</h3>
+
+<p>See <a href="#person_notes_show">Get a single person note</a></p>
+
+          <h2 id="get-all-of-a-person-39-s-titles">Get all of a person&rsquo;s titles</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/people/shigeru-miyamoto/notes?page[size]=2
+
+{
+  "data": [
+    {
+      "id": "6",
+      "type": "person_notes",
+      "attributes": {
+        "category": "Education",
+        "body": "Studied industrial design at Kanazawa Municipal College of Industrial Arts.",
+        "cite_url": "",
+        "cite_title": "",
+        "cite_website": ""
+      },
+      "relationships": {
+        "person": {
+          "data": {
+            "id": "21",
+            "type": "people"
+          },
+          "links": {
+            "related": "http://localhost:3000/articles/people/shigeru-miyamoto"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "created_bies"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      }
+    }
+  ],
+  "links": {},
+  "meta": {
+    "total_items": 1
+  }
+}
+</code></pre>
+<p>Retrieve all of a given person&rsquo;s notes. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/companies/{person-slug}/notes</code> (replace <code class="prettyprint">{person-slug}</code> with parent person record slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[person_notes]=body</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[category]=Personal</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-a-single-person-note"><a name="person_notes_show"></a>Get a single person note</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/person_notes/6
+
+{
+  "data": {
+    "id": "6",
+    "type": "person_notes",
+    "attributes": {
+      "category": "Education",
+      "body": "Studied industrial design at Kanazawa Municipal College of Industrial Arts.",
+      "cite_url": "",
+      "cite_title": "",
+      "cite_website": ""
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "id": "21",
+          "type": "people"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/people/shigeru-miyamoto"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "created_bies"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/1"
+        }
+      }
+    }
+  },
+  "meta": {
+    "keywords": "shigeru miyamoto, notes, trivia, facts, dbljump, video games, pc games, gaming",
+    "description": "Studied industrial design at Kanazawa Municipal College of Industrial Arts.",
+    "created_at": "2017-05-17T21:40:09.742Z",
+    "updated_at": "2017-05-17T21:40:09.742Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single person note. Game notes are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/person_notes/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="response-attributes"><a name="person_notes_response_attrs"></a>Response attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category</td>
+<td>string</td>
+<td>Y</td>
+<td>The note category.</td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>Y</td>
+<td>The note text. 5-2000 chars.</td>
+</tr>
+<tr>
+<td>cite_url</td>
+<td>string</td>
+<td></td>
+<td>The URL of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_title</td>
+<td>string</td>
+<td></td>
+<td>The title of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_website</td>
+<td>string</td>
+<td></td>
+<td>The name of the source website. 1-100 chars.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>Record type</th>
+<th>Relationship type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>person</td>
+<td>people</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>created_by</td>
+<td>users</td>
+<td>belongs_to</td>
+</tr>
+</tbody></table>
+
+<h3 id="meta">Meta</h3>
+
+<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
+
+          <h2 id="create-a-new-person-note"><a name="person_notes_create"></a>Create a new person note</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/people/shigeru-miyamoto/notes</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "person_notes",
+    "attributes": {
+      "category": "Career",
+      "body": "The note text.",
+      "cite_url": "http://ign.com/article",
+      "cite_title": "The Article Title",
+      "cite_website": "IGN"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "15",
+    "type": "person_notes",
+    "attributes": {
+      "category": "Career",
+      "body": "The note text.",
+      "cite_url": "http://ign.com/article",
+      "cite_title": "The Article Title",
+      "cite_website": "IGN"
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "id": "21",
+          "type": "people"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/people/shigeru-miyamoto"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "created_bies"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/2"
+        }
+      }
+    }
+  },
+  "meta": {
+    "keywords": "shigeru miyamoto, notes, trivia, facts, dbljump, video games, pc games, gaming",
+    "description": "The note text.",
+    "created_at": "2017-05-18T22:09:16.930Z",
+    "updated_at": "2017-05-18T22:09:16.930Z"
+  }
+}
+</code></pre>
+<p>Create a new note for a given person. A note is a fact, story or piece of trivia about a person. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/people/{game-slug}/notes</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category</td>
+<td>string</td>
+<td>Y</td>
+<td>The note category. Must be an accepted value.</td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>Y</td>
+<td>The note text. 5-2000 chars.</td>
+</tr>
+<tr>
+<td>cite_url</td>
+<td>string</td>
+<td></td>
+<td>The URL of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_title</td>
+<td>string</td>
+<td></td>
+<td>The title of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_website</td>
+<td>string</td>
+<td></td>
+<td>The name of the source website. 1-100 chars.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="update-a-person-note"><a name="person_notes_update"></a>Update a person note</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">PATCH /articles/person_notes/6</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "person_notes",
+    "id": "6",
+    "attributes": {
+      "category": "Career",
+      "body": "The updated note text.",
+      "cite_url": "http://ign.com/updated",
+      "cite_title": "The Updated Title",
+      "cite_website": "IGN"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "6",
+    "type": "person_notes",
+    "attributes": {
+      "category": "Career",
+      "body": "The updated note text.",
+      "cite_url": "http://ign.com/updated",
+      "cite_title": "The Updated Title",
+      "cite_website": "IGN"
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "id": "21",
+          "type": "people"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/people/shigeru-miyamoto"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "created_bies"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/1"
+        }
+      }
+    }
+  },
+  "meta": {
+    "keywords": "shigeru miyamoto, notes, trivia, facts, dbljump, video games, pc games, gaming",
+    "description": "The updated note text.",
+    "created_at": "2017-05-17T21:40:09.742Z",
+    "updated_at": "2017-05-18T22:15:04.883Z"
+  }
+}
+</code></pre>
+<p>Update an existing person note. The user must be an editor.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /articles/person_notes/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category</td>
+<td>string</td>
+<td>Y</td>
+<td>The note category. Must be an accepted value.</td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>Y</td>
+<td>The note text. 5-2000 chars.</td>
+</tr>
+<tr>
+<td>cite_url</td>
+<td>string</td>
+<td></td>
+<td>The URL of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_title</td>
+<td>string</td>
+<td></td>
+<td>The title of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_website</td>
+<td>string</td>
+<td></td>
+<td>The name of the source website. 1-100 chars.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="delete-a-person-note"><a name="person_notes_delete"></a>Delete a person note</h2>
+
+<p>Delete an existing person note. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /articles/person_notes/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+          <h2 id="errors"><a name="person_notes_errors"></a>Errors</h2>
+
+<p>Errors specific to creating and updating person notes.</p>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>PERSON_NOTE_CATEGORY_BLANK</td>
+<td>category</td>
+<td>Category is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NOTE_CATEGORY_INCLUSION</td>
+<td>category</td>
+<td>Category must be an accepted value.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NOTE_BODY_BLANK</td>
+<td>body</td>
+<td>Body is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NOTE_BODY_TOO_SHORT</td>
+<td>body</td>
+<td>Body cannot be less than 5 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NOTE_BODY_TOO_LONG</td>
+<td>body</td>
+<td>Body cannot be more than 8000 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NOTE_CITE_URL_TOO_SHORT</td>
+<td>cite_url</td>
+<td>Cite URL cannot be less than 5 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NOTE_CITE_URL_TOO_LONG</td>
+<td>cite_url</td>
+<td>Cite URL cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NOTE_CITE_TITLE_TOO_LONG</td>
+<td>cite_title</td>
+<td>Cite title cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PERSON_NOTE_CITE_WEBSITE_TOO_LONG</td>
+<td>cite_website</td>
+<td>Cite website cannot be more than 100 characters.</td>
+</tr>
+</tbody></table>
+
           <h1 id="articles-companies"><a name="companies_intro"></a>Articles: Companies</h1>
 
 <p>Resources related to company articles.</p>
@@ -5766,6 +7006,615 @@ Successful responses include the following HTTP header.<br /><br />
 <td>COMPANY_NAME_PLACE_ID_INVALID</td>
 <td>data/relationships/place/data/id</td>
 <td>Place ID must be a valid country or region ID.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="articles-company-notes"><a name="company_notes_intro"></a>Articles: Company Notes</h1>
+
+<p>Resources related to company notes. Notes are trivia, stories or facts about a company.</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<p>See <a href="#company_notes_create">Create a new company note</a> and <a href="#company_notes_update">Update a company note</a>.</p>
+
+<h3 id="response-attributes">Response attributes</h3>
+
+<p>See <a href="#company_notes_show">Get a single company note</a></p>
+
+          <h2 id="get-all-of-a-company-39-s-titles">Get all of a company&rsquo;s titles</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/companies/nintendo-co-ltd/notes?page[size]=2
+
+{
+  "data": [
+    {
+      "id": "1",
+      "type": "company_notes",
+      "attributes": {
+        "category": "History",
+        "body": "Nintendo was a playing card manufacturer before it started making video games.",
+        "cite_url": "",
+        "cite_title": "",
+        "cite_website": ""
+      },
+      "relationships": {
+        "company": {
+          "data": {
+            "id": "1",
+            "type": "companies"
+          },
+          "links": {
+            "related": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "created_bies"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      }
+    },
+    {
+      "id": "2",
+      "type": "company_notes",
+      "attributes": {
+        "category": "Significance",
+        "body": "The first video game console ever played in space was made by Nintendo. Aleksandr Serebrov played Tetris on a Game Boy.",
+        "cite_url": "",
+        "cite_title": "",
+        "cite_website": ""
+      },
+      "relationships": {
+        "company": {
+          "data": {
+            "id": "1",
+            "type": "companies"
+          },
+          "links": {
+            "related": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+          }
+        },
+        "created_by": {
+          "data": {
+            "id": "1",
+            "type": "created_bies"
+          },
+          "links": {
+            "related": "http://localhost:3000/users/1"
+          }
+        }
+      }
+    }
+  ],
+  "links": {},
+  "meta": {
+    "total_items": 3
+  }
+}
+</code></pre>
+<p>Retrieve all of a given company&rsquo;s notes. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/companies/{company-slug}/notes</code> (replace <code class="prettyprint">{company-slug}</code> with parent company record slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[company_notes]=body</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[category]=Hist</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-a-single-company-note"><a name="company_notes_show"></a>Get a single company note</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/company_notes/1
+
+{
+  "data": {
+    "id": "1",
+    "type": "company_notes",
+    "attributes": {
+      "category": "History",
+      "body": "Nintendo was a playing card manufacturer before it started making video games.",
+      "cite_url": "",
+      "cite_title": "",
+      "cite_website": ""
+    },
+    "relationships": {
+      "company": {
+        "data": {
+          "id": "1",
+          "type": "companies"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "created_bies"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/1"
+        }
+      }
+    }
+  },
+  "meta": {
+    "keywords": "nintendo co., ltd., notes, trivia, facts, dbljump, video games, pc games, gaming",
+    "description": "Nintendo was a playing card manufacturer before it started making video games.",
+    "created_at": "2017-05-17T21:40:00.986Z",
+    "updated_at": "2017-05-17T21:40:00.986Z"
+  }
+}
+</code></pre>
+<p>Retrieve a single company note. Game notes are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/company_notes/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="response-attributes"><a name="company_notes_response_attrs"></a>Response attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category</td>
+<td>string</td>
+<td>Y</td>
+<td>The note category.</td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>Y</td>
+<td>The note text. 5-2000 chars.</td>
+</tr>
+<tr>
+<td>cite_url</td>
+<td>string</td>
+<td></td>
+<td>The URL of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_title</td>
+<td>string</td>
+<td></td>
+<td>The title of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_website</td>
+<td>string</td>
+<td></td>
+<td>The name of the source website. 1-100 chars.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>Record type</th>
+<th>Relationship type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>company</td>
+<td>companies</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>created_by</td>
+<td>users</td>
+<td>belongs_to</td>
+</tr>
+</tbody></table>
+
+<h3 id="meta">Meta</h3>
+
+<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
+
+          <h2 id="create-a-new-company-note"><a name="company_notes_create"></a>Create a new company note</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/companies/nintendo-co-ltd/notes</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "company_notes",
+    "attributes": {
+      "category": "History",
+      "body": "The note text.",
+      "cite_url": "http://ign.com/article",
+      "cite_title": "The Article Title",
+      "cite_website": "IGN"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "14",
+    "type": "company_notes",
+    "attributes": {
+      "category": "History",
+      "body": "The note text.",
+      "cite_url": "http://ign.com/article",
+      "cite_title": "The Article Title",
+      "cite_website": "IGN"
+    },
+    "relationships": {
+      "company": {
+        "data": {
+          "id": "1",
+          "type": "companies"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "2",
+          "type": "created_bies"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/2"
+        }
+      }
+    }
+  },
+  "meta": {
+    "keywords": "nintendo co., ltd., notes, trivia, facts, dbljump, video games, pc games, gaming",
+    "description": "The note text.",
+    "created_at": "2017-05-18T21:42:31.019Z",
+    "updated_at": "2017-05-18T21:42:31.019Z"
+  }
+}
+</code></pre>
+<p>Create a new note for a given company. A note is a fact, story or piece of trivia about a company. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/companies/{game-slug}/notes</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category</td>
+<td>string</td>
+<td>Y</td>
+<td>The note category. Must be an accepted value.</td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>Y</td>
+<td>The note text. 5-2000 chars.</td>
+</tr>
+<tr>
+<td>cite_url</td>
+<td>string</td>
+<td></td>
+<td>The URL of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_title</td>
+<td>string</td>
+<td></td>
+<td>The title of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_website</td>
+<td>string</td>
+<td></td>
+<td>The name of the source website. 1-100 chars.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="update-a-company-note"><a name="company_notes_update"></a>Update a company note</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">PATCH /articles/company_notes/1</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "company_notes",
+    "id": "1",
+    "attributes": {
+      "category": "History",
+      "body": "The updated note text.",
+      "cite_url": "http://ign.com/updated",
+      "cite_title": "The Updated Title",
+      "cite_website": "IGN"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "1",
+    "type": "company_notes",
+    "attributes": {
+      "category": "History",
+      "body": "The updated note text.",
+      "cite_url": "http://ign.com/updated",
+      "cite_title": "The Updated Title",
+      "cite_website": "IGN"
+    },
+    "relationships": {
+      "company": {
+        "data": {
+          "id": "1",
+          "type": "companies"
+        },
+        "links": {
+          "related": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+        }
+      },
+      "created_by": {
+        "data": {
+          "id": "1",
+          "type": "created_bies"
+        },
+        "links": {
+          "related": "http://localhost:3000/users/1"
+        }
+      }
+    }
+  },
+  "meta": {
+    "keywords": "nintendo co., ltd., notes, trivia, facts, dbljump, video games, pc games, gaming",
+    "description": "The updated note text.",
+    "created_at": "2017-05-17T21:40:00.986Z",
+    "updated_at": "2017-05-18T21:55:39.825Z"
+  }
+}
+</code></pre>
+<p>Update an existing company note. The user must be an editor.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /articles/company_notes/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category</td>
+<td>string</td>
+<td>Y</td>
+<td>The note category. Must be an accepted value.</td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>Y</td>
+<td>The note text. 5-2000 chars.</td>
+</tr>
+<tr>
+<td>cite_url</td>
+<td>string</td>
+<td></td>
+<td>The URL of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_title</td>
+<td>string</td>
+<td></td>
+<td>The title of the source web page. 5-250 chars.</td>
+</tr>
+<tr>
+<td>cite_website</td>
+<td>string</td>
+<td></td>
+<td>The name of the source website. 1-100 chars.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>version</td>
+<td>belongs_to</td>
+<td></td>
+<td>company_versions</td>
+<td>Version must belong to same company as title.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="delete-a-company-note"><a name="company_notes_delete"></a>Delete a company note</h2>
+
+<p>Delete an existing company note. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /articles/company_notes/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+          <h2 id="errors"><a name="company_notes_errors"></a>Errors</h2>
+
+<p>Errors specific to creating and updating company notes.</p>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>COMPANY_NOTE_CATEGORY_BLANK</td>
+<td>category</td>
+<td>Category is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NOTE_CATEGORY_INCLUSION</td>
+<td>category</td>
+<td>Category must be an accepted value.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NOTE_BODY_BLANK</td>
+<td>body</td>
+<td>Body is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NOTE_BODY_TOO_SHORT</td>
+<td>body</td>
+<td>Body cannot be less than 5 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NOTE_BODY_TOO_LONG</td>
+<td>body</td>
+<td>Body cannot be more than 8000 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NOTE_CITE_URL_TOO_SHORT</td>
+<td>cite_url</td>
+<td>Cite URL cannot be less than 5 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NOTE_CITE_URL_TOO_LONG</td>
+<td>cite_url</td>
+<td>Cite URL cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NOTE_CITE_TITLE_TOO_LONG</td>
+<td>cite_title</td>
+<td>Cite title cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>COMPANY_NOTE_CITE_WEBSITE_TOO_LONG</td>
+<td>cite_website</td>
+<td>Cite website cannot be more than 100 characters.</td>
 </tr>
 </tbody></table>
 
