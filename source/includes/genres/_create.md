@@ -10,14 +10,6 @@
       "name": "hog racing",
       "short_name": "hogs",
       "also_known_as": ["alias"]
-    },
-    "relationships": {
-      "parent": {
-        "data": {
-          "id": "11",
-          "type": "genres"
-        }
-      }
     }
   }
 }
@@ -39,15 +31,6 @@
       "slug": "hog-racing"
     },
     "relationships": {
-      "parent": {
-        "data": {
-          "id": "11",
-          "type": "genres"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/genres/racing"
-        }
-      },
       "created_by": {
         "data": {
           "id": "2",
@@ -105,14 +88,6 @@ Attribute | Type | Req'd? | Description
 name | string | Y | Genre name. Unique, up to 50 chars.
 short_name | string | | Short name. Unique, up to 10 chars.
 also_known_as | array | | Array of alias names, each up to 50 chars.
-
-### Relationships
-
-Check this section's code example to see how to update these relationships.
-
-Name | Relationship | Req'd? | JSON:API type | Description
----- | ------------ | ------ | ------------- | -----------
-parent | belongs_to | | genres | Optional. Must be a top-level genre - no grandparents!
 
 ### Success HTTP response code
 

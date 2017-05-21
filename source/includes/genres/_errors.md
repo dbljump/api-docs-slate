@@ -13,4 +13,3 @@ HTTP code | Error code | Pointer | Title
 400 | GENRE_SHORT_NAME_TOO_LONG | short_name | Short name cannot be more than 10 characters.
 400 | GENRE_ALSO_KNOWN_AS_TOO_SHORT | also_known_as | Also-known-as tags must be at least 2 characters.
 400 | GENRE_ALSO_KNOWN_AS_TOO_LONG | also_known_as | Also-known-as tags cannot be more than 50 characters.
-400 | GENRE_PARENT_ID_INVALID | relationships/parent/data/id | Parent must be an existing, top-level genre.

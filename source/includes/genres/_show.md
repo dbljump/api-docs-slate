@@ -16,9 +16,6 @@
       "slug": "action"
     },
     "relationships": {
-      "parent": {
-        "data": null
-      },
       "created_by": {
         "data": {
           "id": "1",
@@ -85,7 +82,6 @@ slug | string | Y | A record ID based on the name.
 Association | Record type | Relationship type
 ------------ | ---------- | -----------------
 created_by | users | belongs_to
-parent | genres | belongs_to
 
 ### Included
 

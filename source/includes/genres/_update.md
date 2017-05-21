@@ -11,14 +11,6 @@
       "name": "updated name",
       "short_name": "updated",
       "also_known_as": ["aka"]
-    },
-    "relationships": {
-      "parent": {
-        "data": {
-          "id": "3",
-          "type": "genres"
-        }
-      }
     }
   }
 }
@@ -40,15 +32,6 @@
       "slug": "updated-name"
     },
     "relationships": {
-      "parent": {
-        "data": {
-          "id": "3",
-          "type": "genres"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/genres/art"
-        }
-      },
       "created_by": {
         "data": {
           "id": "1",
@@ -106,14 +89,6 @@ Attribute | Type | Req'd? | Description
 name | string | Y | Genre name. Unique, up to 50 chars.
 short_name | string | | Short name. Unique, up to 10 chars.
 also_known_as | array | | Array of alias names, each up to 50 chars.
-
-### Relationships
-
-Check this section's code example to see how to update these relationships.
-
-Name | Relationship | Req'd? | JSON:API type | Description
----- | ------------ | ------ | ------------- | -----------
-parent | belongs_to | | genres | Optional. Must be a top-level genre - no grandparents!
 
 ### Success HTTP response code
 

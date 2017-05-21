@@ -17,9 +17,6 @@
         "slug": "action"
       },
       "relationships": {
-        "parent": {
-          "data": null
-        },
         "created_by": {
           "data": {
             "id": "1",
@@ -44,9 +41,6 @@
         "slug": "adventure"
       },
       "relationships": {
-        "parent": {
-          "data": null
-        },
         "created_by": {
           "data": {
             "id": "1",
@@ -71,9 +65,6 @@
         "slug": "art"
       },
       "relationships": {
-        "parent": {
-          "data": null
-        },
         "created_by": {
           "data": {
             "id": "1",
