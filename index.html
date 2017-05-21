@@ -12833,9 +12833,6 @@ Successful responses include the following HTTP header.<br /><br />
         "slug": "action"
       },
       "relationships": {
-        "parent": {
-          "data": null
-        },
         "created_by": {
           "data": {
             "id": "1",
@@ -12860,9 +12857,6 @@ Successful responses include the following HTTP header.<br /><br />
         "slug": "adventure"
       },
       "relationships": {
-        "parent": {
-          "data": null
-        },
         "created_by": {
           "data": {
             "id": "1",
@@ -12887,9 +12881,6 @@ Successful responses include the following HTTP header.<br /><br />
         "slug": "art"
       },
       "relationships": {
-        "parent": {
-          "data": null
-        },
         "created_by": {
           "data": {
             "id": "1",
@@ -12979,9 +12970,6 @@ Successful responses include the following HTTP header.<br /><br />
       "slug": "action"
     },
     "relationships": {
-      "parent": {
-        "data": null
-      },
       "created_by": {
         "data": {
           "id": "1",
@@ -13085,11 +13073,6 @@ Successful responses include the following HTTP header.<br /><br />
 <td>users</td>
 <td>belongs_to</td>
 </tr>
-<tr>
-<td>parent</td>
-<td>genres</td>
-<td>belongs_to</td>
-</tr>
 </tbody></table>
 
 <h3 id="included">Included</h3>
@@ -13124,14 +13107,6 @@ Successful responses include the following HTTP header.<br /><br />
       "name": "hog racing",
       "short_name": "hogs",
       "also_known_as": ["alias"]
-    },
-    "relationships": {
-      "parent": {
-        "data": {
-          "id": "11",
-          "type": "genres"
-        }
-      }
     }
   }
 }
@@ -13152,15 +13127,6 @@ Successful responses include the following HTTP header.<br /><br />
       "slug": "hog-racing"
     },
     "relationships": {
-      "parent": {
-        "data": {
-          "id": "11",
-          "type": "genres"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/genres/racing"
-        }
-      },
       "created_by": {
         "data": {
           "id": "2",
@@ -13242,28 +13208,6 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>parent</td>
-<td>belongs_to</td>
-<td></td>
-<td>genres</td>
-<td>Optional. Must be a top-level genre - no grandparents!</td>
-</tr>
-</tbody></table>
-
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">201 Created</code></p>
@@ -13281,14 +13225,6 @@ Successful responses include the following HTTP header.<br /><br />
       "name": "updated name",
       "short_name": "updated",
       "also_known_as": ["aka"]
-    },
-    "relationships": {
-      "parent": {
-        "data": {
-          "id": "3",
-          "type": "genres"
-        }
-      }
     }
   }
 }
@@ -13309,15 +13245,6 @@ Successful responses include the following HTTP header.<br /><br />
       "slug": "updated-name"
     },
     "relationships": {
-      "parent": {
-        "data": {
-          "id": "3",
-          "type": "genres"
-        },
-        "links": {
-          "related": "http://api.dbljump.com/genres/art"
-        }
-      },
       "created_by": {
         "data": {
           "id": "1",
@@ -13396,28 +13323,6 @@ Successful responses include the following HTTP header.<br /><br />
 <td>array</td>
 <td></td>
 <td>Array of alias names, each up to 50 chars.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>parent</td>
-<td>belongs_to</td>
-<td></td>
-<td>genres</td>
-<td>Optional. Must be a top-level genre - no grandparents!</td>
 </tr>
 </tbody></table>
 
@@ -13507,12 +13412,6 @@ Successful responses include the following HTTP header.<br /><br />
 <td>GENRE_ALSO_KNOWN_AS_TOO_LONG</td>
 <td>also_known_as</td>
 <td>Also-known-as tags cannot be more than 50 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>GENRE_PARENT_ID_INVALID</td>
-<td>relationships/parent/data/id</td>
-<td>Parent must be an existing, top-level genre.</td>
 </tr>
 </tbody></table>
 
