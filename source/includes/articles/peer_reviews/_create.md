@@ -171,7 +171,7 @@ Submit a game, company, or person article for peer review. The user must be the 
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-id | integer | Y | The article record ID
+article_id | integer | Y | The article record ID
 
 ### Success HTTP response code
 
