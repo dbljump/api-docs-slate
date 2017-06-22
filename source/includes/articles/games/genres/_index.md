@@ -1,3 +1,5 @@
+# <a name="game_genres_intro"></a>Articles: Game genres
+
 ## Game genres: get all
 
 > Response body | `HTTP 200`
