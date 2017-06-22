@@ -18,6 +18,12 @@
       "death_year": "2015"
     },
     "relationships": {
+      "primary_image": {
+        "data": {
+          "id": "1",
+          "type": "images"
+        }
+      },
       "birth_place": {
         "data": {
           "id": "25",
@@ -39,97 +45,146 @@
 
 ```JSON
 {
-  "data": {
-    "id": "44",
-    "type": "people",
-    "attributes": {
-      "display_title": "Changed Name",
-      "description": "Updated description for an updated article.",
-      "gender": "transwoman",
-      "birth_date": "1960-09-12",
-      "birth_year": 1960,
-      "dead": true,
-      "death_date": null,
-      "death_year": 2015,
-      "slug": "changed-name"
+    "data": {
+        "id": "44",
+        "type": "people",
+        "attributes": {
+            "display_title": "Changed Name",
+            "description": "Updated description for an updated article.",
+            "slug": "changed-name",
+            "last_submitted_at": null,
+            "last_reviewed_at": null,
+            "last_review_outcome": null,
+            "last_review_comments": null,
+            "published_at": "2017-06-22T13:51:22.060Z",
+            "status": "published",
+            "gender": "transwoman",
+            "birth_date": "1960-09-12",
+            "birth_year": 1960,
+            "dead": true,
+            "death_date": null,
+            "death_year": 2015
+        },
+        "relationships": {
+            "primary_image": {
+                "data": {
+                    "id": "1",
+                    "type": "images"
+                },
+                "links": {
+                    "related": "http://localhost:3000/media/images/nintendo-office-photo"
+                }
+            },
+            "created_by": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://localhost:3000/users/1"
+                }
+            },
+            "last_reviewed_by": {
+                "data": null
+            },
+            "birth_place": {
+                "data": {
+                    "id": "25",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://localhost:3000/places/bolivia"
+                }
+            },
+            "death_place": {
+                "data": {
+                    "id": "2933",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
+                }
+            },
+            "names": {
+                "data": [
+                    {
+                        "id": "57",
+                        "type": "person_names"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/people/changed-name/names"
+                }
+            },
+            "notes": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/people/changed-name/notes"
+                }
+            },
+            "images": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "images"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/people/changed-name/images"
+                }
+            },
+            "credits": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/people/changed-name/credits"
+                }
+            }
+        },
+        "links": {
+            "self": "http://localhost:3000/articles/people/changed-name"
+        }
     },
-    "relationships": {
-      "birth_place": {
-        "data": {
-          "id": "25",
-          "type": "places"
+    "included": [
+        {
+            "id": "1",
+            "type": "users",
+            "attributes": {
+                "username": "tikithekiwi",
+                "avatar": null
+            },
+            "links": {
+                "self": "http://localhost:3000/users/1"
+            }
         },
-        "links": {
-          "related": "http://localhost:3000/places/bolivia"
-        }
-      },
-      "death_place": {
-        "data": {
-          "id": "2933",
-          "type": "places"
+        {
+            "id": "25",
+            "type": "places",
+            "attributes": {
+                "name": "Bolivia",
+                "formatted": "Bolivia"
+            },
+            "links": {
+                "self": "http://localhost:3000/places/bolivia"
+            }
         },
-        "links": {
-          "related": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
+        {
+            "id": "2933",
+            "type": "places",
+            "attributes": {
+                "name": "Sonobe",
+                "formatted": "Sonobe, Kyoto Prefecture, Japan"
+            },
+            "links": {
+                "self": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
+            }
         }
-      },
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://localhost:3000/users/1"
-        }
-      }
-    },
-    "links": {
-      "self": "http://localhost:3000/articles/people/changed-name"
+    ],
+    "meta": {
+        "keywords": "Changed Name, 1960, Bolivia, 神谷 英樹, person, profile, biography, games, dbljump, video games, pc games, gaming",
+        "description": "Find Changed Name's game credits, biography, images and facts at Dbljump, the video game reference.",
+        "created_at": "2017-06-22T13:51:22.081Z",
+        "updated_at": "2017-06-22T15:42:36.679Z"
     }
-  },
-  "included": [
-    {
-      "id": "25",
-      "type": "places",
-      "attributes": {
-        "name": "Bolivia",
-        "formatted": "Bolivia"
-      },
-      "links": {
-        "self": "http://localhost:3000/places/bolivia"
-      }
-    },
-    {
-      "id": "2933",
-      "type": "places",
-      "attributes": {
-        "name": "Sonobe",
-        "formatted": "Sonobe, Kyoto Prefecture, Japan"
-      },
-      "links": {
-        "self": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
-      }
-    },
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://localhost:3000/users/1"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "changed name, 1960, 1960-09-12, bolivia, person, profile, biography, games, dbljump, video games, pc games, gaming",
-    "description": "Find Changed Name's game credits, biography, images and facts at Dbljump, the video game reference.",
-    "created_at": "2017-04-24T09:09:17.259Z",
-    "updated_at": "2017-04-26T21:38:21.753Z"
-  }
 }
 ```
 
@@ -161,6 +216,7 @@ Check this section's code example to see how to update these relationships.
 
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
+primary_image | belongs_to | | images | The main article image, usually a likeness of the person.
 birth_place | belongs_to | | places | Can be a country, subdivision, or locality.
 death_place | belongs_to | | places | Can be a country, subdivision, or locality.
 

@@ -17,6 +17,12 @@
       "closed_year": ""
     },
     "relationships": {
+      "primary_image": {
+        "data": {
+          "id": "1",
+          "type": "images"
+        }
+      },
       "founded_place": {
         "data": {
           "id": "25",
@@ -158,6 +164,7 @@ Check this section's code example to see how to update these relationships.
 
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
+primary_image | belongs_to | | images | The main article image, usually a company logo.
 birth_place | belongs_to | | places | Can be a country, subdivision, or locality.
 death_place | belongs_to | | places | Can be a country, subdivision, or locality.
 
