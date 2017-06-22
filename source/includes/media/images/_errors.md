@@ -1,4 +1,4 @@
-## Errors
+## <a name="media_image_errors"></a>Errors
 
 Errors specific to creating and updating image records.
 
