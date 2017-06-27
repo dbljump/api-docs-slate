@@ -600,7 +600,7 @@ Successful responses include the following HTTP header.<br /><br />
           <h2 id="update-a-game"><a name="games_update"></a>Update a game</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">PATCH /articles/games/pong</code></p>
+<p>Request body | <code class="prettyprint">PATCH /articles/games/dark-souls</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -613,11 +613,17 @@ Successful responses include the following HTTP header.<br /><br />
       "release_year": ""
     },
     "relationships": {
-      "genres": {
+      "primary_image": {
         "data": {
+          "id": "1",
+          "type": "images"
+        }
+      },
+      "genres": {
+        "data": [
           { "type": "genres", "id": "5" },
           { "type": "genres", "id": "12" }
-        }
+        ]
       }
     }
   }
@@ -627,98 +633,159 @@ Successful responses include the following HTTP header.<br /><br />
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "46",
-    "type": "games",
-    "attributes": {
-      "display_title": "Changed Name",
-      "description": "Updated description for an updated article.",
-      "release_date": "1995-11-17",
-      "release_year": 1995,
-      "slug": "changed-name-69659741-129d-4da5-9a80-98abd30ec586"
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "created_bies"
+    "data": {
+        "id": "47",
+        "type": "games",
+        "attributes": {
+            "display_title": "Changed Name",
+            "description": "Updated description for an updated article.",
+            "slug": "changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4",
+            "last_submitted_at": null,
+            "last_reviewed_at": null,
+            "last_review_outcome": null,
+            "last_review_comments": null,
+            "published_at": "2017-06-22T13:51:23.881Z",
+            "status": "published",
+            "release_date": "1995-11-17",
+            "release_year": 1995
+        },
+        "relationships": {
+            "primary_image": {
+                "data": {
+                    "id": "1",
+                    "type": "images"
+                },
+                "links": {
+                    "related": "http://localhost:3000/media/images/nintendo-office-photo"
+                }
+            },
+            "created_by": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://localhost:3000/users/1"
+                }
+            },
+            "last_reviewed_by": {
+                "data": null
+            },
+            "titles": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/titles"
+                }
+            },
+            "notes": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/notes"
+                }
+            },
+            "genres": {
+                "data": [
+                    {
+                        "id": "12",
+                        "type": "genres"
+                    },
+                    {
+                        "id": "5",
+                        "type": "genres"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/genres"
+                }
+            },
+            "versions": {
+                "data": [
+                    {
+                        "id": "2",
+                        "type": "game_versions"
+                    },
+                    {
+                        "id": "3",
+                        "type": "game_versions"
+                    },
+                    {
+                        "id": "4",
+                        "type": "game_versions"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/versions"
+                }
+            },
+            "images": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "images"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/images"
+                }
+            },
+            "company_credits": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/company_credits"
+                }
+            },
+            "person_credits": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/company_credits"
+                }
+            }
         },
         "links": {
-          "related": "http://localhost:3000/users/1"
+            "self": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4"
         }
-      },
-      "genres": {
-        "data": [
-          {
-            "id": "5",
-            "type": "genres"
-          },
-          {
-            "id": "12",
-            "type": "genres"
-          }
-        ]
-      },
-      "versions": {
-        "data": [
-          {
+    },
+    "included": [
+        {
             "id": "1",
-            "type": "game_versions"
-          }
-        ],
-        "links": {
-          "related": "http://localhost:3000/articles/games/changed-name-69659741-129d-4da5-9a80-98abd30ec586/versions"
+            "type": "users",
+            "attributes": {
+                "username": "tikithekiwi",
+                "avatar": null
+            },
+            "links": {
+                "self": "http://localhost:3000/users/1"
+            }
+        },
+        {
+            "id": "12",
+            "type": "genres",
+            "attributes": {
+                "name": "role-playing game",
+                "short_name": "RPG"
+            },
+            "links": {
+                "self": "http://localhost:3000/genres/role-playing-game"
+            }
+        },
+        {
+            "id": "5",
+            "type": "genres",
+            "attributes": {
+                "name": "educational",
+                "short_name": ""
+            },
+            "links": {
+                "self": "http://localhost:3000/genres/educational"
+            }
         }
-      }
-    },
-    "links": {
-      "self": "http://localhost:3000/articles/games/changed-name-69659741-129d-4da5-9a80-98abd30ec586"
+    ],
+    "meta": {
+        "keywords": "Changed Name, 1995, PlayStation 3, Xbox 360, Windows, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
+        "description": "Find Changed Name trivia, screenshots, credits and other info at Dbljump, the video game reference.",
+        "created_at": "2017-06-22T13:51:23.885Z",
+        "updated_at": "2017-06-22T15:52:04.565Z"
     }
-  },
-  "included": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://localhost:3000/users/1"
-      }
-    },
-    {
-      "id": "5",
-      "type": "genres",
-      "attributes": {
-        "name": "educational",
-        "short_name": ""
-      },
-      "links": {
-        "self": "http://localhost:3000/genres/educational"
-      }
-    },
-    {
-      "id": "12",
-      "type": "genres",
-      "attributes": {
-        "name": "role-playing game",
-        "short_name": "RPG"
-      },
-      "links": {
-        "self": "http://localhost:3000/genres/role-playing-game"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "changed name, 1995, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
-    "description": "Find Changed Name trivia, screenshots, credits and other info at Dbljump, the video game reference.",
-    "created_at": "2017-04-24T09:09:19.130Z",
-    "updated_at": "2017-05-14T21:45:39.016Z"
-  }
 }
 </code></pre>
 <p>Update an existing game article. The user must be an editor. The genres relationship can be edited.</p>
@@ -768,6 +835,35 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>primary_image</td>
+<td>belongs_to</td>
+<td></td>
+<td>images</td>
+<td>The main article image, usually a game poster.</td>
+</tr>
+<tr>
+<td>genres</td>
+<td>has_many</td>
+<td></td>
+<td>genres</td>
+<td>The genres this game belongs to.</td>
+</tr>
+</tbody></table>
+
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">200 OK</code></p>
@@ -789,7 +885,53 @@ Successful responses include the following HTTP header.<br /><br />
 
 <p><code class="prettyprint">204 No Content</code></p>
 
-          <h2 id="game-genres-get-all">Game genres: get all</h2>
+          <h2 id="errors"><a name="games_errors"></a>Errors</h2>
+
+<p>Errors specific to creating and updating game articles.</p>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>GAME_DISPLAY_TITLE_BLANK</td>
+<td>display_title</td>
+<td>Display title is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_DISPLAY_TITLE_TOO_LONG</td>
+<td>display_title</td>
+<td>Display title cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_DESCRIPTION_TOO_LONG</td>
+<td>description</td>
+<td>Description cannot be more than 800 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_RELEASE_DATE_INCLUSION</td>
+<td>release_date</td>
+<td>Release date must be a past date not before 1800.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_RELEASE_YEAR_INCLUSION</td>
+<td>release_year</td>
+<td>Release year must be a past year not before 1800.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="articles-game-genres"><a name="game_genres_intro"></a>Articles: Game Genres</h1>
+
+<h2 id="game-genres-get-all">Game genres: get all</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
@@ -931,50 +1073,6 @@ Successful responses include the following HTTP header.<br /><br />
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="errors"><a name="games_errors"></a>Errors</h2>
-
-<p>Errors specific to creating and updating game articles.</p>
-
-<table><thead>
-<tr>
-<th>HTTP code</th>
-<th>Error code</th>
-<th>Pointer</th>
-<th>Title</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>GAME_DISPLAY_TITLE_BLANK</td>
-<td>display_title</td>
-<td>Display title is required.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>GAME_DISPLAY_TITLE_TOO_LONG</td>
-<td>display_title</td>
-<td>Display title cannot be more than 250 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>GAME_DESCRIPTION_TOO_LONG</td>
-<td>description</td>
-<td>Description cannot be more than 800 characters.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>GAME_RELEASE_DATE_INCLUSION</td>
-<td>release_date</td>
-<td>Release date must be a past date not before 1800.</td>
-</tr>
-<tr>
-<td>400</td>
-<td>GAME_RELEASE_YEAR_INCLUSION</td>
-<td>release_year</td>
-<td>Release year must be a past year not before 1800.</td>
-</tr>
-</tbody></table>
 
           <h1 id="articles-game-versions"><a name="game_versions_intro"></a>Articles: Game Versions</h1>
 
@@ -1643,6 +1741,686 @@ Successful responses include the following HTTP header.<br /><br />
 <td>GAME_VERSION_NATIVE_RES_TOO_LONG</td>
 <td>native_res</td>
 <td>Native resolution cannot be more than 20 chars.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="articles-game-version-releases"><a name="version_releases_intro"></a>Articles: Game Version Releases</h1>
+
+<p>Resources related to game version releases. A release is a region- or country-specific edition of a game version, e.g. the Japanese release of the PS3 version of Bayonetta.</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<p>See <a href="#version_releases_create">Create a new release</a> and <a href="#version_releases_update">Update a release</a>.</p>
+
+<h3 id="response-attributes">Response attributes</h3>
+
+<p>See <a href="#version_releases_show">Get a single version release</a></p>
+
+          <h2 id="get-all-of-a-version-39-s-releases">Get all of a version&rsquo;s releases</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/game_versions/1/releases
+
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "version_releases",
+            "attributes": {
+                "date": "2013-08-23",
+                "year": 2013,
+                "physical": true,
+                "digital": true
+            },
+            "relationships": {
+                "version": {
+                    "data": {
+                        "id": "1",
+                        "type": "game_versions"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/articles/game_versions/1"
+                    }
+                },
+                "place": {
+                    "data": {
+                        "id": "234",
+                        "type": "places"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/places/europe"
+                    }
+                }
+            }
+        },
+        {
+            "id": "2",
+            "type": "version_releases",
+            "attributes": {
+                "date": "2013-09-15",
+                "year": 2013,
+                "physical": true,
+                "digital": true
+            },
+            "relationships": {
+                "version": {
+                    "data": {
+                        "id": "1",
+                        "type": "game_versions"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/articles/game_versions/1"
+                    }
+                },
+                "place": {
+                    "data": {
+                        "id": "233",
+                        "type": "places"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/places/north-america"
+                    }
+                }
+            }
+        },
+        {
+            "id": "3",
+            "type": "version_releases",
+            "attributes": {
+                "date": "2013-08-24",
+                "year": 2013,
+                "physical": true,
+                "digital": true
+            },
+            "relationships": {
+                "version": {
+                    "data": {
+                        "id": "1",
+                        "type": "game_versions"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/articles/game_versions/1"
+                    }
+                },
+                "place": {
+                    "data": {
+                        "id": "102",
+                        "type": "places"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/places/japan"
+                    }
+                }
+            }
+        }
+    ],
+    "links": {},
+    "meta": {
+        "total_items": 3
+    }
+}
+</code></pre>
+<p>Retrieve all game version releases. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/game_versions/{version-id}/releases</code> (replace <code class="prettyprint">version-id</code> with game version ID)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[version_releases]=date,year</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[year]=2013</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-a-single-game-version-release"><a name="version_releases_show"></a>Get a single game version release</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/game_version_releases/1
+
+{
+    "data": {
+        "id": "1",
+        "type": "version_releases",
+        "attributes": {
+            "date": "2013-08-23",
+            "year": 2013,
+            "physical": true,
+            "digital": true
+        },
+        "relationships": {
+            "version": {
+                "data": {
+                    "id": "1",
+                    "type": "game_versions"
+                },
+                "links": {
+                    "related": "http://localhost:3000/articles/game_versions/1"
+                }
+            },
+            "place": {
+                "data": {
+                    "id": "234",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://localhost:3000/places/europe"
+                }
+            }
+        }
+    },
+    "included": [
+        {
+            "id": "234",
+            "type": "places",
+            "attributes": {
+                "formatted": "Europe"
+            },
+            "links": {
+                "self": "http://localhost:3000/places/europe"
+            }
+        }
+    ],
+    "meta": {
+        "keywords": "The Wonderful 101, Wii U, Europe, release, dbljump, video games, pc games, gaming",
+        "description": "",
+        "created_at": "2017-06-22T13:51:23.959Z",
+        "updated_at": "2017-06-22T13:51:23.959Z"
+    }
+}
+</code></pre>
+<p>Retrieve a single game version release. Releases are publicly available. No sign-in is required.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/game_version_releases/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="response-attributes"><a name="version_release_response_attrs"></a>Response attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date</td>
+<td>date</td>
+<td></td>
+<td>Release date, e.g. &lsquo;2013-08-24&rsquo; for 24 August 2013.</td>
+</tr>
+<tr>
+<td>year</td>
+<td>number</td>
+<td></td>
+<td>Release year. Auto-filled if date present.</td>
+</tr>
+<tr>
+<td>physical</td>
+<td>boolean</td>
+<td></td>
+<td>True if release included physical format (e.g. disc or cartridge)</td>
+</tr>
+<tr>
+<td>digital</td>
+<td>boolean</td>
+<td></td>
+<td>True if release included digital format (i.e. download)</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>Record type</th>
+<th>Relationship type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>places</td>
+<td>belongs_to</td>
+</tr>
+<tr>
+<td>version</td>
+<td>game_versions</td>
+<td>belongs_to</td>
+</tr>
+</tbody></table>
+
+<h3 id="included">Included</h3>
+
+<table><thead>
+<tr>
+<th>Record type</th>
+<th>Relationship</th>
+<th>Attributes included</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>places</td>
+<td>place</td>
+<td>formatted</td>
+</tr>
+</tbody></table>
+
+<h3 id="meta">Meta</h3>
+
+<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
+
+          <h2 id="create-a-new-game-version-release"><a name="version_releases_create"></a>Create a new game version release</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/game_versions/1/releases</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "version_releases",
+    "attributes": {
+      "date": "2013-08-01",
+      "year": "",
+      "physical": "false",
+      "digital": "true"
+    },
+    "relationships": {
+      "place": {
+        "data": {
+          "id": "102",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "data": {
+        "id": "13",
+        "type": "version_releases",
+        "attributes": {
+            "date": "2013-08-01",
+            "year": 2013,
+            "physical": false,
+            "digital": true
+        },
+        "relationships": {
+            "version": {
+                "data": {
+                    "id": "1",
+                    "type": "game_versions"
+                },
+                "links": {
+                    "related": "http://localhost:3000/articles/game_versions/1"
+                }
+            },
+            "place": {
+                "data": {
+                    "id": "1",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://localhost:3000/places/afghanistan"
+                }
+            }
+        }
+    },
+    "included": [
+        {
+            "id": "1",
+            "type": "places",
+            "attributes": {
+                "formatted": "Afghanistan"
+            },
+            "links": {
+                "self": "http://localhost:3000/places/afghanistan"
+            }
+        }
+    ],
+    "meta": {
+        "keywords": "The Wonderful 101, Wii U, Afghanistan, release, dbljump, video games, pc games, gaming",
+        "description": "",
+        "created_at": "2017-06-27T20:48:15.095Z",
+        "updated_at": "2017-06-27T20:48:15.095Z"
+    }
+}
+</code></pre>
+<p>Create a new game version release. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/game_versions/{version-id}/releases</code> (replace <code class="prettyprint">{version-id}</code> with game version ID)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date</td>
+<td>date</td>
+<td></td>
+<td>Release date, e.g. &lsquo;2013-08-24&rsquo; for 24 August 2013.</td>
+</tr>
+<tr>
+<td>year</td>
+<td>number</td>
+<td></td>
+<td>Release year. Auto-filled if date present.</td>
+</tr>
+<tr>
+<td>physical</td>
+<td>boolean</td>
+<td></td>
+<td>True if release included physical format (e.g. disc or cartridge)</td>
+</tr>
+<tr>
+<td>digital</td>
+<td>boolean</td>
+<td></td>
+<td>True if release included digital format (i.e. download)</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>places</td>
+<td>Release country or region. There can be one game version release per place.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="update-a-game-version-release"><a name="version_releases_update"></a>Update a game version release</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">PATCH /articles/game_version_releases/1</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "version_releases",
+    "id": "1",
+    "attributes": {
+      "date": "2016-08-14",
+      "year": "",
+      "physical": "true",
+      "digital": "false"
+    },
+    "relationships": {
+      "place": {
+        "data": {
+          "id": "90",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "data": {
+        "id": "1",
+        "type": "version_releases",
+        "attributes": {
+            "date": "2016-08-14",
+            "year": 2016,
+            "physical": true,
+            "digital": false
+        },
+        "relationships": {
+            "version": {
+                "data": {
+                    "id": "1",
+                    "type": "game_versions"
+                },
+                "links": {
+                    "related": "http://localhost:3000/articles/game_versions/1"
+                }
+            },
+            "place": {
+                "data": {
+                    "id": "90",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://localhost:3000/places/hong-kong"
+                }
+            }
+        }
+    },
+    "included": [
+        {
+            "id": "90",
+            "type": "places",
+            "attributes": {
+                "formatted": "Hong Kong"
+            },
+            "links": {
+                "self": "http://localhost:3000/places/hong-kong"
+            }
+        }
+    ],
+    "meta": {
+        "keywords": "The Wonderful 101, Wii U, Hong Kong, release, dbljump, video games, pc games, gaming",
+        "description": "",
+        "created_at": "2017-06-22T13:51:23.959Z",
+        "updated_at": "2017-06-27T21:03:09.428Z"
+    }
+}
+</code></pre>
+<p>Update an existing game version release. The user must be an editor.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /articles/game_version_releases/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date</td>
+<td>date</td>
+<td></td>
+<td>Release date, e.g. &lsquo;2013-08-24&rsquo; for 24 August 2013.</td>
+</tr>
+<tr>
+<td>year</td>
+<td>number</td>
+<td></td>
+<td>Release year. Auto-filled if date present.</td>
+</tr>
+<tr>
+<td>physical</td>
+<td>boolean</td>
+<td></td>
+<td>True if release included physical format (e.g. disc or cartridge)</td>
+</tr>
+<tr>
+<td>digital</td>
+<td>boolean</td>
+<td></td>
+<td>True if release included digital format (i.e. download)</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>places</td>
+<td>Release country or region. There can be one game version release per place.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="delete-a-game-version-release"><a name="version_releases_delete"></a>Delete a game version release</h2>
+
+<p>Delete an existing game version release. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /articles/game_version_releases/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+          <h2 id="errors"><a name="version_releases_errors"></a>Errors</h2>
+
+<p>Errors specific to creating and updating game version releaes.</p>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>VERSION_RELEASE_PLACE_ID_BLANK</td>
+<td>data/relationships/place/data/id</td>
+<td>Place is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>VERSION_RELEASE_PLACE_ID_TAKEN</td>
+<td>data/relationships/place/data/id</td>
+<td>There&rsquo;s already a release of this version for that place.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>VERSION_RELEASE_PLACE_ID_INVALID</td>
+<td>data/relationships/place/data/id</td>
+<td>Status is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>VERSION_RELEASE_DATE_INCLUSION</td>
+<td>date</td>
+<td>Date must be after 1799 and not more than 3 years in the future.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>VERSION_RELEASE_YEAR_INCLUSION</td>
+<td>year</td>
+<td>Year must be after 1799 and not more than 3 years in the future.</td>
 </tr>
 </tbody></table>
 
@@ -3060,6 +3838,454 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
+          <h1 id="articles-game-images"><a name="game_images_intro"></a>Articles: Game Images</h1>
+
+<p>Resources related to game images.</p>
+
+<p>Use these routes to create a new image record that is associated with a given game article, or get all images associated with a given game article.</p>
+
+          <h2 id="get-all-game-images">Get all game images</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/games/pong/images
+
+{
+    "data": [
+        {
+            "id": "6",
+            "type": "images",
+            "attributes": {
+                "kind": "poster",
+                "slug": "pong-poster-poster",
+                "file": "http://localhost:3000/uploads/images/6/file.gif",
+                "title": "Pong poster",
+                "description": "Promotional poster for Pong.",
+                "year": 1981,
+                "date": null,
+                "usage_type": "fair",
+                "usage_license_code": null,
+                "usage_license_name": null,
+                "usage_license_url": null,
+                "attributed_name": "",
+                "attributed_url": "",
+                "source_url": ""
+            },
+            "relationships": {
+                "uploaded_by": {
+                    "data": {
+                        "id": "2",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/users/2"
+                    }
+                },
+                "place": {
+                    "data": null,
+                    "links": {
+                        "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+                    }
+                },
+                "games": {
+                    "data": [
+                        {
+                            "id": "45",
+                            "type": "games"
+                        }
+                    ]
+                },
+                "companies": {
+                    "data": []
+                },
+                "people": {
+                    "data": []
+                },
+                "game_versions": {
+                    "data": []
+                }
+            },
+            "links": {
+                "self": "http://localhost:3000/media/images/pong-poster-poster"
+            }
+        }
+    ],
+    "links": {},
+    "meta": {
+        "total_items": 1
+    }
+}
+</code></pre>
+<p>Retrieve all images associated with a given game article. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/games/{game-id}/images</code> (replace <code class="prettyprint">game-id</code> with the game ID or slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[images]=file,title</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=logo</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="upload-a-new-company-image"><a name="company_images_create"></a>Upload a new company image</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/companies/nintendo-co-ltd/images</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "images",
+    "attributes": {
+      "base64_file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
+      "kind": "poster",
+      "title": "Pong poster",
+      "description": "Promotional poster for Pong.",
+      "year": "1981",
+      "date": "",
+      "usage_type": "fair",
+      "usage_license_code": "",
+      "attributed_name": "",
+      "attributed_url": "",
+      "source_url": ""
+    },
+    "relationships": {
+      "place": {
+        "data": {
+          "id": "",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "data": {
+        "id": "6",
+        "type": "images",
+        "attributes": {
+            "kind": "poster",
+            "slug": "pong-poster-poster",
+            "file": "http://localhost:3000/uploads/images/6/file.gif",
+            "title": "Pong poster",
+            "description": "Promotional poster for Pong.",
+            "year": 1981,
+            "date": null,
+            "usage_type": "fair",
+            "usage_license_code": null,
+            "usage_license_name": null,
+            "usage_license_url": null,
+            "attributed_name": "",
+            "attributed_url": "",
+            "source_url": ""
+        },
+        "relationships": {
+            "uploaded_by": {
+                "data": {
+                    "id": "2",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://localhost:3000/users/2"
+                }
+            },
+            "place": {
+                "data": null
+            },
+            "games": {
+                "data": [
+                    {
+                        "id": "45",
+                        "type": "games"
+                    }
+                ]
+            },
+            "companies": {
+                "data": []
+            },
+            "people": {
+                "data": []
+            },
+            "game_versions": {
+                "data": []
+            }
+        },
+        "links": {
+            "self": "http://localhost:3000/media/images/pong-poster-poster"
+        }
+    },
+    "included": [
+        {
+            "id": "2",
+            "type": "users",
+            "attributes": {
+                "username": "neil",
+                "role": "admin",
+                "given_names": "Neil",
+                "family_name": "Wheatley",
+                "avatar": "http://localhost:3000/uploads/user_avatar/2/1706221451.jpg"
+            },
+            "links": {
+                "self": "http://localhost:3000/users/2"
+            }
+        },
+        {
+            "id": "45",
+            "type": "games",
+            "attributes": {
+                "display_title": "Pong"
+            },
+            "links": {
+                "self": "http://localhost:3000/articles/games/pong"
+            }
+        }
+    ],
+    "meta": {
+        "keywords": "Pong poster, poster, 1981, image, picture, media, dbljump, video games, pc games, gaming",
+        "description": "'Pong poster' is a video game image at Dbljump.",
+        "created_at": "2017-06-22T15:11:42.713Z",
+        "updated_at": "2017-06-22T15:11:42.713Z"
+    }
+}
+</code></pre>
+<p>Upload a new image associated with a given game article. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/games/{game-id}/images</code> (replace <code class="prettyprint">game-id</code> with game ID or slug)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base64_file</td>
+<td>string</td>
+<td>Y</td>
+<td>Image file encoded as base64. See <a href="#image_file">File</a>.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Y</td>
+<td>See <a href="#image_kind">Kind</a>.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Y</td>
+<td>Max 100 chars.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td></td>
+<td>Max 250 chars.</td>
+</tr>
+<tr>
+<td>year</td>
+<td>integer</td>
+<td></td>
+<td>1800 to present year.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>date</td>
+<td></td>
+<td>1800-01-01 to present year.</td>
+</tr>
+<tr>
+<td>usage_type</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be &lsquo;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
+</tr>
+<tr>
+<td>usage_license_code</td>
+<td>string</td>
+<td>*</td>
+<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. See <a href="#image_usage_license">Usage license</a>.</td>
+</tr>
+<tr>
+<td>attributed_name</td>
+<td>string</td>
+<td>*</td>
+<td>Image owner&rsquo;s name. Max 100 chars. Req&rsquo;d if usage_type is &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>attributed_url</td>
+<td>string</td>
+<td></td>
+<td>The owner&rsquo;s website. Max 250 chars.</td>
+</tr>
+<tr>
+<td>source_url</td>
+<td>string</td>
+<td>*</td>
+<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. Max 250 chars. URL of image source.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>A <a href="#places_intro">place record</a> the image is associated with.</td>
+</tr>
+</tbody></table>
+
+<h3 id="file"><a name="image_file"></a>File</h3>
+
+<p><strong>File type:</strong> File uploads must be of type GIF, JPG/JPEG, or PNG.</p>
+
+<p><strong>Base64:</strong> Image file uploads are handled by the Ruby gems <a href="https://github.com/carrierwaveuploader/carrierwave">CarrierWave</a> and <a href="https://github.com/lebedev-yury/carrierwave-base64">Carrierwave::Base64</a>. Base64 strings should have <a href="https://github.com/lebedev-yury/carrierwave-base64#data-format">the correct data format</a>, i.e.:</p>
+
+<p><code class="prettyprint">data:image/jpeg;base64,(base64 encoded data)</code></p>
+
+<h3 id="kind"><a name="image_kind"></a>Kind</h3>
+
+<p>The <code class="prettyprint">kind</code> attribute accepts the following values.</p>
+
+<table><thead>
+<tr>
+<th>Kind</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>artwork</td>
+<td>Miscellaneous artwork, e.g. production design drawings or promotional art</td>
+</tr>
+<tr>
+<td>boxart</td>
+<td>Official box art from various regions</td>
+</tr>
+<tr>
+<td>doc</td>
+<td>Image of a document, e.g. a leaked presentation slide</td>
+</tr>
+<tr>
+<td>logo</td>
+<td>Usually a company or game logo</td>
+</tr>
+<tr>
+<td>photo</td>
+<td>A photograph</td>
+</tr>
+<tr>
+<td>poster</td>
+<td>A game poster</td>
+</tr>
+<tr>
+<td>screen</td>
+<td>A screenshot from a game</td>
+</tr>
+</tbody></table>
+
+<h3 id="usage-type"><a name="image_usage_type"></a>Usage type</h3>
+
+<p>Users should only upload images that can legally be shown on Dbljump.com. An image must therefore have one of three <code class="prettyprint">usage_type</code> values.</p>
+
+<table><thead>
+<tr>
+<th>Usage type</th>
+<th>usage_type value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Free</td>
+<td>free</td>
+<td>The image is in the public domain and free to use without attribution.</td>
+</tr>
+<tr>
+<td>Fair use</td>
+<td>fair</td>
+<td>The image can be used under US fair use law. May include logos, box-arts, and screenshots.</td>
+</tr>
+<tr>
+<td>Licensed</td>
+<td>licensed</td>
+<td>The image is free to use with some-rights-reserved license, e.g. Creative Commons.</td>
+</tr>
+</tbody></table>
+
+<h3 id="usage-license-attribute"><a name="image_usage_license"></a>Usage license attribute</h3>
+
+<p>If <code class="prettyprint">usage_type</code> is set to <code class="prettyprint">licensed</code>, a valid image license code must be provided. Please see <a href="#media_licenses_intro">Media Image Licenses</a>.</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="errors">Errors</h2>
+
+<p>See the main <a href="#media_image_errors">image errors section</a>.</p>
+
           <h1 id="articles-people"><a name="people_intro"></a>Articles: People</h1>
 
 <p>Resources related to people articles.</p>
@@ -3738,6 +4964,12 @@ Successful responses include the following HTTP header.<br /><br />
       "death_year": "2015"
     },
     "relationships": {
+      "primary_image": {
+        "data": {
+          "id": "1",
+          "type": "images"
+        }
+      },
       "birth_place": {
         "data": {
           "id": "25",
@@ -3758,97 +4990,146 @@ Successful responses include the following HTTP header.<br /><br />
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "44",
-    "type": "people",
-    "attributes": {
-      "display_title": "Changed Name",
-      "description": "Updated description for an updated article.",
-      "gender": "transwoman",
-      "birth_date": "1960-09-12",
-      "birth_year": 1960,
-      "dead": true,
-      "death_date": null,
-      "death_year": 2015,
-      "slug": "changed-name"
+    "data": {
+        "id": "44",
+        "type": "people",
+        "attributes": {
+            "display_title": "Changed Name",
+            "description": "Updated description for an updated article.",
+            "slug": "changed-name",
+            "last_submitted_at": null,
+            "last_reviewed_at": null,
+            "last_review_outcome": null,
+            "last_review_comments": null,
+            "published_at": "2017-06-22T13:51:22.060Z",
+            "status": "published",
+            "gender": "transwoman",
+            "birth_date": "1960-09-12",
+            "birth_year": 1960,
+            "dead": true,
+            "death_date": null,
+            "death_year": 2015
+        },
+        "relationships": {
+            "primary_image": {
+                "data": {
+                    "id": "1",
+                    "type": "images"
+                },
+                "links": {
+                    "related": "http://localhost:3000/media/images/nintendo-office-photo"
+                }
+            },
+            "created_by": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://localhost:3000/users/1"
+                }
+            },
+            "last_reviewed_by": {
+                "data": null
+            },
+            "birth_place": {
+                "data": {
+                    "id": "25",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://localhost:3000/places/bolivia"
+                }
+            },
+            "death_place": {
+                "data": {
+                    "id": "2933",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
+                }
+            },
+            "names": {
+                "data": [
+                    {
+                        "id": "57",
+                        "type": "person_names"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/people/changed-name/names"
+                }
+            },
+            "notes": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/people/changed-name/notes"
+                }
+            },
+            "images": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "images"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/people/changed-name/images"
+                }
+            },
+            "credits": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/people/changed-name/credits"
+                }
+            }
+        },
+        "links": {
+            "self": "http://localhost:3000/articles/people/changed-name"
+        }
     },
-    "relationships": {
-      "birth_place": {
-        "data": {
-          "id": "25",
-          "type": "places"
+    "included": [
+        {
+            "id": "1",
+            "type": "users",
+            "attributes": {
+                "username": "tikithekiwi",
+                "avatar": null
+            },
+            "links": {
+                "self": "http://localhost:3000/users/1"
+            }
         },
-        "links": {
-          "related": "http://localhost:3000/places/bolivia"
-        }
-      },
-      "death_place": {
-        "data": {
-          "id": "2933",
-          "type": "places"
+        {
+            "id": "25",
+            "type": "places",
+            "attributes": {
+                "name": "Bolivia",
+                "formatted": "Bolivia"
+            },
+            "links": {
+                "self": "http://localhost:3000/places/bolivia"
+            }
         },
-        "links": {
-          "related": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
+        {
+            "id": "2933",
+            "type": "places",
+            "attributes": {
+                "name": "Sonobe",
+                "formatted": "Sonobe, Kyoto Prefecture, Japan"
+            },
+            "links": {
+                "self": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
+            }
         }
-      },
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
-        },
-        "links": {
-          "related": "http://localhost:3000/users/1"
-        }
-      }
-    },
-    "links": {
-      "self": "http://localhost:3000/articles/people/changed-name"
+    ],
+    "meta": {
+        "keywords": "Changed Name, 1960, Bolivia, 神谷 英樹, person, profile, biography, games, dbljump, video games, pc games, gaming",
+        "description": "Find Changed Name's game credits, biography, images and facts at Dbljump, the video game reference.",
+        "created_at": "2017-06-22T13:51:22.081Z",
+        "updated_at": "2017-06-22T15:42:36.679Z"
     }
-  },
-  "included": [
-    {
-      "id": "25",
-      "type": "places",
-      "attributes": {
-        "name": "Bolivia",
-        "formatted": "Bolivia"
-      },
-      "links": {
-        "self": "http://localhost:3000/places/bolivia"
-      }
-    },
-    {
-      "id": "2933",
-      "type": "places",
-      "attributes": {
-        "name": "Sonobe",
-        "formatted": "Sonobe, Kyoto Prefecture, Japan"
-      },
-      "links": {
-        "self": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
-      }
-    },
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://localhost:3000/users/1"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "changed name, 1960, 1960-09-12, bolivia, person, profile, biography, games, dbljump, video games, pc games, gaming",
-    "description": "Find Changed Name's game credits, biography, images and facts at Dbljump, the video game reference.",
-    "created_at": "2017-04-24T09:09:17.259Z",
-    "updated_at": "2017-04-26T21:38:21.753Z"
-  }
 }
 </code></pre>
 <p>Update an existing person article. The user must be an editor.</p>
@@ -3935,6 +5216,13 @@ Successful responses include the following HTTP header.<br /><br />
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>primary_image</td>
+<td>belongs_to</td>
+<td></td>
+<td>images</td>
+<td>The main article image, usually a likeness of the person.</td>
+</tr>
 <tr>
 <td>birth_place</td>
 <td>belongs_to</td>
@@ -5365,6 +6653,477 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </tbody></table>
 
+          <h1 id="articles-person-images"><a name="person_images_intro"></a>Articles: Person Images</h1>
+
+<p>Resources related to person images.</p>
+
+<p>Use these routes to create a new image record that is associated with a given person article, or get all images associated with a given person article.</p>
+
+          <h2 id="get-all-person-images">Get all person images</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/people/shigeru-miyamoto/images
+
+{
+    "data": [
+        {
+            "id": "7",
+            "type": "images",
+            "attributes": {
+                "kind": "photo",
+                "slug": "portrait-of-shigeru-miyamoto-photo",
+                "file": "http://localhost:3000/uploads/images/7/file.gif",
+                "title": "Portrait of Shigeru Miyamoto",
+                "description": "Shigeru Miyamoto in Kyoto on 12 April 2012.",
+                "year": 2012,
+                "date": "2012-04-12",
+                "usage_type": "free",
+                "usage_license_code": null,
+                "usage_license_name": null,
+                "usage_license_url": null,
+                "attributed_name": null,
+                "attributed_url": null,
+                "source_url": ""
+            },
+            "relationships": {
+                "uploaded_by": {
+                    "data": {
+                        "id": "2",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/users/2"
+                    }
+                },
+                "place": {
+                    "data": {
+                        "id": "2932",
+                        "type": "places"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+                    }
+                },
+                "games": {
+                    "data": []
+                },
+                "companies": {
+                    "data": []
+                },
+                "people": {
+                    "data": [
+                        {
+                            "id": "21",
+                            "type": "people"
+                        }
+                    ]
+                },
+                "game_versions": {
+                    "data": []
+                }
+            },
+            "links": {
+                "self": "http://localhost:3000/media/images/portrait-of-shigeru-miyamoto-photo"
+            }
+        }
+    ],
+    "links": {},
+    "meta": {
+        "total_items": 1
+    }
+}
+</code></pre>
+<p>Retrieve all images associated with a given person article. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/people/{person-id}/images</code> (replace <code class="prettyprint">person-id</code> with the person ID or slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[images]=file,title</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=logo</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="upload-a-new-company-image"><a name="company_images_create"></a>Upload a new company image</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/people/shigeru-miyamoto/images</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "images",
+    "attributes": {
+      "base64_file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
+      "kind": "photo",
+      "title": "Portrait of Shigeru Miyamoto",
+      "description": "Shigeru Miyamoto in Kyoto on 12 April 2012.",
+      "year": "",
+      "date": "2012-04-12",
+      "usage_type": "free",
+      "usage_license_code": "",
+      "attributed_name": "",
+      "attributed_url": "",
+      "source_url": ""
+    },
+    "relationships": {
+      "place": {
+        "data": {
+          "id": "2932",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "data": {
+        "id": "7",
+        "type": "images",
+        "attributes": {
+            "kind": "photo",
+            "slug": "portrait-of-shigeru-miyamoto-photo",
+            "file": "http://localhost:3000/uploads/images/7/file.gif",
+            "title": "Portrait of Shigeru Miyamoto",
+            "description": "Shigeru Miyamoto in Kyoto on 12 April 2012.",
+            "year": 2012,
+            "date": "2012-04-12",
+            "usage_type": "free",
+            "usage_license_code": null,
+            "usage_license_name": null,
+            "usage_license_url": null,
+            "attributed_name": null,
+            "attributed_url": null,
+            "source_url": ""
+        },
+        "relationships": {
+            "uploaded_by": {
+                "data": {
+                    "id": "2",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://localhost:3000/users/2"
+                }
+            },
+            "place": {
+                "data": {
+                    "id": "2932",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+                }
+            },
+            "games": {
+                "data": []
+            },
+            "companies": {
+                "data": []
+            },
+            "people": {
+                "data": [
+                    {
+                        "id": "21",
+                        "type": "people"
+                    }
+                ]
+            },
+            "game_versions": {
+                "data": []
+            }
+        },
+        "links": {
+            "self": "http://localhost:3000/media/images/portrait-of-shigeru-miyamoto-photo"
+        }
+    },
+    "included": [
+        {
+            "id": "2",
+            "type": "users",
+            "attributes": {
+                "username": "neil",
+                "role": "admin",
+                "given_names": "Neil",
+                "family_name": "Wheatley",
+                "avatar": "http://localhost:3000/uploads/user_avatar/2/1706221451.jpg"
+            },
+            "links": {
+                "self": "http://localhost:3000/users/2"
+            }
+        },
+        {
+            "id": "2932",
+            "type": "places",
+            "attributes": {
+                "kind": "locality",
+                "slug": "kyoto-kyoto-prefecture-japan",
+                "name": "Kyoto",
+                "formatted": "Kyoto, Kyoto Prefecture, Japan",
+                "short_name": null
+            },
+            "links": {
+                "self": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+            }
+        },
+        {
+            "id": "21",
+            "type": "people",
+            "attributes": {
+                "display_title": "Shigeru Miyamoto"
+            },
+            "links": {
+                "self": "http://localhost:3000/articles/people/shigeru-miyamoto"
+            }
+        }
+    ],
+    "meta": {
+        "keywords": "Portrait of Shigeru Miyamoto, photo, 2012, 2012-04-12, image, picture, media, dbljump, video games, pc games, gaming",
+        "description": "'Portrait of Shigeru Miyamoto' is a video game image at Dbljump.",
+        "created_at": "2017-06-22T15:17:48.517Z",
+        "updated_at": "2017-06-22T15:17:48.517Z"
+    }
+}
+</code></pre>
+<p>Upload a new image associated with a given person article. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/people/{person-id}/images</code> (replace <code class="prettyprint">person-id</code> with person ID or slug)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base64_file</td>
+<td>string</td>
+<td>Y</td>
+<td>Image file encoded as base64. See <a href="#image_file">File</a>.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Y</td>
+<td>See <a href="#image_kind">Kind</a>.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Y</td>
+<td>Max 100 chars.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td></td>
+<td>Max 250 chars.</td>
+</tr>
+<tr>
+<td>year</td>
+<td>integer</td>
+<td></td>
+<td>1800 to present year.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>date</td>
+<td></td>
+<td>1800-01-01 to present year.</td>
+</tr>
+<tr>
+<td>usage_type</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be &lsquo;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
+</tr>
+<tr>
+<td>usage_license_code</td>
+<td>string</td>
+<td>*</td>
+<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. See <a href="#image_usage_license">Usage license</a>.</td>
+</tr>
+<tr>
+<td>attributed_name</td>
+<td>string</td>
+<td>*</td>
+<td>Image owner&rsquo;s name. Max 100 chars. Req&rsquo;d if usage_type is &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>attributed_url</td>
+<td>string</td>
+<td></td>
+<td>The owner&rsquo;s website. Max 250 chars.</td>
+</tr>
+<tr>
+<td>source_url</td>
+<td>string</td>
+<td>*</td>
+<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. Max 250 chars. URL of image source.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>A <a href="#places_intro">place record</a> the image is associated with.</td>
+</tr>
+</tbody></table>
+
+<h3 id="file"><a name="image_file"></a>File</h3>
+
+<p><strong>File type:</strong> File uploads must be of type GIF, JPG/JPEG, or PNG.</p>
+
+<p><strong>Base64:</strong> Image file uploads are handled by the Ruby gems <a href="https://github.com/carrierwaveuploader/carrierwave">CarrierWave</a> and <a href="https://github.com/lebedev-yury/carrierwave-base64">Carrierwave::Base64</a>. Base64 strings should have <a href="https://github.com/lebedev-yury/carrierwave-base64#data-format">the correct data format</a>, i.e.:</p>
+
+<p><code class="prettyprint">data:image/jpeg;base64,(base64 encoded data)</code></p>
+
+<h3 id="kind"><a name="image_kind"></a>Kind</h3>
+
+<p>The <code class="prettyprint">kind</code> attribute accepts the following values.</p>
+
+<table><thead>
+<tr>
+<th>Kind</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>artwork</td>
+<td>Miscellaneous artwork, e.g. production design drawings or promotional art</td>
+</tr>
+<tr>
+<td>boxart</td>
+<td>Official box art from various regions</td>
+</tr>
+<tr>
+<td>doc</td>
+<td>Image of a document, e.g. a leaked presentation slide</td>
+</tr>
+<tr>
+<td>logo</td>
+<td>Usually a company or game logo</td>
+</tr>
+<tr>
+<td>photo</td>
+<td>A photograph</td>
+</tr>
+<tr>
+<td>poster</td>
+<td>A game poster</td>
+</tr>
+<tr>
+<td>screen</td>
+<td>A screenshot from a game</td>
+</tr>
+</tbody></table>
+
+<h3 id="usage-type"><a name="image_usage_type"></a>Usage type</h3>
+
+<p>Users should only upload images that can legally be shown on Dbljump.com. An image must therefore have one of three <code class="prettyprint">usage_type</code> values.</p>
+
+<table><thead>
+<tr>
+<th>Usage type</th>
+<th>usage_type value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Free</td>
+<td>free</td>
+<td>The image is in the public domain and free to use without attribution.</td>
+</tr>
+<tr>
+<td>Fair use</td>
+<td>fair</td>
+<td>The image can be used under US fair use law. May include logos, box-arts, and screenshots.</td>
+</tr>
+<tr>
+<td>Licensed</td>
+<td>licensed</td>
+<td>The image is free to use with some-rights-reserved license, e.g. Creative Commons.</td>
+</tr>
+</tbody></table>
+
+<h3 id="usage-license-attribute"><a name="image_usage_license"></a>Usage license attribute</h3>
+
+<p>If <code class="prettyprint">usage_type</code> is set to <code class="prettyprint">licensed</code>, a valid image license code must be provided. Please see <a href="#media_licenses_intro">Media Image Licenses</a>.</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="errors">Errors</h2>
+
+<p>See the main <a href="#media_image_errors">image errors section</a>.</p>
+
           <h1 id="articles-companies"><a name="companies_intro"></a>Articles: Companies</h1>
 
 <p>Resources related to company articles.</p>
@@ -5984,6 +7743,12 @@ Successful responses include the following HTTP header.<br /><br />
       "closed_year": ""
     },
     "relationships": {
+      "primary_image": {
+        "data": {
+          "id": "1",
+          "type": "images"
+        }
+      },
       "founded_place": {
         "data": {
           "id": "25",
@@ -6174,6 +7939,13 @@ Successful responses include the following HTTP header.<br /><br />
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>primary_image</td>
+<td>belongs_to</td>
+<td></td>
+<td>images</td>
+<td>The main article image, usually a company logo.</td>
+</tr>
 <tr>
 <td>birth_place</td>
 <td>belongs_to</td>
@@ -7615,6 +9387,1090 @@ Successful responses include the following HTTP header.<br /><br />
 <td>COMPANY_NOTE_CITE_WEBSITE_TOO_LONG</td>
 <td>cite_website</td>
 <td>Cite website cannot be more than 100 characters.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="articles-company-images"><a name="company_images_intro"></a>Articles: Company Images</h1>
+
+<p>Resources related to company images.</p>
+
+<p>Use these routes to create a new image record that is associated with a given company article, or get all images associated with a given company article.</p>
+
+          <h2 id="get-all-company-images">Get all company images</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /articles/companies/nintendo-co-ltd/images
+
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "images",
+            "attributes": {
+                "kind": "photo",
+                "slug": "nintendo-office-photo",
+                "file": "http://localhost:3000/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+                "title": "Nintendo office",
+                "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
+                "year": 2006,
+                "date": "2006-02-18",
+                "usage_type": "licensed",
+                "usage_license_code": "cc_by_sa_3_0",
+                "usage_license_name": "Creative Commons Attribution-ShareAlike 3.0",
+                "usage_license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+                "attributed_name": "Moja~commonswiki",
+                "attributed_url": "",
+                "source_url": "https://en.wikipedia.org/wiki/Nintendo#/media/File:Nintendo_office.jpg"
+            },
+            "relationships": {
+                "uploaded_by": {
+                    "data": {
+                        "id": "1",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/users/1"
+                    }
+                },
+                "place": {
+                    "data": null
+                },
+                "games": {
+                    "data": []
+                },
+                "companies": {
+                    "data": [
+                        {
+                            "id": "1",
+                            "type": "companies"
+                        }
+                    ]
+                },
+                "people": {
+                    "data": []
+                },
+                "game_versions": {
+                    "data": []
+                }
+            },
+            "links": {
+                "self": "http://localhost:3000/media/images/nintendo-office-photo"
+            }
+        },
+        {
+            "id": "2",
+            "type": "images",
+            "attributes": {
+                "kind": "photo",
+                "slug": "mario-figure-photo",
+                "file": "http://localhost:3000/uploads/images/2/mario-figure.jpg",
+                "title": "Mario figure",
+                "description": "",
+                "year": 2016,
+                "date": "2016-07-30",
+                "usage_type": "free",
+                "usage_license_code": null,
+                "usage_license_name": null,
+                "usage_license_url": null,
+                "attributed_name": null,
+                "attributed_url": null,
+                "source_url": ""
+            },
+            "relationships": {
+                "uploaded_by": {
+                    "data": {
+                        "id": "1",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/users/1"
+                    }
+                },
+                "place": {
+                    "data": null
+                },
+                "games": {
+                    "data": []
+                },
+                "companies": {
+                    "data": [
+                        {
+                            "id": "1",
+                            "type": "companies"
+                        }
+                    ]
+                },
+                "people": {
+                    "data": []
+                },
+                "game_versions": {
+                    "data": []
+                }
+            },
+            "links": {
+                "self": "http://localhost:3000/media/images/mario-figure-photo"
+            }
+        }
+    ],
+    "links": {},
+    "meta": {
+        "total_items": 2
+    }
+}
+</code></pre>
+<p>Retrieve all images associated with a given company article. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+<li>Authorization level: n/a</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /articles/companies/{company-id}/images</code> (replace <code class="prettyprint">company-id</code> with the company ID or slug)</p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields[{record-type}]</td>
+<td>All fields</td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[images]=file,title</code></td>
+</tr>
+<tr>
+<td>filter[{field}]</td>
+<td>All records</td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=logo</code></td>
+</tr>
+<tr>
+<td>page[number]</td>
+<td>1</td>
+<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+</tr>
+<tr>
+<td>page[size]</td>
+<td>30</td>
+<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="upload-a-new-company-image"><a name="company_images_create"></a>Upload a new company image</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/companies/nintendo-co-ltd/images</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "images",
+    "attributes": {
+      "base64_file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
+      "kind": "logo",
+      "title": "Nintendo Logo 2009",
+      "description": "Nintendo logo introduced in 2009.",
+      "year": "2006",
+      "date": "",
+      "usage_type": "fair",
+      "usage_license_code": "",
+      "attributed_name": "",
+      "attributed_url": "",
+      "source_url": ""
+    },
+    "relationships": {
+      "place": {
+        "data": {
+          "id": "",
+          "type": "places"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "data": {
+        "id": "5",
+        "type": "images",
+        "attributes": {
+            "kind": "logo",
+            "slug": "nintendo-logo-2009-logo",
+            "file": "http://localhost:3000/uploads/images/5/file.gif",
+            "title": "Nintendo Logo 2009",
+            "description": "Nintendo logo introduced in 2009.",
+            "year": 2006,
+            "date": null,
+            "usage_type": "fair",
+            "usage_license_code": null,
+            "usage_license_name": null,
+            "usage_license_url": null,
+            "attributed_name": "",
+            "attributed_url": "",
+            "source_url": ""
+        },
+        "relationships": {
+            "uploaded_by": {
+                "data": {
+                    "id": "2",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://localhost:3000/users/2"
+                }
+            },
+            "place": {
+                "data": null
+            },
+            "games": {
+                "data": []
+            },
+            "companies": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "companies"
+                    }
+                ]
+            },
+            "people": {
+                "data": []
+            },
+            "game_versions": {
+                "data": []
+            }
+        },
+        "links": {
+            "self": "http://localhost:3000/media/images/nintendo-logo-2009-logo"
+        }
+    },
+    "included": [
+        {
+            "id": "2",
+            "type": "users",
+            "attributes": {
+                "username": "neil",
+                "role": "admin",
+                "given_names": "Neil",
+                "family_name": "Wheatley",
+                "avatar": "http://localhost:3000/uploads/user_avatar/2/1706221451.jpg"
+            },
+            "links": {
+                "self": "http://localhost:3000/users/2"
+            }
+        },
+        {
+            "id": "1",
+            "type": "companies",
+            "attributes": {
+                "display_title": "Nintendo Co., Ltd."
+            },
+            "links": {
+                "self": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+            }
+        }
+    ],
+    "meta": {
+        "keywords": "Nintendo Logo 2009, logo, 2006, image, picture, media, dbljump, video games, pc games, gaming",
+        "description": "'Nintendo Logo 2009' is a video game image at Dbljump.",
+        "created_at": "2017-06-22T13:59:39.971Z",
+        "updated_at": "2017-06-22T13:59:39.971Z"
+    }
+}
+</code></pre>
+<p>Upload a new image associated with a given company article. User must be an editor or admin.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/companies/{company-id}/images</code> (replace <code class="prettyprint">company-id</code> with company ID or slug)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base64_file</td>
+<td>string</td>
+<td>Y</td>
+<td>Image file encoded as base64. See <a href="#image_file">File</a>.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>string</td>
+<td>Y</td>
+<td>See <a href="#image_kind">Kind</a>.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Y</td>
+<td>Max 100 chars.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td></td>
+<td>Max 250 chars.</td>
+</tr>
+<tr>
+<td>year</td>
+<td>integer</td>
+<td></td>
+<td>1800 to present year.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>date</td>
+<td></td>
+<td>1800-01-01 to present year.</td>
+</tr>
+<tr>
+<td>usage_type</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be &lsquo;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
+</tr>
+<tr>
+<td>usage_license_code</td>
+<td>string</td>
+<td>*</td>
+<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. See <a href="#image_usage_license">Usage license</a>.</td>
+</tr>
+<tr>
+<td>attributed_name</td>
+<td>string</td>
+<td>*</td>
+<td>Image owner&rsquo;s name. Max 100 chars. Req&rsquo;d if usage_type is &#39;licensed&rsquo;.</td>
+</tr>
+<tr>
+<td>attributed_url</td>
+<td>string</td>
+<td></td>
+<td>The owner&rsquo;s website. Max 250 chars.</td>
+</tr>
+<tr>
+<td>source_url</td>
+<td>string</td>
+<td>*</td>
+<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. Max 250 chars. URL of image source.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>belongs_to</td>
+<td></td>
+<td>places</td>
+<td>A <a href="#places_intro">place record</a> the image is associated with.</td>
+</tr>
+</tbody></table>
+
+<h3 id="file"><a name="image_file"></a>File</h3>
+
+<p><strong>File type:</strong> File uploads must be of type GIF, JPG/JPEG, or PNG.</p>
+
+<p><strong>Base64:</strong> Image file uploads are handled by the Ruby gems <a href="https://github.com/carrierwaveuploader/carrierwave">CarrierWave</a> and <a href="https://github.com/lebedev-yury/carrierwave-base64">Carrierwave::Base64</a>. Base64 strings should have <a href="https://github.com/lebedev-yury/carrierwave-base64#data-format">the correct data format</a>, i.e.:</p>
+
+<p><code class="prettyprint">data:image/jpeg;base64,(base64 encoded data)</code></p>
+
+<h3 id="kind"><a name="image_kind"></a>Kind</h3>
+
+<p>The <code class="prettyprint">kind</code> attribute accepts the following values.</p>
+
+<table><thead>
+<tr>
+<th>Kind</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>artwork</td>
+<td>Miscellaneous artwork, e.g. production design drawings or promotional art</td>
+</tr>
+<tr>
+<td>boxart</td>
+<td>Official box art from various regions</td>
+</tr>
+<tr>
+<td>doc</td>
+<td>Image of a document, e.g. a leaked presentation slide</td>
+</tr>
+<tr>
+<td>logo</td>
+<td>Usually a company or game logo</td>
+</tr>
+<tr>
+<td>photo</td>
+<td>A photograph</td>
+</tr>
+<tr>
+<td>poster</td>
+<td>A game poster</td>
+</tr>
+<tr>
+<td>screen</td>
+<td>A screenshot from a game</td>
+</tr>
+</tbody></table>
+
+<h3 id="usage-type"><a name="image_usage_type"></a>Usage type</h3>
+
+<p>Users should only upload images that can legally be shown on Dbljump.com. An image must therefore have one of three <code class="prettyprint">usage_type</code> values.</p>
+
+<table><thead>
+<tr>
+<th>Usage type</th>
+<th>usage_type value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Free</td>
+<td>free</td>
+<td>The image is in the public domain and free to use without attribution.</td>
+</tr>
+<tr>
+<td>Fair use</td>
+<td>fair</td>
+<td>The image can be used under US fair use law. May include logos, box-arts, and screenshots.</td>
+</tr>
+<tr>
+<td>Licensed</td>
+<td>licensed</td>
+<td>The image is free to use with some-rights-reserved license, e.g. Creative Commons.</td>
+</tr>
+</tbody></table>
+
+<h3 id="usage-license-attribute"><a name="image_usage_license"></a>Usage license attribute</h3>
+
+<p>If <code class="prettyprint">usage_type</code> is set to <code class="prettyprint">licensed</code>, a valid image license code must be provided. Please see <a href="#media_licenses_intro">Media Image Licenses</a>.</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="errors">Errors</h2>
+
+<p>See the main <a href="#media_image_errors">image errors section</a>.</p>
+
+          <h1 id="articles-search"><a name="articles_search_intro"></a>Articles: Search</h1>
+
+<p>Dbljump&rsquo;s search feature for game, company and person articles. The user can POST a search query and the API returns a collection of related article records.</p>
+
+          <h2 id="run-a-search"><a name="articles_search_create"></a>Run a search</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/search?page[size]=3</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "article_searches",
+    "attributes": {
+      "search": "japanese"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "data": [
+        {
+            "id": "1",
+            "type": "companies",
+            "attributes": {
+                "display_title": "Nintendo Co., Ltd.",
+                "description": "Nintendo is a Japanese video game hardware and software company founded in 1889."
+            },
+            "links": {
+                "self": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+            }
+        },
+        {
+            "id": "2",
+            "type": "companies",
+            "attributes": {
+                "display_title": "Sega Games Co., Ltd.",
+                "description": "SEGA is a Japanese video game software and hardware maker founded in 1940."
+            },
+            "links": {
+                "self": "http://localhost:3000/articles/companies/sega-games-co-ltd"
+            }
+        },
+        {
+            "id": "3",
+            "type": "companies",
+            "attributes": {
+                "display_title": "Sony Corporation",
+                "description": "Sony is a Japanese corporation and holder of the PlayStation gaming platforms."
+            },
+            "links": {
+                "self": "http://localhost:3000/articles/companies/sony-corporation"
+            }
+        }
+    ],
+    "links": {
+        "self": "http://localhost:3000/articles/search?page%5Bnumber%5D=1&amp;page%5Bsize%5D=3",
+        "next": "http://localhost:3000/articles/search?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3",
+        "last": "http://localhost:3000/articles/search?page%5Bnumber%5D=5&amp;page%5Bsize%5D=3"
+    },
+    "meta": {
+        "total_items": 13
+    }
+}
+</code></pre>
+<p>Search for game, company and person articles that match the given search string. Automatically paginated.</p>
+
+<ul>
+<li>User authentication: not required</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/search</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>search</td>
+<td>string</td>
+<td>Y</td>
+<td>The search string.</td>
+</tr>
+</tbody></table>
+
+<h3 id="response-attributes">Response attributes</h3>
+
+<p>The return collection includes limited record attributes, suitable for display on a search results page.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>display_title</td>
+<td>string</td>
+<td>The name of the game, company or person.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>text</td>
+<td>The article summary.</td>
+</tr>
+<tr>
+<td>primary_image</td>
+<td>relationship</td>
+<td>The article&rsquo;s main image, e.g. a game poster, company logo or person likeness.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h1 id="articles-peer-reviews"><a name="peer_reviews_intro"></a>Articles: Peer Reviews</h1>
+
+<p>Resources related to peer reviews of game, company and person articles.</p>
+
+<p>When a user with editor privileges creates an article, the article is not published until it passes review by another user with editor privileges. These resources include an endpoint for submitting an article for review, and recording the outcome of the review.</p>
+
+          <h2 id="submit-an-article-for-review"><a name="peer_reviews_create"></a>Submit an article for review</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /articles/peer_reviews</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "peer_reviews",
+    "attributes": {
+      "article_id": "1"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "data": {
+        "id": "1",
+        "type": "companies",
+        "attributes": {
+            "display_title": "Nintendo Co., Ltd.",
+            "description": "Nintendo is a Japanese video game hardware and software company founded in 1889.",
+            "slug": "nintendo-co-ltd",
+            "last_submitted_at": "2017-06-21T16:15:23.948Z",
+            "last_reviewed_at": null,
+            "last_review_outcome": null,
+            "last_review_comments": null,
+            "published_at": null,
+            "status": "submitted",
+            "founded_date": null,
+            "founded_year": 1889,
+            "closed": null,
+            "closed_date": null,
+            "closed_year": null
+        },
+        "relationships": {
+            "primary_image": {
+                "data": null
+            },
+            "created_by": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://localhost:3000/users/1"
+                }
+            },
+            "last_reviewed_by": {
+                "data": null
+            },
+            "founded_place": {
+                "data": {
+                    "id": "2932",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+                }
+            },
+            "hq_place": {
+                "data": null
+            },
+            "names": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "company_names"
+                    },
+                    {
+                        "id": "2",
+                        "type": "company_names"
+                    },
+                    {
+                        "id": "3",
+                        "type": "company_names"
+                    },
+                    {
+                        "id": "4",
+                        "type": "company_names"
+                    },
+                    {
+                        "id": "5",
+                        "type": "company_names"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd/names"
+                }
+            },
+            "notes": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "company_notes"
+                    },
+                    {
+                        "id": "2",
+                        "type": "company_notes"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd/notes"
+                }
+            },
+            "images": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "images"
+                    },
+                    {
+                        "id": "2",
+                        "type": "images"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd/images"
+                }
+            },
+            "credits": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd/credits"
+                }
+            },
+            "parents": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd/parents"
+                }
+            },
+            "children": {
+                "data": [
+                    {
+                        "id": "5",
+                        "type": "company_kinships"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd/children"
+                }
+            }
+        },
+        "links": {
+            "self": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+        }
+    },
+    "meta": {
+        "keywords": "Nintendo Co., Ltd., 1889, Kyoto, Kyoto Prefecture, Japan, 任天堂株式会社, Nintendō Kabushiki gaisha, Nintendo Playing Card Co., Nintendo Koppai, Nintendo, company, profile, biography, trivia, dbljump, video games, pc games, gaming",
+        "description": "Find Nintendo Co., Ltd.'s game credits, profile, images and facts at Dbljump, the video game reference.",
+        "created_at": "2017-06-20T23:07:11.468Z",
+        "updated_at": "2017-06-21T16:15:24.482Z"
+    }
+}
+</code></pre>
+<p>Submit a game, company, or person article for peer review. The user must be the creator of the article.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: editor or admin; user must be article creator</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/peer_reviews</code></p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>article_id</td>
+<td>integer</td>
+<td>Y</td>
+<td>The article record ID</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="review-an-unpublished-article"><a name="peer_reviews_update"></a>Review an unpublished article</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">PATCH /articles/peer_reviews/1</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "peer_reviews",
+    "id": "1",
+    "attributes": {
+      "last_review_outcome": "fail_style",
+      "last_review_comments": "Please fix typing errors."
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "data": {
+        "id": "1",
+        "type": "companies",
+        "attributes": {
+            "display_title": "Nintendo Co., Ltd.",
+            "description": "Nintendo is a Japanese video game hardware and software company founded in 1889.",
+            "slug": "nintendo-co-ltd",
+            "last_submitted_at": "2017-06-21T16:15:23.948Z",
+            "last_reviewed_at": "2017-06-21T16:21:15.946Z",
+            "last_review_outcome": "fail_style",
+            "last_review_comments": "Please fix typing errors.",
+            "published_at": null,
+            "status": "draft",
+            "founded_date": null,
+            "founded_year": 1889,
+            "closed": null,
+            "closed_date": null,
+            "closed_year": null
+        },
+        "relationships": {
+            "primary_image": {
+                "data": null
+            },
+            "created_by": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://localhost:3000/users/1"
+                }
+            },
+            "last_reviewed_by": {
+                "data": {
+                    "id": "2",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://localhost:3000/users/2"
+                }
+            },
+            "founded_place": {
+                "data": {
+                    "id": "2932",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+                }
+            },
+            "hq_place": {
+                "data": null
+            },
+            "names": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "company_names"
+                    },
+                    {
+                        "id": "2",
+                        "type": "company_names"
+                    },
+                    {
+                        "id": "3",
+                        "type": "company_names"
+                    },
+                    {
+                        "id": "4",
+                        "type": "company_names"
+                    },
+                    {
+                        "id": "5",
+                        "type": "company_names"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd/names"
+                }
+            },
+            "notes": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "company_notes"
+                    },
+                    {
+                        "id": "2",
+                        "type": "company_notes"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd/notes"
+                }
+            },
+            "images": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "images"
+                    },
+                    {
+                        "id": "2",
+                        "type": "images"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd/images"
+                }
+            },
+            "credits": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd/credits"
+                }
+            },
+            "parents": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd/parents"
+                }
+            },
+            "children": {
+                "data": [
+                    {
+                        "id": "5",
+                        "type": "company_kinships"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd/children"
+                }
+            }
+        },
+        "links": {
+            "self": "http://localhost:3000/articles/companies/nintendo-co-ltd"
+        }
+    },
+    "meta": {
+        "keywords": "Nintendo Co., Ltd., 1889, Kyoto, Kyoto Prefecture, Japan, 任天堂株式会社, Nintendō Kabushiki gaisha, Nintendo Playing Card Co., Nintendo Koppai, Nintendo, company, profile, biography, trivia, dbljump, video games, pc games, gaming",
+        "description": "Find Nintendo Co., Ltd.'s game credits, profile, images and facts at Dbljump, the video game reference.",
+        "created_at": "2017-06-20T23:07:11.468Z",
+        "updated_at": "2017-06-21T16:21:16.184Z"
+    }
+}
+</code></pre>
+<p>Record the outcome of an article peer review. The user must be an editor, and must not be the article creator.</p>
+
+<ul>
+<li>User authentication: required</li>
+<li>Authorization level: admin</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /articles/peer_reviews/{ID}</code> (replace <code class="prettyprint">{ID}</code> with article ID)</p>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Req&rsquo;d?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>last_review_outcome</td>
+<td>string</td>
+<td>Y</td>
+<td>Must be <code class="prettyprint">ok</code>, <code class="prettyprint">fail_style</code>, <code class="prettyprint">fail_incomplete</code>, or <code class="prettyprint">fail_accuracy</code></td>
+</tr>
+<tr>
+<td>last_review_comments</td>
+<td>text</td>
+<td>Y</td>
+<td>Reviewer feedback on submission. 1-800 characters.</td>
+</tr>
+</tbody></table>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="errors"><a name="peer_reviews_errors"></a>Errors</h2>
+
+<p>Errors specific to peer reviews of articles.</p>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>PEER_REVIEW_SUBMISSION_DECLINED</td>
+<td></td>
+<td>Peer review submission can only be made by the article creator.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>PEER_REVIEW_OUTCOME_DECLINED</td>
+<td></td>
+<td>Peer review cannot be made by article creator.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PEER_REVIEW_ALREADY_PUBLISHED</td>
+<td></td>
+<td>The article has already passed peer review.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PEER_REVIEW_OUTCOME_BLANK</td>
+<td><code class="prettyprint">last_review_outcome</code></td>
+<td>Review outcome must be present.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PEER_REVIEW_OUTCOME_INCLUSION</td>
+<td><code class="prettyprint">last_review_outcome</code></td>
+<td>Review outcome must be an accepted value.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PEER_REVIEW_COMMENTS_BLANK</td>
+<td><code class="prettyprint">last_review_comments</code></td>
+<td>Review comments must be present.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>PEER_REVIEW_COMMENTS_TOO_LONG</td>
+<td><code class="prettyprint">last_review_comments</code></td>
+<td>Review comments cannpt be longer than 800 characters.</td>
 </tr>
 </tbody></table>
 
@@ -11806,7 +14662,7 @@ Successful responses include the following HTTP header.<br /><br />
 
 <p><code class="prettyprint">204 No Content</code></p>
 
-          <h2 id="errors">Errors</h2>
+          <h2 id="errors"><a name="media_image_errors"></a>Errors</h2>
 
 <p>Errors specific to creating and updating image records.</p>
 
@@ -11939,6 +14795,72 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Must be a valid place ID.</td>
 </tr>
 </tbody></table>
+
+          <h1 id="media-licenses"><a name="media_licenses_intro"></a>Media: Licenses</h1>
+
+<p>Resources related to media licenses. Licenses are used to show the correct rights attributions for images and other media used by Dbljump.</p>
+
+<p>A license record includes its name and URL, plus an ID code.</p>
+
+          <h2 id="get-all-media-licenses">Get all media licenses</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /media/licenses
+
+{
+    "data": [
+        {
+            "type": "media_licenses",
+            "id": "cc_by_2_0",
+            "attributes": {
+                "name": "Creative Commons Attribution 2.0",
+                "url": "https://creativecommons.org/licenses/by/2.0"
+            }
+        },
+        {
+            "type": "media_licenses",
+            "id": "cc_by_2_5",
+            "attributes": {
+                "name": "Creative Commons Attribution 2.5",
+                "url": "https://creativecommons.org/licenses/by/2.5/"
+            }
+        },
+        {
+            "type": "media_licenses",
+            "id": "cc_by_sa_2_0",
+            "attributes": {
+                "name": "Creative Commons Attribution-ShareAlike 2.0",
+                "url": "https://creativecommons.org/licenses/by-sa/2.0"
+            }
+        }
+    ],
+    "links": {
+        "self": "http://localhost:3000/media/licenses"
+    },
+    "meta": {
+        "total_items": 3
+    }
+}
+</code></pre>
+<p>Retrieve all media licenses. Useful for populating form select boxes.</p>
+
+<ul>
+<li>User authentication: not required</li>
+</ul>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /media/licenses</code></p>
+
+<h3 id="url-query-parameters">URL query parameters</h3>
+
+<p>Not supported.</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
 
           <h1 id="platforms"><a name="platforms_intro"></a>Platforms</h1>
 
