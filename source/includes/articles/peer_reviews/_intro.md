@@ -1,4 +1,4 @@
-# <a name="peer_reviews_intro"></a>Articles: Peer reviews
+# <a name="peer_reviews_intro"></a>Articles: Peer Reviews
 
 Resources related to peer reviews of game, company and person articles.
 

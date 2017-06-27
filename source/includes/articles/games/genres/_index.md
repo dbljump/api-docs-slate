@@ -1,4 +1,4 @@
-# <a name="game_genres_intro"></a>Articles: Game genres
+# <a name="game_genres_intro"></a>Articles: Game Genres
 
 ## Game genres: get all
 
