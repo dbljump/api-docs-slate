@@ -44,96 +44,182 @@
 
 ```JSON
 {
-  "data": {
-    "id": "4",
-    "type": "companies",
-    "attributes": {
-      "display_title": "Changed Name",
-      "description": "Updated description for an updated article.",
-      "founded_date": "1940-09-12",
-      "founded_year": 1940,
-      "closed": true,
-      "closed_date": "2013-04-05",
-      "closed_year": 2013,
-      "slug": "changed-name-3b1258ec-cc74-41f3-966c-c075bb634a16"
+    "data": {
+        "id": "4",
+        "type": "companies",
+        "attributes": {
+            "display_title": "Changed Name",
+            "description": "Updated description for an updated article.",
+            "slug": "changed-name",
+            "last_submitted_at": null,
+            "last_reviewed_at": null,
+            "last_review_outcome": null,
+            "last_review_comments": null,
+            "published_at": "2017-06-28T17:04:18.271Z",
+            "status": "published",
+            "founded_date": "1940-09-12",
+            "founded_year": 1940,
+            "closed": true,
+            "closed_date": "2013-04-05",
+            "closed_year": 2013
+        },
+        "relationships": {
+            "primary_image": {
+                "data": {
+                    "id": "1",
+                    "type": "images"
+                },
+                "links": {
+                    "related": "http://localhost:3000/media/images/nintendo-office-photo"
+                }
+            },
+            "created_by": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://localhost:3000/users/1"
+                }
+            },
+            "last_reviewed_by": {
+                "data": null
+            },
+            "founded_place": {
+                "data": {
+                    "id": "25",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://localhost:3000/places/bolivia"
+                }
+            },
+            "hq_place": {
+                "data": {
+                    "id": "2933",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
+                }
+            },
+            "names": {
+                "data": [
+                    {
+                        "id": "12",
+                        "type": "company_names"
+                    },
+                    {
+                        "id": "13",
+                        "type": "company_names"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/changed-name/names"
+                }
+            },
+            "notes": {
+                "data": [
+                    {
+                        "id": "5",
+                        "type": "company_notes"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/changed-name/notes"
+                }
+            },
+            "images": {
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "images"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/changed-name/images"
+                }
+            },
+            "credits": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/changed-name/credits"
+                }
+            },
+            "parents": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/changed-name/parents"
+                }
+            },
+            "children": {
+                "data": [
+                    {
+                        "id": "17",
+                        "type": "company_kinships"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/companies/changed-name/children"
+                }
+            }
+        },
+        "links": {
+            "self": "http://localhost:3000/articles/companies/changed-name"
+        }
     },
-    "relationships": {
-      "founded_place": {
-        "data": {
-          "id": "25",
-          "type": "places"
+    "included": [
+        {
+            "id": "1",
+            "type": "images",
+            "attributes": {
+                "file": "http://localhost:3000/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+                "title": "Nintendo office"
+            },
+            "links": {
+                "self": "http://localhost:3000/media/images/nintendo-office-photo"
+            }
         },
-        "links": {
-          "related": "http://localhost:3000/places/bolivia"
-        }
-      },
-      "hq_place": {
-        "data": {
-          "id": "2933",
-          "type": "places"
+        {
+            "id": "1",
+            "type": "users",
+            "attributes": {
+                "username": "tikithekiwi",
+                "avatar": null
+            },
+            "links": {
+                "self": "http://localhost:3000/users/1"
+            }
         },
-        "links": {
-          "related": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
-        }
-      },
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
+        {
+            "id": "25",
+            "type": "places",
+            "attributes": {
+                "name": "Bolivia",
+                "formatted": "Bolivia"
+            },
+            "links": {
+                "self": "http://localhost:3000/places/bolivia"
+            }
         },
-        "links": {
-          "related": "http://localhost:3000/users/1"
+        {
+            "id": "2933",
+            "type": "places",
+            "attributes": {
+                "name": "Sonobe",
+                "formatted": "Sonobe, Kyoto Prefecture, Japan"
+            },
+            "links": {
+                "self": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
+            }
         }
-      }
-    },
-    "links": {
-      "self": "http://localhost:3000/articles/companies/changed-name-3b1258ec-cc74-41f3-966c-c075bb634a16"
+    ],
+    "meta": {
+        "keywords": "Changed Name, 1940, Bolivia, Sonobe, Kyoto Prefecture, Japan, MS, Microsoft, company, profile, biography, trivia, dbljump, video games, pc games, gaming",
+        "description": "Find Changed Name's game credits, profile, images and facts at Dbljump, the video game reference.",
+        "created_at": "2017-06-28T17:04:18.295Z",
+        "updated_at": "2017-06-28T17:05:53.641Z"
     }
-  },
-  "included": [
-    {
-      "id": "25",
-      "type": "places",
-      "attributes": {
-        "name": "Bolivia",
-        "formatted": "Bolivia"
-      },
-      "links": {
-        "self": "http://localhost:3000/places/bolivia"
-      }
-    },
-    {
-      "id": "2933",
-      "type": "places",
-      "attributes": {
-        "name": "Sonobe",
-        "formatted": "Sonobe, Kyoto Prefecture, Japan"
-      },
-      "links": {
-        "self": "http://localhost:3000/places/sonobe-kyoto-prefecture-japan"
-      }
-    },
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://localhost:3000/users/1"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "changed name, 1940, bolivia, sonobe, kyoto prefecture, japan, company, profile, biography, trivia, dbljump, video games, pc games, gaming",
-    "description": "Find Changed Name's game credits, profile, images and facts at Dbljump, the video game reference.",
-    "created_at": "2017-04-24T09:09:13.538Z",
-    "updated_at": "2017-04-27T09:14:35.444Z"
-  }
 }
 ```
 

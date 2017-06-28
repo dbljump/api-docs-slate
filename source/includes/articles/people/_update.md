@@ -51,12 +51,12 @@
         "attributes": {
             "display_title": "Changed Name",
             "description": "Updated description for an updated article.",
-            "slug": "changed-name",
+            "slug": "changed-name-c7bbffd2-15e1-4008-98b3-96268e466d0f",
             "last_submitted_at": null,
             "last_reviewed_at": null,
             "last_review_outcome": null,
             "last_review_comments": null,
-            "published_at": "2017-06-22T13:51:22.060Z",
+            "published_at": "2017-06-28T17:04:26.704Z",
             "status": "published",
             "gender": "transwoman",
             "birth_date": "1960-09-12",
@@ -113,13 +113,13 @@
                     }
                 ],
                 "links": {
-                    "related": "http://localhost:3000/articles/people/changed-name/names"
+                    "related": "http://localhost:3000/articles/people/changed-name-c7bbffd2-15e1-4008-98b3-96268e466d0f/names"
                 }
             },
             "notes": {
                 "data": [],
                 "links": {
-                    "related": "http://localhost:3000/articles/people/changed-name/notes"
+                    "related": "http://localhost:3000/articles/people/changed-name-c7bbffd2-15e1-4008-98b3-96268e466d0f/notes"
                 }
             },
             "images": {
@@ -130,21 +130,32 @@
                     }
                 ],
                 "links": {
-                    "related": "http://localhost:3000/articles/people/changed-name/images"
+                    "related": "http://localhost:3000/articles/people/changed-name-c7bbffd2-15e1-4008-98b3-96268e466d0f/images"
                 }
             },
             "credits": {
                 "data": [],
                 "links": {
-                    "related": "http://localhost:3000/articles/people/changed-name/credits"
+                    "related": "http://localhost:3000/articles/people/changed-name-c7bbffd2-15e1-4008-98b3-96268e466d0f/credits"
                 }
             }
         },
         "links": {
-            "self": "http://localhost:3000/articles/people/changed-name"
+            "self": "http://localhost:3000/articles/people/changed-name-c7bbffd2-15e1-4008-98b3-96268e466d0f"
         }
     },
     "included": [
+        {
+            "id": "1",
+            "type": "images",
+            "attributes": {
+                "file": "http://localhost:3000/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+                "title": "Nintendo office"
+            },
+            "links": {
+                "self": "http://localhost:3000/media/images/nintendo-office-photo"
+            }
+        },
         {
             "id": "1",
             "type": "users",
@@ -182,8 +193,8 @@
     "meta": {
         "keywords": "Changed Name, 1960, Bolivia, 神谷 英樹, person, profile, biography, games, dbljump, video games, pc games, gaming",
         "description": "Find Changed Name's game credits, biography, images and facts at Dbljump, the video game reference.",
-        "created_at": "2017-06-22T13:51:22.081Z",
-        "updated_at": "2017-06-22T15:42:36.679Z"
+        "created_at": "2017-06-28T17:04:26.729Z",
+        "updated_at": "2017-06-28T17:13:03.539Z"
     }
 }
 ```

@@ -41,12 +41,12 @@
         "attributes": {
             "display_title": "Changed Name",
             "description": "Updated description for an updated article.",
-            "slug": "changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4",
+            "slug": "changed-name-7f116bac-0ccd-421e-bc25-090cccc63a41",
             "last_submitted_at": null,
             "last_reviewed_at": null,
             "last_review_outcome": null,
             "last_review_comments": null,
-            "published_at": "2017-06-22T13:51:23.881Z",
+            "published_at": "2017-06-28T17:04:28.494Z",
             "status": "published",
             "release_date": "1995-11-17",
             "release_year": 1995
@@ -76,13 +76,13 @@
             "titles": {
                 "data": [],
                 "links": {
-                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/titles"
+                    "related": "http://localhost:3000/articles/games/changed-name-7f116bac-0ccd-421e-bc25-090cccc63a41/titles"
                 }
             },
             "notes": {
                 "data": [],
                 "links": {
-                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/notes"
+                    "related": "http://localhost:3000/articles/games/changed-name-7f116bac-0ccd-421e-bc25-090cccc63a41/notes"
                 }
             },
             "genres": {
@@ -97,7 +97,7 @@
                     }
                 ],
                 "links": {
-                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/genres"
+                    "related": "http://localhost:3000/articles/games/changed-name-7f116bac-0ccd-421e-bc25-090cccc63a41/genres"
                 }
             },
             "versions": {
@@ -116,7 +116,7 @@
                     }
                 ],
                 "links": {
-                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/versions"
+                    "related": "http://localhost:3000/articles/games/changed-name-7f116bac-0ccd-421e-bc25-090cccc63a41/versions"
                 }
             },
             "images": {
@@ -127,27 +127,38 @@
                     }
                 ],
                 "links": {
-                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/images"
+                    "related": "http://localhost:3000/articles/games/changed-name-7f116bac-0ccd-421e-bc25-090cccc63a41/images"
                 }
             },
             "company_credits": {
                 "data": [],
                 "links": {
-                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/company_credits"
+                    "related": "http://localhost:3000/articles/games/changed-name-7f116bac-0ccd-421e-bc25-090cccc63a41/company_credits"
                 }
             },
             "person_credits": {
                 "data": [],
                 "links": {
-                    "related": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4/company_credits"
+                    "related": "http://localhost:3000/articles/games/changed-name-7f116bac-0ccd-421e-bc25-090cccc63a41/company_credits"
                 }
             }
         },
         "links": {
-            "self": "http://localhost:3000/articles/games/changed-name-4e0f8184-9d0a-43c4-93aa-fac630f602f4"
+            "self": "http://localhost:3000/articles/games/changed-name-7f116bac-0ccd-421e-bc25-090cccc63a41"
         }
     },
     "included": [
+        {
+            "id": "1",
+            "type": "images",
+            "attributes": {
+                "file": "http://localhost:3000/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+                "title": "Nintendo office"
+            },
+            "links": {
+                "self": "http://localhost:3000/media/images/nintendo-office-photo"
+            }
+        },
         {
             "id": "1",
             "type": "users",
@@ -185,8 +196,8 @@
     "meta": {
         "keywords": "Changed Name, 1995, PlayStation 3, Xbox 360, Windows, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
         "description": "Find Changed Name trivia, screenshots, credits and other info at Dbljump, the video game reference.",
-        "created_at": "2017-06-22T13:51:23.885Z",
-        "updated_at": "2017-06-22T15:52:04.565Z"
+        "created_at": "2017-06-28T17:04:28.500Z",
+        "updated_at": "2017-06-28T17:08:46.331Z"
     }
 }
 ```

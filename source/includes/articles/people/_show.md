@@ -6,80 +6,124 @@
 # GET /articles/people/hideki-kamiya
 
 {
-  "data": {
-    "id": "44",
-    "type": "people",
-    "attributes": {
-      "display_title": "Hideki Kamiya",
-      "description": "Hideki Kamiya is a game designer and director known for his work with Capcom and as a co-founder of PlatinumGames.",
-      "gender": "male",
-      "birth_date": "1970-12-19",
-      "birth_year": 1970,
-      "dead": null,
-      "death_date": null,
-      "death_year": null,
-      "slug": "hideki-kamiya"
-    },
-    "relationships": {
-      "birth_place": {
-        "data": {
-          "id": "2936",
-          "type": "places"
+    "data": {
+        "id": "44",
+        "type": "people",
+        "attributes": {
+            "display_title": "Hideki Kamiya",
+            "description": "Hideki Kamiya is a game designer and director known for his work with Capcom and as a co-founder of PlatinumGames.",
+            "slug": "hideki-kamiya",
+            "last_submitted_at": null,
+            "last_reviewed_at": null,
+            "last_review_outcome": null,
+            "last_review_comments": null,
+            "published_at": "2017-06-28T17:04:26.704Z",
+            "status": "published",
+            "gender": "male",
+            "birth_date": "1970-12-19",
+            "birth_year": 1970,
+            "dead": null,
+            "death_date": null,
+            "death_year": null
+        },
+        "relationships": {
+            "primary_image": {
+                "data": null,
+                "links": {
+                    "related": "http://localhost:3000/media/images/nintendo-office-photo"
+                }
+            },
+            "created_by": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://localhost:3000/users/1"
+                }
+            },
+            "last_reviewed_by": {
+                "data": null
+            },
+            "birth_place": {
+                "data": {
+                    "id": "2936",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://localhost:3000/places/matsumoto-nagano-prefecture-japan"
+                }
+            },
+            "death_place": {
+                "data": null,
+                "links": {
+                    "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+                }
+            },
+            "names": {
+                "data": [
+                    {
+                        "id": "57",
+                        "type": "person_names"
+                    }
+                ],
+                "links": {
+                    "related": "http://localhost:3000/articles/people/hideki-kamiya/names"
+                }
+            },
+            "notes": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/people/hideki-kamiya/notes"
+                }
+            },
+            "images": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/people/hideki-kamiya/images"
+                }
+            },
+            "credits": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/people/hideki-kamiya/credits"
+                }
+            }
         },
         "links": {
-          "related": "http://localhost:3000/places/matsumoto-nagano-prefecture-japan"
+            "self": "http://localhost:3000/articles/people/hideki-kamiya"
         }
-      },
-      "death_place": {
-        "data": null
-      },
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
+    },
+    "included": [
+        {
+            "id": "1",
+            "type": "users",
+            "attributes": {
+                "username": "tikithekiwi",
+                "avatar": null
+            },
+            "links": {
+                "self": "http://localhost:3000/users/1"
+            }
         },
-        "links": {
-          "related": "http://localhost:3000/users/1"
+        {
+            "id": "2936",
+            "type": "places",
+            "attributes": {
+                "name": "Matsumoto",
+                "formatted": "Matsumoto, Nagano Prefecture, Japan"
+            },
+            "links": {
+                "self": "http://localhost:3000/places/matsumoto-nagano-prefecture-japan"
+            }
         }
-      }
-    },
-    "links": {
-      "self": "http://localhost:3000/articles/people/hideki-kamiya"
+    ],
+    "meta": {
+        "keywords": "Hideki Kamiya, 1970, Matsumoto, Nagano Prefecture, Japan, person, profile, biography, games, dbljump, video games, pc games, gaming",
+        "description": "Find Hideki Kamiya's game credits, biography, images and facts at Dbljump, the video game reference.",
+        "created_at": "2017-06-28T17:04:26.729Z",
+        "updated_at": "2017-06-28T17:04:26.729Z"
     }
-  },
-  "included": [
-    {
-      "id": "2936",
-      "type": "places",
-      "attributes": {
-        "name": "Matsumoto",
-        "formatted": "Matsumoto, Nagano Prefecture, Japan"
-      },
-      "links": {
-        "self": "http://localhost:3000/places/matsumoto-nagano-prefecture-japan"
-      }
-    },
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://localhost:3000/users/1"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "hideki kamiya, 1970, 1970-12-19, matsumoto, nagano prefecture, japan, person, profile, biography, games, dbljump, video games, pc games, gaming",
-    "description": "Find Hideki Kamiya's game credits, biography, images and facts at Dbljump, the video game reference.",
-    "created_at": "2017-04-24T09:09:17.259Z",
-    "updated_at": "2017-04-24T09:09:17.259Z"
-  }
 }
 ```
 
@@ -117,7 +161,7 @@ Association | Record type | Relationship type
 birth_place | places | belongs_to
 death_place | places | belongs_to
 created_by | users | belongs_to
-
+primary_image | images | belongs_to
 
 ### Included
 
@@ -126,6 +170,7 @@ Record type | Relationship | Attributes included
 users | created_by | username, role, given_names, family_name, avatar
 places | birth_place | name, formatted
 places | death_place | name, formatted
+images | primary_image | title, file
 
 ### Meta
 

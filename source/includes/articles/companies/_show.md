@@ -115,7 +115,7 @@ Association | Record type | Relationship type
 founded_place | places | belongs_to
 hq_place | places | belongs_to
 created_by | users | belongs_to
-
+primary_image | images | belongs_to
 
 ### Included
 
@@ -124,6 +124,7 @@ Record type | Relationship | Attributes included
 users | created_by | username, role, given_names, family_name, avatar
 places | founded_place | name, formatted
 places | hq_place | name, formatted
+images | primary_image | title, file
 
 ### Meta
 
