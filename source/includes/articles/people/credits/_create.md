@@ -1,17 +1,34 @@
 ## <a name="person_credits_create"></a>Create a new person credit
 
-> Request body | `POST /articles/people/shigeru-miyamoto/notes`
+> Request body | `POST /articles/people/satoru-iwata/credits`
 
 ```JSON
 {
   "data": {
-    "type": "person_notes",
+    "type": "person_credits",
     "attributes": {
-      "category": "Career",
-      "body": "The note text.",
-      "cite_url": "http://ign.com/article",
-      "cite_title": "The Article Title",
-      "cite_website": "IGN"
+      "category": "creative",
+      "role": "Executive Producer"
+    },
+    "relationships": {
+      "game": {
+        "data": {
+          "id": "46",
+          "type": "games"
+        }
+      },
+      "version": {
+        "data": {
+          "id": "1",
+          "type": "game_versions"
+        }
+      },
+      "place": {
+        "data": {
+          "id": "",
+          "type": "places"
+        }
+      }
     }
   }
 }
@@ -21,64 +38,115 @@
 
 ```JSON
 {
-  "data": {
-    "id": "15",
-    "type": "person_notes",
-    "attributes": {
-      "category": "Career",
-      "body": "The note text.",
-      "cite_url": "http://ign.com/article",
-      "cite_title": "The Article Title",
-      "cite_website": "IGN"
+    "data": {
+        "id": "1",
+        "type": "person_credits",
+        "attributes": {
+            "category": "creative",
+            "role": "Executive Producer"
+        },
+        "relationships": {
+            "credited": {
+                "data": {
+                    "id": "26",
+                    "type": "people"
+                },
+                "links": {
+                    "related": "http://localhost:3000/articles/people/satoru-iwata"
+                }
+            },
+            "game": {
+                "data": {
+                    "id": "46",
+                    "type": "games"
+                },
+                "links": {
+                    "related": "http://localhost:3000/articles/games/the-wonderful-101"
+                }
+            },
+            "version": {
+                "data": {
+                    "id": "1",
+                    "type": "game_versions"
+                },
+                "links": {
+                    "related": "http://localhost:3000/articles/game_versions/1"
+                }
+            },
+            "place": {
+                "data": null
+            }
+        }
     },
-    "relationships": {
-      "person": {
-        "data": {
-          "id": "21",
-          "type": "people"
+    "included": [
+        {
+            "id": "26",
+            "type": "people",
+            "attributes": {
+                "display_title": "Satoru Iwata"
+            },
+            "links": {
+                "self": "http://localhost:3000/articles/people/satoru-iwata"
+            }
         },
-        "links": {
-          "related": "http://localhost:3000/articles/people/shigeru-miyamoto"
+        {
+            "id": "46",
+            "type": "games",
+            "attributes": {
+                "display_title": "The Wonderful 101"
+            },
+            "links": {
+                "self": "http://localhost:3000/articles/games/the-wonderful-101"
+            }
         }
-      },
-      "created_by": {
-        "data": {
-          "id": "2",
-          "type": "created_bies"
-        },
-        "links": {
-          "related": "http://localhost:3000/users/2"
-        }
-      }
+    ],
+    "meta": {
+        "keywords": "The Wonderful 101, Satoru Iwata, Executive Producer, person, credit, dbljump, video games, pc games, gaming",
+        "description": "Find staff and company credits for The Wonderful 101 at Dbljump, the video game reference.",
+        "created_at": "2017-06-29T15:25:57.428Z",
+        "updated_at": "2017-06-29T15:25:57.428Z"
     }
-  },
-  "meta": {
-    "keywords": "shigeru miyamoto, notes, trivia, facts, dbljump, video games, pc games, gaming",
-    "description": "The note text.",
-    "created_at": "2017-05-18T22:09:16.930Z",
-    "updated_at": "2017-05-18T22:09:16.930Z"
-  }
 }
 ```
 
-Create a new note for a given person. A note is a fact, story or piece of trivia about a person. User must be an editor or admin.
+Create a new game credit for a given person. User must be an editor or admin.
 
 * User authentication: required
 * Authorization level: editor or admin
 
 ### HTTP request
 
-`POST /articles/people/{game-slug}/notes`
+`POST /articles/people/{person-slug}/credits` (replace `person-slug` with the person record slug or ID)
 
 ### Request attributes
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-category | string | Y | The note category. Must be an accepted value.
-body | string | Y | The note text. 5-2000 chars.
-cite_url | string |  | The URL of the source web page. 5-250 chars.
-cite_title | string | | The title of the source web page. 5-250 chars.
-cite_website | string | | The name of the source website. 1-100 chars.
+category | string | Y | The credit category. Must be an accepted value.
+role | string | Y | The credit, e.g. 'Director' or 'Lead Programmer'. Max 100 chars.
+
+### Relationships
+
+Check this section's code example to see how to update these relationships.
+
+Name | Relationship | Req'd? | JSON:API type | Description
+---- | ------------ | ------ | ------------- | -----------
+game | belongs_to | Y | games | The game the credit relates to.
+version | belongs_to | | game_versions | The game version the credit relates to (optional).
+place | belongs_to | | places | The place the credit relates to (optional).
+
+### <a name="person_credit_categories"></a>Person credit categories
+
+The following are accepted value for the categories attribute:
+
+* creative
+* development
+* technology
+* visuals
+* sound
+* language
+* special
+* misc
 
 ### Success HTTP response code
 

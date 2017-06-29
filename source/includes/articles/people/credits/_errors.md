@@ -4,12 +4,11 @@ Errors specific to creating and updating person credits.
 
 HTTP code | Error code | Pointer | Title
 --------- | ---------- | ------- | -----
-400 | PERSON_NOTE_CATEGORY_BLANK | category | Category is required.
-400 | PERSON_NOTE_CATEGORY_INCLUSION | category | Category must be an accepted value.
-400 | PERSON_NOTE_BODY_BLANK | body | Body is required.
-400 | PERSON_NOTE_BODY_TOO_SHORT | body | Body cannot be less than 5 characters.
-400 | PERSON_NOTE_BODY_TOO_LONG | body | Body cannot be more than 8000 characters.
-400 | PERSON_NOTE_CITE_URL_TOO_SHORT | cite_url | Cite URL cannot be less than 5 characters.
-400 | PERSON_NOTE_CITE_URL_TOO_LONG | cite_url | Cite URL cannot be more than 250 characters.
-400 | PERSON_NOTE_CITE_TITLE_TOO_LONG | cite_title | Cite title cannot be more than 250 characters.
-400 | PERSON_NOTE_CITE_WEBSITE_TOO_LONG | cite_website | Cite website cannot be more than 100 characters.
+400 | PERSON_CREDIT_CREDITED_ID_BLANK | data/relationships/credited/data/id | Credited is required.
+400 | PERSON_CREDIT_GAME_ID_BLANK | data/relationships/game/data/id | Game is required.
+400 | PERSON_CREDIT_VERSION_ID_INVALID | data/relationships/version/data/id | Version ID must be a version of credit game.
+400 | PERSON_CREDIT_PLACE_ID_INVALID | data/relationships/place/data/id | Place ID must be a valid country or region ID.
+400 | PERSON_CREDIT_ROLE_BLANK | role | Role is required.
+400 | PERSON_CREDIT_ROLE_TOO_LONG | role | Role cannot be more than 100 characters.
+400 | PERSON_CREDIT_CATEGORY_BLANK | category | Category is required.
+400 | PERSON_CREDIT_CATEGORY_INCLUSION | category | Category must be an accepted value.

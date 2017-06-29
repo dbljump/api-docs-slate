@@ -3,64 +3,73 @@
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/people/shigeru-miyamoto/notes?page[size]=2
+# GET /articles/people/satoru-iwata/credits
 
 {
-  "data": [
-    {
-      "id": "6",
-      "type": "person_notes",
-      "attributes": {
-        "category": "Education",
-        "body": "Studied industrial design at Kanazawa Municipal College of Industrial Arts.",
-        "cite_url": "",
-        "cite_title": "",
-        "cite_website": ""
-      },
-      "relationships": {
-        "person": {
-          "data": {
-            "id": "21",
-            "type": "people"
-          },
-          "links": {
-            "related": "http://localhost:3000/articles/people/shigeru-miyamoto"
-          }
-        },
-        "created_by": {
-          "data": {
+    "data": [
+        {
             "id": "1",
-            "type": "created_bies"
-          },
-          "links": {
-            "related": "http://localhost:3000/users/1"
-          }
+            "type": "person_credits",
+            "attributes": {
+                "category": "creative",
+                "role": "Executive Producer"
+            },
+            "relationships": {
+                "credited": {
+                    "data": {
+                        "id": "26",
+                        "type": "people"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/articles/people/satoru-iwata"
+                    }
+                },
+                "game": {
+                    "data": {
+                        "id": "46",
+                        "type": "games"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/articles/games/the-wonderful-101"
+                    }
+                },
+                "version": {
+                    "data": {
+                        "id": "1",
+                        "type": "game_versions"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/articles/game_versions/1"
+                    }
+                },
+                "place": {
+                    "data": null
+                }
+            }
         }
-      }
+    ],
+    "links": {},
+    "meta": {
+        "total_items": 1
     }
-  ],
-  "links": {},
-  "meta": {
-    "total_items": 1
-  }
 }
 ```
 
-Retrieve all of a given person's notes. Automatically paginated.
+Retrieve all of a given person's game credits. Automatically paginated.
 
 * User authentication: not required
 * Authorization level: n/a
 
 ### HTTP request
 
-`GET /articles/companies/{person-slug}/notes` (replace `{person-slug}` with parent person record slug)
+`GET /articles/people/{person-slug}/credits` (replace `{person-slug}` with parent person record slug or ID)
 
 ### URL query parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[person_notes]=body`
-filter[{field}] | All records | Filter search by field, e.g. `?filter[category]=Personal`
+fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[person_credits]=role`
+filter[{field}] | All records | Filter search by field, e.g. `?filter[category]=creative`
 page[number] | 1 | Select the page number, e.g. `?page[number]=3`
 page[size] | 30 | Select the number of records per page, e.g. `?page[size]=20`
 

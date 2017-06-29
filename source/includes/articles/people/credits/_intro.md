@@ -4,8 +4,8 @@ Resources related to person credits.
 
 ### Request attributes
 
-See [Create a new person note](#person_notes_create) and [Update a person note](#person_notes_update).
+See [Create a new person credit](#person_credits_create) and [Update a person credit](#person_credits_update).
 
 ### Response attributes
 
-See [Get a single person note](#person_notes_show)
+See [Get a single person note](#person_credits_show)
