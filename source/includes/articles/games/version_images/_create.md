@@ -1,6 +1,6 @@
-## <a name="game_images_create"></a>Upload a new game image
+## <a name="version_images_create"></a>Upload a new game version image
 
-> Request body | `POST /articles/games/pong/images`
+> Request body | `POST /articles/game_versions/1/images`
 
 ```JSON
 {
@@ -8,11 +8,11 @@
     "type": "images",
     "attributes": {
       "base64_file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
-      "kind": "poster",
-      "title": "Pong poster",
-      "description": "Promotional poster for Pong.",
-      "year": "1981",
-      "date": "",
+      "kind": "screen",
+      "title": "The Wonderful 101 title screen (Wii U)",
+      "description": "Title screen from The Wonderful 101 on Wii U",
+      "year": "",
+      "date": "2013-09-12",
       "usage_type": "fair",
       "usage_license_code": "",
       "attributed_name": "",
@@ -36,16 +36,16 @@
 ```JSON
 {
     "data": {
-        "id": "6",
+        "id": "3",
         "type": "images",
         "attributes": {
-            "kind": "poster",
-            "slug": "pong-poster-poster",
-            "file": "http://localhost:3000/uploads/images/6/file.gif",
-            "title": "Pong poster",
-            "description": "Promotional poster for Pong.",
-            "year": 1981,
-            "date": null,
+            "kind": "screen",
+            "slug": "the-wonderful-101-title-screen-wii-u-screen",
+            "file": "http://localhost:3000/uploads/images/3/file.gif",
+            "title": "The Wonderful 101 title screen (Wii U)",
+            "description": "Title screen from The Wonderful 101 on Wii U",
+            "year": 2013,
+            "date": "2013-09-12",
             "usage_type": "fair",
             "usage_license_code": null,
             "usage_license_name": null,
@@ -70,7 +70,7 @@
             "games": {
                 "data": [
                     {
-                        "id": "45",
+                        "id": "46",
                         "type": "games"
                     }
                 ]
@@ -82,11 +82,16 @@
                 "data": []
             },
             "game_versions": {
-                "data": []
+                "data": [
+                    {
+                        "id": "1",
+                        "type": "game_versions"
+                    }
+                ]
             }
         },
         "links": {
-            "self": "http://localhost:3000/media/images/pong-poster-poster"
+            "self": "http://localhost:3000/media/images/the-wonderful-101-title-screen-wii-u-screen"
         }
     },
     "included": [
@@ -98,40 +103,40 @@
                 "role": "admin",
                 "given_names": "Neil",
                 "family_name": "Wheatley",
-                "avatar": "http://localhost:3000/uploads/user_avatar/2/1706221451.jpg"
+                "avatar": "http://localhost:3000/uploads/user_avatar/2/1706281804.jpg"
             },
             "links": {
                 "self": "http://localhost:3000/users/2"
             }
         },
         {
-            "id": "45",
+            "id": "46",
             "type": "games",
             "attributes": {
-                "display_title": "Pong"
+                "display_title": "The Wonderful 101"
             },
             "links": {
-                "self": "http://localhost:3000/articles/games/pong"
+                "self": "http://localhost:3000/articles/games/the-wonderful-101"
             }
         }
     ],
     "meta": {
-        "keywords": "Pong poster, poster, 1981, image, picture, media, dbljump, video games, pc games, gaming",
-        "description": "'Pong poster' is a video game image at Dbljump.",
-        "created_at": "2017-06-22T15:11:42.713Z",
-        "updated_at": "2017-06-22T15:11:42.713Z"
+        "keywords": "The Wonderful 101 title screen (Wii U), screen, 2013, 2013-09-12, image, picture, media, dbljump, video games, pc games, gaming",
+        "description": "'The Wonderful 101 title screen (Wii U)' is a video game image at Dbljump.",
+        "created_at": "2017-06-29T11:51:55.192Z",
+        "updated_at": "2017-06-29T11:51:55.192Z"
     }
 }
 ```
 
-Upload a new image associated with a given game article. User must be an editor or admin.
+Upload a new image associated with a given game version. The image will also be associated with the version's parent game. User must be an editor or admin.
 
 * User authentication: required
 * Authorization level: editor
 
 ### HTTP request
 
-`POST /articles/games/{game-id}/images` (replace `game-id` with game ID or slug)
+`POST /articles/game_versions/{version-id}/images` (replace `version-id` with game version ID)
 
 ### Request attributes
 

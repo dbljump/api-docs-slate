@@ -1,4 +1,4 @@
-## <a name="company_images_create"></a>Upload a new company image
+## <a name="person_images_create"></a>Upload a new person image
 
 > Request body | `POST /articles/people/shigeru-miyamoto/images`
 
