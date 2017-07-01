@@ -1,17 +1,22 @@
-## <a name="person_credits_update"></a>Update a person credit
+## <a name="company_credits_create"></a>Create a new company credit
 
-> Request body | `PATCH /articles/person_credits/1`
+> Request body | `POST /articles/companies/nintendo-co-ltd/credits`
 
 ```JSON
 {
   "data": {
-    "type": "person_credits",
-    "id": "1",
+    "type": "company_credits",
     "attributes": {
-      "category": "special",
-      "role": "Special Thanks"
+      "category": "development",
+      "role": "Developer"
     },
     "relationships": {
+      "game": {
+        "data": {
+          "id": "46",
+          "type": "games"
+        }
+      },
       "version": {
         "data": {
           "id": "1",
@@ -20,7 +25,7 @@
       },
       "place": {
         "data": {
-          "id": "55",
+          "id": "",
           "type": "places"
         }
       }
@@ -29,25 +34,25 @@
 }
 ```
 
-> Response body | `HTTP 200`
+> Response body | `HTTP 201`
 
 ```JSON
 {
     "data": {
-        "id": "1",
-        "type": "person_credits",
+        "id": "4",
+        "type": "company_credits",
         "attributes": {
-            "category": "special",
-            "role": "Special Thanks"
+            "category": "development",
+            "role": "Developer"
         },
         "relationships": {
             "credited": {
                 "data": {
-                    "id": "26",
-                    "type": "people"
+                    "id": "1",
+                    "type": "companies"
                 },
                 "links": {
-                    "related": "http://localhost:3000/articles/people/satoru-iwata"
+                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd"
                 }
             },
             "game": {
@@ -69,25 +74,19 @@
                 }
             },
             "place": {
-                "data": {
-                    "id": "55",
-                    "type": "places"
-                },
-                "links": {
-                    "related": "http://localhost:3000/places/czechia"
-                }
+                "data": null
             }
         }
     },
     "included": [
         {
-            "id": "26",
-            "type": "people",
+            "id": "1",
+            "type": "companies",
             "attributes": {
-                "display_title": "Satoru Iwata"
+                "display_title": "Nintendo Co., Ltd."
             },
             "links": {
-                "self": "http://localhost:3000/articles/people/satoru-iwata"
+                "self": "http://localhost:3000/articles/companies/nintendo-co-ltd"
             }
         },
         {
@@ -99,59 +98,48 @@
             "links": {
                 "self": "http://localhost:3000/articles/games/the-wonderful-101"
             }
-        },
-        {
-            "id": "55",
-            "type": "places",
-            "attributes": {
-                "formatted": "Czechia"
-            },
-            "links": {
-                "self": "http://localhost:3000/places/czechia"
-            }
         }
     ],
     "meta": {
-        "keywords": "The Wonderful 101, Satoru Iwata, Special Thanks, Czechia, person, credit, dbljump, video games, pc games, gaming",
+        "keywords": "The Wonderful 101, Nintendo Co., Ltd., Developer, company, credit, dbljump, video games, pc games, gaming",
         "description": "Find staff and company credits for The Wonderful 101 at Dbljump, the video game reference.",
-        "created_at": "2017-06-29T15:25:57.428Z",
-        "updated_at": "2017-06-29T15:42:21.047Z"
+        "created_at": "2017-06-30T23:44:17.051Z",
+        "updated_at": "2017-06-30T23:44:17.051Z"
     }
 }
 ```
 
-Update an existing person credit. The user must be an editor.
+Create a new game credit for a given company. User must be an editor or admin.
 
 * User authentication: required
-* Authorization level: admin
+* Authorization level: editor or admin
 
 ### HTTP request
 
-`PATCH /articles/person_notes/{id}` (replace `{id}` with record ID)
+`POST /articles/companies/{company-slug}/credits` (replace `company-slug` with the company record slug or ID)
 
 ### Request attributes
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 category | string | Y | The credit category. Must be an accepted value.
-role | string | Y | The credit, e.g. 'Director' or 'Lead Programmer'.
+role | string | Y | The credit, e.g. 'Publisher' or 'Developr'. Max 100 chars.
 
 ### Relationships
 
 Check this section's code example to see how to update these relationships.
 
-NOTE - The game and credited relationships cannot be updated.
-
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
+game | belongs_to | Y | games | The game the credit relates to.
 version | belongs_to | | game_versions | The game version the credit relates to (optional).
 place | belongs_to | | places | The place the credit relates to (optional).
 
-### <a name="person_credit_categories"></a>Person credit categories
+### <a name="company_credit_categories"></a>Company credit categories
 
 The following are accepted value for the categories attribute:
 
-* creative
+* publishing
 * development
 * technology
 * visuals
@@ -162,4 +150,4 @@ The following are accepted value for the categories attribute:
 
 ### Success HTTP response code
 
-`200 OK`
+`201 Created`
