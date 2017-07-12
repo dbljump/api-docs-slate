@@ -1,6 +1,6 @@
 ## <a name="users_update"></a>Update a user account details
 
-> Request body
+> Request body | `PATCH /users/5`
 
 ```JSON
 {
@@ -36,66 +36,68 @@
 
 ```JSON
 {
-  "data": {
-    "id": "5",
-    "type": "users",
-    "attributes": {
-      "email": "updated@email.com",
-      "username": "updated_username",
-      "role": "editor",
-      "given_names": "Updated",
-      "family_name": "Name",
-      "gender": "male",
-      "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/5/1703301248.gif",
-      "birthday": "1985-07-20",
-      "jwt": null
-    },
-    "relationships": {
-      "country": {
-        "data": {
-          "id": "5",
-          "type": "places"
+    "data": {
+        "id": "5",
+        "type": "users",
+        "attributes": {
+            "email": "updated@email.com",
+            "username": "updated_username",
+            "role": "editor",
+            "given_names": "Updated",
+            "family_name": "Name",
+            "gender": "male",
+            "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/5/1707121343.gif",
+            "birthday": "1985-07-20",
+            "jwt": null
+        },
+        "relationships": {
+            "country": {
+                "data": {
+                    "id": "5",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://api.dbljump.com/places/andorra"
+                }
+            },
+            "images": {
+                "links": {
+                    "related": "http://api.dbljump.com/users/5/images"
+                }
+            }
         },
         "links": {
-          "related": "http://api.dbljump.com/places/countries/andorra"
+            "self": "http://api.dbljump.com/users/5"
+        },
+        "meta": {
+            "description": "Updated Name is a member at Dbljump, the video game reference.",
+            "keywords": "updated_username, Updated Name, user, dbljump, video games, pc games, gaming",
+            "last_signed_in_at": null,
+            "last_sign_in_ip": null,
+            "sign_in_count": 0,
+            "activated_at": null,
+            "created_at": "2017-07-12T13:39:16.554Z",
+            "updated_at": "2017-07-12T13:43:43.133Z"
         }
-      },
-      "images": {
-        "links": {
-          "related": "http://api.dbljump.com/users/5/images"
-        }
-      }
     },
-    "links": {
-      "self": "http://api.dbljump.com/users/5"
-    }
-  },
-  "included": [
-    {
-      "id": "5",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "andorra",
-        "name": "Andorra",
-        "short_name": null,
-        "formatted": "Andorra"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/andorra"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "updated_username, updated name, user, dbljump, video games, pc games, gaming",
-    "description": "Updated Name is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-30T12:46:04.648Z",
-    "updated_at": "2017-03-30T12:48:40.380Z",
-    "last_signed_in_at": null,
-    "last_sign_in_ip": null,
-    "sign_in_count": 0,
-    "activated_at": null
-  }
+    "included": [
+        {
+            "id": "5",
+            "type": "places",
+            "attributes": {
+                "name": "Andorra"
+            },
+            "links": {
+                "self": "http://api.dbljump.com/places/andorra"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from Andorra at Dbljump.",
+                "keywords": "Andorra, AD, Andorran, country, place, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:28:28.516Z",
+                "updated_at": "2017-07-12T13:28:28.516Z"
+            }
+        }
+    ]
 }
 ```
 

@@ -1,6 +1,6 @@
 ## Set a new user password
 
-> Request body
+> Request body | `PATCH /users/passwords/{password_reset_token}`
 
 ```JSON
 {

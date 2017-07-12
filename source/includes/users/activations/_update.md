@@ -1,6 +1,6 @@
 ## Activate a user account
 
-> Request body
+> Request body | `PATCH /users/activations/{activation_token}`
 
 ```JSON
 {
@@ -50,6 +50,12 @@
     },
     "links": {
       "self": "http://api.dbljump.com/users/5"
+    },
+    "meta": {
+      "last_signed_in_at": null,
+      "last_sign_in_ip": null,
+      "sign_in_count": 0,
+      "activated_at": "2017-03-21T23:55:32.873Z"
     }
   },
   "included": [
@@ -67,13 +73,7 @@
       "self": "http://localhost:3000/places/countries/united-kingdom"
     }
   }
-],
-  "meta": {
-    "last_signed_in_at": null,
-    "last_sign_in_ip": null,
-    "sign_in_count": 0,
-    "activated_at": "2017-03-21T23:55:32.873Z"
-  }
+]
 }
 ```
 

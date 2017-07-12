@@ -1,133 +1,102 @@
 ## Get all users
 
-> HTTP 200 response body
+> Response body | `HTTP 200`
 
 ```JSON
+# GET /users?page[size]=2
 {
-  "data": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "email": "tiki@dbljump.com",
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "gender": "Female",
-        "avatar": null,
-        "birthday": "1988-09-01",
-        "jwt": null
-      },
-      "relationships": {
-        "country": {
-          "data": null
+    "data": [
+        {
+            "id": "1",
+            "type": "users",
+            "attributes": {
+                "email": "tiki@dbljump.com",
+                "username": "tikithekiwi",
+                "role": "admin",
+                "given_names": "Tiki",
+                "family_name": "the Kiwi",
+                "gender": "Female",
+                "avatar": null,
+                "birthday": "1988-09-01",
+                "jwt": null
+            },
+            "relationships": {
+                "country": {
+                    "data": null,
+                    "links": {
+                        "related": "http://api.dbljump.com/places/united-kingdom"
+                    }
+                },
+                "images": {
+                    "links": {
+                        "related": "http://api.dbljump.com/users/1/images"
+                    }
+                }
+            },
+            "links": {
+                "self": "http://api.dbljump.com/users/1"
+            },
+            "meta": {
+                "description": "Tiki the Kiwi is a member at Dbljump, the video game reference.",
+                "keywords": "tikithekiwi, Tiki the Kiwi, user, dbljump, video games, pc games, gaming",
+                "last_signed_in_at": null,
+                "last_sign_in_ip": null,
+                "sign_in_count": 0,
+                "activated_at": "2017-07-12T13:28:27.875Z",
+                "created_at": "2017-07-12T13:28:27.985Z",
+                "updated_at": "2017-07-12T13:28:27.985Z"
+            }
         },
-        "images": {
-          "links": {
-            "related": "http://api.dbljump.com/users/1/images"
-          }
+        {
+            "id": "3",
+            "type": "users",
+            "attributes": {
+                "email": "member@example.com",
+                "username": "member",
+                "role": "member",
+                "given_names": null,
+                "family_name": null,
+                "gender": null,
+                "avatar": null,
+                "birthday": null,
+                "jwt": null
+            },
+            "relationships": {
+                "country": {
+                    "data": null,
+                    "links": {
+                        "related": "http://api.dbljump.com/places/united-kingdom"
+                    }
+                },
+                "images": {
+                    "links": {
+                        "related": "http://api.dbljump.com/users/3/images"
+                    }
+                }
+            },
+            "links": {
+                "self": "http://api.dbljump.com/users/3"
+            },
+            "meta": {
+                "description": "  is a member at Dbljump, the video game reference.",
+                "keywords": "member,  , user, dbljump, video games, pc games, gaming",
+                "last_signed_in_at": null,
+                "last_sign_in_ip": null,
+                "sign_in_count": 0,
+                "activated_at": "2017-07-12T13:30:04.484Z",
+                "created_at": "2017-07-12T13:30:04.561Z",
+                "updated_at": "2017-07-12T13:30:04.561Z"
+            }
         }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
+    ],
+    "links": {
+        "self": "http://api.dbljump.com/users?page%5Bnumber%5D=1&page%5Bsize%5D=2",
+        "next": "http://api.dbljump.com/users?page%5Bnumber%5D=2&page%5Bsize%5D=2",
+        "last": "http://api.dbljump.com/users?page%5Bnumber%5D=2&page%5Bsize%5D=2"
     },
-    {
-      "id": "3",
-      "type": "users",
-      "attributes": {
-        "email": "member@example.com",
-        "username": "member",
-        "role": "member",
-        "given_names": null,
-        "family_name": null,
-        "gender": null,
-        "avatar": null,
-        "birthday": null,
-        "jwt": null
-      },
-      "relationships": {
-        "country": {
-          "data": null
-        },
-        "images": {
-          "links": {
-            "related": "http://api.dbljump.com/users/3/images"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/3"
-      }
-    },
-    {
-      "id": "4",
-      "type": "users",
-      "attributes": {
-        "email": "editor@example.com",
-        "username": "editor",
-        "role": "editor",
-        "given_names": null,
-        "family_name": null,
-        "gender": null,
-        "avatar": null,
-        "birthday": null,
-        "jwt": null
-      },
-      "relationships": {
-        "country": {
-          "data": null
-        },
-        "images": {
-          "links": {
-            "related": "http://api.dbljump.com/users/4/images"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/4"
-      }
-    },
-    {
-      "id": "2",
-      "type": "users",
-      "attributes": {
-        "email": "neil@example.com",
-        "username": "neil",
-        "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "gender": "male",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg",
-        "birthday": "1980-02-14",
-        "jwt": null
-      },
-      "relationships": {
-        "country": {
-          "data": {
-            "id": "219",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/united-kingdom"
-          }
-        },
-        "images": {
-          "links": {
-            "related": "http://api.dbljump.com/users/2/images"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/2"
-      }
+    "meta": {
+        "total_items": 4
     }
-  ],
-  "links": {},
-  "meta": {
-    "total_items": 4
-  }
 }
 ```
 

@@ -3,67 +3,70 @@
 > HTTP 200 response body
 
 ```JSON
+# GET /users/2
 {
-  "data": {
-    "id": "2",
-    "type": "users",
-    "attributes": {
-      "email": "neil@example.com",
-      "username": "neil",
-      "role": "admin",
-      "given_names": "Neil",
-      "family_name": "Wheatley",
-      "gender": "male",
-      "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg",
-      "birthday": "1980-02-14",
-      "jwt": null
-    },
-    "relationships": {
-      "country": {
-        "data": {
-          "id": "219",
-          "type": "places"
+    "data": {
+        "id": "2",
+        "type": "users",
+        "attributes": {
+            "email": "neil@example.com",
+            "username": "neil",
+            "role": "admin",
+            "given_names": "Neil",
+            "family_name": "Wheatley",
+            "gender": "male",
+            "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1707121330.jpg",
+            "birthday": "1980-02-14",
+            "jwt": null
+        },
+        "relationships": {
+            "country": {
+                "data": {
+                    "id": "219",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://api.dbljump.com/places/united-kingdom"
+                }
+            },
+            "images": {
+                "links": {
+                    "related": "http://api.dbljump.com/users/2/images"
+                }
+            }
         },
         "links": {
-          "related": "http://api.dbljump.com/places/countries/united-kingdom"
+            "self": "http://api.dbljump.com/users/2"
+        },
+        "meta": {
+            "description": "Neil Wheatley is a member at Dbljump, the video game reference.",
+            "keywords": "neil, Neil Wheatley, user, dbljump, video games, pc games, gaming",
+            "last_signed_in_at": "2017-07-12T13:35:42.036Z",
+            "last_sign_in_ip": "86.12.129.15",
+            "sign_in_count": 1,
+            "activated_at": "2017-07-12T13:30:02.955Z",
+            "created_at": "2017-07-12T13:30:03.831Z",
+            "updated_at": "2017-07-12T13:35:42.112Z"
         }
-      },
-      "images": {
-        "links": {
-          "related": "http://api.dbljump.com/users/2/images"
-        }
-      }
     },
-    "links": {
-      "self": "http://api.dbljump.com/users/2"
-    }
-  },
-  "included": [
-    {
-      "id": "219",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "united-kingdom",
-        "name": "United Kingdom",
-        "short_name": "UK",
-        "formatted": "United Kingdom"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/united-kingdom"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "neil, neil wheatley, user, dbljump, video games, pc games, gaming",
-    "description": "Neil Wheatley is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-30T12:40:08.338Z",
-    "updated_at": "2017-03-30T12:43:40.490Z",
-    "last_signed_in_at": "2017-03-30T12:43:39.368Z",
-    "last_sign_in_ip": "86.12.129.15",
-    "sign_in_count": 1,
-    "activated_at": "2017-03-30T12:40:07.621Z"
-  }
+    "included": [
+        {
+            "id": "219",
+            "type": "places",
+            "attributes": {
+                "name": "United Kingdom"
+            },
+            "links": {
+                "self": "http://api.dbljump.com/places/united-kingdom"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from United Kingdom at Dbljump.",
+                "keywords": "United Kingdom, UK, GB, British, country, place, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:28:33.305Z",
+                "updated_at": "2017-07-12T13:28:33.305Z"
+            }
+        }
+    ]
 }
 ```
 

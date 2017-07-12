@@ -1,6 +1,6 @@
 ## Request a password-reset link
 
-> Request body
+> Request body | `POST /users/passwords`
 
 ```JSON
 {

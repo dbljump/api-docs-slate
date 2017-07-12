@@ -1,6 +1,6 @@
 ## <a name="users_create"></a>Register a new user
 
-> Request body
+> Request body | `POST /users`
 
 ```JSON
 {
@@ -20,47 +20,47 @@
 
 ```JSON
 {
-  "data": {
-    "id": "5",
-    "type": "users",
-    "attributes": {
-      "email": "new@user.com",
-      "username": "new_user",
-      "role": "member",
-      "given_names": null,
-      "family_name": null,
-      "gender": null,
-      "avatar": null,
-      "birthday": null,
-      "jwt": null
-    },
-    "relationships": {
-      "country": {
-        "data": null,
+    "data": {
+        "id": "5",
+        "type": "users",
+        "attributes": {
+            "email": "new@user.com",
+            "username": "new_user",
+            "role": "member",
+            "given_names": null,
+            "family_name": null,
+            "gender": null,
+            "avatar": null,
+            "birthday": null,
+            "jwt": null
+        },
+        "relationships": {
+            "country": {
+                "data": null,
+                "links": {
+                    "related": "http://api.dbljump.com/places/united-kingdom"
+                }
+            },
+            "images": {
+                "links": {
+                    "related": "http://api.dbljump.com/users/5/images"
+                }
+            }
+        },
         "links": {
-          "related": "http://api.dbljump.com/places/countries/united-kingdom"
+            "self": "http://api.dbljump.com/users/5"
+        },
+        "meta": {
+            "description": "  is a member at Dbljump, the video game reference.",
+            "keywords": "new_user,  , user, dbljump, video games, pc games, gaming",
+            "last_signed_in_at": null,
+            "last_sign_in_ip": null,
+            "sign_in_count": 0,
+            "activated_at": null,
+            "created_at": "2017-07-12T13:39:16.554Z",
+            "updated_at": "2017-07-12T13:39:17.007Z"
         }
-      },
-      "images": {
-        "links": {
-          "related": "http://api.dbljump.com/users/5/images"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/users/5"
     }
-  },
-  "meta": {
-    "keywords": "new_user, new_user, user, dbljump, video games, pc games, gaming",
-    "description": "new_user is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-30T12:46:04.648Z",
-    "updated_at": "2017-03-30T12:46:05.293Z",
-    "last_signed_in_at": null,
-    "last_sign_in_ip": null,
-    "sign_in_count": 0,
-    "activated_at": null
-  }
 }
 ```
 

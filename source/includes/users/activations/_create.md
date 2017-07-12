@@ -1,6 +1,6 @@
 ## Send a new activation email
 
-> Request body
+> Request body | `POST /users/activations`
 
 ```JSON
 {
