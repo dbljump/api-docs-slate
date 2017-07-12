@@ -12,8 +12,7 @@
       "short_name": "Short",
       "also_known_as": ["Edited Region", "Renamed Region"],
       "latitude": "54.5",
-      "longitude": "15.3",
-      "iso_code": ""
+      "longitude": "15.3"
     },
     "relationships": {
       "children": {
@@ -32,91 +31,101 @@
 
 ```JSON
 {
-  "data": {
-    "id": "234",
-    "type": "places",
-    "attributes": {
-      "kind": "region",
-      "slug": "new-name",
-      "name": "New Name",
-      "formatted": "New Name",
-      "short_name": "Short",
-      "also_known_as": [
-        "Edited Region",
-        "Renamed Region"
-      ],
-      "latitude": 54.5,
-      "longitude": 15.3,
-      "iso_code": ""
-    },
-    "relationships": {
-      "parent": {
-        "data": null,
-        "links": {
-          "related": "http://api.dbljump.com/places/niue"
-        }
-      },
-      "children": {
-        "data": [
-          {
-            "id": "219",
-            "type": "places"
-          },
-          {
-            "id": "71",
-            "type": "places"
-          },
-          {
-            "id": "75",
-            "type": "places"
-          }
-        ],
-        "links": {
-          "related": "http://api.dbljump.com/places/new-name/children"
-        }
-      },
-      "regions": {
-        "data": null,
-        "links": {
-          "related": "http://api.dbljump.com/places/new-name/regions"
-        }
-      },
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
+    "data": {
+        "id": "234",
+        "type": "places",
+        "attributes": {
+            "kind": "region",
+            "slug": "new-name",
+            "name": "New Name",
+            "formatted": "New Name",
+            "short_name": "Short",
+            "also_known_as": [
+                "Edited Region",
+                "Renamed Region"
+            ],
+            "latitude": 54.5,
+            "longitude": 15.3,
+            "iso_code": null
+        },
+        "relationships": {
+            "parent": {
+                "data": null,
+                "links": {
+                    "related": "http://api.dbljump.com/places/united-states"
+                }
+            },
+            "children": {
+                "data": [
+                    {
+                        "id": "71",
+                        "type": "places"
+                    },
+                    {
+                        "id": "75",
+                        "type": "places"
+                    },
+                    {
+                        "id": "219",
+                        "type": "places"
+                    }
+                ],
+                "links": {
+                    "related": "http://api.dbljump.com/places/new-name/children"
+                }
+            },
+            "regions": {
+                "data": null,
+                "links": {
+                    "related": "http://api.dbljump.com/places/new-name/regions"
+                }
+            },
+            "created_by": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://api.dbljump.com/users/1"
+                }
+            }
         },
         "links": {
-          "related": "http://api.dbljump.com/users/1"
+            "self": "http://api.dbljump.com/places/new-name"
+        },
+        "meta": {
+            "description": "Find video game companies and games industry professionals from New Name at Dbljump.",
+            "keywords": "New Name, Short, Edited Region, Renamed Region, place, geography, dbljump, video games, pc games, gaming",
+            "created_at": "2017-07-12T13:28:33.655Z",
+            "updated_at": "2017-07-12T13:57:30.480Z"
         }
-      }
     },
-    "links": {
-      "self": "http://api.dbljump.com/places/new-name"
-    }
-  },
-  "included": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "new name, short, edited region, renamed region, , place, geography, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from New Name at Dbljump.",
-    "created_at": "2017-04-05T13:55:46.264Z",
-    "updated_at": "2017-04-14T09:48:24.498Z"
-  }
+    "included": [
+        {
+            "id": "1",
+            "type": "users",
+            "attributes": {
+                "username": "tikithekiwi",
+                "role": "admin",
+                "given_names": "Tiki",
+                "family_name": "the Kiwi",
+                "avatar": null
+            },
+            "links": {
+                "self": "http://api.dbljump.com/users/1"
+            },
+            "meta": {
+                "description": "Tiki the Kiwi is a member at Dbljump, the video game reference.",
+                "keywords": "tikithekiwi, Tiki the Kiwi, user, dbljump, video games, pc games, gaming",
+                "last_signed_in_at": null,
+                "last_sign_in_ip": null,
+                "sign_in_count": 0,
+                "activated_at": "2017-07-12T13:28:27.875Z",
+                "created_at": "2017-07-12T13:28:27.985Z",
+                "updated_at": "2017-07-12T13:28:27.985Z"
+            }
+        }
+    ]
 }
 ```
 

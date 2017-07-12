@@ -6,105 +6,335 @@
 # GET /places/united-states
 
 {
-  "data": {
-    "id": "220",
-    "type": "places",
-    "attributes": {
-      "kind": "country",
-      "slug": "united-states",
-      "name": "United States",
-      "formatted": "United States",
-      "short_name": "USA",
-      "also_known_as": [],
-      "latitude": 38,
-      "longitude": -97,
-      "iso_code": "US"
-    },
-    "relationships": {
-      "parent": {
-        "data": null,
-        "links": {
-          "related": "http://api.dbljump.com/places/united-states"
-        }
-      },
-      "children": {
-        "data": [
-          {
-            "id": "329",
-            "type": "places"
-          },
-          {
-            "id": "335",
-            "type": "places"
-          },
-          {
-            "id": "398",
-            "type": "places"
-          },
-          {
-            "id": "460",
-            "type": "places"
-          },
-          {
-            "id": "461",
-            "type": "places"
-          }
-        ],
-        "links": {
-          "related": "http://api.dbljump.com/places/united-states/children"
-        }
-      },
-      "regions": {
-        "data": [
-          {
-            "id": "233",
-            "type": "places"
-          },
-          {
-            "id": "238",
-            "type": "places"
-          }
-        ],
-        "links": {
-          "related": "http://api.dbljump.com/places/united-states/regions"
-        }
-      },
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
+    "data": {
+        "id": "220",
+        "type": "places",
+        "attributes": {
+            "kind": "country",
+            "slug": "united-states",
+            "name": "United States",
+            "formatted": "United States",
+            "short_name": "USA",
+            "also_known_as": [],
+            "latitude": 38,
+            "longitude": -97,
+            "iso_code": "US"
+        },
+        "relationships": {
+            "parent": {
+                "data": null,
+                "links": {
+                    "related": "http://api.dbljump.com/places/niue"
+                }
+            },
+            "children": {
+                "data": [
+                    {
+                        "id": "329",
+                        "type": "places"
+                    },
+                    {
+                        "id": "335",
+                        "type": "places"
+                    },
+                    {
+                        "id": "398",
+                        "type": "places"
+                    },
+                    {
+                        "id": "460",
+                        "type": "places"
+                    },
+                    {
+                        "id": "461",
+                        "type": "places"
+                    },
+                    {
+                        "id": "463",
+                        "type": "places"
+                    },
+                    {
+                        "id": "464",
+                        "type": "places"
+                    },
+                    {
+                        "id": "465",
+                        "type": "places"
+                    },
+                    {
+                        "id": "708",
+                        "type": "places"
+                    },
+                    {
+                        "id": "842",
+                        "type": "places"
+                    },
+                    {
+                        "id": "849",
+                        "type": "places"
+                    },
+                    {
+                        "id": "902",
+                        "type": "places"
+                    },
+                    {
+                        "id": "925",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1047",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1092",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1146",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1205",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1258",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1265",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1274",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1278",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1363",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1402",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1574",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1613",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1665",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1673",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1714",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1726",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1733",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1734",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1752",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1826",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1833",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1836",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1838",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1839",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1843",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1898",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1901",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1927",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1979",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1984",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2001",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2072",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2139",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2197",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2463",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2466",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2595",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2599",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2676",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2688",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2727",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2749",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2750",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2772",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2801",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2808",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2812",
+                        "type": "places"
+                    }
+                ],
+                "links": {
+                    "related": "http://api.dbljump.com/places/united-states/children"
+                }
+            },
+            "regions": {
+                "data": [
+                    {
+                        "id": "238",
+                        "type": "places"
+                    },
+                    {
+                        "id": "233",
+                        "type": "places"
+                    }
+                ],
+                "links": {
+                    "related": "http://api.dbljump.com/places/united-states/regions"
+                }
+            },
+            "created_by": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://api.dbljump.com/users/1"
+                }
+            }
         },
         "links": {
-          "related": "http://api.dbljump.com/users/1"
+            "self": "http://api.dbljump.com/places/united-states"
+        },
+        "meta": {
+            "description": "Find video game companies and games industry professionals from United States at Dbljump.",
+            "keywords": "United States, USA, US, American, country, place, dbljump, video games, pc games, gaming",
+            "created_at": "2017-07-12T13:28:33.331Z",
+            "updated_at": "2017-07-12T13:28:33.331Z"
         }
-      }
     },
-    "links": {
-      "self": "http://api.dbljump.com/places/united-states"
-    }
-  },
-  "included": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "united states, usa, us, american, country, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from United States at Dbljump.",
-    "created_at": "2017-04-05T13:55:45.684Z",
-    "updated_at": "2017-04-05T13:55:45.684Z"
-  }
+    "included": [
+        {
+            "id": "1",
+            "type": "users",
+            "attributes": {
+                "username": "tikithekiwi",
+                "role": "admin",
+                "given_names": "Tiki",
+                "family_name": "the Kiwi",
+                "avatar": null
+            },
+            "links": {
+                "self": "http://api.dbljump.com/users/1"
+            },
+            "meta": {
+                "description": "Tiki the Kiwi is a member at Dbljump, the video game reference.",
+                "keywords": "tikithekiwi, Tiki the Kiwi, user, dbljump, video games, pc games, gaming",
+                "last_signed_in_at": null,
+                "last_sign_in_ip": null,
+                "sign_in_count": 0,
+                "activated_at": "2017-07-12T13:28:27.875Z",
+                "created_at": "2017-07-12T13:28:27.985Z",
+                "updated_at": "2017-07-12T13:28:27.985Z"
+            }
+        }
+    ]
 }
 ```
 

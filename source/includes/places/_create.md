@@ -31,76 +31,100 @@
 
 ```JSON
 {
-  "data": {
-    "id": "2937",
-    "type": "places",
-    "attributes": {
-      "kind": "subdivision",
-      "slug": "maryland-united-states",
-      "name": "Maryland",
-      "short_name": "MD",
-      "formatted": "Maryland, United States",
-      "iso_code": "",
-      "also_known_as": [
-        "Old Line State",
-        "Chesapeake Bay State"
-      ],
-      "nationality": "",
-      "currency": "",
-      "latitude": 38.0,
-      "longitude": -77.0
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "2",
-          "type": "users"
+    "data": {
+        "id": "2939",
+        "type": "places",
+        "attributes": {
+            "kind": "subdivision",
+            "slug": "maryland-united-states",
+            "name": "Maryland",
+            "formatted": "Maryland, United States",
+            "short_name": "MD",
+            "also_known_as": [
+                "Old Line State",
+                "Chesapeake Bay State"
+            ],
+            "latitude": 38,
+            "longitude": -77,
+            "iso_code": ""
+        },
+        "relationships": {
+            "parent": {
+                "data": {
+                    "id": "220",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://api.dbljump.com/places/united-states"
+                }
+            },
+            "children": {
+                "data": [],
+                "links": {
+                    "related": "http://api.dbljump.com/places/maryland-united-states/children"
+                }
+            },
+            "regions": {
+                "data": [
+                    {
+                        "id": "238",
+                        "type": "places"
+                    },
+                    {
+                        "id": "233",
+                        "type": "places"
+                    }
+                ],
+                "links": {
+                    "related": "http://api.dbljump.com/places/maryland-united-states/regions"
+                }
+            },
+            "created_by": {
+                "data": {
+                    "id": "2",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://api.dbljump.com/users/2"
+                }
+            }
         },
         "links": {
-          "related": "http://api.dbljump.com/users/2"
-        }
-      },
-      "parent": {
-        "data": {
-          "id": "220",
-          "type": "users"
+            "self": "http://api.dbljump.com/places/maryland-united-states"
         },
-        "links": {
-          "related": "http://api.dbljump.com/places/united-states"
+        "meta": {
+            "description": "Find video game companies and games industry professionals from Maryland, United States at Dbljump.",
+            "keywords": "Maryland, United States, MD, Old Line State, Chesapeake Bay State, state, county, place, dbljump, video games, pc games, gaming",
+            "created_at": "2017-07-12T13:54:03.802Z",
+            "updated_at": "2017-07-12T13:54:03.802Z"
         }
-      },
-      "children": {
-        "links": {
-          "related": "http://api.dbljump.com/places/maryland-united-states/children"
-        }
-      }
     },
-    "links": {
-      "self": "http://api.dbljump.com/places/maryland-united-states"
-    }
-  },
-  "included": [
-    {
-      "id": "2",
-      "type": "users",
-      "attributes": {
-        "username": "neil",
-        "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/2"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "maryland, md, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from Maryland, United States at Dbljump.",
-    "created_at": "2017-03-30T13:39:33.324Z",
-    "updated_at": "2017-03-30T13:39:33.324Z"
-  }
+    "included": [
+        {
+            "id": "2",
+            "type": "users",
+            "attributes": {
+                "username": "neil",
+                "role": "admin",
+                "given_names": "Neil",
+                "family_name": "Wheatley",
+                "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1707121330.jpg"
+            },
+            "links": {
+                "self": "http://api.dbljump.com/users/2"
+            },
+            "meta": {
+                "description": "Neil Wheatley is a member at Dbljump, the video game reference.",
+                "keywords": "neil, Neil Wheatley, user, dbljump, video games, pc games, gaming",
+                "last_signed_in_at": "2017-07-12T13:48:47.195Z",
+                "last_sign_in_ip": "86.12.129.15",
+                "sign_in_count": 2,
+                "activated_at": "2017-07-12T13:30:02.955Z",
+                "created_at": "2017-07-12T13:30:03.831Z",
+                "updated_at": "2017-07-12T13:48:47.255Z"
+            }
+        }
+    ]
 }
 ```
 
