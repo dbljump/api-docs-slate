@@ -14580,133 +14580,102 @@ Successful responses include the following HTTP header.<br /><br />
           <h2 id="get-all-users">Get all users</h2>
 
 <blockquote>
-<p>HTTP 200 response body</p>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "email": "tiki@dbljump.com",
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "gender": "Female",
-        "avatar": null,
-        "birthday": "1988-09-01",
-        "jwt": null
-      },
-      "relationships": {
-        "country": {
-          "data": null
+<pre class="highlight plaintext"><code># GET /users?page[size]=2
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "users",
+            "attributes": {
+                "email": "tiki@dbljump.com",
+                "username": "tikithekiwi",
+                "role": "admin",
+                "given_names": "Tiki",
+                "family_name": "the Kiwi",
+                "gender": "Female",
+                "avatar": null,
+                "birthday": "1988-09-01",
+                "jwt": null
+            },
+            "relationships": {
+                "country": {
+                    "data": null,
+                    "links": {
+                        "related": "http://api.dbljump.com/places/united-kingdom"
+                    }
+                },
+                "images": {
+                    "links": {
+                        "related": "http://api.dbljump.com/users/1/images"
+                    }
+                }
+            },
+            "links": {
+                "self": "http://api.dbljump.com/users/1"
+            },
+            "meta": {
+                "description": "Tiki the Kiwi is a member at Dbljump, the video game reference.",
+                "keywords": "tikithekiwi, Tiki the Kiwi, user, dbljump, video games, pc games, gaming",
+                "last_signed_in_at": null,
+                "last_sign_in_ip": null,
+                "sign_in_count": 0,
+                "activated_at": "2017-07-12T13:28:27.875Z",
+                "created_at": "2017-07-12T13:28:27.985Z",
+                "updated_at": "2017-07-12T13:28:27.985Z"
+            }
         },
-        "images": {
-          "links": {
-            "related": "http://api.dbljump.com/users/1/images"
-          }
+        {
+            "id": "3",
+            "type": "users",
+            "attributes": {
+                "email": "member@example.com",
+                "username": "member",
+                "role": "member",
+                "given_names": null,
+                "family_name": null,
+                "gender": null,
+                "avatar": null,
+                "birthday": null,
+                "jwt": null
+            },
+            "relationships": {
+                "country": {
+                    "data": null,
+                    "links": {
+                        "related": "http://api.dbljump.com/places/united-kingdom"
+                    }
+                },
+                "images": {
+                    "links": {
+                        "related": "http://api.dbljump.com/users/3/images"
+                    }
+                }
+            },
+            "links": {
+                "self": "http://api.dbljump.com/users/3"
+            },
+            "meta": {
+                "description": "  is a member at Dbljump, the video game reference.",
+                "keywords": "member,  , user, dbljump, video games, pc games, gaming",
+                "last_signed_in_at": null,
+                "last_sign_in_ip": null,
+                "sign_in_count": 0,
+                "activated_at": "2017-07-12T13:30:04.484Z",
+                "created_at": "2017-07-12T13:30:04.561Z",
+                "updated_at": "2017-07-12T13:30:04.561Z"
+            }
         }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
+    ],
+    "links": {
+        "self": "http://api.dbljump.com/users?page%5Bnumber%5D=1&amp;page%5Bsize%5D=2",
+        "next": "http://api.dbljump.com/users?page%5Bnumber%5D=2&amp;page%5Bsize%5D=2",
+        "last": "http://api.dbljump.com/users?page%5Bnumber%5D=2&amp;page%5Bsize%5D=2"
     },
-    {
-      "id": "3",
-      "type": "users",
-      "attributes": {
-        "email": "member@example.com",
-        "username": "member",
-        "role": "member",
-        "given_names": null,
-        "family_name": null,
-        "gender": null,
-        "avatar": null,
-        "birthday": null,
-        "jwt": null
-      },
-      "relationships": {
-        "country": {
-          "data": null
-        },
-        "images": {
-          "links": {
-            "related": "http://api.dbljump.com/users/3/images"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/3"
-      }
-    },
-    {
-      "id": "4",
-      "type": "users",
-      "attributes": {
-        "email": "editor@example.com",
-        "username": "editor",
-        "role": "editor",
-        "given_names": null,
-        "family_name": null,
-        "gender": null,
-        "avatar": null,
-        "birthday": null,
-        "jwt": null
-      },
-      "relationships": {
-        "country": {
-          "data": null
-        },
-        "images": {
-          "links": {
-            "related": "http://api.dbljump.com/users/4/images"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/4"
-      }
-    },
-    {
-      "id": "2",
-      "type": "users",
-      "attributes": {
-        "email": "neil@example.com",
-        "username": "neil",
-        "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "gender": "male",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg",
-        "birthday": "1980-02-14",
-        "jwt": null
-      },
-      "relationships": {
-        "country": {
-          "data": {
-            "id": "219",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/countries/united-kingdom"
-          }
-        },
-        "images": {
-          "links": {
-            "related": "http://api.dbljump.com/users/2/images"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/2"
-      }
+    "meta": {
+        "total_items": 4
     }
-  ],
-  "links": {},
-  "meta": {
-    "total_items": 4
-  }
 }
 </code></pre>
 <p>Retrieve all users. Automatically paginated. Admin-level authorization required.</p>
@@ -14760,67 +14729,70 @@ Successful responses include the following HTTP header.<br /><br />
 <blockquote>
 <p>HTTP 200 response body</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "2",
-    "type": "users",
-    "attributes": {
-      "email": "neil@example.com",
-      "username": "neil",
-      "role": "admin",
-      "given_names": "Neil",
-      "family_name": "Wheatley",
-      "gender": "male",
-      "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg",
-      "birthday": "1980-02-14",
-      "jwt": null
-    },
-    "relationships": {
-      "country": {
-        "data": {
-          "id": "219",
-          "type": "places"
+<pre class="highlight plaintext"><code># GET /users/2
+{
+    "data": {
+        "id": "2",
+        "type": "users",
+        "attributes": {
+            "email": "neil@example.com",
+            "username": "neil",
+            "role": "admin",
+            "given_names": "Neil",
+            "family_name": "Wheatley",
+            "gender": "male",
+            "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1707121330.jpg",
+            "birthday": "1980-02-14",
+            "jwt": null
+        },
+        "relationships": {
+            "country": {
+                "data": {
+                    "id": "219",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://api.dbljump.com/places/united-kingdom"
+                }
+            },
+            "images": {
+                "links": {
+                    "related": "http://api.dbljump.com/users/2/images"
+                }
+            }
         },
         "links": {
-          "related": "http://api.dbljump.com/places/countries/united-kingdom"
+            "self": "http://api.dbljump.com/users/2"
+        },
+        "meta": {
+            "description": "Neil Wheatley is a member at Dbljump, the video game reference.",
+            "keywords": "neil, Neil Wheatley, user, dbljump, video games, pc games, gaming",
+            "last_signed_in_at": "2017-07-12T13:35:42.036Z",
+            "last_sign_in_ip": "86.12.129.15",
+            "sign_in_count": 1,
+            "activated_at": "2017-07-12T13:30:02.955Z",
+            "created_at": "2017-07-12T13:30:03.831Z",
+            "updated_at": "2017-07-12T13:35:42.112Z"
         }
-      },
-      "images": {
-        "links": {
-          "related": "http://api.dbljump.com/users/2/images"
-        }
-      }
     },
-    "links": {
-      "self": "http://api.dbljump.com/users/2"
-    }
-  },
-  "included": [
-    {
-      "id": "219",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "united-kingdom",
-        "name": "United Kingdom",
-        "short_name": "UK",
-        "formatted": "United Kingdom"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/united-kingdom"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "neil, neil wheatley, user, dbljump, video games, pc games, gaming",
-    "description": "Neil Wheatley is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-30T12:40:08.338Z",
-    "updated_at": "2017-03-30T12:43:40.490Z",
-    "last_signed_in_at": "2017-03-30T12:43:39.368Z",
-    "last_sign_in_ip": "86.12.129.15",
-    "sign_in_count": 1,
-    "activated_at": "2017-03-30T12:40:07.621Z"
-  }
+    "included": [
+        {
+            "id": "219",
+            "type": "places",
+            "attributes": {
+                "name": "United Kingdom"
+            },
+            "links": {
+                "self": "http://api.dbljump.com/places/united-kingdom"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from United Kingdom at Dbljump.",
+                "keywords": "United Kingdom, UK, GB, British, country, place, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:28:33.305Z",
+                "updated_at": "2017-07-12T13:28:33.305Z"
+            }
+        }
+    ]
 }
 </code></pre>
 <p>Retrieve a single existing user account record. Any user can retrive their own account. An admin-level user can retrieve any user account.</p>
@@ -14948,7 +14920,7 @@ Successful responses include the following HTTP header.<br /><br />
           <h2 id="register-a-new-user"><a name="users_create"></a>Register a new user</h2>
 
 <blockquote>
-<p>Request body</p>
+<p>Request body | <code class="prettyprint">POST /users</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -14966,47 +14938,47 @@ Successful responses include the following HTTP header.<br /><br />
 <p>HTTP 201 response body</p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "5",
-    "type": "users",
-    "attributes": {
-      "email": "new@user.com",
-      "username": "new_user",
-      "role": "member",
-      "given_names": null,
-      "family_name": null,
-      "gender": null,
-      "avatar": null,
-      "birthday": null,
-      "jwt": null
-    },
-    "relationships": {
-      "country": {
-        "data": null,
+    "data": {
+        "id": "5",
+        "type": "users",
+        "attributes": {
+            "email": "new@user.com",
+            "username": "new_user",
+            "role": "member",
+            "given_names": null,
+            "family_name": null,
+            "gender": null,
+            "avatar": null,
+            "birthday": null,
+            "jwt": null
+        },
+        "relationships": {
+            "country": {
+                "data": null,
+                "links": {
+                    "related": "http://api.dbljump.com/places/united-kingdom"
+                }
+            },
+            "images": {
+                "links": {
+                    "related": "http://api.dbljump.com/users/5/images"
+                }
+            }
+        },
         "links": {
-          "related": "http://api.dbljump.com/places/countries/united-kingdom"
+            "self": "http://api.dbljump.com/users/5"
+        },
+        "meta": {
+            "description": "  is a member at Dbljump, the video game reference.",
+            "keywords": "new_user,  , user, dbljump, video games, pc games, gaming",
+            "last_signed_in_at": null,
+            "last_sign_in_ip": null,
+            "sign_in_count": 0,
+            "activated_at": null,
+            "created_at": "2017-07-12T13:39:16.554Z",
+            "updated_at": "2017-07-12T13:39:17.007Z"
         }
-      },
-      "images": {
-        "links": {
-          "related": "http://api.dbljump.com/users/5/images"
-        }
-      }
-    },
-    "links": {
-      "self": "http://api.dbljump.com/users/5"
     }
-  },
-  "meta": {
-    "keywords": "new_user, new_user, user, dbljump, video games, pc games, gaming",
-    "description": "new_user is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-30T12:46:04.648Z",
-    "updated_at": "2017-03-30T12:46:05.293Z",
-    "last_signed_in_at": null,
-    "last_sign_in_ip": null,
-    "sign_in_count": 0,
-    "activated_at": null
-  }
 }
 </code></pre>
 <p>Create a new user account. No authentication is required. Anyone can sign up for a new account with the default <code class="prettyprint">role</code> of <code class="prettyprint">member</code>.</p>
@@ -15103,7 +15075,7 @@ Successful responses include the following HTTP header.<br /><br />
           <h2 id="update-a-user-account-details"><a name="users_update"></a>Update a user account details</h2>
 
 <blockquote>
-<p>Request body</p>
+<p>Request body | <code class="prettyprint">PATCH /users/5</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
  "data": {
@@ -15137,66 +15109,68 @@ Successful responses include the following HTTP header.<br /><br />
 <p>HTTP 200 response body</p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "5",
-    "type": "users",
-    "attributes": {
-      "email": "updated@email.com",
-      "username": "updated_username",
-      "role": "editor",
-      "given_names": "Updated",
-      "family_name": "Name",
-      "gender": "male",
-      "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/5/1703301248.gif",
-      "birthday": "1985-07-20",
-      "jwt": null
-    },
-    "relationships": {
-      "country": {
-        "data": {
-          "id": "5",
-          "type": "places"
+    "data": {
+        "id": "5",
+        "type": "users",
+        "attributes": {
+            "email": "updated@email.com",
+            "username": "updated_username",
+            "role": "editor",
+            "given_names": "Updated",
+            "family_name": "Name",
+            "gender": "male",
+            "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/5/1707121343.gif",
+            "birthday": "1985-07-20",
+            "jwt": null
+        },
+        "relationships": {
+            "country": {
+                "data": {
+                    "id": "5",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://api.dbljump.com/places/andorra"
+                }
+            },
+            "images": {
+                "links": {
+                    "related": "http://api.dbljump.com/users/5/images"
+                }
+            }
         },
         "links": {
-          "related": "http://api.dbljump.com/places/countries/andorra"
+            "self": "http://api.dbljump.com/users/5"
+        },
+        "meta": {
+            "description": "Updated Name is a member at Dbljump, the video game reference.",
+            "keywords": "updated_username, Updated Name, user, dbljump, video games, pc games, gaming",
+            "last_signed_in_at": null,
+            "last_sign_in_ip": null,
+            "sign_in_count": 0,
+            "activated_at": null,
+            "created_at": "2017-07-12T13:39:16.554Z",
+            "updated_at": "2017-07-12T13:43:43.133Z"
         }
-      },
-      "images": {
-        "links": {
-          "related": "http://api.dbljump.com/users/5/images"
-        }
-      }
     },
-    "links": {
-      "self": "http://api.dbljump.com/users/5"
-    }
-  },
-  "included": [
-    {
-      "id": "5",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "andorra",
-        "name": "Andorra",
-        "short_name": null,
-        "formatted": "Andorra"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/countries/andorra"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "updated_username, updated name, user, dbljump, video games, pc games, gaming",
-    "description": "Updated Name is a member at Dbljump, the video game reference.",
-    "created_at": "2017-03-30T12:46:04.648Z",
-    "updated_at": "2017-03-30T12:48:40.380Z",
-    "last_signed_in_at": null,
-    "last_sign_in_ip": null,
-    "sign_in_count": 0,
-    "activated_at": null
-  }
+    "included": [
+        {
+            "id": "5",
+            "type": "places",
+            "attributes": {
+                "name": "Andorra"
+            },
+            "links": {
+                "self": "http://api.dbljump.com/places/andorra"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from Andorra at Dbljump.",
+                "keywords": "Andorra, AD, Andorran, country, place, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:28:28.516Z",
+                "updated_at": "2017-07-12T13:28:28.516Z"
+            }
+        }
+    ]
 }
 </code></pre>
 <p>Update an existing user account. A user can update their own account. An admin can update any other non-admin account.</p>
@@ -15362,89 +15336,135 @@ Successful responses include the following HTTP header.<br /><br />
 <blockquote>
 <p>HTTP 200 response body</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": [
-    {
-      "id": "2",
-      "type": "images",
-      "attributes": {
-        "subtype": "photos",
-        "slug": "mario-figure-2016-uncategorized",
-        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
-        "kind": "uncategorized",
-        "title": "Mario figure",
-        "description": "",
-        "year": 2016,
-        "date": "2016-07-30",
-        "usage_type": "free",
-        "usage_license_code": null,
-        "usage_license_name": null,
-        "usage_license_url": null,
-        "attributed_name": null,
-        "attributed_url": null,
-        "source_url": ""
-      },
-      "relationships": {
-        "uploaded_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
+<pre class="highlight plaintext"><code># GET /users/1/images
+
+{
+    "data": [
+        {
+            "id": "2",
+            "type": "images",
+            "attributes": {
+                "kind": "photo",
+                "slug": "mario-figure-photo",
+                "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
+                "title": "Mario figure",
+                "description": "",
+                "year": 2016,
+                "date": "2016-07-30",
+                "usage_type": "free",
+                "usage_license_code": null,
+                "usage_license_name": null,
+                "usage_license_url": null,
+                "attributed_name": null,
+                "attributed_url": null,
+                "source_url": ""
+            },
+            "relationships": {
+                "uploaded_by": {
+                    "data": {
+                        "id": "1",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/users/1"
+                    }
+                },
+                "place": {
+                    "data": null
+                },
+                "games": {
+                    "data": []
+                },
+                "companies": {
+                    "data": [
+                        {
+                            "id": "1",
+                            "type": "companies"
+                        }
+                    ]
+                },
+                "people": {
+                    "data": []
+                },
+                "game_versions": {
+                    "data": []
+                }
+            },
+            "links": {
+                "self": "http://api.dbljump.com/media/images/mario-figure-photo"
+            },
+            "meta": {
+                "description": "'Mario figure' is a video game image at Dbljump.",
+                "keywords": "Mario figure, photo, 2016, 2016-07-30, image, picture, media, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:30:10.913Z",
+                "updated_at": "2017-07-12T13:30:10.913Z"
+            }
         },
-        "place": {
-          "data": null
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/images/mario-figure-2016-uncategorized"
-      }
-    },
-    {
-      "id": "1",
-      "type": "images",
-      "attributes": {
-        "subtype": "photos",
-        "slug": "nintendo-office-2006-uncategorized-moja-commonswiki",
-        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
-        "kind": "uncategorized",
-        "title": "Nintendo office",
-        "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
-        "year": 2006,
-        "date": "2006-02-18",
-        "usage_type": "licensed",
-        "usage_license_code": "cc_by_sa_3_0",
-        "usage_license_name": "Creative Commons Attribution-ShareAlike 3.0",
-        "usage_license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-        "attributed_name": "Moja~commonswiki",
-        "attributed_url": "",
-        "source_url": "https://en.wikipedia.org/wiki/Nintendo#/media/File:Nintendo_office.jpg"
-      },
-      "relationships": {
-        "uploaded_by": {
-          "data": {
+        {
             "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        },
-        "place": {
-          "data": null
+            "type": "images",
+            "attributes": {
+                "kind": "photo",
+                "slug": "nintendo-office-photo",
+                "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+                "title": "Nintendo office",
+                "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
+                "year": 2006,
+                "date": "2006-02-18",
+                "usage_type": "licensed",
+                "usage_license_code": "cc_by_sa_3_0",
+                "usage_license_name": "Creative Commons Attribution-ShareAlike 3.0",
+                "usage_license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+                "attributed_name": "Moja~commonswiki",
+                "attributed_url": "",
+                "source_url": "https://en.wikipedia.org/wiki/Nintendo#/media/File:Nintendo_office.jpg"
+            },
+            "relationships": {
+                "uploaded_by": {
+                    "data": {
+                        "id": "1",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/users/1"
+                    }
+                },
+                "place": {
+                    "data": null
+                },
+                "games": {
+                    "data": []
+                },
+                "companies": {
+                    "data": [
+                        {
+                            "id": "1",
+                            "type": "companies"
+                        }
+                    ]
+                },
+                "people": {
+                    "data": []
+                },
+                "game_versions": {
+                    "data": []
+                }
+            },
+            "links": {
+                "self": "http://api.dbljump.com/media/images/nintendo-office-photo"
+            },
+            "meta": {
+                "description": "'Nintendo office' is a video game image at Dbljump.",
+                "keywords": "Nintendo office, photo, 2006, 2006-02-18, Moja~commonswiki, image, picture, media, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:30:08.319Z",
+                "updated_at": "2017-07-12T13:30:08.319Z"
+            }
         }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/images/nintendo-office-2006-uncategorized-moja-commonswiki"
-      }
+    ],
+    "links": {},
+    "meta": {
+        "total_items": 2
     }
-  ],
-  "links": {},
-  "meta": {
-    "total_items": 2
-  }
 }
 </code></pre>
 <p>Retrieve all images uploaded by the given user. Automatically paginated.</p>
@@ -15690,7 +15710,7 @@ Successful responses include the following HTTP header.<br /><br />
           <h2 id="sign-in-a-user">Sign in a user</h2>
 
 <blockquote>
-<p>Request body</p>
+<p>Request body | <code class="prettyprint">POST /users//authentications</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
  "data": {
@@ -15707,62 +15727,68 @@ Successful responses include the following HTTP header.<br /><br />
 <p>HTTP 200 response body</p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "2",
-    "type": "users",
-    "attributes": {
-      "email": "neil@example.com",
-      "username": "neil",
-      "role": "admin",
-      "given_names": "Neil",
-      "family_name": "Wheatley",
-      "gender": "male",
-      "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg",
-      "birthday": "1980-02-14",
-      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VyX3JvbGUiOiJhZG1pbiIsImV4cGlyeSI6IjIwMTctMDQtMjkgMTI6NTU6MTggKzAwMDAifQ.OL6jcolUQtB-lJy5_d8iisobc_Dqyi35b2Dkxs69lhw"
-    },
-    "relationships": {
-      "country": {
-        "data": {
-          "id": "219",
-          "type": "places"
+    "data": {
+        "id": "2",
+        "type": "users",
+        "attributes": {
+            "email": "neil@example.com",
+            "username": "neil",
+            "role": "admin",
+            "given_names": "Neil",
+            "family_name": "Wheatley",
+            "gender": "male",
+            "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1707121330.jpg",
+            "birthday": "1980-02-14",
+            "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VyX3JvbGUiOiJhZG1pbiIsImV4cGlyeSI6IjIwMTctMDgtMTEgMTM6NDg6NDcgKzAwMDAifQ.Q8HJ0HNUDnKc776MAT4S-c7OqVtB20Uq8yQTxt_twqY"
+        },
+        "relationships": {
+            "country": {
+                "data": {
+                    "id": "219",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://api.dbljump.com/places/united-kingdom"
+                }
+            },
+            "images": {
+                "links": {
+                    "related": "http://api.dbljump.com/users/2/images"
+                }
+            }
         },
         "links": {
-          "related": "http://api.dbljump.com/places/countries/united-kingdom"
+            "self": "http://api.dbljump.com/users/2"
+        },
+        "meta": {
+            "description": "Neil Wheatley is a member at Dbljump, the video game reference.",
+            "keywords": "neil, Neil Wheatley, user, dbljump, video games, pc games, gaming",
+            "last_signed_in_at": "2017-07-12T13:48:47.195Z",
+            "last_sign_in_ip": "86.12.129.15",
+            "sign_in_count": 2,
+            "activated_at": "2017-07-12T13:30:02.955Z",
+            "created_at": "2017-07-12T13:30:03.831Z",
+            "updated_at": "2017-07-12T13:48:47.255Z"
         }
-      },
-      "images": {
-        "links": {
-          "related": "http://api.dbljump.com/users/2/images"
-        }
-      }
     },
-    "links": {
-      "self": "http://api.dbljump.com/users/2"
-    }
-  },
-  "included": [
-    {
-      "id": "219",
-      "type": "places",
-      "attributes": {
-        "subtype": "countries",
-        "slug": "united-kingdom",
-        "name": "United Kingdom",
-        "short_name": "UK",
-        "formatted": "United Kingdom"
-      },
-      "links": {
-        "self": "http://localhost:3000/places/countries/united-kingdom"
-      }
-    }
-  ],
-  "meta": {
-    "last_signed_in_at": "2017-03-30T12:55:18.073Z",
-    "last_sign_in_ip": "86.12.129.15",
-    "sign_in_count": 2,
-    "activated_at": "2017-03-30T12:40:07.621Z"
-  }
+    "included": [
+        {
+            "id": "219",
+            "type": "places",
+            "attributes": {
+                "name": "United Kingdom"
+            },
+            "links": {
+                "self": "http://api.dbljump.com/places/united-kingdom"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from United Kingdom at Dbljump.",
+                "keywords": "United Kingdom, UK, GB, British, country, place, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:28:33.305Z",
+                "updated_at": "2017-07-12T13:28:33.305Z"
+            }
+        }
+    ]
 }
 </code></pre>
 <p>Sign in an existing user. With valid credentials, returns a JSON web token (JWT) used to authenticate user requests.</p>
@@ -15848,7 +15874,7 @@ Successful responses include the following HTTP header.<br /><br />
           <h2 id="send-a-new-activation-email">Send a new activation email</h2>
 
 <blockquote>
-<p>Request body</p>
+<p>Request body | <code class="prettyprint">POST /users/activations</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -15925,7 +15951,7 @@ Successful responses include the following HTTP header.<br /><br />
           <h2 id="activate-a-user-account">Activate a user account</h2>
 
 <blockquote>
-<p>Request body</p>
+<p>Request body | <code class="prettyprint">PATCH /users/activations/{activation_token}</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -15973,6 +15999,12 @@ Successful responses include the following HTTP header.<br /><br />
     },
     "links": {
       "self": "http://api.dbljump.com/users/5"
+    },
+    "meta": {
+      "last_signed_in_at": null,
+      "last_sign_in_ip": null,
+      "sign_in_count": 0,
+      "activated_at": "2017-03-21T23:55:32.873Z"
     }
   },
   "included": [
@@ -15990,13 +16022,7 @@ Successful responses include the following HTTP header.<br /><br />
       "self": "http://localhost:3000/places/countries/united-kingdom"
     }
   }
-],
-  "meta": {
-    "last_signed_in_at": null,
-    "last_sign_in_ip": null,
-    "sign_in_count": 0,
-    "activated_at": "2017-03-21T23:55:32.873Z"
-  }
+]
 }
 </code></pre>
 <p>Activate a user account. This endpoint should be triggered by an activation link sent to the user by email. The response includes a JWT authentication token, which can be used to automatically sign in the user.</p>
@@ -16098,7 +16124,7 @@ Successful responses include the following HTTP header.<br /><br />
           <h2 id="request-a-password-reset-link">Request a password-reset link</h2>
 
 <blockquote>
-<p>Request body</p>
+<p>Request body | <code class="prettyprint">POST /users/passwords</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -16172,7 +16198,7 @@ Successful responses include the following HTTP header.<br /><br />
           <h2 id="set-a-new-user-password">Set a new user password</h2>
 
 <blockquote>
-<p>Request body</p>
+<p>Request body | <code class="prettyprint">PATCH /users/passwords/{password_reset_token}</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -16356,121 +16382,133 @@ Successful responses include the following HTTP header.<br /><br />
 <pre class="highlight plaintext"><code># GET /places?page[size]=2&amp;filter[kind]=subdivision
 
 {
-  "data": [
-    {
-      "id": "2237",
-      "type": "places",
-      "attributes": {
-        "kind": "subdivision",
-        "slug": "sabha-libya",
-        "name": "Sabha",
-        "formatted": "Sabha, Libya",
-        "short_name": null,
-        "also_known_as": [],
-        "latitude": null,
-        "longitude": null,
-        "iso_code": null
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "id": "117",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/libya"
-          }
-        },
-        "children": {
-          "data": [],
-          "links": {
-            "related": "http://api.dbljump.com/places/sabha-libya/children"
-          }
-        },
-        "regions": {
-          "data": [
-            {
-              "id": "236",
-              "type": "places"
+    "data": [
+        {
+            "id": "2237",
+            "type": "places",
+            "attributes": {
+                "kind": "subdivision",
+                "slug": "sabha-libya",
+                "name": "Sabha",
+                "formatted": "Sabha, Libya",
+                "short_name": null,
+                "also_known_as": [],
+                "latitude": null,
+                "longitude": null,
+                "iso_code": null
+            },
+            "relationships": {
+                "parent": {
+                    "data": {
+                        "id": "117",
+                        "type": "places"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/places/libya"
+                    }
+                },
+                "children": {
+                    "data": [],
+                    "links": {
+                        "related": "http://api.dbljump.com/places/sabha-libya/children"
+                    }
+                },
+                "regions": {
+                    "data": [
+                        {
+                            "id": "236",
+                            "type": "places"
+                        }
+                    ],
+                    "links": {
+                        "related": "http://api.dbljump.com/places/sabha-libya/regions"
+                    }
+                },
+                "created_by": {
+                    "data": {
+                        "id": "1",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/users/1"
+                    }
+                }
+            },
+            "links": {
+                "self": "http://api.dbljump.com/places/sabha-libya"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from Sabha, Libya at Dbljump.",
+                "keywords": "Sabha, Libya, state, county, place, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:29:41.294Z",
+                "updated_at": "2017-07-12T13:29:41.294Z"
             }
-          ],
-          "links": {
-            "related": "http://api.dbljump.com/places/sabha-libya/regions"
-          }
         },
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
+        {
+            "id": "240",
+            "type": "places",
+            "attributes": {
+                "kind": "subdivision",
+                "slug": "all-niue",
+                "name": "All",
+                "formatted": "All, Niue",
+                "short_name": null,
+                "also_known_as": [],
+                "latitude": null,
+                "longitude": null,
+                "iso_code": null
+            },
+            "relationships": {
+                "parent": {
+                    "data": {
+                        "id": "151",
+                        "type": "places"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/places/niue"
+                    }
+                },
+                "children": {
+                    "data": [],
+                    "links": {
+                        "related": "http://api.dbljump.com/places/all-niue/children"
+                    }
+                },
+                "regions": {
+                    "data": [],
+                    "links": {
+                        "related": "http://api.dbljump.com/places/all-niue/regions"
+                    }
+                },
+                "created_by": {
+                    "data": {
+                        "id": "1",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/users/1"
+                    }
+                }
+            },
+            "links": {
+                "self": "http://api.dbljump.com/places/all-niue"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from All, Niue at Dbljump.",
+                "keywords": "All, Niue, state, county, place, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:28:34.868Z",
+                "updated_at": "2017-07-12T13:28:34.868Z"
+            }
         }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/sabha-libya"
-      }
+    ],
+    "links": {
+        "self": "http://api.dbljump.com/places?filter%5Bkind%5D=subdivision&amp;page%5Bnumber%5D=1&amp;page%5Bsize%5D=2",
+        "next": "http://api.dbljump.com/places?filter%5Bkind%5D=subdivision&amp;page%5Bnumber%5D=2&amp;page%5Bsize%5D=2",
+        "last": "http://api.dbljump.com/places?filter%5Bkind%5D=subdivision&amp;page%5Bnumber%5D=1321&amp;page%5Bsize%5D=2"
     },
-    {
-      "id": "240",
-      "type": "places",
-      "attributes": {
-        "kind": "subdivision",
-        "slug": "0-niue",
-        "name": "All",
-        "formatted": "All, Niue",
-        "short_name": null,
-        "also_known_as": [],
-        "latitude": null,
-        "longitude": null,
-        "iso_code": null
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "id": "151",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/niue"
-          }
-        },
-        "children": {
-          "data": [],
-          "links": {
-            "related": "http://api.dbljump.com/places/0-niue/children"
-          }
-        },
-        "regions": {
-          "data": [],
-          "links": {
-            "related": "http://api.dbljump.com/places/0-niue/regions"
-          }
-        },
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/0-niue"
-      }
+    "meta": {
+        "total_items": 2641
     }
-  ],
-  "links": {
-    "self": "http://api.dbljump.com/places?filter%5Bkind%5D=subdivision&amp;page%5Bnumber%5D=1&amp;page%5Bsize%5D=2",
-    "next": "http://api.dbljump.com/places?filter%5Bkind%5D=subdivision&amp;page%5Bnumber%5D=2&amp;page%5Bsize%5D=2",
-    "last": "http://api.dbljump.com/places?filter%5Bkind%5D=subdivision&amp;page%5Bnumber%5D=1321&amp;page%5Bsize%5D=2"
-  },
-  "meta": {
-    "total_items": 2937
-  }
 }
 </code></pre>
 <p>Retrieve all places. Automatically paginated.</p>
@@ -16527,105 +16565,335 @@ Successful responses include the following HTTP header.<br /><br />
 <pre class="highlight plaintext"><code># GET /places/united-states
 
 {
-  "data": {
-    "id": "220",
-    "type": "places",
-    "attributes": {
-      "kind": "country",
-      "slug": "united-states",
-      "name": "United States",
-      "formatted": "United States",
-      "short_name": "USA",
-      "also_known_as": [],
-      "latitude": 38,
-      "longitude": -97,
-      "iso_code": "US"
-    },
-    "relationships": {
-      "parent": {
-        "data": null,
-        "links": {
-          "related": "http://api.dbljump.com/places/united-states"
-        }
-      },
-      "children": {
-        "data": [
-          {
-            "id": "329",
-            "type": "places"
-          },
-          {
-            "id": "335",
-            "type": "places"
-          },
-          {
-            "id": "398",
-            "type": "places"
-          },
-          {
-            "id": "460",
-            "type": "places"
-          },
-          {
-            "id": "461",
-            "type": "places"
-          }
-        ],
-        "links": {
-          "related": "http://api.dbljump.com/places/united-states/children"
-        }
-      },
-      "regions": {
-        "data": [
-          {
-            "id": "233",
-            "type": "places"
-          },
-          {
-            "id": "238",
-            "type": "places"
-          }
-        ],
-        "links": {
-          "related": "http://api.dbljump.com/places/united-states/regions"
-        }
-      },
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
+    "data": {
+        "id": "220",
+        "type": "places",
+        "attributes": {
+            "kind": "country",
+            "slug": "united-states",
+            "name": "United States",
+            "formatted": "United States",
+            "short_name": "USA",
+            "also_known_as": [],
+            "latitude": 38,
+            "longitude": -97,
+            "iso_code": "US"
+        },
+        "relationships": {
+            "parent": {
+                "data": null,
+                "links": {
+                    "related": "http://api.dbljump.com/places/niue"
+                }
+            },
+            "children": {
+                "data": [
+                    {
+                        "id": "329",
+                        "type": "places"
+                    },
+                    {
+                        "id": "335",
+                        "type": "places"
+                    },
+                    {
+                        "id": "398",
+                        "type": "places"
+                    },
+                    {
+                        "id": "460",
+                        "type": "places"
+                    },
+                    {
+                        "id": "461",
+                        "type": "places"
+                    },
+                    {
+                        "id": "463",
+                        "type": "places"
+                    },
+                    {
+                        "id": "464",
+                        "type": "places"
+                    },
+                    {
+                        "id": "465",
+                        "type": "places"
+                    },
+                    {
+                        "id": "708",
+                        "type": "places"
+                    },
+                    {
+                        "id": "842",
+                        "type": "places"
+                    },
+                    {
+                        "id": "849",
+                        "type": "places"
+                    },
+                    {
+                        "id": "902",
+                        "type": "places"
+                    },
+                    {
+                        "id": "925",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1047",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1092",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1146",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1205",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1258",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1265",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1274",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1278",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1363",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1402",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1574",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1613",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1665",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1673",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1714",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1726",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1733",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1734",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1752",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1826",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1833",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1836",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1838",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1839",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1843",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1898",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1901",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1927",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1979",
+                        "type": "places"
+                    },
+                    {
+                        "id": "1984",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2001",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2072",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2139",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2197",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2463",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2466",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2595",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2599",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2676",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2688",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2727",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2749",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2750",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2772",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2801",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2808",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2812",
+                        "type": "places"
+                    }
+                ],
+                "links": {
+                    "related": "http://api.dbljump.com/places/united-states/children"
+                }
+            },
+            "regions": {
+                "data": [
+                    {
+                        "id": "238",
+                        "type": "places"
+                    },
+                    {
+                        "id": "233",
+                        "type": "places"
+                    }
+                ],
+                "links": {
+                    "related": "http://api.dbljump.com/places/united-states/regions"
+                }
+            },
+            "created_by": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://api.dbljump.com/users/1"
+                }
+            }
         },
         "links": {
-          "related": "http://api.dbljump.com/users/1"
+            "self": "http://api.dbljump.com/places/united-states"
+        },
+        "meta": {
+            "description": "Find video game companies and games industry professionals from United States at Dbljump.",
+            "keywords": "United States, USA, US, American, country, place, dbljump, video games, pc games, gaming",
+            "created_at": "2017-07-12T13:28:33.331Z",
+            "updated_at": "2017-07-12T13:28:33.331Z"
         }
-      }
     },
-    "links": {
-      "self": "http://api.dbljump.com/places/united-states"
-    }
-  },
-  "included": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "united states, usa, us, american, country, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from United States at Dbljump.",
-    "created_at": "2017-04-05T13:55:45.684Z",
-    "updated_at": "2017-04-05T13:55:45.684Z"
-  }
+    "included": [
+        {
+            "id": "1",
+            "type": "users",
+            "attributes": {
+                "username": "tikithekiwi",
+                "role": "admin",
+                "given_names": "Tiki",
+                "family_name": "the Kiwi",
+                "avatar": null
+            },
+            "links": {
+                "self": "http://api.dbljump.com/users/1"
+            },
+            "meta": {
+                "description": "Tiki the Kiwi is a member at Dbljump, the video game reference.",
+                "keywords": "tikithekiwi, Tiki the Kiwi, user, dbljump, video games, pc games, gaming",
+                "last_signed_in_at": null,
+                "last_sign_in_ip": null,
+                "sign_in_count": 0,
+                "activated_at": "2017-07-12T13:28:27.875Z",
+                "created_at": "2017-07-12T13:28:27.985Z",
+                "updated_at": "2017-07-12T13:28:27.985Z"
+            }
+        }
+    ]
 }
 </code></pre>
 <p>Retrieve a single place record. Places are publicly available. No sign-in is required.</p>
@@ -16797,76 +17065,100 @@ Successful responses include the following HTTP header.<br /><br />
 <p>Response body | <code class="prettyprint">HTTP 201</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "2937",
-    "type": "places",
-    "attributes": {
-      "kind": "subdivision",
-      "slug": "maryland-united-states",
-      "name": "Maryland",
-      "short_name": "MD",
-      "formatted": "Maryland, United States",
-      "iso_code": "",
-      "also_known_as": [
-        "Old Line State",
-        "Chesapeake Bay State"
-      ],
-      "nationality": "",
-      "currency": "",
-      "latitude": 38.0,
-      "longitude": -77.0
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "id": "2",
-          "type": "users"
+    "data": {
+        "id": "2939",
+        "type": "places",
+        "attributes": {
+            "kind": "subdivision",
+            "slug": "maryland-united-states",
+            "name": "Maryland",
+            "formatted": "Maryland, United States",
+            "short_name": "MD",
+            "also_known_as": [
+                "Old Line State",
+                "Chesapeake Bay State"
+            ],
+            "latitude": 38,
+            "longitude": -77,
+            "iso_code": ""
+        },
+        "relationships": {
+            "parent": {
+                "data": {
+                    "id": "220",
+                    "type": "places"
+                },
+                "links": {
+                    "related": "http://api.dbljump.com/places/united-states"
+                }
+            },
+            "children": {
+                "data": [],
+                "links": {
+                    "related": "http://api.dbljump.com/places/maryland-united-states/children"
+                }
+            },
+            "regions": {
+                "data": [
+                    {
+                        "id": "238",
+                        "type": "places"
+                    },
+                    {
+                        "id": "233",
+                        "type": "places"
+                    }
+                ],
+                "links": {
+                    "related": "http://api.dbljump.com/places/maryland-united-states/regions"
+                }
+            },
+            "created_by": {
+                "data": {
+                    "id": "2",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://api.dbljump.com/users/2"
+                }
+            }
         },
         "links": {
-          "related": "http://api.dbljump.com/users/2"
-        }
-      },
-      "parent": {
-        "data": {
-          "id": "220",
-          "type": "users"
+            "self": "http://api.dbljump.com/places/maryland-united-states"
         },
-        "links": {
-          "related": "http://api.dbljump.com/places/united-states"
+        "meta": {
+            "description": "Find video game companies and games industry professionals from Maryland, United States at Dbljump.",
+            "keywords": "Maryland, United States, MD, Old Line State, Chesapeake Bay State, state, county, place, dbljump, video games, pc games, gaming",
+            "created_at": "2017-07-12T13:54:03.802Z",
+            "updated_at": "2017-07-12T13:54:03.802Z"
         }
-      },
-      "children": {
-        "links": {
-          "related": "http://api.dbljump.com/places/maryland-united-states/children"
-        }
-      }
     },
-    "links": {
-      "self": "http://api.dbljump.com/places/maryland-united-states"
-    }
-  },
-  "included": [
-    {
-      "id": "2",
-      "type": "users",
-      "attributes": {
-        "username": "neil",
-        "role": "admin",
-        "given_names": "Neil",
-        "family_name": "Wheatley",
-        "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1703301240.jpg"
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/2"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "maryland, md, place, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from Maryland, United States at Dbljump.",
-    "created_at": "2017-03-30T13:39:33.324Z",
-    "updated_at": "2017-03-30T13:39:33.324Z"
-  }
+    "included": [
+        {
+            "id": "2",
+            "type": "users",
+            "attributes": {
+                "username": "neil",
+                "role": "admin",
+                "given_names": "Neil",
+                "family_name": "Wheatley",
+                "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1707121330.jpg"
+            },
+            "links": {
+                "self": "http://api.dbljump.com/users/2"
+            },
+            "meta": {
+                "description": "Neil Wheatley is a member at Dbljump, the video game reference.",
+                "keywords": "neil, Neil Wheatley, user, dbljump, video games, pc games, gaming",
+                "last_signed_in_at": "2017-07-12T13:48:47.195Z",
+                "last_sign_in_ip": "86.12.129.15",
+                "sign_in_count": 2,
+                "activated_at": "2017-07-12T13:30:02.955Z",
+                "created_at": "2017-07-12T13:30:03.831Z",
+                "updated_at": "2017-07-12T13:48:47.255Z"
+            }
+        }
+    ]
 }
 </code></pre>
 <p>Create a new place record. Use the <code class="prettyprint">kind</code> attribute to set whether the place is a region (i.e. a group of countries), country, subdivision (i.e. a state or county), or locality (i.e. a town or city). Admin-level authorization required, or editor-level if <code class="prettyprint">kind == &#39;locality&#39;</code>.</p>
@@ -16979,8 +17271,7 @@ Successful responses include the following HTTP header.<br /><br />
       "short_name": "Short",
       "also_known_as": ["Edited Region", "Renamed Region"],
       "latitude": "54.5",
-      "longitude": "15.3",
-      "iso_code": ""
+      "longitude": "15.3"
     },
     "relationships": {
       "children": {
@@ -16998,91 +17289,101 @@ Successful responses include the following HTTP header.<br /><br />
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "234",
-    "type": "places",
-    "attributes": {
-      "kind": "region",
-      "slug": "new-name",
-      "name": "New Name",
-      "formatted": "New Name",
-      "short_name": "Short",
-      "also_known_as": [
-        "Edited Region",
-        "Renamed Region"
-      ],
-      "latitude": 54.5,
-      "longitude": 15.3,
-      "iso_code": ""
-    },
-    "relationships": {
-      "parent": {
-        "data": null,
-        "links": {
-          "related": "http://api.dbljump.com/places/niue"
-        }
-      },
-      "children": {
-        "data": [
-          {
-            "id": "219",
-            "type": "places"
-          },
-          {
-            "id": "71",
-            "type": "places"
-          },
-          {
-            "id": "75",
-            "type": "places"
-          }
-        ],
-        "links": {
-          "related": "http://api.dbljump.com/places/new-name/children"
-        }
-      },
-      "regions": {
-        "data": null,
-        "links": {
-          "related": "http://api.dbljump.com/places/new-name/regions"
-        }
-      },
-      "created_by": {
-        "data": {
-          "id": "1",
-          "type": "users"
+    "data": {
+        "id": "234",
+        "type": "places",
+        "attributes": {
+            "kind": "region",
+            "slug": "new-name",
+            "name": "New Name",
+            "formatted": "New Name",
+            "short_name": "Short",
+            "also_known_as": [
+                "Edited Region",
+                "Renamed Region"
+            ],
+            "latitude": 54.5,
+            "longitude": 15.3,
+            "iso_code": null
+        },
+        "relationships": {
+            "parent": {
+                "data": null,
+                "links": {
+                    "related": "http://api.dbljump.com/places/united-states"
+                }
+            },
+            "children": {
+                "data": [
+                    {
+                        "id": "71",
+                        "type": "places"
+                    },
+                    {
+                        "id": "75",
+                        "type": "places"
+                    },
+                    {
+                        "id": "219",
+                        "type": "places"
+                    }
+                ],
+                "links": {
+                    "related": "http://api.dbljump.com/places/new-name/children"
+                }
+            },
+            "regions": {
+                "data": null,
+                "links": {
+                    "related": "http://api.dbljump.com/places/new-name/regions"
+                }
+            },
+            "created_by": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "http://api.dbljump.com/users/1"
+                }
+            }
         },
         "links": {
-          "related": "http://api.dbljump.com/users/1"
+            "self": "http://api.dbljump.com/places/new-name"
+        },
+        "meta": {
+            "description": "Find video game companies and games industry professionals from New Name at Dbljump.",
+            "keywords": "New Name, Short, Edited Region, Renamed Region, place, geography, dbljump, video games, pc games, gaming",
+            "created_at": "2017-07-12T13:28:33.655Z",
+            "updated_at": "2017-07-12T13:57:30.480Z"
         }
-      }
     },
-    "links": {
-      "self": "http://api.dbljump.com/places/new-name"
-    }
-  },
-  "included": [
-    {
-      "id": "1",
-      "type": "users",
-      "attributes": {
-        "username": "tikithekiwi",
-        "role": "admin",
-        "given_names": "Tiki",
-        "family_name": "the Kiwi",
-        "avatar": null
-      },
-      "links": {
-        "self": "http://api.dbljump.com/users/1"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "new name, short, edited region, renamed region, , place, geography, dbljump, video games, pc games, gaming",
-    "description": "Find video game companies and games industry professionals from New Name at Dbljump.",
-    "created_at": "2017-04-05T13:55:46.264Z",
-    "updated_at": "2017-04-14T09:48:24.498Z"
-  }
+    "included": [
+        {
+            "id": "1",
+            "type": "users",
+            "attributes": {
+                "username": "tikithekiwi",
+                "role": "admin",
+                "given_names": "Tiki",
+                "family_name": "the Kiwi",
+                "avatar": null
+            },
+            "links": {
+                "self": "http://api.dbljump.com/users/1"
+            },
+            "meta": {
+                "description": "Tiki the Kiwi is a member at Dbljump, the video game reference.",
+                "keywords": "tikithekiwi, Tiki the Kiwi, user, dbljump, video games, pc games, gaming",
+                "last_signed_in_at": null,
+                "last_sign_in_ip": null,
+                "sign_in_count": 0,
+                "activated_at": "2017-07-12T13:28:27.875Z",
+                "created_at": "2017-07-12T13:28:27.985Z",
+                "updated_at": "2017-07-12T13:28:27.985Z"
+            }
+        }
+    ]
 }
 </code></pre>
 <p>Update an existing place record. The user must be an admin, except for <code class="prettyprint">locality</code> records that were created by the current user. The <code class="prettyprint">kind</code> attribute cannot be changed.</p>
@@ -17200,193 +17501,211 @@ Successful responses include the following HTTP header.<br /><br />
 <pre class="highlight plaintext"><code># GET /places/united-states/children?page[size]=3
 
 {
-  "data": [
-    {
-      "id": "329",
-      "type": "places",
-      "attributes": {
-        "kind": "subdivision",
-        "slug": "alabama-united-states",
-        "name": "Alabama",
-        "formatted": "Alabama, United States",
-        "short_name": null,
-        "also_known_as": [],
-        "latitude": 32.3182314,
-        "longitude": -86.902298,
-        "iso_code": null
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "id": "220",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/united-states"
-          }
-        },
-        "children": {
-          "data": [],
-          "links": {
-            "related": "http://api.dbljump.com/places/alabama-united-states/children"
-          }
-        },
-        "regions": {
-          "data": [
-            {
-              "id": "238",
-              "type": "places"
+    "data": [
+        {
+            "id": "329",
+            "type": "places",
+            "attributes": {
+                "kind": "subdivision",
+                "slug": "alabama-united-states",
+                "name": "Alabama",
+                "formatted": "Alabama, United States",
+                "short_name": null,
+                "also_known_as": [],
+                "latitude": 32.3182314,
+                "longitude": -86.902298,
+                "iso_code": null
             },
-            {
-              "id": "233",
-              "type": "places"
+            "relationships": {
+                "parent": {
+                    "data": {
+                        "id": "220",
+                        "type": "places"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/places/united-states"
+                    }
+                },
+                "children": {
+                    "data": [],
+                    "links": {
+                        "related": "http://api.dbljump.com/places/alabama-united-states/children"
+                    }
+                },
+                "regions": {
+                    "data": [
+                        {
+                            "id": "238",
+                            "type": "places"
+                        },
+                        {
+                            "id": "233",
+                            "type": "places"
+                        }
+                    ],
+                    "links": {
+                        "related": "http://api.dbljump.com/places/alabama-united-states/regions"
+                    }
+                },
+                "created_by": {
+                    "data": {
+                        "id": "1",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/users/1"
+                    }
+                }
+            },
+            "links": {
+                "self": "http://api.dbljump.com/places/alabama-united-states"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from Alabama, United States at Dbljump.",
+                "keywords": "Alabama, United States, state, county, place, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:28:36.800Z",
+                "updated_at": "2017-07-12T13:28:36.800Z"
             }
-          ],
-          "links": {
-            "related": "http://api.dbljump.com/places/alabama-united-states/regions"
-          }
         },
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
+        {
+            "id": "335",
+            "type": "places",
+            "attributes": {
+                "kind": "subdivision",
+                "slug": "alaska-united-states",
+                "name": "Alaska",
+                "formatted": "Alaska, United States",
+                "short_name": null,
+                "also_known_as": [],
+                "latitude": 64.2008413,
+                "longitude": -149.4936733,
+                "iso_code": null
+            },
+            "relationships": {
+                "parent": {
+                    "data": {
+                        "id": "220",
+                        "type": "places"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/places/united-states"
+                    }
+                },
+                "children": {
+                    "data": [],
+                    "links": {
+                        "related": "http://api.dbljump.com/places/alaska-united-states/children"
+                    }
+                },
+                "regions": {
+                    "data": [
+                        {
+                            "id": "238",
+                            "type": "places"
+                        },
+                        {
+                            "id": "233",
+                            "type": "places"
+                        }
+                    ],
+                    "links": {
+                        "related": "http://api.dbljump.com/places/alaska-united-states/regions"
+                    }
+                },
+                "created_by": {
+                    "data": {
+                        "id": "1",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/users/1"
+                    }
+                }
+            },
+            "links": {
+                "self": "http://api.dbljump.com/places/alaska-united-states"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from Alaska, United States at Dbljump.",
+                "keywords": "Alaska, United States, state, county, place, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:28:36.924Z",
+                "updated_at": "2017-07-12T13:28:36.924Z"
+            }
+        },
+        {
+            "id": "398",
+            "type": "places",
+            "attributes": {
+                "kind": "subdivision",
+                "slug": "american-samoa-united-states",
+                "name": "American Samoa",
+                "formatted": "American Samoa, United States",
+                "short_name": null,
+                "also_known_as": [],
+                "latitude": 21.3239718,
+                "longitude": -157.876498,
+                "iso_code": null
+            },
+            "relationships": {
+                "parent": {
+                    "data": {
+                        "id": "220",
+                        "type": "places"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/places/united-states"
+                    }
+                },
+                "children": {
+                    "data": [],
+                    "links": {
+                        "related": "http://api.dbljump.com/places/american-samoa-united-states/children"
+                    }
+                },
+                "regions": {
+                    "data": [
+                        {
+                            "id": "238",
+                            "type": "places"
+                        },
+                        {
+                            "id": "233",
+                            "type": "places"
+                        }
+                    ],
+                    "links": {
+                        "related": "http://api.dbljump.com/places/american-samoa-united-states/regions"
+                    }
+                },
+                "created_by": {
+                    "data": {
+                        "id": "1",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/users/1"
+                    }
+                }
+            },
+            "links": {
+                "self": "http://api.dbljump.com/places/american-samoa-united-states"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from American Samoa, United States at Dbljump.",
+                "keywords": "American Samoa, United States, state, county, place, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:28:39.075Z",
+                "updated_at": "2017-07-12T13:28:39.075Z"
+            }
         }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/alabama-united-states"
-      }
+    ],
+    "links": {
+        "self": "http://api.dbljump.com/places/united-states/children?page%5Bnumber%5D=1&amp;page%5Bsize%5D=3",
+        "next": "http://api.dbljump.com/places/united-states/children?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3",
+        "last": "http://api.dbljump.com/places/united-states/children?page%5Bnumber%5D=20&amp;page%5Bsize%5D=3"
     },
-    {
-      "id": "335",
-      "type": "places",
-      "attributes": {
-        "kind": "subdivision",
-        "slug": "alaska-united-states",
-        "name": "Alaska",
-        "formatted": "Alaska, United States",
-        "short_name": null,
-        "also_known_as": [],
-        "latitude": 64.2008413,
-        "longitude": -149.4936733,
-        "iso_code": null
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "id": "220",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/united-states"
-          }
-        },
-        "children": {
-          "data": [],
-          "links": {
-            "related": "http://api.dbljump.com/places/alaska-united-states/children"
-          }
-        },
-        "regions": {
-          "data": [
-            {
-              "id": "238",
-              "type": "places"
-            },
-            {
-              "id": "233",
-              "type": "places"
-            }
-          ],
-          "links": {
-            "related": "http://api.dbljump.com/places/alaska-united-states/regions"
-          }
-        },
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/alaska-united-states"
-      }
-    },
-    {
-      "id": "398",
-      "type": "places",
-      "attributes": {
-        "kind": "subdivision",
-        "slug": "american-samoa-united-states",
-        "name": "American Samoa",
-        "formatted": "American Samoa, United States",
-        "short_name": null,
-        "also_known_as": [],
-        "latitude": 21.3239718,
-        "longitude": -157.876498,
-        "iso_code": null
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "id": "220",
-            "type": "places"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/places/united-states"
-          }
-        },
-        "children": {
-          "data": [],
-          "links": {
-            "related": "http://api.dbljump.com/places/american-samoa-united-states/children"
-          }
-        },
-        "regions": {
-          "data": [
-            {
-              "id": "238",
-              "type": "places"
-            },
-            {
-              "id": "233",
-              "type": "places"
-            }
-          ],
-          "links": {
-            "related": "http://api.dbljump.com/places/american-samoa-united-states/regions"
-          }
-        },
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/american-samoa-united-states"
-      }
+    "meta": {
+        "total_items": 60
     }
-  ],
-  "links": {
-    "self": "http://api.dbljump.com/places/united-states/children?page%5Bnumber%5D=1&amp;page%5Bsize%5D=3",
-    "next": "http://api.dbljump.com/places/united-states/children?page%5Bnumber%5D=2&amp;page%5Bsize%5D=3",
-    "last": "http://api.dbljump.com/places/united-states/children?page%5Bnumber%5D=20&amp;page%5Bsize%5D=3"
-  },
-  "meta": {
-    "total_items": 60
-  }
 }
 </code></pre>
 <p>Retrieve all places that belong to a given places, i.e. countries that belong to a region; subdivisions that belong to a country; and localities that belong to a subdivision. Returns a <code class="prettyprint">404</code> error for localities, which do not have children. Automatically paginated.</p>
@@ -17443,122 +17762,140 @@ Successful responses include the following HTTP header.<br /><br />
 <pre class="highlight plaintext"><code># GET /places/united-states/regions
 
 {
-  "data": [
-    {
-      "id": "238",
-      "type": "places",
-      "attributes": {
-        "kind": "region",
-        "slug": "us-and-canada",
-        "name": "US and Canada",
-        "formatted": "US and Canada",
-        "short_name": "US&amp;Ca",
-        "also_known_as": [],
-        "latitude": null,
-        "longitude": null,
-        "iso_code": null
-      },
-      "relationships": {
-        "parent": {
-          "data": null
-        },
-        "children": {
-          "data": [
-            {
-              "id": "36",
-              "type": "places"
+    "data": [
+        {
+            "id": "238",
+            "type": "places",
+            "attributes": {
+                "kind": "region",
+                "slug": "us-and-canada",
+                "name": "US and Canada",
+                "formatted": "US and Canada",
+                "short_name": "US&amp;Ca",
+                "also_known_as": [],
+                "latitude": null,
+                "longitude": null,
+                "iso_code": null
             },
-            {
-              "id": "220",
-              "type": "places"
+            "relationships": {
+                "parent": {
+                    "data": null,
+                    "links": {
+                        "related": "http://api.dbljump.com/places/niue"
+                    }
+                },
+                "children": {
+                    "data": [
+                        {
+                            "id": "36",
+                            "type": "places"
+                        },
+                        {
+                            "id": "220",
+                            "type": "places"
+                        }
+                    ],
+                    "links": {
+                        "related": "http://api.dbljump.com/places/us-and-canada/children"
+                    }
+                },
+                "regions": {
+                    "data": null,
+                    "links": {
+                        "related": "http://api.dbljump.com/places/us-and-canada/regions"
+                    }
+                },
+                "created_by": {
+                    "data": {
+                        "id": "1",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/users/1"
+                    }
+                }
+            },
+            "links": {
+                "self": "http://api.dbljump.com/places/us-and-canada"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from US and Canada at Dbljump.",
+                "keywords": "US and Canada, US&amp;Ca, place, geography, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:28:33.735Z",
+                "updated_at": "2017-07-12T13:28:33.735Z"
             }
-          ],
-          "links": {
-            "related": "http://api.dbljump.com/places/us-and-canada/children"
-          }
         },
-        "regions": {
-          "data": null,
-          "links": {
-            "related": "http://api.dbljump.com/places/us-and-canada/regions"
-          }
-        },
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
-        }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/us-and-canada"
-      }
-    },
-    {
-      "id": "233",
-      "type": "places",
-      "attributes": {
-        "kind": "region",
-        "slug": "north-america",
-        "name": "North America",
-        "formatted": "North America",
-        "short_name": "NA",
-        "also_known_as": [],
-        "latitude": null,
-        "longitude": null,
-        "iso_code": null
-      },
-      "relationships": {
-        "parent": {
-          "data": null
-        },
-        "children": {
-          "data": [
-            {
-              "id": "36",
-              "type": "places"
+        {
+            "id": "233",
+            "type": "places",
+            "attributes": {
+                "kind": "region",
+                "slug": "north-america",
+                "name": "North America",
+                "formatted": "North America",
+                "short_name": "NA",
+                "also_known_as": [],
+                "latitude": null,
+                "longitude": null,
+                "iso_code": null
             },
-            {
-              "id": "133",
-              "type": "places"
+            "relationships": {
+                "parent": {
+                    "data": null,
+                    "links": {
+                        "related": "http://api.dbljump.com/places/niue"
+                    }
+                },
+                "children": {
+                    "data": [
+                        {
+                            "id": "36",
+                            "type": "places"
+                        },
+                        {
+                            "id": "133",
+                            "type": "places"
+                        },
+                        {
+                            "id": "220",
+                            "type": "places"
+                        }
+                    ],
+                    "links": {
+                        "related": "http://api.dbljump.com/places/north-america/children"
+                    }
+                },
+                "regions": {
+                    "data": null,
+                    "links": {
+                        "related": "http://api.dbljump.com/places/north-america/regions"
+                    }
+                },
+                "created_by": {
+                    "data": {
+                        "id": "1",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "http://api.dbljump.com/users/1"
+                    }
+                }
             },
-            {
-              "id": "220",
-              "type": "places"
+            "links": {
+                "self": "http://api.dbljump.com/places/north-america"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from North America at Dbljump.",
+                "keywords": "North America, NA, place, geography, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-12T13:28:33.636Z",
+                "updated_at": "2017-07-12T13:28:33.636Z"
             }
-          ],
-          "links": {
-            "related": "http://api.dbljump.com/places/north-america/children"
-          }
-        },
-        "regions": {
-          "data": null,
-          "links": {
-            "related": "http://api.dbljump.com/places/north-america/regions"
-          }
-        },
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "users"
-          },
-          "links": {
-            "related": "http://api.dbljump.com/users/1"
-          }
         }
-      },
-      "links": {
-        "self": "http://api.dbljump.com/places/north-america"
-      }
+    ],
+    "links": {},
+    "meta": {
+        "total_items": 2
     }
-  ],
-  "links": {},
-  "meta": {
-    "total_items": 2
-  }
 }
 </code></pre>
 <p>Retrieve all regions that a given country belongs to. Returns a <code class="prettyprint">404</code> error for regions, subdivision, and localities. Automatically paginated.</p>
