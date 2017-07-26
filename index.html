@@ -1288,7 +1288,8 @@ Successful responses include the following HTTP header.<br /><br />
       "attributes": {
         "status": "extant",
         "target_fps": null,
-        "native_res": null
+        "resolution_w": null,
+        "resolution_h: null
       },
       "relationships": {
         "game": {
@@ -1317,7 +1318,8 @@ Successful responses include the following HTTP header.<br /><br />
       "attributes": {
         "status": "extant",
         "target_fps": null,
-        "native_res": null
+        "resolution_w": null,
+        "resolution_h: null
       },
       "relationships": {
         "game": {
@@ -1411,7 +1413,8 @@ Successful responses include the following HTTP header.<br /><br />
     "attributes": {
       "status": "extant",
       "target_fps": null,
-      "native_res": null
+      "resolution_w": null,
+      "resolution_h: null
     },
     "relationships": {
       "game": {
@@ -1502,10 +1505,16 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Version target refresh rate. Max 1000.</td>
 </tr>
 <tr>
-<td>native_res</td>
-<td>string</td>
+<td>resolution_w</td>
+<td>number</td>
 <td></td>
-<td>Native display resolution, e.g. &#39;720p&rsquo;. Max 20 chars.</td>
+<td>Native display resolution width, e.g. &#39;720&rsquo;. Max 10,000.</td>
+</tr>
+<tr>
+<td>resolution_h</td>
+<td>number</td>
+<td></td>
+<td>Native display resolution height, e.g. &#39;1280&rsquo;. Max 10,000.</td>
 </tr>
 </tbody></table>
 
@@ -1566,7 +1575,8 @@ Successful responses include the following HTTP header.<br /><br />
     "attributes": {
       "status": "rumored",
       "target_fps": "60",
-      "native_res": "1080p"
+      "resolution_w": "1920",
+      "resolution_h": "1080"
     },
     "relationships": {
       "platform": {
@@ -1589,7 +1599,8 @@ Successful responses include the following HTTP header.<br /><br />
     "attributes": {
       "status": "rumored",
       "target_fps": 60,
-      "native_res": "1080p"
+      "resolution_w": "1920",
+      "resolution_h": "1080"
     },
     "relationships": {
       "game": {
@@ -1676,10 +1687,16 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Version target refresh rate. Max 1000.</td>
 </tr>
 <tr>
-<td>native_res</td>
-<td>string</td>
+<td>resolution_w</td>
+<td>number</td>
 <td></td>
-<td>Native display resolution, e.g. &#39;720p&rsquo;. Max 20 chars.</td>
+<td>Native display resolution width, e.g. &#39;720&rsquo;. Max 10,000.</td>
+</tr>
+<tr>
+<td>resolution_h</td>
+<td>number</td>
+<td></td>
+<td>Native display resolution height, e.g. &#39;1280&rsquo;. Max 10,000.</td>
 </tr>
 </tbody></table>
 
@@ -1721,7 +1738,8 @@ Successful responses include the following HTTP header.<br /><br />
     "attributes": {
       "status": "unknown",
       "target_fps": "30",
-      "native_res": "1440p"
+      "resolution_w": "1920",
+      "resolution_h": "1080"
     },
     "relationships": {
       "platform": {
@@ -1744,7 +1762,8 @@ Successful responses include the following HTTP header.<br /><br />
     "attributes": {
       "status": "unknown",
       "target_fps": 30,
-      "native_res": "1440p"
+      "resolution_w": "1920",
+      "resolution_h": "1080"
     },
     "relationships": {
       "game": {
@@ -1831,10 +1850,16 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Version target refresh rate. Max 1000.</td>
 </tr>
 <tr>
-<td>native_res</td>
-<td>string</td>
+<td>resolution_w</td>
+<td>number</td>
 <td></td>
-<td>Native display resolution, e.g. &#39;720p&rsquo;. Max 20 chars.</td>
+<td>Native display resolution width, e.g. &#39;720&rsquo;. Max 10,000.</td>
+</tr>
+<tr>
+<td>resolution_h</td>
+<td>number</td>
+<td></td>
+<td>Native display resolution height, e.g. &#39;1280&rsquo;. Max 10,000.</td>
 </tr>
 </tbody></table>
 
@@ -1925,9 +1950,15 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_VERSION_NATIVE_RES_TOO_LONG</td>
-<td>native_res</td>
-<td>Native resolution cannot be more than 20 chars.</td>
+<td>GAME_VERSION_RESOLUTION_W_LESS_THAN_OR_EQUAL_TO</td>
+<td>resolution_w</td>
+<td>Resolution width must be less than or equal to 10,000.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>GAME_VERSION_RESOLUTION_H_LESS_THAN_OR_EQUAL_TO</td>
+<td>resolution_h</td>
+<td>Resolution height must be less than or equal to 10,000.</td>
 </tr>
 </tbody></table>
 
