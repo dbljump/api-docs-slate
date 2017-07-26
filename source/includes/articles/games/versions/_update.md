@@ -10,7 +10,8 @@
     "attributes": {
       "status": "unknown",
       "target_fps": "30",
-      "native_res": "1440p"
+      "resolution_w": "1920",
+      "resolution_h": "1080"
     },
     "relationships": {
       "platform": {
@@ -34,7 +35,8 @@
     "attributes": {
       "status": "unknown",
       "target_fps": 30,
-      "native_res": "1440p"
+      "resolution_w": "1920",
+      "resolution_h": "1080"
     },
     "relationships": {
       "game": {
@@ -103,7 +105,8 @@ Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 status | string | Y | Must be 'extant', 'rumored', 'canceled' or 'unknown'.
 target_fps | number | | Version target refresh rate. Max 1000.
-native_res | string | | Native display resolution, e.g. '720p'. Max 20 chars.
+resolution_w | number | | Native display resolution width, e.g. '720'. Max 10,000.
+resolution_h | number | | Native display resolution height, e.g. '1280'. Max 10,000.
 
 ### Relationships
 

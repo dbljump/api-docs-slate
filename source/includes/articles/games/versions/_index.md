@@ -13,7 +13,8 @@
       "attributes": {
         "status": "extant",
         "target_fps": null,
-        "native_res": null
+        "resolution_w": null,
+        "resolution_h: null
       },
       "relationships": {
         "game": {
@@ -42,7 +43,8 @@
       "attributes": {
         "status": "extant",
         "target_fps": null,
-        "native_res": null
+        "resolution_w": null,
+        "resolution_h: null
       },
       "relationships": {
         "game": {
