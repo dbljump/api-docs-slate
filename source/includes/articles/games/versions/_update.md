@@ -9,9 +9,11 @@
     "id": "3",
     "attributes": {
       "status": "unknown",
-      "target_fps": "30",
-      "resolution_w": "1920",
-      "resolution_h": "1080"
+      "fps_target": "30",
+      "fps_unlocked": "false",
+      "res_w": "1920",
+      "res_h": "1080",
+      "res_unlocked": "false"
     },
     "relationships": {
       "platform": {
@@ -29,64 +31,87 @@
 
 ```JSON
 {
-  "data": {
-    "id": "3",
-    "type": "game_versions",
-    "attributes": {
-      "status": "unknown",
-      "target_fps": 30,
-      "resolution_w": "1920",
-      "resolution_h": "1080"
-    },
-    "relationships": {
-      "game": {
-        "data": {
-          "id": "47",
-          "type": "games"
+    "data": {
+        "id": "3",
+        "type": "game_versions",
+        "attributes": {
+            "status": "unknown",
+            "fps_target": 30,
+            "fps_unlocked": false,
+            "res_w": 1920,
+            "res_h": 1080,
+            "res_unlocked": false
         },
-        "links": {
-          "related": "http://localhost:3000/articles/games/dark-souls"
-        }
-      },
-      "platform": {
-        "data": {
-          "id": "12",
-          "type": "platforms"
+        "relationships": {
+            "game": {
+                "data": {
+                    "id": "95",
+                    "type": "games"
+                },
+                "links": {
+                    "related": "http://localhost:3000/articles/games/shadow-of-the-beast"
+                }
+            },
+            "platform": {
+                "data": {
+                    "id": "12",
+                    "type": "platforms"
+                },
+                "links": {
+                    "related": "http://localhost:3000/platforms/sony-playstation-2"
+                }
+            },
+            "primary_image": {
+                "data": null
+            },
+            "images": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/game_versions/3/images"
+                }
+            }
         },
-        "links": {
-          "related": "http://localhost:3000/platforms/microsoft-windows-phone"
+        "meta": {
+            "description": "Find facts, images and credits for the PlayStation 2 version of Shadow of the Beast at Dbljump, the video game reference.",
+            "keywords": "Shadow of the Beast, PlayStation 2, platform, version, dbljump, video games, pc games, gaming",
+            "created_at": "2017-07-27T22:24:39.018Z",
+            "updated_at": "2017-07-30T21:24:04.585Z"
         }
-      }
-    }
-  },
-  "included": [
-    {
-      "id": "47",
-      "type": "games",
-      "attributes": {
-        "display_title": "Dark Souls"
-      },
-      "links": {
-        "self": "http://localhost:3000/articles/games/dark-souls"
-      }
     },
-    {
-      "id": "12",
-      "type": "platforms",
-      "attributes": {
-        "name": "Windows Phone"
-      },
-      "links": {
-        "self": "http://localhost:3000/platforms/microsoft-windows-phone"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "dark souls, windows phone, platform, version, dbljump, video games, pc games, gaming",
-    "description": "Find facts, images and credits for the Windows Phone version of Dark Souls at Dbljump, the video game reference.",
-    "created_at": "2017-04-24T09:09:19.319Z",
-    "updated_at": "2017-05-03T15:57:38.299Z"
-  }
+    "included": [
+        {
+            "id": "95",
+            "type": "games",
+            "attributes": {
+                "display_title": "Shadow of the Beast"
+            },
+            "links": {
+                "self": "http://localhost:3000/articles/games/shadow-of-the-beast"
+            },
+            "meta": {
+                "description": "Find Shadow of the Beast trivia, screenshots, credits and other info at Dbljump, the video game reference.",
+                "keywords": "Shadow of the Beast, 1989, Amiga, Atari ST, Commodore 64, Amstrad CPC, ZX Spectrum, Genesis, Master System, Lynx, FM Towns, TurboGrafx-CD, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-27T22:24:38.945Z",
+                "updated_at": "2017-07-27T22:25:24.453Z"
+            }
+        },
+        {
+            "id": "12",
+            "type": "platforms",
+            "attributes": {
+                "name": "PlayStation 2"
+            },
+            "links": {
+                "self": "http://localhost:3000/platforms/sony-playstation-2"
+            },
+            "meta": {
+                "description": "Find out about games for PlayStation 2 by Sony Corporation at Dbljump, the video game reference.",
+                "keywords": "PlayStation 2, PS2, Sony, home, system, platform, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-27T22:24:36.464Z",
+                "updated_at": "2017-07-27T22:24:36.464Z"
+            }
+        }
+    ]
 }
 ```
 
@@ -104,9 +129,11 @@ Update an existing game version. The user must be an editor.
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 status | string | Y | Must be 'extant', 'rumored', 'canceled' or 'unknown'.
-target_fps | number | | Version target refresh rate. Max 1000.
-resolution_w | number | | Native display resolution width, e.g. '720'. Max 10,000.
-resolution_h | number | | Native display resolution height, e.g. '1280'. Max 10,000.
+fps_target | number | | Version target refresh rate. Max 1000.
+fps_unlocked | boolean | | True if framerate is dynamic based on hardware (usually for modern PC games).
+res_w | number | | Native display resolution width, e.g. '720'. Max 10,000.
+res_h | number | | Native display resolution height, e.g. '1280'. Max 10,000.
+res_unlocked | boolean | | True if resolution is dynamic based on hardware (usually for modern PC games).
 
 ### Relationships
 
