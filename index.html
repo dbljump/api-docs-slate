@@ -1281,76 +1281,110 @@ Successful responses include the following HTTP header.<br /><br />
 <pre class="highlight plaintext"><code># GET /articles/games/dark-souls/versions?page[size]=2
 
 {
-  "data": [
-    {
-      "id": "2",
-      "type": "game_versions",
-      "attributes": {
-        "status": "extant",
-        "target_fps": null,
-        "resolution_w": null,
-        "resolution_h: null
-      },
-      "relationships": {
-        "game": {
-          "data": {
-            "id": "47",
-            "type": "games"
-          },
-          "links": {
-            "related": "http://localhost:3000/articles/games/dark-souls"
-          }
+    "data": [
+        {
+            "id": "83",
+            "type": "game_versions",
+            "attributes": {
+                "status": "extant",
+                "fps_target": 30,
+                "fps_unlocked": null,
+                "res_w": 1280,
+                "res_h": 720,
+                "res_unlocked": null
+            },
+            "relationships": {
+                "game": {
+                    "data": {
+                        "id": "79",
+                        "type": "games"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/articles/games/dark-souls"
+                    }
+                },
+                "platform": {
+                    "data": {
+                        "id": "13",
+                        "type": "platforms"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/platforms/sony-playstation-3"
+                    }
+                },
+                "primary_image": {
+                    "data": null
+                },
+                "images": {
+                    "data": [],
+                    "links": {
+                        "related": "http://localhost:3000/articles/game_versions/83/images"
+                    }
+                }
+            },
+            "meta": {
+                "description": "Find facts, images and credits for the PlayStation 3 version of Dark Souls at Dbljump, the video game reference.",
+                "keywords": "Dark Souls, PlayStation 3, platform, version, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-27T22:24:39.631Z",
+                "updated_at": "2017-07-27T22:24:39.631Z"
+            }
         },
-        "platform": {
-          "data": {
-            "id": "3",
-            "type": "platforms"
-          },
-          "links": {
-            "related": "http://localhost:3000/platforms/sony-playstation-3"
-          }
+        {
+            "id": "84",
+            "type": "game_versions",
+            "attributes": {
+                "status": "extant",
+                "fps_target": 30,
+                "fps_unlocked": null,
+                "res_w": 1280,
+                "res_h": 720,
+                "res_unlocked": null
+            },
+            "relationships": {
+                "game": {
+                    "data": {
+                        "id": "79",
+                        "type": "games"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/articles/games/dark-souls"
+                    }
+                },
+                "platform": {
+                    "data": {
+                        "id": "18",
+                        "type": "platforms"
+                    },
+                    "links": {
+                        "related": "http://localhost:3000/platforms/microsoft-xbox-360"
+                    }
+                },
+                "primary_image": {
+                    "data": null
+                },
+                "images": {
+                    "data": [],
+                    "links": {
+                        "related": "http://localhost:3000/articles/game_versions/84/images"
+                    }
+                }
+            },
+            "meta": {
+                "description": "Find facts, images and credits for the Xbox 360 version of Dark Souls at Dbljump, the video game reference.",
+                "keywords": "Dark Souls, Xbox 360, platform, version, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-27T22:24:39.641Z",
+                "updated_at": "2017-07-27T22:24:39.641Z"
+            }
         }
-      }
+    ],
+    "links": {
+        "self": "http://localhost:3000/articles/games/dark-souls/versions?page%5Bnumber%5D=1&amp;page%5Bsize%5D=2",
+        "next": "http://localhost:3000/articles/games/dark-souls/versions?page%5Bnumber%5D=2&amp;page%5Bsize%5D=2",
+        "last": "http://localhost:3000/articles/games/dark-souls/versions?page%5Bnumber%5D=2&amp;page%5Bsize%5D=2"
     },
-    {
-      "id": "3",
-      "type": "game_versions",
-      "attributes": {
-        "status": "extant",
-        "target_fps": null,
-        "resolution_w": null,
-        "resolution_h: null
-      },
-      "relationships": {
-        "game": {
-          "data": {
-            "id": "47",
-            "type": "games"
-          },
-          "links": {
-            "related": "http://localhost:3000/articles/games/dark-souls"
-          }
-        },
-        "platform": {
-          "data": {
-            "id": "8",
-            "type": "platforms"
-          },
-          "links": {
-            "related": "http://localhost:3000/platforms/microsoft-xbox-360"
-          }
-        }
-      }
+    "meta": {
+        "total_items": 3
     }
-  ],
-  "links": {
-    "self": "http://localhost:3000/articles/games/dark-souls/versions?page%5Bnumber%5D=1&amp;page%5Bsize%5D=2",
-    "next": "http://localhost:3000/articles/games/dark-souls/versions?page%5Bnumber%5D=2&amp;page%5Bsize%5D=2",
-    "last": "http://localhost:3000/articles/games/dark-souls/versions?page%5Bnumber%5D=2&amp;page%5Bsize%5D=2"
-  },
-  "meta": {
-    "total_items": 3
-  }
 }
 </code></pre>
 <p>Retrieve all game versions. Automatically paginated.</p>
@@ -1376,7 +1410,7 @@ Successful responses include the following HTTP header.<br /><br />
 <tr>
 <td>fields[{record-type}]</td>
 <td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[game_versions]=status,target_fps</code></td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[game_versions]=status,fps_target</code></td>
 </tr>
 <tr>
 <td>filter[{field}]</td>
@@ -1404,67 +1438,90 @@ Successful responses include the following HTTP header.<br /><br />
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/game_versions/2
+<pre class="highlight plaintext"><code># GET /articles/game_versions/80
 
 {
-  "data": {
-    "id": "2",
-    "type": "game_versions",
-    "attributes": {
-      "status": "extant",
-      "target_fps": null,
-      "resolution_w": null,
-      "resolution_h: null
-    },
-    "relationships": {
-      "game": {
-        "data": {
-          "id": "47",
-          "type": "games"
+    "data": {
+        "id": "80",
+        "type": "game_versions",
+        "attributes": {
+            "status": "extant",
+            "fps_target": 30,
+            "fps_unlocked": null,
+            "res_w": 1280,
+            "res_h": 720,
+            "res_unlocked": null
         },
-        "links": {
-          "related": "http://localhost:3000/articles/games/dark-souls"
-        }
-      },
-      "platform": {
-        "data": {
-          "id": "3",
-          "type": "platforms"
+        "relationships": {
+            "game": {
+                "data": {
+                    "id": "82",
+                    "type": "games"
+                },
+                "links": {
+                    "related": "http://localhost:3000/articles/games/the-legend-of-zelda-breath-of-the-wild"
+                }
+            },
+            "platform": {
+                "data": {
+                    "id": "25",
+                    "type": "platforms"
+                },
+                "links": {
+                    "related": "http://localhost:3000/platforms/nintendo-wii-u"
+                }
+            },
+            "primary_image": {
+                "data": null
+            },
+            "images": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/game_versions/80/images"
+                }
+            }
         },
-        "links": {
-          "related": "http://localhost:3000/platforms/sony-playstation-3"
+        "meta": {
+            "description": "Find facts, images and credits for the Wii U version of The Legend of Zelda: Breath of the Wild at Dbljump, the video game reference.",
+            "keywords": "The Legend of Zelda: Breath of the Wild, Wii U, platform, version, dbljump, video games, pc games, gaming",
+            "created_at": "2017-07-27T22:24:39.603Z",
+            "updated_at": "2017-07-27T22:24:39.603Z"
         }
-      }
-    }
-  },
-  "included": [
-    {
-      "id": "47",
-      "type": "games",
-      "attributes": {
-        "display_title": "Dark Souls"
-      },
-      "links": {
-        "self": "http://localhost:3000/articles/games/dark-souls"
-      }
     },
-    {
-      "id": "3",
-      "type": "platforms",
-      "attributes": {
-        "name": "PlayStation 3"
-      },
-      "links": {
-        "self": "http://localhost:3000/platforms/sony-playstation-3"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "dark souls, playstation 3, platform, version, dbljump, video games, pc games, gaming",
-    "description": "Find facts, images and credits for the PlayStation 3 version of Dark Souls at Dbljump, the video game reference.",
-    "created_at": "2017-04-24T09:09:19.276Z",
-    "updated_at": "2017-04-24T09:09:19.276Z"
-  }
+    "included": [
+        {
+            "id": "82",
+            "type": "games",
+            "attributes": {
+                "display_title": "The Legend of Zelda: Breath of the Wild"
+            },
+            "links": {
+                "self": "http://localhost:3000/articles/games/the-legend-of-zelda-breath-of-the-wild"
+            },
+            "meta": {
+                "description": "Find The Legend of Zelda: Breath of the Wild trivia, screenshots, credits and other info at Dbljump, the video game reference.",
+                "keywords": "The Legend of Zelda: Breath of the Wild, 2017, Switch, Wii U, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-27T22:24:38.651Z",
+                "updated_at": "2017-07-27T22:25:04.144Z"
+            }
+        },
+        {
+            "id": "25",
+            "type": "platforms",
+            "attributes": {
+                "name": "Wii U"
+            },
+            "links": {
+                "self": "http://localhost:3000/platforms/nintendo-wii-u"
+            },
+            "meta": {
+                "description": "Find out about games for Wii U by Nintendo Co., Ltd. at Dbljump, the video game reference.",
+                "keywords": "Wii U, WiiU, Nintendo, home, system, platform, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-27T22:24:36.910Z",
+                "updated_at": "2017-07-27T22:24:36.910Z"
+            }
+        }
+    ]
 }
 </code></pre>
 <p>Retrieve a single game version. Game versions are publicly available. No sign-in is required.</p>
@@ -1499,22 +1556,34 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Must be &lsquo;extant&rsquo;, &#39;rumored&rsquo;, &#39;canceled&rsquo; or &#39;unknown&rsquo;.</td>
 </tr>
 <tr>
-<td>target_fps</td>
+<td>fps_target</td>
 <td>number</td>
 <td></td>
 <td>Version target refresh rate. Max 1000.</td>
 </tr>
 <tr>
-<td>resolution_w</td>
+<td>fps_unlocked</td>
+<td>boolean</td>
+<td></td>
+<td>True if framerate is dynamic based on hardware (usually for modern PC games).</td>
+</tr>
+<tr>
+<td>res_w</td>
 <td>number</td>
 <td></td>
 <td>Native display resolution width, e.g. &#39;720&rsquo;. Max 10,000.</td>
 </tr>
 <tr>
-<td>resolution_h</td>
+<td>res_h</td>
 <td>number</td>
 <td></td>
 <td>Native display resolution height, e.g. &#39;1280&rsquo;. Max 10,000.</td>
+</tr>
+<tr>
+<td>res_unlocked</td>
+<td>boolean</td>
+<td></td>
+<td>True if resolution is dynamic based on hardware (usually for modern PC games).</td>
 </tr>
 </tbody></table>
 
@@ -1574,14 +1643,16 @@ Successful responses include the following HTTP header.<br /><br />
     "type": "game_versions",
     "attributes": {
       "status": "rumored",
-      "target_fps": "60",
-      "resolution_w": "1920",
-      "resolution_h": "1080"
+      "fps_target": "60",
+      "fps_unlocked": "false",
+      "res_w": "1920",
+      "res_h": "1080",
+      "res_unlocked": "false"
     },
     "relationships": {
       "platform": {
         "data": {
-          "id": "13",
+          "id": "60",
           "type": "platforms"
         }
       }
@@ -1593,64 +1664,87 @@ Successful responses include the following HTTP header.<br /><br />
 <p>Response body | <code class="prettyprint">HTTP 201</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "5",
-    "type": "game_versions",
-    "attributes": {
-      "status": "rumored",
-      "target_fps": 60,
-      "resolution_w": "1920",
-      "resolution_h": "1080"
-    },
-    "relationships": {
-      "game": {
-        "data": {
-          "id": "47",
-          "type": "games"
+    "data": {
+        "id": "96",
+        "type": "game_versions",
+        "attributes": {
+            "status": "rumored",
+            "fps_target": 60,
+            "fps_unlocked": false,
+            "res_w": 1920,
+            "res_h": 1080,
+            "res_unlocked": false
         },
-        "links": {
-          "related": "http://localhost:3000/articles/games/dark-souls"
-        }
-      },
-      "platform": {
-        "data": {
-          "id": "13",
-          "type": "platforms"
+        "relationships": {
+            "game": {
+                "data": {
+                    "id": "79",
+                    "type": "games"
+                },
+                "links": {
+                    "related": "http://localhost:3000/articles/games/dark-souls"
+                }
+            },
+            "platform": {
+                "data": {
+                    "id": "60",
+                    "type": "platforms"
+                },
+                "links": {
+                    "related": "http://localhost:3000/platforms/commodore-international-commodore-64"
+                }
+            },
+            "primary_image": {
+                "data": null
+            },
+            "images": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/game_versions/96/images"
+                }
+            }
         },
-        "links": {
-          "related": "http://localhost:3000/platforms/nintendo-switch"
+        "meta": {
+            "description": "Find facts, images and credits for the Commodore 64 version of Dark Souls at Dbljump, the video game reference.",
+            "keywords": "Dark Souls, Commodore 64, platform, version, dbljump, video games, pc games, gaming",
+            "created_at": "2017-07-30T21:21:34.021Z",
+            "updated_at": "2017-07-30T21:21:34.021Z"
         }
-      }
-    }
-  },
-  "included": [
-    {
-      "id": "47",
-      "type": "games",
-      "attributes": {
-        "display_title": "Dark Souls"
-      },
-      "links": {
-        "self": "http://localhost:3000/articles/games/dark-souls"
-      }
     },
-    {
-      "id": "13",
-      "type": "platforms",
-      "attributes": {
-        "name": "Switch"
-      },
-      "links": {
-        "self": "http://localhost:3000/platforms/nintendo-switch"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "dark souls, switch, platform, version, dbljump, video games, pc games, gaming",
-    "description": "Find facts, images and credits for the Switch version of Dark Souls at Dbljump, the video game reference.",
-    "created_at": "2017-05-03T15:52:55.575Z",
-    "updated_at": "2017-05-03T15:52:55.575Z"
-  }
+    "included": [
+        {
+            "id": "79",
+            "type": "games",
+            "attributes": {
+                "display_title": "Dark Souls"
+            },
+            "links": {
+                "self": "http://localhost:3000/articles/games/dark-souls"
+            },
+            "meta": {
+                "description": "Find Dark Souls trivia, screenshots, credits and other info at Dbljump, the video game reference.",
+                "keywords": "Dark Souls, 2011, PlayStation 3, Xbox 360, Windows, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-27T22:24:38.585Z",
+                "updated_at": "2017-07-27T22:25:00.050Z"
+            }
+        },
+        {
+            "id": "60",
+            "type": "platforms",
+            "attributes": {
+                "name": "Commodore 64"
+            },
+            "links": {
+                "self": "http://localhost:3000/platforms/commodore-international-commodore-64"
+            },
+            "meta": {
+                "description": "Find out about games for Commodore 64 by Commodore International at Dbljump, the video game reference.",
+                "keywords": "Commodore 64, C64, Commodore International, home, system, platform, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-27T22:24:37.796Z",
+                "updated_at": "2017-07-27T22:24:37.796Z"
+            }
+        }
+    ]
 }
 </code></pre>
 <p>Create a new game version. User must be an editor or admin.</p>
@@ -1681,22 +1775,34 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Must be &lsquo;extant&rsquo;, &#39;rumored&rsquo;, &#39;canceled&rsquo; or &#39;unknown&rsquo;.</td>
 </tr>
 <tr>
-<td>target_fps</td>
+<td>fps_target</td>
 <td>number</td>
 <td></td>
 <td>Version target refresh rate. Max 1000.</td>
 </tr>
 <tr>
-<td>resolution_w</td>
+<td>fps_unlocked</td>
+<td>boolean</td>
+<td></td>
+<td>True if framerate is dynamic based on hardware (usually for modern PC games)</td>
+</tr>
+<tr>
+<td>res_w</td>
 <td>number</td>
 <td></td>
 <td>Native display resolution width, e.g. &#39;720&rsquo;. Max 10,000.</td>
 </tr>
 <tr>
-<td>resolution_h</td>
+<td>res_h</td>
 <td>number</td>
 <td></td>
 <td>Native display resolution height, e.g. &#39;1280&rsquo;. Max 10,000.</td>
+</tr>
+<tr>
+<td>res_unlocked</td>
+<td>boolean</td>
+<td></td>
+<td>True if resolution is dynamic based on hardware (usually for modern PC games)</td>
 </tr>
 </tbody></table>
 
@@ -1737,9 +1843,11 @@ Successful responses include the following HTTP header.<br /><br />
     "id": "3",
     "attributes": {
       "status": "unknown",
-      "target_fps": "30",
-      "resolution_w": "1920",
-      "resolution_h": "1080"
+      "fps_target": "30",
+      "fps_unlocked": "false",
+      "res_w": "1920",
+      "res_h": "1080",
+      "res_unlocked": "false"
     },
     "relationships": {
       "platform": {
@@ -1756,64 +1864,87 @@ Successful responses include the following HTTP header.<br /><br />
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
-  "data": {
-    "id": "3",
-    "type": "game_versions",
-    "attributes": {
-      "status": "unknown",
-      "target_fps": 30,
-      "resolution_w": "1920",
-      "resolution_h": "1080"
-    },
-    "relationships": {
-      "game": {
-        "data": {
-          "id": "47",
-          "type": "games"
+    "data": {
+        "id": "3",
+        "type": "game_versions",
+        "attributes": {
+            "status": "unknown",
+            "fps_target": 30,
+            "fps_unlocked": false,
+            "res_w": 1920,
+            "res_h": 1080,
+            "res_unlocked": false
         },
-        "links": {
-          "related": "http://localhost:3000/articles/games/dark-souls"
-        }
-      },
-      "platform": {
-        "data": {
-          "id": "12",
-          "type": "platforms"
+        "relationships": {
+            "game": {
+                "data": {
+                    "id": "95",
+                    "type": "games"
+                },
+                "links": {
+                    "related": "http://localhost:3000/articles/games/shadow-of-the-beast"
+                }
+            },
+            "platform": {
+                "data": {
+                    "id": "12",
+                    "type": "platforms"
+                },
+                "links": {
+                    "related": "http://localhost:3000/platforms/sony-playstation-2"
+                }
+            },
+            "primary_image": {
+                "data": null
+            },
+            "images": {
+                "data": [],
+                "links": {
+                    "related": "http://localhost:3000/articles/game_versions/3/images"
+                }
+            }
         },
-        "links": {
-          "related": "http://localhost:3000/platforms/microsoft-windows-phone"
+        "meta": {
+            "description": "Find facts, images and credits for the PlayStation 2 version of Shadow of the Beast at Dbljump, the video game reference.",
+            "keywords": "Shadow of the Beast, PlayStation 2, platform, version, dbljump, video games, pc games, gaming",
+            "created_at": "2017-07-27T22:24:39.018Z",
+            "updated_at": "2017-07-30T21:24:04.585Z"
         }
-      }
-    }
-  },
-  "included": [
-    {
-      "id": "47",
-      "type": "games",
-      "attributes": {
-        "display_title": "Dark Souls"
-      },
-      "links": {
-        "self": "http://localhost:3000/articles/games/dark-souls"
-      }
     },
-    {
-      "id": "12",
-      "type": "platforms",
-      "attributes": {
-        "name": "Windows Phone"
-      },
-      "links": {
-        "self": "http://localhost:3000/platforms/microsoft-windows-phone"
-      }
-    }
-  ],
-  "meta": {
-    "keywords": "dark souls, windows phone, platform, version, dbljump, video games, pc games, gaming",
-    "description": "Find facts, images and credits for the Windows Phone version of Dark Souls at Dbljump, the video game reference.",
-    "created_at": "2017-04-24T09:09:19.319Z",
-    "updated_at": "2017-05-03T15:57:38.299Z"
-  }
+    "included": [
+        {
+            "id": "95",
+            "type": "games",
+            "attributes": {
+                "display_title": "Shadow of the Beast"
+            },
+            "links": {
+                "self": "http://localhost:3000/articles/games/shadow-of-the-beast"
+            },
+            "meta": {
+                "description": "Find Shadow of the Beast trivia, screenshots, credits and other info at Dbljump, the video game reference.",
+                "keywords": "Shadow of the Beast, 1989, Amiga, Atari ST, Commodore 64, Amstrad CPC, ZX Spectrum, Genesis, Master System, Lynx, FM Towns, TurboGrafx-CD, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-27T22:24:38.945Z",
+                "updated_at": "2017-07-27T22:25:24.453Z"
+            }
+        },
+        {
+            "id": "12",
+            "type": "platforms",
+            "attributes": {
+                "name": "PlayStation 2"
+            },
+            "links": {
+                "self": "http://localhost:3000/platforms/sony-playstation-2"
+            },
+            "meta": {
+                "description": "Find out about games for PlayStation 2 by Sony Corporation at Dbljump, the video game reference.",
+                "keywords": "PlayStation 2, PS2, Sony, home, system, platform, dbljump, video games, pc games, gaming",
+                "created_at": "2017-07-27T22:24:36.464Z",
+                "updated_at": "2017-07-27T22:24:36.464Z"
+            }
+        }
+    ]
 }
 </code></pre>
 <p>Update an existing game version. The user must be an editor.</p>
@@ -1844,22 +1975,34 @@ Successful responses include the following HTTP header.<br /><br />
 <td>Must be &lsquo;extant&rsquo;, &#39;rumored&rsquo;, &#39;canceled&rsquo; or &#39;unknown&rsquo;.</td>
 </tr>
 <tr>
-<td>target_fps</td>
+<td>fps_target</td>
 <td>number</td>
 <td></td>
 <td>Version target refresh rate. Max 1000.</td>
 </tr>
 <tr>
-<td>resolution_w</td>
+<td>fps_unlocked</td>
+<td>boolean</td>
+<td></td>
+<td>True if framerate is dynamic based on hardware (usually for modern PC games).</td>
+</tr>
+<tr>
+<td>res_w</td>
 <td>number</td>
 <td></td>
 <td>Native display resolution width, e.g. &#39;720&rsquo;. Max 10,000.</td>
 </tr>
 <tr>
-<td>resolution_h</td>
+<td>res_h</td>
 <td>number</td>
 <td></td>
 <td>Native display resolution height, e.g. &#39;1280&rsquo;. Max 10,000.</td>
+</tr>
+<tr>
+<td>res_unlocked</td>
+<td>boolean</td>
+<td></td>
+<td>True if resolution is dynamic based on hardware (usually for modern PC games).</td>
 </tr>
 </tbody></table>
 
@@ -1944,20 +2087,20 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_VERSION_TARGET_FPS_LESS_THAN_OR_EQUAL_TO</td>
-<td>target_fps</td>
+<td>GAME_VERSION_FPS_TARGET_LESS_THAN_OR_EQUAL_TO</td>
+<td>fps_target</td>
 <td>Target FPS must be less than or equal to 1000.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_VERSION_RESOLUTION_W_LESS_THAN_OR_EQUAL_TO</td>
-<td>resolution_w</td>
+<td>GAME_VERSION_RES_W_LESS_THAN_OR_EQUAL_TO</td>
+<td>res_w</td>
 <td>Resolution width must be less than or equal to 10,000.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_VERSION_RESOLUTION_H_LESS_THAN_OR_EQUAL_TO</td>
-<td>resolution_h</td>
+<td>GAME_VERSION_RES_H_LESS_THAN_OR_EQUAL_TO</td>
+<td>res_h</td>
 <td>Resolution height must be less than or equal to 10,000.</td>
 </tr>
 </tbody></table>
