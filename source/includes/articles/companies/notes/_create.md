@@ -74,11 +74,23 @@ Create a new note for a given company. A note is a fact, story or piece of trivi
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-category | string | Y | The note category. Must be an accepted value.
+category | string | Y | See [Category](#company_notes_cat).
 body | string | Y | The note text. 5-2000 chars.
 cite_url | string |  | The URL of the source web page. 5-250 chars.
 cite_title | string | | The title of the source web page. 5-250 chars.
 cite_website | string | | The name of the source website. 1-100 chars.
+
+### <a name="company_notes_cat"></a>Category
+
+The `category` attribute accepts the following values.
+
+Value | Description
+---- | -----------
+history | Notes related to the history of the company.
+organization | Notes related to the structure of the company.
+products | Notes related to the company's products.
+tech | Notes related to the company's innovations and technologies used.
+impact | Notes related to the company's achievements and impact on the wider world.
 
 ### Success HTTP response code
 

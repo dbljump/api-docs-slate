@@ -91,11 +91,25 @@ Create a new note for a given game. A note is a fact, story or piece of trivia a
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-category | string | Y | The note category. Must be an accepted value.
+category | string | Y | See [Category](#game_notes_cat).
 body | string | Y | The note text. 5-2000 chars.
 cite_url | string |  | The URL of the source web page. 5-250 chars.
 cite_title | string | | The title of the source web page. 5-250 chars.
 cite_website | string | | The name of the source website. 1-100 chars.
+
+### <a name="game_notes_cat"></a>Category
+
+The `category` attribute accepts the following values.
+
+Value | Description
+----- | -----------
+development | Notes related to the creation of the game software.
+publishing | Notes related to publishing and release of the game.
+tech | Notes related to the technologies used in the game, including graphics.
+sound | Notes related to music and sound in the game.
+game | Notes related to the game's content and how it plays.
+story | Notes related to the game's story.
+impact | Notes related to the game's achievements and impact on the wider world.
 
 ### Relationships
 

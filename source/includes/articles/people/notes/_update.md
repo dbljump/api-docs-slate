@@ -75,7 +75,7 @@ Update an existing person note. The user must be an editor.
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-category | string | Y | The note category. Must be an accepted value.
+category | string | Y | See [Category](#person_notes_cat).
 body | string | Y | The note text. 5-2000 chars.
 cite_url | string |  | The URL of the source web page. 5-250 chars.
 cite_title | string | | The title of the source web page. 5-250 chars.

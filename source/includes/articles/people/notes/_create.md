@@ -74,11 +74,22 @@ Create a new note for a given person. A note is a fact, story or piece of trivia
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-category | string | Y | The note category. Must be an accepted value.
+category | string | Y | See [Category](#person_notes_cat).
 body | string | Y | The note text. 5-2000 chars.
 cite_url | string |  | The URL of the source web page. 5-250 chars.
 cite_title | string | | The title of the source web page. 5-250 chars.
 cite_website | string | | The name of the source website. 1-100 chars.
+
+### <a name="person_notes_cat"></a>Category
+
+The `category` attribute accepts the following values.
+
+Value | Description
+----- | -----------
+bio | Notes related to the person's personal life or biography.
+education | Notes related to the person's education and academic achievements.
+career | Notes related to the person's professional life and achievements.
+impact | Notes related to the person's impact on the wider world.
 
 ### Success HTTP response code
 
