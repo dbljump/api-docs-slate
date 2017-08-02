@@ -41,7 +41,8 @@
     "attributes": {
       "kind": "photo",
       "slug": "portrait-of-takashi-tezuka-photo",
-      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
+      "original": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
+      "thumb": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/th_file.gif",
       "title": "Portrait of Takashi Tezuka",
       "description": "Takashi Tezuka in Kyoto on 2nd February 2017.",
       "year": 2017,

@@ -13,7 +13,8 @@
       "attributes": {
         "kind": "photo",
         "slug": "nintendo-office-photo",
-        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+        "original": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+        "thumb": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/th_nintendo-hq-kyoto-2006.jpg",
         "title": "Nintendo office",
         "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
         "year": 2006,
@@ -53,7 +54,8 @@
       "attributes": {
         "kind": "photo",
         "slug": "mario-figure-photo",
-        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
+        "original": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
+        "thumb": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/th_mario-figure.jpg",
         "title": "Mario figure",
         "description": "",
         "year": 2016,

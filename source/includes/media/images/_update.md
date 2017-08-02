@@ -41,7 +41,8 @@
     "attributes": {
       "kind": "screen",
       "slug": "new-title-screen",
-      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+      "original": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+      "thumb": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/th_nintendo-hq-kyoto-2006.jpg",
       "title": "New Title",
       "description": "New description.",
       "year": 2000,

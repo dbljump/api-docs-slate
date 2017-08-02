@@ -12,7 +12,8 @@
     "attributes": {
       "kind": "photo",
       "slug": "mario-figure-photo",
-      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
+      "original": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
+      "thumb": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/th_mario-figure.jpg",
       "title": "Mario figure",
       "description": "",
       "year": 2016,
@@ -88,7 +89,8 @@ Retrieve a single image record. Images are publicly available. No sign-in is req
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-file | string | Y | Image URL, usually at AWS.
+original | string | Y | URL of the original file.
+thumb | string | Y | URL of the thumbnail version, resized to max-width 300px.
 slug | string | Y | A record ID based on metadata, e.g. 'photo-of-hideo-kojima'.
 kind | string | Y | See [Kind](#image_kind).
 title | string | Y | The image title.
