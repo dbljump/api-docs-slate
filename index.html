@@ -18417,7 +18417,8 @@ Successful responses include the following HTTP header.<br /><br />
       "attributes": {
         "kind": "photo",
         "slug": "nintendo-office-photo",
-        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+        "original": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+        "thumb": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/th_nintendo-hq-kyoto-2006.jpg",
         "title": "Nintendo office",
         "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
         "year": 2006,
@@ -18457,7 +18458,8 @@ Successful responses include the following HTTP header.<br /><br />
       "attributes": {
         "kind": "photo",
         "slug": "mario-figure-photo",
-        "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
+        "original": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
+        "thumb": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/th_mario-figure.jpg",
         "title": "Mario figure",
         "description": "",
         "year": 2016,
@@ -18562,7 +18564,8 @@ Successful responses include the following HTTP header.<br /><br />
     "attributes": {
       "kind": "photo",
       "slug": "mario-figure-photo",
-      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
+      "original": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
+      "thumb": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/th_mario-figure.jpg",
       "title": "Mario figure",
       "description": "",
       "year": 2016,
@@ -18646,10 +18649,16 @@ Successful responses include the following HTTP header.<br /><br />
 </tr>
 </thead><tbody>
 <tr>
-<td>file</td>
+<td>original</td>
 <td>string</td>
 <td>Y</td>
-<td>Image URL, usually at AWS.</td>
+<td>URL of the original file.</td>
+</tr>
+<tr>
+<td>thumb</td>
+<td>string</td>
+<td>Y</td>
+<td>URL of the thumbnail version, resized to max-width 300px.</td>
 </tr>
 <tr>
 <td>slug</td>
@@ -18807,7 +18816,8 @@ Successful responses include the following HTTP header.<br /><br />
     "attributes": {
       "kind": "photo",
       "slug": "portrait-of-takashi-tezuka-photo",
-      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
+      "original": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/file.gif",
+      "thumb": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/3/th_file.gif",
       "title": "Portrait of Takashi Tezuka",
       "description": "Takashi Tezuka in Kyoto on 2nd February 2017.",
       "year": 2017,
@@ -19178,7 +19188,8 @@ Successful responses include the following HTTP header.<br /><br />
     "attributes": {
       "kind": "screen",
       "slug": "new-title-screen",
-      "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+      "original": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
+      "thumb": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/th_nintendo-hq-kyoto-2006.jpg",
       "title": "New Title",
       "description": "New description.",
       "year": 2000,
