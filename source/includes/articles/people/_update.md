@@ -210,6 +210,8 @@ Update an existing person article. The user must be an editor.
 
 ### Request attributes
 
+Note that the `display_title` attribute can only be directly set when updating (not creating) a record.
+
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 display_title | string | Y | 1-250 characters.

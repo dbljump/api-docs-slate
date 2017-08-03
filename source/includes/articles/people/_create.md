@@ -7,7 +7,8 @@
   "data": {
     "type": "people",
     "attributes": {
-      "display_title": "New Person",
+      "given_names": "New",
+      "family_name": "Person",
       "description": "New Person is a new person, and this describes them.",
       "gender": "female",
       "birth_date": "1965-09-12",
@@ -45,7 +46,7 @@
 ```JSON
 {
     "data": {
-        "id": "48",
+        "id": "140",
         "type": "people",
         "attributes": {
             "display_title": "New Person",
@@ -71,7 +72,7 @@
                     "type": "images"
                 },
                 "links": {
-                    "related": "http://localhost:3000/media/images/nintendo-office-photo"
+                    "related": "http://localhost:3000/media/images/nintendo-office"
                 }
             },
             "created_by": {
@@ -92,7 +93,7 @@
                     "type": "places"
                 },
                 "links": {
-                    "related": "http://localhost:3000/places/los-angeles-california-united-states"
+                    "related": "http://localhost:3000/places/all-guernsey"
                 }
             },
             "death_place": {
@@ -101,11 +102,16 @@
                     "type": "places"
                 },
                 "links": {
-                    "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+                    "related": "http://localhost:3000/places/glasgow-scotland-united-kingdom"
                 }
             },
             "names": {
-                "data": [],
+                "data": [
+                    {
+                        "id": "191",
+                        "type": "person_names"
+                    }
+                ],
                 "links": {
                     "related": "http://localhost:3000/articles/people/new-person/names"
                 }
@@ -136,6 +142,12 @@
         },
         "links": {
             "self": "http://localhost:3000/articles/people/new-person"
+        },
+        "meta": {
+            "description": "Find New Person's game credits, biography, images and facts at Dbljump, the video game reference.",
+            "keywords": "New Person, 1965, All, Guernsey, New Person, person, profile, biography, games, dbljump, video games, pc games, gaming",
+            "created_at": "2017-08-03T09:18:15.694Z",
+            "updated_at": "2017-08-03T09:18:15.788Z"
         }
     },
     "included": [
@@ -143,11 +155,16 @@
             "id": "1",
             "type": "images",
             "attributes": {
-                "file": "http://localhost:3000/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
                 "title": "Nintendo office"
             },
             "links": {
-                "self": "http://localhost:3000/media/images/nintendo-office-photo"
+                "self": "http://localhost:3000/media/images/nintendo-office"
+            },
+            "meta": {
+                "description": "'Nintendo office' is a video game image at Dbljump.",
+                "keywords": "Nintendo office, photo, 2006, 2006-02-18, Moja~commonswiki, image, picture, media, dbljump, video games, pc games, gaming",
+                "created_at": "2017-08-03T09:13:25.111Z",
+                "updated_at": "2017-08-03T09:13:25.111Z"
             }
         },
         {
@@ -155,41 +172,57 @@
             "type": "users",
             "attributes": {
                 "username": "neil",
-                "avatar": "http://localhost:3000/uploads/user_avatar/2/1706281804.jpg"
+                "avatar": "http://localhost:3000/uploads/user_avatar/2/neil-1708031013.jpg"
             },
             "links": {
                 "self": "http://localhost:3000/users/2"
+            },
+            "meta": {
+                "description": "Neil Wheatley is a member at Dbljump, the video game reference.",
+                "keywords": "neil, Neil Wheatley, user, dbljump, video games, pc games, gaming",
+                "last_signed_in_at": null,
+                "last_sign_in_ip": null,
+                "sign_in_count": 0,
+                "activated_at": "2017-08-03T09:13:20.434Z",
+                "created_at": "2017-08-03T09:13:20.947Z",
+                "updated_at": "2017-08-03T09:13:20.947Z"
             }
         },
         {
             "id": "2883",
             "type": "places",
             "attributes": {
-                "name": "Los Angeles",
-                "formatted": "Los Angeles, California, United States"
+                "name": "All",
+                "formatted": "All, Guernsey"
             },
             "links": {
-                "self": "http://localhost:3000/places/los-angeles-california-united-states"
+                "self": "http://localhost:3000/places/all-guernsey"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from All, Guernsey at Dbljump.",
+                "keywords": "All, Guernsey, state, county, place, dbljump, video games, pc games, gaming",
+                "created_at": "2017-08-03T09:13:18.139Z",
+                "updated_at": "2017-08-03T09:13:18.139Z"
             }
         },
         {
             "id": "2932",
             "type": "places",
             "attributes": {
-                "name": "Kyoto",
-                "formatted": "Kyoto, Kyoto Prefecture, Japan"
+                "name": "Glasgow",
+                "formatted": "Glasgow, Scotland, United Kingdom"
             },
             "links": {
-                "self": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
+                "self": "http://localhost:3000/places/glasgow-scotland-united-kingdom"
+            },
+            "meta": {
+                "description": "Find video game companies and games industry professionals from Glasgow, Scotland, United Kingdom at Dbljump.",
+                "keywords": "Glasgow, Scotland, United Kingdom, city, town, place, dbljump, video games, pc games, gaming",
+                "created_at": "2017-08-03T09:13:19.411Z",
+                "updated_at": "2017-08-03T09:13:19.411Z"
             }
         }
-    ],
-    "meta": {
-        "keywords": "New Person, 1965, Los Angeles, California, United States, person, profile, biography, games, dbljump, video games, pc games, gaming",
-        "description": "Find New Person's game credits, biography, images and facts at Dbljump, the video game reference.",
-        "created_at": "2017-06-28T17:10:26.129Z",
-        "updated_at": "2017-06-28T17:10:26.129Z"
-    }
+    ]
 }
 ```
 
@@ -204,9 +237,12 @@ Create a new person article. User must be an editor or admin.
 
 ### Request attributes
 
+Note that the `given_names` and `family_name` attributes are only used for creating records. Their values are used to set `display_title` and `sort_title`.
+
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-display_title | string | Y | 1-250 characters.
+given_names | string | Y | Max 50 characters. Only used when creating a record.
+family_name | string | | Max 50 characters. Only used when creating a record.
 description | text | | 1-800 characters.
 gender | string | | Must be 'male', 'female', 'transman' or 'transwoman'.
 birth_date | date | | Between 1st Jan 1800 and the present.
