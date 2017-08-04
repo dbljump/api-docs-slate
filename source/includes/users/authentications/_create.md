@@ -29,7 +29,8 @@
             "given_names": "Neil",
             "family_name": "Wheatley",
             "gender": "male",
-            "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1707121330.jpg",
+            "avatar": "null",
+            "avatar_thumb": null,
             "birthday": "1980-02-14",
             "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VyX3JvbGUiOiJhZG1pbiIsImV4cGlyeSI6IjIwMTctMDgtMTEgMTM6NDg6NDcgKzAwMDAifQ.Q8HJ0HNUDnKc776MAT4S-c7OqVtB20Uq8yQTxt_twqY"
         },

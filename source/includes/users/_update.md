@@ -47,6 +47,7 @@
             "family_name": "Name",
             "gender": "male",
             "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/5/1707121343.gif",
+            "avatar_thumb": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/5/th_1707121343.gif",
             "birthday": "1985-07-20",
             "jwt": null
         },

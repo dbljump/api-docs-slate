@@ -17,6 +17,7 @@
                 "family_name": "the Kiwi",
                 "gender": "Female",
                 "avatar": null,
+                "avatar_thumb": null,
                 "birthday": "1988-09-01",
                 "jwt": null
             },

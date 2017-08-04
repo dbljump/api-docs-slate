@@ -15,7 +15,8 @@
             "given_names": "Neil",
             "family_name": "Wheatley",
             "gender": "male",
-            "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/1707121330.jpg",
+            "avatar": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/17071213.jpg",
+            "avatar_thumb": "https://dbljumpheroku.s3.amazonaws.com/uploads/user_avatar/2/th_17071213.jpg",
             "birthday": "1980-02-14",
             "jwt": null
         },
@@ -94,6 +95,7 @@ given_names | string | | The user's given names, e.g. 'Jean Pierre'.
 family_name | string | | The user's family name, e.g. 'Blanc'.
 gender | string | | Usually `male` or `female`, but can be any string.
 avatar | string | | URL of the user's avatar image.
+avatar_thumb | string | | URL of the 150x150 thumbnail avatar.
 birthday | date | | E.g. '1977-12-19'
 jwt | string | | Always `null` for this endpoint.
 
