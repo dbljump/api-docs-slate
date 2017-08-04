@@ -8,6 +8,7 @@ toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - intro
   - articles/games/intro
   - articles/games/index
   - articles/games/show
@@ -191,20 +192,3 @@ includes:
 
 search: true
 ---
-
-# Introduction
-
-Welcome to the DblJump REST API. Dbljump is a video game reference application built with Ruby on Rails 5. This API follows the [JSON API](http://jsonapi.org) specification.
-
-<aside class="notice">
-All of your requests should include the following HTTP headers. Replace <code>vnum</code> with the API version you want to use (1 is the latest).<br /><br />
-<code>Accept:application/vnd.api+json; version='vnum'<br />
-Content-Type:application/vnd.api+json; version='vnum'</code></aside>
-
-<aside class="notice">
-This API uses <a href="https://jwt.io" target="_blank">JSON web tokens (JWT)</a> for authentication. When your request requires user authentication, it should include the following header replacing <code>user-JWT</code> with the token. For more details, see the user authentication section.<br /><br />
-<code>Authorization:Bearer 'user-JWT'</code></aside>
-
-<aside class="notice">
-Successful responses include the following HTTP header.<br /><br />
-<code>Content-Type:application/vnd.api+json; charset=utf-8</code></aside>
