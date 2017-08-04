@@ -1,0 +1,127 @@
+<h1 id="introduction">Introduction</h1>
+
+<p>The Dbljump API is a system for cataloging and serving data about video games and the video game industry.</p>
+
+<p>It is part of a wider group of software, Dbljump, which is made up of:</p>
+
+<ul>
+<li>The Dbljump <a href="https://www.postgresql.org">PostgreSQL</a> database</li>
+<li>The back-end dbljump/rails-api, a <a href="http://rubyonrails.org">Ruby on Rails</a> application that manages the database and provides the API described here. This is currently under development.</li>
+<li>The front-end client dbljump/client-ember, an <a href="https://www.emberjs.com">Ember.js</a> application that provides a web user interface. This is currently under development.</li>
+<li><a href="http://www.dbljump.com">Dbljump.com</a>, the web domain where it all comes together</li>
+</ul>
+
+<p>This API is therefore designed to be used exclusively by the Dbljump front-end client.</p>
+
+<p>This documentation, which describes the features of the API and how to use them, is intended for use by the Dbljump development team. It was built with <a href="https://github.com/lord/slate">Slate</a> and is hosted with <a href="https://pages.github.com">GitHub Pages</a>.</p>
+
+<p><strong>For more information, or if you want to contribute or join us, please visit <a href="http://www.dbljump.com">www.dbljump.com</a>.</strong></p>
+
+<h2 id="how-to-use">How to use</h2>
+
+<p>Basic rules for making API requests.</p>
+
+<h3 id="domain">Domain</h3>
+
+<p>URLs in this documentation exclude the domain where the production API is hosted. Prepend the current domain name to URLs when making requests, e.g. <code class="prettyprint">http://api.dbljump.com/articles/games</code>.</p>
+
+<h3 id="json-api-specification">JSON API specification</h3>
+
+<p>This API accepts and returns JSON data, following the JSON API specification as closely as possible.</p>
+
+<p><a href="http://jsonapi.org">Read more about the specification</a>.</p>
+
+<h3 id="http-headers-request-content-type-and-version">HTTP headers: request content-type and version</h3>
+
+<p>In accordance with the JSON API spec, all requests must include two HTTP headers, which declare the content-type and API version number:</p>
+
+<ul>
+<li><code class="prettyprint">Accept:application/vnd.api+json; version={vnum}</code></li>
+<li><code class="prettyprint">Content-Type:application/vnd.api+json; version={vnum}</code></li>
+</ul>
+
+<p>Replace <code class="prettyprint">{vnum}</code> with the API version number you want to use. The current version number is <code class="prettyprint">1</code>, and this is not expected to change anytime soon!</p>
+
+<h3 id="http-headers-response-content-type">HTTP headers: response content-type</h3>
+
+<p>Successful responses include the following HTTP header:</p>
+
+<ul>
+<li><code class="prettyprint">Content-Type:application/vnd.api+json; charset=utf-8</code></li>
+</ul>
+
+<h2 id="authorizing-requests-and-logging-in-users">Authorizing requests and logging in users</h2>
+
+<p>Many Dbljump API requests require authorization. This API uses JWTs for authentication and authorization, instead of HTTP sessions. When authorization is needed, it must be provided via a <a href="https://jwt.io">JSON web token (JWT)</a> included in the <code class="prettyprint">Authorization</code> HTTP header.</p>
+
+<p>The presence and <a href="#the-jwt-payload">payload content</a> of a JWT determines:</p>
+
+<ul>
+<li>whether or not a user is &lsquo;logged in&rsquo;</li>
+<li>the authorization level of the user identified by the JWT</li>
+<li>whether the request is authorized (based on the validity of the JWT and the user&rsquo;s authorization level)</li>
+</ul>
+
+<h3 id="http-headers-request-authorizations">HTTP headers: request authorizations</h3>
+
+<p>A valid <code class="prettyprint">Authorization</code> header and JWT must always be <em>included</em> when the client user is logged in and always <em>excluded</em> when the client user is not logged in.</p>
+
+<p>The header must be provided as follows:</p>
+
+<ul>
+<li><code class="prettyprint">Authorization:Bearer {user-jwt}</code></li>
+</ul>
+
+<p>Replace <code class="prettyprint">{user-jwt}</code> with a JWT returned by a successful <a href="#users-authentications">user authentication request</a>.</p>
+
+<h3 id="the-jwt-payload">The JWT payload</h3>
+
+<p>As well providing request authorization, JWTs contain a JSON payload the client can decode and use to identify the logged-in user.</p>
+
+<table><thead>
+<tr>
+<th>JWT payload attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">user_id</code></td>
+<td>Can be used to <a href="#get-single-user">get the logged-in user&rsquo;s record</a>.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">user_role</code></td>
+<td>Determines the user&rsquo;s authorization level. Can be <code class="prettyprint">member</code>, <code class="prettyprint">editor</code> or <code class="prettyprint">admin</code>.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">expiry</code></td>
+<td>The JWT expiry date and time.</td>
+</tr>
+</tbody></table>
+
+<h3 id="user-role-and-authorization-level">User role and authorization level</h3>
+
+<p>API request authorization also depends on the <code class="prettyprint">role</code> of the user that the passed JWT belongs to.</p>
+
+<p>Users can have one of three roles:</p>
+
+<table><thead>
+<tr>
+<th>Role</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">member</code></td>
+<td>Ordinary user. Can sign in and view pages but has very limited abilities.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">editor</code></td>
+<td>Can create, edit (and in some cases delete) articles and images.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">admin</code></td>
+<td>Can do everthing, including managing users, places, platform, genres and so on.</td>
+</tr>
+</tbody></table>
+
+<p>This documentation describes the authorization level required to use each each API feature.</p>
