@@ -59,6 +59,7 @@
                 "family_name": null,
                 "gender": null,
                 "avatar": null,
+                "avatar_thumb": null,
                 "birthday": null,
                 "jwt": null
             },
