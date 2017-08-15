@@ -87,3 +87,43 @@ Role                | Description
 `admin`             | Can do everthing, including managing users, places, platform, genres and so on.
 
 This documentation describes the authorization level required to use each each API feature.
+
+## Using URL queries
+
+> URL query examples
+
+```
+# Include all primary_image items related to articles in the response:
+/articles/games?include=primary_image
+
+# Specify sparse fieldsets for users and images (users are included by
+# default):
+/users/2/images?fields[users]=username,avatar&fields[images]=title,thumb
+
+# Use filter to only return items where kind == 'photo':
+/media/images?filter[kind]=photo
+
+# Specify 10 items per page and return page 5:
+/users?page[size]=10&page[number]=5
+
+# Sort by two fields: kind (ascending) and created_by_id (descending
+# as prepended by a dash):
+/media/images?sort=kind,-created_by_id
+```
+
+This API supports five kinds of URL queries for fetching data, [as specified by JSON API](http://jsonapi.org/format/#fetching):
+
+* included resources
+* sparse fieldsets
+* sorting
+* pagination
+* filtering by field values
+
+Query type     | Description
+-------------- | -----------
+`include`      | Include resources related to the main dataset.
+`fields`       | Specify sparse fieldsets. You must provide the type(s) and field name(s).
+`filter`       | Filter data by a given field and value.
+`page[size]`   | Specify how many items should be on each page. Defaults to `30`.
+`page[number]` | Specify the page number. Defaults to `1`.
+`sort`         | Sort the data by specified fields. Prepend the field name with a `-` to sort descending.
