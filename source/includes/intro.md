@@ -127,3 +127,20 @@ Query type     | Description
 `page[size]`   | Specify how many items should be on each page. Defaults to `30`.
 `page[number]` | Specify the page number. Defaults to `1`.
 `sort`         | Sort the data by specified fields. Prepend the field name with a `-` to sort descending.
+
+### Sort fields
+
+Record type | Sortable fields
+----------- | ---------------
+articles    | type, sort_title, origin_date, origin_year, created_by_id, status, last_submitted_at, last_reviewed_at, last_review_outcome, published_at
+genres      | name, short_name, parent_id, created_by_id
+places      | name, formatted, type, kind, parent_id, created_by_id, iso_code
+platforms   | holder_id, name, short_name, sphere, kind, parent_id, created_by_id
+users       | email, family_name, gender, username, role, birthday, country_id, last_signed_in_at, sign_in_count, activation_sent_at, activated_at, password_reset_sent_at
+credits     | credited_id, game_id, version_id, place_id, role, category
+kinships    | kind, start_year, end_year
+names       | name_or_title, family_name, given_names, kind, writing_system, year_adopted, year_dropped, dropped
+notes       | type, category, cite_website, created_by_id
+images      | kind, title, year, date, place_id, uploaded_by_id, usage_type
+versions    | game_id, platform_id, status, fps_target, fps_unlocked, res_w, res_h, res_unlocked
+releases    | version_id, place_id, date, year, physical, digital
