@@ -125,3 +125,125 @@
 </tbody></table>
 
 <p>This documentation describes the authorization level required to use each each API feature.</p>
+
+<h2 id="using-url-queries">Using URL queries</h2>
+
+<blockquote>
+<p>URL query examples</p>
+</blockquote>
+<pre class="highlight plaintext"><code># Include all primary_image items related to articles in the response:
+/articles/games?include=primary_image
+
+# Specify sparse fieldsets for users and images (users are included by
+# default):
+/users/2/images?fields[users]=username,avatar&amp;fields[images]=title,thumb
+
+# Use filter to only return items where kind == 'photo':
+/media/images?filter[kind]=photo
+
+# Specify 10 items per page and return page 5:
+/users?page[size]=10&amp;page[number]=5
+
+# Sort by two fields: kind (ascending) and created_by_id (descending
+# as prepended by a dash):
+/media/images?sort=kind,-created_by_id
+</code></pre>
+<p>This API supports five kinds of URL queries for fetching data, <a href="http://jsonapi.org/format/#fetching">as specified by JSON API</a>:</p>
+
+<ul>
+<li>included resources</li>
+<li>sparse fieldsets</li>
+<li>sorting</li>
+<li>pagination</li>
+<li>filtering by field values</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Query type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">include</code></td>
+<td>Include resources related to the main dataset.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">fields</code></td>
+<td>Specify sparse fieldsets. You must provide the type(s) and field name(s).</td>
+</tr>
+<tr>
+<td><code class="prettyprint">filter</code></td>
+<td>Filter data by a given field and value.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">page[size]</code></td>
+<td>Specify how many items should be on each page. Defaults to <code class="prettyprint">30</code>.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">page[number]</code></td>
+<td>Specify the page number. Defaults to <code class="prettyprint">1</code>.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">sort</code></td>
+<td>Sort the data by specified fields. Prepend the field name with a <code class="prettyprint">-</code> to sort descending.</td>
+</tr>
+</tbody></table>
+
+<h3 id="sort-fields">Sort fields</h3>
+
+<table><thead>
+<tr>
+<th>Record type</th>
+<th>Sortable fields</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>articles</td>
+<td>type, sort_title, origin_date, origin_year, created_by_id, status, last_submitted_at, last_reviewed_at, last_review_outcome, published_at</td>
+</tr>
+<tr>
+<td>genres</td>
+<td>name, short_name, parent_id, created_by_id</td>
+</tr>
+<tr>
+<td>places</td>
+<td>name, formatted, type, kind, parent_id, created_by_id, iso_code</td>
+</tr>
+<tr>
+<td>platforms</td>
+<td>holder_id, name, short_name, sphere, kind, parent_id, created_by_id</td>
+</tr>
+<tr>
+<td>users</td>
+<td>email, family_name, gender, username, role, birthday, country_id, last_signed_in_at, sign_in_count, activation_sent_at, activated_at, password_reset_sent_at</td>
+</tr>
+<tr>
+<td>credits</td>
+<td>credited_id, game_id, version_id, place_id, role, category</td>
+</tr>
+<tr>
+<td>kinships</td>
+<td>kind, start_year, end_year</td>
+</tr>
+<tr>
+<td>names</td>
+<td>name_or_title, family_name, given_names, kind, writing_system, year_adopted, year_dropped, dropped</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>type, category, cite_website, created_by_id</td>
+</tr>
+<tr>
+<td>images</td>
+<td>kind, title, year, date, place_id, uploaded_by_id, usage_type</td>
+</tr>
+<tr>
+<td>versions</td>
+<td>game_id, platform_id, status, fps_target, fps_unlocked, res_w, res_h, res_unlocked</td>
+</tr>
+<tr>
+<td>releases</td>
+<td>version_id, place_id, date, year, physical, digital</td>
+</tr>
+</tbody></table>

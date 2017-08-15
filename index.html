@@ -246,84 +246,254 @@
 
 <p>This documentation describes the authorization level required to use each each API feature.</p>
 
+<h2 id="using-url-queries">Using URL queries</h2>
+
+<blockquote>
+<p>URL query examples</p>
+</blockquote>
+<pre class="highlight plaintext"><code># Include all primary_image items related to articles in the response:
+/articles/games?include=primary_image
+
+# Specify sparse fieldsets for users and images (users are included by
+# default):
+/users/2/images?fields[users]=username,avatar&amp;fields[images]=title,thumb
+
+# Use filter to only return items where kind == 'photo':
+/media/images?filter[kind]=photo
+
+# Specify 10 items per page and return page 5:
+/users?page[size]=10&amp;page[number]=5
+
+# Sort by two fields: kind (ascending) and created_by_id (descending
+# as prepended by a dash):
+/media/images?sort=kind,-created_by_id
+</code></pre>
+<p>This API supports five kinds of URL queries for fetching data, <a href="http://jsonapi.org/format/#fetching">as specified by JSON API</a>:</p>
+
+<ul>
+<li>included resources</li>
+<li>sparse fieldsets</li>
+<li>sorting</li>
+<li>pagination</li>
+<li>filtering by field values</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Query type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">include</code></td>
+<td>Include resources related to the main dataset.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">fields</code></td>
+<td>Specify sparse fieldsets. You must provide the type(s) and field name(s).</td>
+</tr>
+<tr>
+<td><code class="prettyprint">filter</code></td>
+<td>Filter data by a given field and value.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">page[size]</code></td>
+<td>Specify how many items should be on each page. Defaults to <code class="prettyprint">30</code>.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">page[number]</code></td>
+<td>Specify the page number. Defaults to <code class="prettyprint">1</code>.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">sort</code></td>
+<td>Sort the data by specified fields. Prepend the field name with a <code class="prettyprint">-</code> to sort descending.</td>
+</tr>
+</tbody></table>
+
+<h3 id="sort-fields">Sort fields</h3>
+
+<table><thead>
+<tr>
+<th>Record type</th>
+<th>Sortable fields</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>articles</td>
+<td>type, sort_title, origin_date, origin_year, created_by_id, status, last_submitted_at, last_reviewed_at, last_review_outcome, published_at</td>
+</tr>
+<tr>
+<td>genres</td>
+<td>name, short_name, parent_id, created_by_id</td>
+</tr>
+<tr>
+<td>places</td>
+<td>name, formatted, type, kind, parent_id, created_by_id, iso_code</td>
+</tr>
+<tr>
+<td>platforms</td>
+<td>holder_id, name, short_name, sphere, kind, parent_id, created_by_id</td>
+</tr>
+<tr>
+<td>users</td>
+<td>email, family_name, gender, username, role, birthday, country_id, last_signed_in_at, sign_in_count, activation_sent_at, activated_at, password_reset_sent_at</td>
+</tr>
+<tr>
+<td>credits</td>
+<td>credited_id, game_id, version_id, place_id, role, category</td>
+</tr>
+<tr>
+<td>kinships</td>
+<td>kind, start_year, end_year</td>
+</tr>
+<tr>
+<td>names</td>
+<td>name_or_title, family_name, given_names, kind, writing_system, year_adopted, year_dropped, dropped</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>type, category, cite_website, created_by_id</td>
+</tr>
+<tr>
+<td>images</td>
+<td>kind, title, year, date, place_id, uploaded_by_id, usage_type</td>
+</tr>
+<tr>
+<td>versions</td>
+<td>game_id, platform_id, status, fps_target, fps_unlocked, res_w, res_h, res_unlocked</td>
+</tr>
+<tr>
+<td>releases</td>
+<td>version_id, place_id, date, year, physical, digital</td>
+</tr>
+</tbody></table>
+
           <h1 id="articles"><a name="articles_intro"></a>Articles</h1>
 
-<p>Resources related to articles. Use this feature to get mixed collections of game, company and people articles.</p>
+<p>Use this feature to get mixed collections of game, company and people articles.</p>
+
+<h3 id="default-response-attributes">Default response attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>display_title (str)</td>
+<td>The main article title</td>
+</tr>
+<tr>
+<td>sort_title (str)</td>
+<td>Removes &lsquo;The&rsquo; for company and game names; puts family name first for people</td>
+</tr>
+<tr>
+<td>slug (str)</td>
+<td>Unique parameterized display_title used for friendly URLs</td>
+</tr>
+<tr>
+<td>description (str)</td>
+<td>Article summary text</td>
+</tr>
+<tr>
+<td>last_submitted_at (time)</td>
+<td>Date and time last submitted for peer review</td>
+</tr>
+<tr>
+<td>last_reviewed_at (time)</td>
+<td>Date and time last peer reviewed</td>
+</tr>
+<tr>
+<td>last_review_outcome (str)</td>
+<td>Outcome of last peer review</td>
+</tr>
+<tr>
+<td>last_review_comments (str)</td>
+<td>Comments from last peer review</td>
+</tr>
+<tr>
+<td>published_at (time)</td>
+<td>Date and time published</td>
+</tr>
+<tr>
+<td>status (str)</td>
+<td>Publishing status</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Relationship</th>
+<th>JSON API type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>primary_images</td>
+<td>images</td>
+</tr>
+<tr>
+<td>created_by</td>
+<td>users</td>
+</tr>
+<tr>
+<td>last_reviewed_by</td>
+<td>users</td>
+</tr>
+</tbody></table>
+
+<h3 id="default-response-included">Default response included</h3>
+
+<table><thead>
+<tr>
+<th>JSON API type</th>
+<th>Attributes and relationships</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>users</td>
+<td>username, avatar_thumb</td>
+</tr>
+<tr>
+<td>images</td>
+<td>title, original, thumb</td>
+</tr>
+</tbody></table>
 
           <h2 id="get-all-articles">Get all articles</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles?articles?page[size]=3&amp;sort=-status&amp;filter[type]=Game
+<pre class="highlight plaintext"><code># GET /articles?articles?page[size]=2&amp;sort=-status&amp;filter[type]=game
 
 {
     "data": [
         {
-            "id": "77",
+            "id": "95",
             "type": "games",
             "attributes": {
-                "display_title": "Pong",
-                "sort_title": "Pong",
-                "slug": "pong",
-                "description": "Pong is a table tennis sports game and is one of the earliest arcade video games.",
+                "display_title": "Shadow of the Beast",
+                "sort_title": "Shadow of the Beast",
+                "slug": "shadow-of-the-beast",
+                "description": "Shadow of the Beast is 1989 fantasy platform game developed by Reflections and published by Psygnosis.",
                 "last_submitted_at": null,
                 "last_reviewed_at": null,
                 "last_review_outcome": null,
                 "last_review_comments": null,
-                "published_at": "2017-08-08T12:27:05.229Z",
-                "status": "published"
-            },
-            "relationships": {
-                "primary_image": {
-                    "data": null,
-                    "links": {
-                        "related": "http://localhost:3000/media/images/dark-souls-firelink-shrine-crow-screenshot"
-                    }
-                },
-                "created_by": {
-                    "data": {
-                        "id": "1",
-                        "type": "users"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/users/1"
-                    }
-                },
-                "last_reviewed_by": {
-                    "data": null
-                }
-            },
-            "meta": {
-                "description": "Find Pong trivia, screenshots, credits and other info at Dbljump, the video game reference.",
-                "keywords": "Pong, 1972, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
-                "created_at": "2017-08-08T12:27:05.299Z",
-                "updated_at": "2017-08-08T12:27:05.299Z"
-            }
-        },
-        {
-            "id": "78",
-            "type": "games",
-            "attributes": {
-                "display_title": "The Wonderful 101",
-                "sort_title": "Wonderful 101, The",
-                "slug": "the-wonderful-101",
-                "description": "The Wonderful 101 is an action-adventure video game developed by Platinum Games for the Nintendo Wii U.",
-                "last_submitted_at": null,
-                "last_reviewed_at": null,
-                "last_review_outcome": null,
-                "last_review_comments": null,
-                "published_at": "2017-08-08T12:27:05.322Z",
+                "published_at": "2017-08-15T09:33:50.976Z",
                 "status": "published"
             },
             "relationships": {
                 "primary_image": {
                     "data": {
-                        "id": "70",
+                        "id": "87",
                         "type": "images"
                     },
                     "links": {
-                        "related": "http://localhost:3000/media/images/pong-arcade-screenshot"
+                        "related": "http://localhost:3000/media/images/shadow-of-the-beast-amiga-screenshot"
                     }
                 },
                 "created_by": {
@@ -340,35 +510,35 @@
                 }
             },
             "meta": {
-                "description": "Find The Wonderful 101 trivia, screenshots, credits and other info at Dbljump, the video game reference.",
-                "keywords": "The Wonderful 101, 2013, Wii U, Switch, ザ・ワンダフル・ワン・オー・ワン, Za Wandafuru Wan Ō Wan, Project P-100, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
-                "created_at": "2017-08-08T12:27:05.328Z",
-                "updated_at": "2017-08-08T12:27:17.996Z"
+                "description": "Find Shadow of the Beast trivia, screenshots, credits and other info at Dbljump, the video game reference.",
+                "keywords": "Shadow of the Beast, 1989, Amiga, Atari ST, Commodore 64, Amstrad CPC, ZX Spectrum, Genesis, Master System, Lynx, FM Towns, TurboGrafx-CD, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
+                "created_at": "2017-08-15T09:33:50.982Z",
+                "updated_at": "2017-08-15T09:34:27.992Z"
             }
         },
         {
-            "id": "79",
+            "id": "94",
             "type": "games",
             "attributes": {
-                "display_title": "Dark Souls",
-                "sort_title": "Dark Souls",
-                "slug": "dark-souls",
-                "description": "Dark Souls is a dark-fantasy action role-playing game developed by FromSoftware.",
+                "display_title": "North &amp; South",
+                "sort_title": "North &amp; South",
+                "slug": "north-south",
+                "description": "North &amp; South is a 1989 American Civil War-themed strategy game developed by Infogrames.",
                 "last_submitted_at": null,
                 "last_reviewed_at": null,
                 "last_review_outcome": null,
                 "last_review_comments": null,
-                "published_at": "2017-08-08T12:27:05.352Z",
+                "published_at": "2017-08-15T09:33:50.928Z",
                 "status": "published"
             },
             "relationships": {
                 "primary_image": {
                     "data": {
-                        "id": "71",
+                        "id": "86",
                         "type": "images"
                     },
                     "links": {
-                        "related": "http://localhost:3000/media/images/dark-souls-firelink-shrine-crow-screenshot"
+                        "related": "http://localhost:3000/media/images/north-south-atari-st-screenshot"
                     }
                 },
                 "created_by": {
@@ -385,20 +555,38 @@
                 }
             },
             "meta": {
-                "description": "Find Dark Souls trivia, screenshots, credits and other info at Dbljump, the video game reference.",
-                "keywords": "Dark Souls, 2011, PlayStation 3, Xbox 360, Windows, Dark Lord, Dark Race, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
-                "created_at": "2017-08-08T12:27:05.364Z",
-                "updated_at": "2017-08-08T12:27:19.037Z"
+                "description": "Find North &amp; South trivia, screenshots, credits and other info at Dbljump, the video game reference.",
+                "keywords": "North &amp; South, 1989, Amiga, Atari ST, Commodore 64, MS-DOS, MSX, Nintendo Entertainment System, ZX Spectrum, Amstrad CPC, Nord et Sud, game, credits, screenshots, trivia, dbljump, video games, pc games, gaming",
+                "created_at": "2017-08-15T09:33:50.934Z",
+                "updated_at": "2017-08-15T09:34:27.462Z"
             }
         }
     ],
     "included": [
         {
+            "id": "87",
+            "type": "images",
+            "attributes": {
+                "original": "http://localhost:3000/uploads/images/87/shadow-of-the-beast-amiga-screenshot-1708151034.jpg",
+                "thumb": "http://localhost:3000/uploads/images/87/th_shadow-of-the-beast-amiga-screenshot-1708151034.jpg",
+                "title": "Shadow of the Beast Amiga screenshot"
+            },
+            "links": {
+                "self": "http://localhost:3000/media/images/shadow-of-the-beast-amiga-screenshot"
+            },
+            "meta": {
+                "description": "'Shadow of the Beast Amiga screenshot' is a video game image at Dbljump.",
+                "keywords": "Shadow of the Beast Amiga screenshot, screen, Psygnosis Limited, image, picture, media, dbljump, video games, pc games, gaming",
+                "created_at": "2017-08-15T09:34:27.853Z",
+                "updated_at": "2017-08-15T09:34:27.853Z"
+            }
+        },
+        {
             "id": "1",
             "type": "users",
             "attributes": {
                 "username": "tikithekiwi",
-                "avatar_thumb": "http://localhost:3000/uploads/user_avatar/1/th_tikithekiwi-1708081324.jpg"
+                "avatar_thumb": "http://localhost:3000/uploads/user_avatar/1/th_tikithekiwi-1708151031.jpg"
             },
             "links": {
                 "self": "http://localhost:3000/users/1"
@@ -409,52 +597,34 @@
                 "last_signed_in_at": null,
                 "last_sign_in_ip": null,
                 "sign_in_count": 0,
-                "activated_at": "2017-08-08T12:24:54.142Z",
-                "created_at": "2017-08-08T12:24:54.955Z",
-                "updated_at": "2017-08-08T12:24:54.955Z"
+                "activated_at": "2017-08-15T09:31:43.431Z",
+                "created_at": "2017-08-15T09:31:45.327Z",
+                "updated_at": "2017-08-15T09:31:45.327Z"
             }
         },
         {
-            "id": "70",
+            "id": "86",
             "type": "images",
             "attributes": {
-                "original": "http://localhost:3000/uploads/images/70/pong-arcade-screenshot-1708081327.jpg",
-                "thumb": "http://localhost:3000/uploads/images/70/th_pong-arcade-screenshot-1708081327.jpg",
-                "title": "Pong arcade screenshot"
+                "original": "http://localhost:3000/uploads/images/86/north-south-atari-st-screenshot-1708151034.gif",
+                "thumb": "http://localhost:3000/uploads/images/86/th_north-south-atari-st-screenshot-1708151034.gif",
+                "title": "North &amp; South Atari ST screenshot"
             },
             "links": {
-                "self": "http://localhost:3000/media/images/pong-arcade-screenshot"
+                "self": "http://localhost:3000/media/images/north-south-atari-st-screenshot"
             },
             "meta": {
-                "description": "'Pong arcade screenshot' is a video game image at Dbljump.",
-                "keywords": "Pong arcade screenshot, screen, Nintendo Co., Ltd., image, picture, media, dbljump, video games, pc games, gaming",
-                "created_at": "2017-08-08T12:27:17.922Z",
-                "updated_at": "2017-08-08T12:27:17.922Z"
-            }
-        },
-        {
-            "id": "71",
-            "type": "images",
-            "attributes": {
-                "original": "http://localhost:3000/uploads/images/71/dark-souls-firelink-shrine-crow-screenshot-1708081327.jpg",
-                "thumb": "http://localhost:3000/uploads/images/71/th_dark-souls-firelink-shrine-crow-screenshot-1708081327.jpg",
-                "title": "Dark Souls Firelink Shrine crow screenshot"
-            },
-            "links": {
-                "self": "http://localhost:3000/media/images/dark-souls-firelink-shrine-crow-screenshot"
-            },
-            "meta": {
-                "description": "'Dark Souls Firelink Shrine crow screenshot' is a video game image at Dbljump.",
-                "keywords": "Dark Souls Firelink Shrine crow screenshot, screen, Bandai Namco Entertainment, image, picture, media, dbljump, video games, pc games, gaming",
-                "created_at": "2017-08-08T12:27:18.950Z",
-                "updated_at": "2017-08-08T12:27:18.950Z"
+                "description": "'North &amp; South Atari ST screenshot' is a video game image at Dbljump.",
+                "keywords": "North &amp; South Atari ST screenshot, screen, Infogrames, image, picture, media, dbljump, video games, pc games, gaming",
+                "created_at": "2017-08-15T09:34:27.293Z",
+                "updated_at": "2017-08-15T09:34:27.293Z"
             }
         }
     ],
     "links": {
-        "self": "http://localhost:3000/articles?filter%5Btype%5D=Game&amp;page%5Bnumber%5D=1&amp;page%5Bsize%5D=3&amp;sort=-status",
-        "next": "http://localhost:3000/articles?filter%5Btype%5D=Game&amp;page%5Bnumber%5D=2&amp;page%5Bsize%5D=3&amp;sort=-status",
-        "last": "http://localhost:3000/articles?filter%5Btype%5D=Game&amp;page%5Bnumber%5D=7&amp;page%5Bsize%5D=3&amp;sort=-status"
+        "self": "http://localhost:3000/articles?filter%5Btype%5D=game&amp;page%5Bnumber%5D=1&amp;page%5Bsize%5D=2&amp;sort=-id",
+        "next": "http://localhost:3000/articles?filter%5Btype%5D=game&amp;page%5Bnumber%5D=2&amp;page%5Bsize%5D=2&amp;sort=-id",
+        "last": "http://localhost:3000/articles?filter%5Btype%5D=game&amp;page%5Bnumber%5D=10&amp;page%5Bsize%5D=2&amp;sort=-id"
     },
     "meta": {
         "total_items": 19
@@ -467,39 +637,53 @@
 
 <p><code class="prettyprint">GET /articles</code></p>
 
-<h3 id="url-query-parameters">URL query parameters</h3>
+<h3 id="url-queries">URL queries</h3>
+
+<ul>
+<li>See the <a href="#using-url-queries">&lsquo;Using URL queries&rsquo; section</a> for more information and a table of sort query fields.</li>
+</ul>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
+<th>Filter field</th>
+<th>Acceptable values</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>fields[{record-type}]</td>
-<td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[images]=title,thumb</code></td>
+<td>type</td>
+<td><code class="prettyprint">game</code>, <code class="prettyprint">company</code>, <code class="prettyprint">person</code></td>
 </tr>
 <tr>
-<td>filter[{field}]</td>
-<td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[closed]=true</code></td>
+<td>status</td>
+<td><code class="prettyprint">draft</code>, <code class="prettyprint">submitted</code>, <code class="prettyprint">published_at</code></td>
 </tr>
 <tr>
-<td>sort</td>
-<td><code class="prettyprint">sort_title</code></td>
-<td>Sort records by field, e.g. <code class="prettyprint">?sort=status</code></td>
+<td>origin_date</td>
+<td><code class="prettyprint">1800-01-01</code> or later</td>
 </tr>
 <tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
+<td>origin_year</td>
+<td><code class="prettyprint">1800</code> or later</td>
 </tr>
 <tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
+<td>ended</td>
+<td><code class="prettyprint">true</code> or <code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td>end_date</td>
+<td><code class="prettyprint">1800-01-01</code> or later</td>
+</tr>
+<tr>
+<td>end_year</td>
+<td><code class="prettyprint">1800</code> or later</td>
+</tr>
+<tr>
+<td>created_by_id</td>
+<td>Valid user ID</td>
+</tr>
+<tr>
+<td>last_review_outcome</td>
+<td><code class="prettyprint">ok</code>, <code class="prettyprint">fail_style</code>, <code class="prettyprint">fail_incomplete</code>, <code class="prettyprint">fail_accuracy</code></td>
 </tr>
 </tbody></table>
 
