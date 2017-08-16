@@ -128,6 +128,24 @@ Query type     | Description
 `page[number]` | Specify the page number. Defaults to `1`.
 `sort`         | Sort the data by specified fields. Prepend the field name with a `-` to sort descending.
 
+### Filter fields
+
+Record type | Filterable fields
+----------- | ---------------
+articles    | type, kind, origin_date, origin_year, origin_place_id, ended, end_date, end_year, latest_place_id, status, created_by_id, last_review_outcome, last_reviewed_by_id, published_at
+genres      | created_by_id
+places      | kind, parent_id, created_by_id
+platforms   | holder_id, sphere, kind, parent_id, created_by_id
+users       | gender, role, birthday, country_id, activated_at
+credits     | credited_id, game_id, version_id, place_id, role, category
+kinships    | parent_id, child_id, kind, start_year, end_year
+names       | article_id, version_id, name_or_title, family_name, given_names, kind, writing_system, year_adopted, year_dropped, dropped
+notes       | article_id, version_id, type, category, cite_website, created_by_id
+images      | kind, year, date, place_id, uploaded_by_id, usage_type, usage_license_code, attributed_name
+versions    | game_id, platform_id, status, fps_target, fps_unlocked, res_w, res_h, res_unlocked
+releases    | version_id, place_id, date, year, physical, digital
+
+
 ### Sort fields
 
 Record type | Sortable fields
