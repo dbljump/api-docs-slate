@@ -190,6 +190,64 @@
 </tr>
 </tbody></table>
 
+<h3 id="filter-fields">Filter fields</h3>
+
+<table><thead>
+<tr>
+<th>Record type</th>
+<th>Filterable fields</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>articles</td>
+<td>type, kind, origin_date, origin_year, origin_place_id, ended, end_date, end_year, latest_place_id, status, created_by_id, last_review_outcome, last_reviewed_by_id, published_at</td>
+</tr>
+<tr>
+<td>genres</td>
+<td>created_by_id</td>
+</tr>
+<tr>
+<td>places</td>
+<td>kind, parent_id, created_by_id</td>
+</tr>
+<tr>
+<td>platforms</td>
+<td>holder_id, sphere, kind, parent_id, created_by_id</td>
+</tr>
+<tr>
+<td>users</td>
+<td>gender, role, birthday, country_id, activated_at</td>
+</tr>
+<tr>
+<td>credits</td>
+<td>credited_id, game_id, version_id, place_id, role, category</td>
+</tr>
+<tr>
+<td>kinships</td>
+<td>parent_id, child_id, kind, start_year, end_year</td>
+</tr>
+<tr>
+<td>names</td>
+<td>article_id, version_id, name_or_title, family_name, given_names, kind, writing_system, year_adopted, year_dropped, dropped</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>article_id, version_id, type, category, cite_website, created_by_id</td>
+</tr>
+<tr>
+<td>images</td>
+<td>kind, year, date, place_id, uploaded_by_id, usage_type, usage_license_code, attributed_name</td>
+</tr>
+<tr>
+<td>versions</td>
+<td>game_id, platform_id, status, fps_target, fps_unlocked, res_w, res_h, res_unlocked</td>
+</tr>
+<tr>
+<td>releases</td>
+<td>version_id, place_id, date, year, physical, digital</td>
+</tr>
+</tbody></table>
+
 <h3 id="sort-fields">Sort fields</h3>
 
 <table><thead>
