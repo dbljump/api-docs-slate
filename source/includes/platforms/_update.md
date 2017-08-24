@@ -10,6 +10,7 @@
     "attributes": {
       "name": "Updated Name",
       "short_name": "Changed",
+      "name_with_holder": "Sega Updated Name,
       "sphere": "portable",
       "kind": "system"
     },

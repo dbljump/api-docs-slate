@@ -11,6 +11,7 @@
       "slug": "sega-32x",
       "name": "32X",
       "short_name": "32X",
+      "name_with_holder": "Sega 32X",
       "sphere": "home",
       "kind": "add-on"
     },
@@ -86,6 +87,7 @@ Attribute | Type | Req'd? | Description
 slug | string | Y | A record ID based on metadata, e.g. 'sega-genesis'.
 name | string | Y | The full North American name, or nearest alternative, e.g. 'Genesis'
 short_name | string | | The common abbreviated name, e.g. 'SNES'.
+name_with_holder | string | | Immutable. A 'full name' including the platform holder name.
 sphere | string | Y | The usual platform environment. See [Sphere](#platforms_sphere).
 kind | string | Y | Platform type. See [Kind](#platforms_kind).
 

@@ -12,6 +12,7 @@
         "slug": "sony-playstation",
         "name": "PlayStation",
         "short_name": "PS",
+        "name_with_holder": "Sony PlayStation",
         "sphere": "home",
         "kind": "system"
       },
@@ -46,6 +47,7 @@
         "slug": "sony-playstation-2",
         "name": "PlayStation 2",
         "short_name": "PS2",
+        "name_with_holder": "Sony PlayStation 2",
         "sphere": "home",
         "kind": "system"
       },
@@ -80,6 +82,7 @@
         "slug": "sony-playstation-3",
         "name": "PlayStation 3",
         "short_name": "PS3",
+        "name_with_holder": "Sony PlayStation 3",
         "sphere": "home",
         "kind": "system"
       },

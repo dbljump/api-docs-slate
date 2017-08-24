@@ -41,6 +41,7 @@
       "slug": "nintendo-new-platform",
       "name": "New Platform",
       "short_name": "NPlat",
+      "name_with_holder": "Nintendo New Platform",
       "sphere": "home",
       "kind": "add-on"
     },
