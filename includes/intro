@@ -147,34 +147,29 @@
 # Sort by two fields: kind (ascending) and created_by_id (descending
 # as prepended by a dash):
 /media/images?sort=kind,-created_by_id
-</code></pre>
-<p>This API supports five kinds of URL queries for fetching data, <a href="http://jsonapi.org/format/#fetching">as specified by JSON API</a>:</p>
 
-<ul>
-<li>included resources</li>
-<li>sparse fieldsets</li>
-<li>sorting</li>
-<li>pagination</li>
-<li>filtering by field values</li>
-</ul>
+# Search for platforms related to 'nintendo'
+/platforms?search=nintendo
+</code></pre>
+<p>This API supports URL queries, including those <a href="http://jsonapi.org/format/#fetching">specified by JSON API</a>:</p>
 
 <table><thead>
 <tr>
-<th>Query type</th>
+<th>Query</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">include</code></td>
-<td>Include resources related to the main dataset.</td>
-</tr>
-<tr>
-<td><code class="prettyprint">fields</code></td>
+<td><code class="prettyprint">fields[{type}]</code></td>
 <td>Specify sparse fieldsets. You must provide the type(s) and field name(s).</td>
 </tr>
 <tr>
-<td><code class="prettyprint">filter</code></td>
+<td><code class="prettyprint">filter[{field}]</code></td>
 <td>Filter data by a given field and value.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">include[{type}]</code></td>
+<td>Include resources related to the main dataset.</td>
 </tr>
 <tr>
 <td><code class="prettyprint">page[size]</code></td>
@@ -185,12 +180,18 @@
 <td>Specify the page number. Defaults to <code class="prettyprint">1</code>.</td>
 </tr>
 <tr>
+<td><code class="prettyprint">search</code></td>
+<td>Use with <code class="prettyprint">GET</code> collection endpoints. Search by string.</td>
+</tr>
+<tr>
 <td><code class="prettyprint">sort</code></td>
 <td>Sort the data by specified fields. Prepend the field name with a <code class="prettyprint">-</code> to sort descending.</td>
 </tr>
 </tbody></table>
 
 <h3 id="filter-fields">Filter fields</h3>
+
+<p>Below is a table of fields by which you can filter each record-type.</p>
 
 <table><thead>
 <tr>
@@ -248,7 +249,24 @@
 </tr>
 </tbody></table>
 
+<h3 id="searchable-record-types">Searchable record types</h3>
+
+<p>Below is a list of record types that accept search queries.</p>
+
+<ul>
+<li><code class="prettyprint">companies</code></li>
+<li><code class="prettyprint">games</code></li>
+<li><code class="prettyprint">genres</code></li>
+<li><code class="prettyprint">images</code></li>
+<li><code class="prettyprint">people</code></li>
+<li><code class="prettyprint">places</code></li>
+<li><code class="prettyprint">platforms</code></li>
+<li><code class="prettyprint">users</code></li>
+</ul>
+
 <h3 id="sort-fields">Sort fields</h3>
+
+<p>Below is a table of fields by which you can sort each record-type.</p>
 
 <table><thead>
 <tr>

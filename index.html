@@ -267,34 +267,29 @@
 # Sort by two fields: kind (ascending) and created_by_id (descending
 # as prepended by a dash):
 /media/images?sort=kind,-created_by_id
-</code></pre>
-<p>This API supports five kinds of URL queries for fetching data, <a href="http://jsonapi.org/format/#fetching">as specified by JSON API</a>:</p>
 
-<ul>
-<li>included resources</li>
-<li>sparse fieldsets</li>
-<li>sorting</li>
-<li>pagination</li>
-<li>filtering by field values</li>
-</ul>
+# Search for platforms related to 'nintendo'
+/platforms?search=nintendo
+</code></pre>
+<p>This API supports URL queries, including those <a href="http://jsonapi.org/format/#fetching">specified by JSON API</a>:</p>
 
 <table><thead>
 <tr>
-<th>Query type</th>
+<th>Query</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">include</code></td>
-<td>Include resources related to the main dataset.</td>
-</tr>
-<tr>
-<td><code class="prettyprint">fields</code></td>
+<td><code class="prettyprint">fields[{type}]</code></td>
 <td>Specify sparse fieldsets. You must provide the type(s) and field name(s).</td>
 </tr>
 <tr>
-<td><code class="prettyprint">filter</code></td>
+<td><code class="prettyprint">filter[{field}]</code></td>
 <td>Filter data by a given field and value.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">include[{type}]</code></td>
+<td>Include resources related to the main dataset.</td>
 </tr>
 <tr>
 <td><code class="prettyprint">page[size]</code></td>
@@ -305,12 +300,18 @@
 <td>Specify the page number. Defaults to <code class="prettyprint">1</code>.</td>
 </tr>
 <tr>
+<td><code class="prettyprint">search</code></td>
+<td>Use with <code class="prettyprint">GET</code> collection endpoints. Search by string.</td>
+</tr>
+<tr>
 <td><code class="prettyprint">sort</code></td>
 <td>Sort the data by specified fields. Prepend the field name with a <code class="prettyprint">-</code> to sort descending.</td>
 </tr>
 </tbody></table>
 
 <h3 id="filter-fields">Filter fields</h3>
+
+<p>Below is a table of fields by which you can filter each record-type.</p>
 
 <table><thead>
 <tr>
@@ -368,7 +369,24 @@
 </tr>
 </tbody></table>
 
+<h3 id="searchable-record-types">Searchable record types</h3>
+
+<p>Below is a list of record types that accept search queries.</p>
+
+<ul>
+<li><code class="prettyprint">companies</code></li>
+<li><code class="prettyprint">games</code></li>
+<li><code class="prettyprint">genres</code></li>
+<li><code class="prettyprint">images</code></li>
+<li><code class="prettyprint">people</code></li>
+<li><code class="prettyprint">places</code></li>
+<li><code class="prettyprint">platforms</code></li>
+<li><code class="prettyprint">users</code></li>
+</ul>
+
 <h3 id="sort-fields">Sort fields</h3>
+
+<p>Below is a table of fields by which you can sort each record-type.</p>
 
 <table><thead>
 <tr>
@@ -21739,123 +21757,6 @@
 </tr>
 </tbody></table>
 
-          <h1 id="search"><a name="search_intro"></a>Search</h1>
-
-<p>Resources for searching resources. Additional <a href="#using-url-queries">URL query fields</a> are supported, such as <code class="prettyprint">fields</code>, <code class="prettyprint">filter</code>, <code class="prettyprint">include</code>, <code class="prettyprint">page[number]</code>, <code class="prettyprint">page[size]</code> and <code class="prettyprint">sort</code>.</p>
-
-<p>The search string param is <code class="prettyprint">q</code>. Here is an example query:</p>
-
-<p><code class="prettyprint">/search/genres?q=action&amp;sort=name&amp;page[number]=1&amp;page[size]=3&amp;fields[genres]=name,short_name&amp;filter[created_by_id]=1&amp;include=games</code></p>
-
-          <h2 id="search-genres">Search genres</h2>
-
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 200</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code># GET /search/genres?q=action&amp;sort=name&amp;page[number]=1&amp;page[size]=3&amp;fields[genres]=name,short_name&amp;filter[created_by_id]=1
-
-{
-    "data": [
-        {
-            "id": "1",
-            "type": "genres",
-            "attributes": {
-                "name": "action",
-                "short_name": ""
-            },
-            "links": {
-                "self": "http://localhost:3000/genres/action"
-            },
-            "meta": {
-                "created_at": "2017-08-25T08:33:05.290Z",
-                "updated_at": "2017-08-25T08:33:05.290Z",
-                "meta_description": "Find action-genre games at Dbljump, the video game reference.",
-                "meta_keywords": "action, genre, dbljump, video games, pc games, gaming",
-                "total_games": 14
-            }
-        },
-        {
-            "id": "58",
-            "type": "genres",
-            "attributes": {
-                "name": "action RPG",
-                "short_name": ""
-            },
-            "links": {
-                "self": "http://localhost:3000/genres/action-rpg"
-            },
-            "meta": {
-                "created_at": "2017-08-25T08:33:05.863Z",
-                "updated_at": "2017-08-25T08:33:05.863Z",
-                "meta_description": "Find action RPG-genre games at Dbljump, the video game reference.",
-                "meta_keywords": "action RPG, genre, dbljump, video games, pc games, gaming",
-                "total_games": 0
-            }
-        },
-        {
-            "id": "3",
-            "type": "genres",
-            "attributes": {
-                "name": "art",
-                "short_name": ""
-            },
-            "links": {
-                "self": "http://localhost:3000/genres/art"
-            },
-            "meta": {
-                "created_at": "2017-08-25T08:33:05.305Z",
-                "updated_at": "2017-08-25T08:33:05.305Z",
-                "meta_description": "Find art-genre games at Dbljump, the video game reference.",
-                "meta_keywords": "art, genre, dbljump, video games, pc games, gaming",
-                "total_games": 0
-            }
-        }
-    ],
-    "links": {
-        "self": "http://localhost:3000/search/genres?fields%5Bgenres%5D=name%2Cshort_name&amp;filter%5Bcreated_by_id%5D=1&amp;page%5Bnumber%5D=1&amp;page%5Bsize%5D=3&amp;q=action&amp;sort=name",
-        "next": "http://localhost:3000/search/genres?fields%5Bgenres%5D=name%2Cshort_name&amp;filter%5Bcreated_by_id%5D=1&amp;page%5Bnumber%5D=2&amp;page%5Bsize%5D=3&amp;q=action&amp;sort=name",
-        "last": "http://localhost:3000/search/genres?fields%5Bgenres%5D=name%2Cshort_name&amp;filter%5Bcreated_by_id%5D=1&amp;page%5Bnumber%5D=4&amp;page%5Bsize%5D=3&amp;q=action&amp;sort=name"
-    },
-    "meta": {
-        "total_items": 10
-    }
-}
-</code></pre>
-<p>Search genres. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: any</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /search/genres?q={search_string}</code></p>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="search-errors">Search errors</h2>
-
-<p>Errors specific to search endpoints.</p>
-
-<table><thead>
-<tr>
-<th>HTTP code</th>
-<th>Error code</th>
-<th>Pointer</th>
-<th>Title</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>SEARCH_QUERY_BLANK</td>
-<td>n/a</td>
-<td>Search query must be provided.</td>
-</tr>
-</tbody></table>
-
           <h1 id="errors">Errors</h1>
 
 <p>General errors not specific to one part of the application.</p>
@@ -21912,6 +21813,12 @@
 <th>Title</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td>CANNOT_SEARCH</td>
+<td>400</td>
+<td>Search is not supported for this type of record.</td>
+</tr>
 <tr>
 <td>404</td>
 <td>RECORD_NOT_FOUND</td>
