@@ -16,4 +16,5 @@ HTTP code | Error code | Pointer | Title
 
 HTTP code | Error code | Pointer | Title
 --------- | ---------- | ------- | -----
+400 | CANNOT_SEARCH | 400 | Search is not supported for this type of record.
 404 | RECORD_NOT_FOUND | n/a | Record not found.

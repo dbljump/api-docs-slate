@@ -109,26 +109,26 @@ This documentation describes the authorization level required to use each each A
 # Sort by two fields: kind (ascending) and created_by_id (descending
 # as prepended by a dash):
 /media/images?sort=kind,-created_by_id
+
+# Search for platforms related to 'nintendo'
+/platforms?search=nintendo
 ```
 
-This API supports five kinds of URL queries for fetching data, [as specified by JSON API](http://jsonapi.org/format/#fetching):
+This API supports URL queries, including those [specified by JSON API](http://jsonapi.org/format/#fetching):
 
-* included resources
-* sparse fieldsets
-* sorting
-* pagination
-* filtering by field values
-
-Query type     | Description
--------------- | -----------
-`include`      | Include resources related to the main dataset.
-`fields`       | Specify sparse fieldsets. You must provide the type(s) and field name(s).
-`filter`       | Filter data by a given field and value.
-`page[size]`   | Specify how many items should be on each page. Defaults to `30`.
-`page[number]` | Specify the page number. Defaults to `1`.
-`sort`         | Sort the data by specified fields. Prepend the field name with a `-` to sort descending.
+Query             | Description
+----------------- | -----------
+`fields[{type}]`  | Specify sparse fieldsets. You must provide the type(s) and field name(s).
+`filter[{field}]` | Filter data by a given field and value.
+`include[{type}]` | Include resources related to the main dataset.
+`page[size]`      | Specify how many items should be on each page. Defaults to `30`.
+`page[number]`    | Specify the page number. Defaults to `1`.
+`search`          | Use with `GET` collection endpoints. Search by string.
+`sort`            | Sort the data by specified fields. Prepend the field name with a `-` to sort descending.
 
 ### Filter fields
+
+Below is a table of fields by which you can filter each record-type.
 
 Record type | Filterable fields
 ----------- | ---------------
@@ -145,8 +145,22 @@ images      | kind, year, date, place_id, uploaded_by_id, usage_type, usage_lice
 versions    | game_id, platform_id, status, fps_target, fps_unlocked, res_w, res_h, res_unlocked
 releases    | version_id, place_id, date, year, physical, digital
 
+### Searchable record types
+
+Below is a list of record types that accept search queries.
+
+* `companies`
+* `games`
+* `genres`
+* `images`
+* `people`
+* `places`
+* `platforms`
+* `users`
 
 ### Sort fields
+
+Below is a table of fields by which you can sort each record-type.
 
 Record type | Sortable fields
 ----------- | ---------------
