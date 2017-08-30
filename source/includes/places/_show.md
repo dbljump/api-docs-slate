@@ -374,12 +374,6 @@ parent | places | belongs_to | The country a subdivision is in; he subdivision a
 children | places | has_many | The countries inside a region; the subdivisions inside a country; the localities inside a subdivision; null for localities.
 regions | places | has_many | The regions that a country, subdivision, or locality belong to. Null for regions.
 
-### Included
-
-Record type | Relationship | Attributes included
------------ | ------------ | -------------------
-users | created_by | username, role, given_names, family_name, avatar
-
 ### Meta
 
 The `meta` section of the JSON response includes `keywords`, `description`, `created_at` and `updated_at` attributes.

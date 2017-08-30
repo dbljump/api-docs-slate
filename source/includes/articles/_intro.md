@@ -24,10 +24,3 @@ Relationship | JSON API type
 primary_images | images
 created_by | users
 last_reviewed_by | users
-
-### Default response included
-
-JSON API type | Attributes and relationships
-------------- | ----------------------------
-users         | username, avatar_thumb
-images        | title, original, thumb

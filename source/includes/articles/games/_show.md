@@ -209,14 +209,6 @@ created_by | users | belongs_to
 genres | genres | has_many
 primary_image | images | belongs_to
 
-### Included
-
-Record type | Relationship | Attributes included
------------ | ------------ | -------------------
-users | created_by | username, role, given_names, family_name, avatar
-genres | genres | name, short_name
-images | primary_image | title, file
-
 ### Meta
 
 The `meta` section of the JSON response includes `keywords`, `description`, `created_at` and `updated_at` attributes.

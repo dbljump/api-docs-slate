@@ -88,13 +88,6 @@ place | places | belongs_to
 company | companies | belongs_to
 version | game_versions | belongs_to
 
-### Included
-
-Record type | Relationship | Attributes included
------------ | ------------ | -------------------
-places | place | name
-games | game | display_title
-
 ### Meta
 
 The `meta` section of the JSON response includes `keywords`, `description`, `created_at` and `updated_at` attributes.

@@ -94,13 +94,6 @@ Association | Record type | Relationship type
 parent | companies | belongs_to
 child | companies | belongs_to
 
-### Included
-
-Record type | Relationship | Attributes included
------------ | ------------ | -------------------
-companies | parent | display_title
-companies | child | display_title
-
 ### Meta
 
 The `meta` section of the JSON response includes `keywords`, `description`, `created_at` and `updated_at` attributes.

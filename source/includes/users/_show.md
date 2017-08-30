@@ -106,12 +106,6 @@ Association | Record type | Relationship type
 country | places(countries) | belongs_to
 images | images | has_many
 
-### Included
-
-Record type | Relationship | Attributes included
------------ | ------------ | -------------------
-places(countries) | country | subtype, slug, name, short_name, formatted
-
 ### Meta
 
 The `meta` section of the JSON response includes `keywords`, `description`, `created_at`, `updated_at`, `last_signed_in_at`, `last_sign_in_ip`, `sign_in_count` and `activated_at` attributes.

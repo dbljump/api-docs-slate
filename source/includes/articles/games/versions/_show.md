@@ -121,13 +121,6 @@ Association | Record type | Relationship type
 game | games | belongs_to
 platform | platforms | belongs_to
 
-### Included
-
-Record type | Relationship | Attributes included
------------ | ------------ | -------------------
-games | game | display_title
-platforms | platform | name
-
 ### Meta
 
 The `meta` section of the JSON response includes `keywords`, `description`, `created_at` and `updated_at` attributes.

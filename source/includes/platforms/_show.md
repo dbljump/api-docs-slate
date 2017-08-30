@@ -99,12 +99,6 @@ holder | companies | belongs_to
 parent | platforms | belongs_to
 created_by | users | belongs_to
 
-### Included
-
-Record type | Relationship | Attributes included
------------ | ------------ | -------------------
-users | created_by | username, role, given_names, family_name, avatar
-
 ### Meta
 
 The `meta` section of the JSON response includes `keywords`, `description`, `created_at` and `updated_at` attributes.

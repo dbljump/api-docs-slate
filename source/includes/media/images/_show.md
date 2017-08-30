@@ -110,13 +110,6 @@ Association | Record type | Relationship type
 uploaded_by | users | belongs_to |
 place | places | belongs_to
 
-### Included
-
-Record type | Relationship | Attributes included
------------ | ------------ | -------------------
-users | uploaded_by | username, role, given_names, family_name, avatar
-places | place | subtype, slug, name, short_name, formatted
-
 ### Meta
 
 The `meta` section of the JSON response includes `keywords`, `description`, `created_at` and `updated_at` attributes.
