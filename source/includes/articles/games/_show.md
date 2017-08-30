@@ -19,8 +19,8 @@
             "last_review_comments": null,
             "published_at": "2017-06-28T17:04:28.473Z",
             "status": "published",
-            "release_date": "2013-08-23",
-            "release_year": 2013
+            "origin_date": "2013-08-23",
+            "origin_year": 2013
         },
         "relationships": {
             "primary_image": {
@@ -198,8 +198,8 @@ Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 display_title | string | Y | The article title, usually the company name.
 description | text | | A short biography up to 800 chars.
-release_date | date | | Between 1st Jan 1800 and the present.
-release_year | integer | | Between 1800 and the present year.
+origin_date | date | | Between 1st Jan 1800 and the present.
+origin_year | integer | | Between 1800 and the present year.
 
 ### Relationships
 

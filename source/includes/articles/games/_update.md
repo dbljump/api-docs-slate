@@ -10,8 +10,8 @@
     "attributes": {
       "display_title": "Changed Name",
       "description": "Updated description for an updated article.",
-      "release_date": "1995-11-17",
-      "release_year": ""
+      "origin_date": "1995-11-17",
+      "origin_year": ""
     },
     "relationships": {
       "primary_image": {
@@ -48,8 +48,8 @@
             "last_review_comments": null,
             "published_at": "2017-06-28T17:04:28.494Z",
             "status": "published",
-            "release_date": "1995-11-17",
-            "release_year": 1995
+            "origin_date": "1995-11-17",
+            "origin_year": 1995
         },
         "relationships": {
             "primary_image": {
@@ -217,8 +217,8 @@ Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 display_title | string | Y | 1-250 characters.
 description | text | | 1-800 characters.
-release_date | date | | Between 1st Jan 1800 and the present.
-release_year | integer | | Between 1800 and the present year.
+origin_date | date | | Between 1st Jan 1800 and the present.
+origin_year | integer | | Between 1800 and the present year.
 
 ### Relationships
 

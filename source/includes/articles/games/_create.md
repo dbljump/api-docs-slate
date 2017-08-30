@@ -9,8 +9,8 @@
     "attributes": {
       "display_title": "New Game",
       "description": "New Game is an action game developed by some company or other.",
-      "release_date": "2015-01-03",
-      "release_year": ""
+      "origin_date": "2015-01-03",
+      "origin_year": ""
     },
     "relationships": {
       "primary_image": {
@@ -41,8 +41,8 @@
             "last_review_comments": null,
             "published_at": null,
             "status": "draft",
-            "release_date": "2015-01-03",
-            "release_year": 2015
+            "origin_date": "2015-01-03",
+            "origin_year": 2015
         },
         "relationships": {
             "primary_image": {
@@ -166,8 +166,8 @@ Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 display_title | string | Y | 1-250 characters.
 description | text | | 1-800 characters.
-release_date | date | | Between 1st Jan 1800 and the present.
-release_year | integer | | Between 1800 and the present year.
+origin_date | date | | Between 1st Jan 1800 and the present.
+origin_year | integer | | Between 1800 and the present year.
 
 ### Relationships
 

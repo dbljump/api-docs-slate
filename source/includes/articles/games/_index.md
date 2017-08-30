@@ -13,8 +13,8 @@
       "attributes": {
         "display_title": "Pong",
         "description": "Pong is a table tennis sports game and is one of the earliest arcade video games.",
-        "release_date": "1972-11-29",
-        "release_year": 1972,
+        "origin_date": "1972-11-29",
+        "origin_year": 1972,
         "slug": "pong"
       },
       "relationships": {
@@ -38,8 +38,8 @@
       "attributes": {
         "display_title": "The Wonderful 101",
         "description": "The Wonderful 101 is an action-adventure video game developed by Platinum Games for the Nintendo Wii U.",
-        "release_date": "2013-08-23",
-        "release_year": 2013,
+        "origin_date": "2013-08-23",
+        "origin_year": 2013,
         "slug": "the-wonderful-101"
       },
       "relationships": {
@@ -82,8 +82,8 @@ Retrieve all game articles. Automatically paginated.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[games]=display_title,release_date`
-filter[{field}] | All records | Filter search by field, e.g. `?filter[release_year]=2015`
+fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[games]=display_title,origin_date`
+filter[{field}] | All records | Filter search by field, e.g. `?filter[origin_year]=2015`
 page[number] | 1 | Select the page number, e.g. `?page[number]=3`
 page[size] | 30 | Select the number of records per page, e.g. `?page[size]=20`
 
