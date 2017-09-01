@@ -11,11 +11,11 @@
       "family_name": "Person",
       "description": "New Person is a new person, and this describes them.",
       "gender": "female",
-      "birth_date": "1965-09-12",
-      "birth_year": "",
-      "dead": "",
-      "death_date": "2012-05-18",
-      "death_year": ""
+      "origin_date": "1965-09-12",
+      "origin_year": "",
+      "ended": "",
+      "end_date": "2012-05-18",
+      "end_year": ""
     },
     "relationships": {
       "primary_image": {
@@ -24,13 +24,13 @@
           "type": "images"
         }
       },
-      "birth_place": {
+      "origin_place": {
         "data": {
           "id": "2883",
           "type": "places"
         }
       },
-      "death_place": {
+      "latest_place": {
         "data": {
           "id": "2932",
           "type": "places"
@@ -59,11 +59,11 @@
             "published_at": null,
             "status": "draft",
             "gender": "female",
-            "birth_date": "1965-09-12",
-            "birth_year": 1965,
-            "dead": true,
-            "death_date": "2012-05-18",
-            "death_year": 2012
+            "origin_date": "1965-09-12",
+            "origin_year": 1965,
+            "ended": true,
+            "end_date": "2012-05-18",
+            "end_year": 2012
         },
         "relationships": {
             "primary_image": {
@@ -87,7 +87,7 @@
             "last_reviewed_by": {
                 "data": null
             },
-            "birth_place": {
+            "origin_place": {
                 "data": {
                     "id": "2883",
                     "type": "places"
@@ -96,7 +96,7 @@
                     "related": "http://localhost:3000/places/all-guernsey"
                 }
             },
-            "death_place": {
+            "latest_place": {
                 "data": {
                     "id": "2932",
                     "type": "places"
@@ -245,11 +245,11 @@ given_names | string | Y | Max 50 characters. Only used when creating a record.
 family_name | string | | Max 50 characters. Only used when creating a record.
 description | text | | 1-800 characters.
 gender | string | | Must be 'male', 'female', 'transman' or 'transwoman'.
-birth_date | date | | Between 1st Jan 1800 and the present.
-birth_year | integer | | Between 1800 and the present year.
-dead | boolean | | True if the person is dead.
-death_date | date | | Between 1st Jan 1800 and the present.
-death_year | integer | | Between 1800 and the present year.
+origin_date | date | | Between 1st Jan 1800 and the present.
+origin_year | integer | | Between 1800 and the present year.
+ended | boolean | | True if the person is dead.
+end_date | date | | Between 1st Jan 1800 and the present.
+end_year | integer | | Between 1800 and the present year.
 
 ### Relationships
 
@@ -258,8 +258,8 @@ Check this section's code example to see how to update these relationships.
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
 primary_image | belongs_to | | images | The main article image, usually a game poster.
-birth_place | belongs_to | | places | Can be a country, subdivision, or locality.
-death_place | belongs_to | | places | Can be a country, subdivision, or locality.
+origin_place | belongs_to | | places | Can be a country, subdivision, or locality.
+latest_place | belongs_to | | places | Can be a country, subdivision, or locality.
 
 ### Success HTTP response code
 

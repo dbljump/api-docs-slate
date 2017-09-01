@@ -20,11 +20,11 @@
             "published_at": "2017-06-28T17:04:26.704Z",
             "status": "published",
             "gender": "male",
-            "birth_date": "1970-12-19",
-            "birth_year": 1970,
-            "dead": null,
-            "death_date": null,
-            "death_year": null
+            "origin_date": "1970-12-19",
+            "origin_year": 1970,
+            "ended": null,
+            "end_date": null,
+            "end_year": null
         },
         "relationships": {
             "primary_image": {
@@ -45,7 +45,7 @@
             "last_reviewed_by": {
                 "data": null
             },
-            "birth_place": {
+            "origin_place": {
                 "data": {
                     "id": "2936",
                     "type": "places"
@@ -54,7 +54,7 @@
                     "related": "http://localhost:3000/places/matsumoto-nagano-prefecture-japan"
                 }
             },
-            "death_place": {
+            "latest_place": {
                 "data": null,
                 "links": {
                     "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
@@ -147,19 +147,19 @@ Attribute | Type | Req'd? | Description
 display_title | string | Y | The article title, usually the person's name.
 description | text | | A short biography up to 800 chars.
 gender | string | | Must be 'male', 'female', 'transman' or 'transwoman'.
-birth_date | date | | Between 1st Jan 1800 and the present.
-birth_year | integer | | Between 1800 and the present year.
-dead | boolean | | True if the person is dead.
-death_date | date | | Between 1st Jan 1800 and the present.
-death_year | integer | | Between 1800 and the present year.
+origin_date | date | | Between 1st Jan 1800 and the present.
+origin_year | integer | | Between 1800 and the present year.
+ended | boolean | | True if the person is dead.
+end_date | date | | Between 1st Jan 1800 and the present.
+end_year | integer | | Between 1800 and the present year.
 slug | string | Y | A record ID based on the display_title.
 
 ### Relationships
 
 Association | Record type | Relationship type
 ------------ | ---------- | -----------------
-birth_place | places | belongs_to
-death_place | places | belongs_to
+origin_place | places | belongs_to
+latest_place | places | belongs_to
 created_by | users | belongs_to
 primary_image | images | belongs_to
 

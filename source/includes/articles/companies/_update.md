@@ -12,7 +12,7 @@
       "description": "Updated description for an updated article.",
       "origin_date": "1940-09-12",
       "origin_year": "",
-      "dead": "",
+      "ended": "",
       "end_date": "2013-04-05",
       "end_year": ""
     },
@@ -251,8 +251,8 @@ Check this section's code example to see how to update these relationships.
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
 primary_image | belongs_to | | images | The main article image, usually a company logo.
-birth_place | belongs_to | | places | Can be a country, subdivision, or locality.
-death_place | belongs_to | | places | Can be a country, subdivision, or locality.
+origin_place | belongs_to | | places | Can be a country, subdivision, or locality.
+latest_place | belongs_to | | places | Can be a country, subdivision, or locality.
 
 ### Success HTTP response code
 

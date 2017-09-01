@@ -14,15 +14,15 @@
         "display_title": "Hideki Kamiya",
         "description": "Hideki Kamiya is a game designer and director known for his work with Capcom and as a co-founder of PlatinumGames.",
         "gender": "male",
-        "birth_date": "1970-12-19",
-        "birth_year": 1970,
-        "dead": null,
-        "death_date": null,
-        "death_year": null,
+        "origin_date": "1970-12-19",
+        "origin_year": 1970,
+        "ended": null,
+        "end_date": null,
+        "end_year": null,
         "slug": "hideki-kamiya"
       },
       "relationships": {
-        "birth_place": {
+        "origin_place": {
           "data": {
             "id": "2936",
             "type": "places"
@@ -31,7 +31,7 @@
             "related": "http://localhost:3000/places/matsumoto-nagano-prefecture-japan"
           }
         },
-        "death_place": {
+        "latest_place": {
           "data": null
         },
         "created_by": {
@@ -55,15 +55,15 @@
         "display_title": "Corrinne Yu",
         "description": "Corrinne Yu is an American game programmer known for her work on the Halo series, with Sony development studio Naughty Dog, and with Amazon.",
         "gender": "female",
-        "birth_date": null,
-        "birth_year": null,
-        "dead": null,
-        "death_date": null,
-        "death_year": null,
+        "origin_date": null,
+        "origin_year": null,
+        "ended": null,
+        "end_date": null,
+        "end_year": null,
         "slug": "corrinne-yu"
       },
       "relationships": {
-        "birth_place": {
+        "origin_place": {
           "data": {
             "id": "90",
             "type": "places"
@@ -72,7 +72,7 @@
             "related": "http://localhost:3000/places/hong-kong"
           }
         },
-        "death_place": {
+        "latest_place": {
           "data": null
         },
         "created_by": {
@@ -96,15 +96,15 @@
         "display_title": "Tim Sweeney",
         "description": "Tim Sweeney is an American game programmer and the founder of Epic Games. He is best known for his work on the Unreal Engine.",
         "gender": "male",
-        "birth_date": null,
-        "birth_year": 1970,
-        "dead": null,
-        "death_date": null,
-        "death_year": null,
+        "origin_date": null,
+        "origin_year": 1970,
+        "ended": null,
+        "end_date": null,
+        "end_year": null,
         "slug": "tim-sweeney"
       },
       "relationships": {
-        "birth_place": {
+        "origin_place": {
           "data": {
             "id": "2890",
             "type": "places"
@@ -113,7 +113,7 @@
             "related": "http://localhost:3000/places/potomac-maryland-united-states"
           }
         },
-        "death_place": {
+        "latest_place": {
           "data": null
         },
         "created_by": {
