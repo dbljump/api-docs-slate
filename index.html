@@ -520,24 +520,6 @@
 </tr>
 </tbody></table>
 
-<h3 id="default-response-included">Default response included</h3>
-
-<table><thead>
-<tr>
-<th>JSON API type</th>
-<th>Attributes and relationships</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>users</td>
-<td>username, avatar_thumb</td>
-</tr>
-<tr>
-<td>images</td>
-<td>title, original, thumb</td>
-</tr>
-</tbody></table>
-
           <h2 id="get-all-articles">Get all articles</h2>
 
 <blockquote>
@@ -794,8 +776,8 @@
       "attributes": {
         "display_title": "Pong",
         "description": "Pong is a table tennis sports game and is one of the earliest arcade video games.",
-        "release_date": "1972-11-29",
-        "release_year": 1972,
+        "origin_date": "1972-11-29",
+        "origin_year": 1972,
         "slug": "pong"
       },
       "relationships": {
@@ -819,8 +801,8 @@
       "attributes": {
         "display_title": "The Wonderful 101",
         "description": "The Wonderful 101 is an action-adventure video game developed by Platinum Games for the Nintendo Wii U.",
-        "release_date": "2013-08-23",
-        "release_year": 2013,
+        "origin_date": "2013-08-23",
+        "origin_year": 2013,
         "slug": "the-wonderful-101"
       },
       "relationships": {
@@ -872,12 +854,12 @@
 <tr>
 <td>fields[{record-type}]</td>
 <td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[games]=display_title,release_date</code></td>
+<td>Return only specified fields, e.g. <code class="prettyprint">?fields[games]=display_title,origin_date</code></td>
 </tr>
 <tr>
 <td>filter[{field}]</td>
 <td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[release_year]=2015</code></td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[origin_year]=2015</code></td>
 </tr>
 <tr>
 <td>page[number]</td>
@@ -916,8 +898,8 @@
             "last_review_comments": null,
             "published_at": "2017-06-28T17:04:28.473Z",
             "status": "published",
-            "release_date": "2013-08-23",
-            "release_year": 2013
+            "origin_date": "2013-08-23",
+            "origin_year": 2013
         },
         "relationships": {
             "primary_image": {
@@ -1113,13 +1095,13 @@
 <td>A short biography up to 800 chars.</td>
 </tr>
 <tr>
-<td>release_date</td>
+<td>origin_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>release_year</td>
+<td>origin_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
@@ -1152,32 +1134,6 @@
 </tr>
 </tbody></table>
 
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>users</td>
-<td>created_by</td>
-<td>username, role, given_names, family_name, avatar</td>
-</tr>
-<tr>
-<td>genres</td>
-<td>genres</td>
-<td>name, short_name</td>
-</tr>
-<tr>
-<td>images</td>
-<td>primary_image</td>
-<td>title, file</td>
-</tr>
-</tbody></table>
-
 <h3 id="meta">Meta</h3>
 
 <p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
@@ -1193,8 +1149,8 @@
     "attributes": {
       "display_title": "New Game",
       "description": "New Game is an action game developed by some company or other.",
-      "release_date": "2015-01-03",
-      "release_year": ""
+      "origin_date": "2015-01-03",
+      "origin_year": ""
     },
     "relationships": {
       "primary_image": {
@@ -1224,8 +1180,8 @@
             "last_review_comments": null,
             "published_at": null,
             "status": "draft",
-            "release_date": "2015-01-03",
-            "release_year": 2015
+            "origin_date": "2015-01-03",
+            "origin_year": 2015
         },
         "relationships": {
             "primary_image": {
@@ -1367,13 +1323,13 @@
 <td>1-800 characters.</td>
 </tr>
 <tr>
-<td>release_date</td>
+<td>origin_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>release_year</td>
+<td>origin_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
@@ -1418,8 +1374,8 @@
     "attributes": {
       "display_title": "Changed Name",
       "description": "Updated description for an updated article.",
-      "release_date": "1995-11-17",
-      "release_year": ""
+      "origin_date": "1995-11-17",
+      "origin_year": ""
     },
     "relationships": {
       "primary_image": {
@@ -1455,8 +1411,8 @@
             "last_review_comments": null,
             "published_at": "2017-06-28T17:04:28.494Z",
             "status": "published",
-            "release_date": "1995-11-17",
-            "release_year": 1995
+            "origin_date": "1995-11-17",
+            "origin_year": 1995
         },
         "relationships": {
             "primary_image": {
@@ -1642,13 +1598,13 @@
 <td>1-800 characters.</td>
 </tr>
 <tr>
-<td>release_date</td>
+<td>origin_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>release_year</td>
+<td>origin_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
@@ -1737,14 +1693,14 @@
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_RELEASE_DATE_INCLUSION</td>
-<td>release_date</td>
+<td>GAME_ORIGIN_DATE_INCLUSION</td>
+<td>origin_date</td>
 <td>Release date must be a past date not before 1800.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_RELEASE_YEAR_INCLUSION</td>
-<td>release_year</td>
+<td>GAME_ORIGIN_YEAR_INCLUSION</td>
+<td>origin_year</td>
 <td>Release year must be a past year not before 1800.</td>
 </tr>
 </tbody></table>
@@ -2238,27 +2194,6 @@
 <td>platform</td>
 <td>platforms</td>
 <td>belongs_to</td>
-</tr>
-</tbody></table>
-
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>games</td>
-<td>game</td>
-<td>display_title</td>
-</tr>
-<tr>
-<td>platforms</td>
-<td>platform</td>
-<td>name</td>
 </tr>
 </tbody></table>
 
@@ -3487,22 +3422,6 @@
 </tr>
 </tbody></table>
 
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>places</td>
-<td>place</td>
-<td>formatted</td>
-</tr>
-</tbody></table>
-
 <h3 id="meta">Meta</h3>
 
 <p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
@@ -4137,27 +4056,6 @@
 <td>version</td>
 <td>game_versions</td>
 <td>belongs_to</td>
-</tr>
-</tbody></table>
-
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>places</td>
-<td>place</td>
-<td>name</td>
-</tr>
-<tr>
-<td>games</td>
-<td>game</td>
-<td>display_title</td>
 </tr>
 </tbody></table>
 
@@ -6470,15 +6368,15 @@
         "display_title": "Hideki Kamiya",
         "description": "Hideki Kamiya is a game designer and director known for his work with Capcom and as a co-founder of PlatinumGames.",
         "gender": "male",
-        "birth_date": "1970-12-19",
-        "birth_year": 1970,
-        "dead": null,
-        "death_date": null,
-        "death_year": null,
+        "origin_date": "1970-12-19",
+        "origin_year": 1970,
+        "ended": null,
+        "end_date": null,
+        "end_year": null,
         "slug": "hideki-kamiya"
       },
       "relationships": {
-        "birth_place": {
+        "origin_place": {
           "data": {
             "id": "2936",
             "type": "places"
@@ -6487,7 +6385,7 @@
             "related": "http://localhost:3000/places/matsumoto-nagano-prefecture-japan"
           }
         },
-        "death_place": {
+        "latest_place": {
           "data": null
         },
         "created_by": {
@@ -6511,15 +6409,15 @@
         "display_title": "Corrinne Yu",
         "description": "Corrinne Yu is an American game programmer known for her work on the Halo series, with Sony development studio Naughty Dog, and with Amazon.",
         "gender": "female",
-        "birth_date": null,
-        "birth_year": null,
-        "dead": null,
-        "death_date": null,
-        "death_year": null,
+        "origin_date": null,
+        "origin_year": null,
+        "ended": null,
+        "end_date": null,
+        "end_year": null,
         "slug": "corrinne-yu"
       },
       "relationships": {
-        "birth_place": {
+        "origin_place": {
           "data": {
             "id": "90",
             "type": "places"
@@ -6528,7 +6426,7 @@
             "related": "http://localhost:3000/places/hong-kong"
           }
         },
-        "death_place": {
+        "latest_place": {
           "data": null
         },
         "created_by": {
@@ -6552,15 +6450,15 @@
         "display_title": "Tim Sweeney",
         "description": "Tim Sweeney is an American game programmer and the founder of Epic Games. He is best known for his work on the Unreal Engine.",
         "gender": "male",
-        "birth_date": null,
-        "birth_year": 1970,
-        "dead": null,
-        "death_date": null,
-        "death_year": null,
+        "origin_date": null,
+        "origin_year": 1970,
+        "ended": null,
+        "end_date": null,
+        "end_year": null,
         "slug": "tim-sweeney"
       },
       "relationships": {
-        "birth_place": {
+        "origin_place": {
           "data": {
             "id": "2890",
             "type": "places"
@@ -6569,7 +6467,7 @@
             "related": "http://localhost:3000/places/potomac-maryland-united-states"
           }
         },
-        "death_place": {
+        "latest_place": {
           "data": null
         },
         "created_by": {
@@ -6665,11 +6563,11 @@
             "published_at": "2017-06-28T17:04:26.704Z",
             "status": "published",
             "gender": "male",
-            "birth_date": "1970-12-19",
-            "birth_year": 1970,
-            "dead": null,
-            "death_date": null,
-            "death_year": null
+            "origin_date": "1970-12-19",
+            "origin_year": 1970,
+            "ended": null,
+            "end_date": null,
+            "end_year": null
         },
         "relationships": {
             "primary_image": {
@@ -6690,7 +6588,7 @@
             "last_reviewed_by": {
                 "data": null
             },
-            "birth_place": {
+            "origin_place": {
                 "data": {
                     "id": "2936",
                     "type": "places"
@@ -6699,7 +6597,7 @@
                     "related": "http://localhost:3000/places/matsumoto-nagano-prefecture-japan"
                 }
             },
-            "death_place": {
+            "latest_place": {
                 "data": null,
                 "links": {
                     "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
@@ -6815,31 +6713,31 @@
 <td>Must be &lsquo;male&rsquo;, &#39;female&rsquo;, &#39;transman&rsquo; or &#39;transwoman&rsquo;.</td>
 </tr>
 <tr>
-<td>birth_date</td>
+<td>origin_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>birth_year</td>
+<td>origin_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
 </tr>
 <tr>
-<td>dead</td>
+<td>ended</td>
 <td>boolean</td>
 <td></td>
 <td>True if the person is dead.</td>
 </tr>
 <tr>
-<td>death_date</td>
+<td>end_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>death_year</td>
+<td>end_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
@@ -6862,12 +6760,12 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>birth_place</td>
+<td>origin_place</td>
 <td>places</td>
 <td>belongs_to</td>
 </tr>
 <tr>
-<td>death_place</td>
+<td>latest_place</td>
 <td>places</td>
 <td>belongs_to</td>
 </tr>
@@ -6880,37 +6778,6 @@
 <td>primary_image</td>
 <td>images</td>
 <td>belongs_to</td>
-</tr>
-</tbody></table>
-
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>users</td>
-<td>created_by</td>
-<td>username, role, given_names, family_name, avatar</td>
-</tr>
-<tr>
-<td>places</td>
-<td>birth_place</td>
-<td>name, formatted</td>
-</tr>
-<tr>
-<td>places</td>
-<td>death_place</td>
-<td>name, formatted</td>
-</tr>
-<tr>
-<td>images</td>
-<td>primary_image</td>
-<td>title, file</td>
 </tr>
 </tbody></table>
 
@@ -6931,11 +6798,11 @@
       "family_name": "Person",
       "description": "New Person is a new person, and this describes them.",
       "gender": "female",
-      "birth_date": "1965-09-12",
-      "birth_year": "",
-      "dead": "",
-      "death_date": "2012-05-18",
-      "death_year": ""
+      "origin_date": "1965-09-12",
+      "origin_year": "",
+      "ended": "",
+      "end_date": "2012-05-18",
+      "end_year": ""
     },
     "relationships": {
       "primary_image": {
@@ -6944,13 +6811,13 @@
           "type": "images"
         }
       },
-      "birth_place": {
+      "origin_place": {
         "data": {
           "id": "2883",
           "type": "places"
         }
       },
-      "death_place": {
+      "latest_place": {
         "data": {
           "id": "2932",
           "type": "places"
@@ -6978,11 +6845,11 @@
             "published_at": null,
             "status": "draft",
             "gender": "female",
-            "birth_date": "1965-09-12",
-            "birth_year": 1965,
-            "dead": true,
-            "death_date": "2012-05-18",
-            "death_year": 2012
+            "origin_date": "1965-09-12",
+            "origin_year": 1965,
+            "ended": true,
+            "end_date": "2012-05-18",
+            "end_year": 2012
         },
         "relationships": {
             "primary_image": {
@@ -7006,7 +6873,7 @@
             "last_reviewed_by": {
                 "data": null
             },
-            "birth_place": {
+            "origin_place": {
                 "data": {
                     "id": "2883",
                     "type": "places"
@@ -7015,7 +6882,7 @@
                     "related": "http://localhost:3000/places/all-guernsey"
                 }
             },
-            "death_place": {
+            "latest_place": {
                 "data": {
                     "id": "2932",
                     "type": "places"
@@ -7192,31 +7059,31 @@
 <td>Must be &lsquo;male&rsquo;, &#39;female&rsquo;, &#39;transman&rsquo; or &#39;transwoman&rsquo;.</td>
 </tr>
 <tr>
-<td>birth_date</td>
+<td>origin_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>birth_year</td>
+<td>origin_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
 </tr>
 <tr>
-<td>dead</td>
+<td>ended</td>
 <td>boolean</td>
 <td></td>
 <td>True if the person is dead.</td>
 </tr>
 <tr>
-<td>death_date</td>
+<td>end_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>death_year</td>
+<td>end_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
@@ -7244,14 +7111,14 @@
 <td>The main article image, usually a game poster.</td>
 </tr>
 <tr>
-<td>birth_place</td>
+<td>origin_place</td>
 <td>belongs_to</td>
 <td></td>
 <td>places</td>
 <td>Can be a country, subdivision, or locality.</td>
 </tr>
 <tr>
-<td>death_place</td>
+<td>latest_place</td>
 <td>belongs_to</td>
 <td></td>
 <td>places</td>
@@ -7276,11 +7143,11 @@
       "display_title": "Changed Name",
       "description": "Updated description for an updated article.",
       "gender": "transwoman",
-      "birth_date": "1960-09-12",
-      "birth_year": "",
-      "dead": "",
-      "death_date": "",
-      "death_year": "2015"
+      "origin_date": "1960-09-12",
+      "origin_year": "",
+      "ended": "",
+      "end_date": "",
+      "end_year": "2015"
     },
     "relationships": {
       "primary_image": {
@@ -7289,13 +7156,13 @@
           "type": "images"
         }
       },
-      "birth_place": {
+      "origin_place": {
         "data": {
           "id": "25",
           "type": "places"
         }
       },
-      "death_place": {
+      "latest_place": {
         "data": {
           "id": "2933",
           "type": "places"
@@ -7323,11 +7190,11 @@
             "published_at": "2017-06-28T17:04:26.704Z",
             "status": "published",
             "gender": "transwoman",
-            "birth_date": "1960-09-12",
-            "birth_year": 1960,
-            "dead": true,
-            "death_date": null,
-            "death_year": 2015
+            "origin_date": "1960-09-12",
+            "origin_year": 1960,
+            "ended": true,
+            "end_date": null,
+            "end_year": 2015
         },
         "relationships": {
             "primary_image": {
@@ -7351,7 +7218,7 @@
             "last_reviewed_by": {
                 "data": null
             },
-            "birth_place": {
+            "origin_place": {
                 "data": {
                     "id": "25",
                     "type": "places"
@@ -7360,7 +7227,7 @@
                     "related": "http://localhost:3000/places/bolivia"
                 }
             },
-            "death_place": {
+            "latest_place": {
                 "data": {
                     "id": "2933",
                     "type": "places"
@@ -7504,31 +7371,31 @@
 <td>Must be &lsquo;male&rsquo;, &#39;female&rsquo;, &#39;transman&rsquo; or &#39;transwoman&rsquo;.</td>
 </tr>
 <tr>
-<td>birth_date</td>
+<td>origin_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>birth_year</td>
+<td>origin_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
 </tr>
 <tr>
-<td>dead</td>
+<td>ended</td>
 <td>boolean</td>
 <td></td>
 <td>True if the person is dead.</td>
 </tr>
 <tr>
-<td>death_date</td>
+<td>end_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>death_year</td>
+<td>end_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
@@ -7556,14 +7423,14 @@
 <td>The main article image, usually a likeness of the person.</td>
 </tr>
 <tr>
-<td>birth_place</td>
+<td>origin_place</td>
 <td>belongs_to</td>
 <td></td>
 <td>places</td>
 <td>Can be a country, subdivision, or locality.</td>
 </tr>
 <tr>
-<td>death_place</td>
+<td>latest_place</td>
 <td>belongs_to</td>
 <td></td>
 <td>places</td>
@@ -7672,38 +7539,38 @@
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_BIRTH_DATE_INCLUSION</td>
-<td>birth_date</td>
+<td>PERSON_ORIGIN_DATE_INCLUSION</td>
+<td>origin_date</td>
 <td>Birth date must be a past date not before 1800.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_BIRTH_YEAR_INCLUSION</td>
-<td>birth_year</td>
+<td>PERSON_ORIGIN_YEAR_INCLUSION</td>
+<td>origin_year</td>
 <td>Birth year must be a past year not before 1800.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_DEATH_DATE_INCLUSION</td>
-<td>death_date</td>
+<td>PERSON_END_DATE_INCLUSION</td>
+<td>end_date</td>
 <td>Death date must be a past date not before 1800.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_DEATH_DATE_INVALID</td>
-<td>death_date</td>
+<td>PERSON_END_DATE_INVALID</td>
+<td>end_date</td>
 <td>Death date must not be eariler than birth date.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_DEATH_YEAR_INCLUSION</td>
-<td>death_year</td>
+<td>PERSON_END_YEAR_INCLUSION</td>
+<td>end_year</td>
 <td>Death year must be a past year not before 1800.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_DEATH_YEAR_INVALID</td>
-<td>death_year</td>
+<td>PERSON_END_YEAR_INVALID</td>
+<td>end_year</td>
 <td>Death year must not be eariler than birth year.</td>
 </tr>
 </tbody></table>
@@ -7959,27 +7826,6 @@
 <td>person</td>
 <td>people</td>
 <td>belongs_to</td>
-</tr>
-</tbody></table>
-
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>places</td>
-<td>place</td>
-<td>name</td>
-</tr>
-<tr>
-<td>people</td>
-<td>person</td>
-<td>display_title</td>
 </tr>
 </tbody></table>
 
@@ -10318,15 +10164,15 @@
       "attributes": {
         "display_title": "Google Inc.",
         "description": "Google is an American technology company best known in the gaming world for its Android mobile platform.",
-        "founded_date": null,
-        "founded_year": 1998,
-        "closed": null,
-        "closed_date": null,
-        "closed_year": null,
+        "origin_date": null,
+        "origin_year": 1998,
+        "end": null,
+        "end_date": null,
+        "end_year": null,
         "slug": "google-inc"
       },
       "relationships": {
-        "founded_place": {
+        "origin_place": {
           "data": {
             "id": "2888",
             "type": "places"
@@ -10335,7 +10181,7 @@
             "related": "http://localhost:3000/places/mountain-view-california-united-states"
           }
         },
-        "hq_place": {
+        "latest_place": {
           "data": null
         },
         "created_by": {
@@ -10358,15 +10204,15 @@
       "attributes": {
         "display_title": "Apple Inc.",
         "description": "Apple is an American technology company best known within the gaming world for its iOS and Mac platforms.",
-        "founded_date": null,
-        "founded_year": 1976,
-        "closed": null,
-        "closed_date": null,
-        "closed_year": null,
+        "origin_date": null,
+        "origin_year": 1976,
+        "end": null,
+        "end_date": null,
+        "end_year": null,
         "slug": "apple-inc"
       },
       "relationships": {
-        "founded_place": {
+        "origin_place": {
           "data": {
             "id": "2887",
             "type": "places"
@@ -10375,7 +10221,7 @@
             "related": "http://localhost:3000/places/cupertino-california-united-states"
           }
         },
-        "hq_place": {
+        "latest_place": {
           "data": null
         },
         "created_by": {
@@ -10431,7 +10277,7 @@
 <tr>
 <td>filter[{field}]</td>
 <td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[closed]=true</code></td>
+<td>Filter search by field, e.g. <code class="prettyprint">?filter[end]=true</code></td>
 </tr>
 <tr>
 <td>page[number]</td>
@@ -10463,15 +10309,15 @@
     "attributes": {
       "display_title": "Nintendo Co., Ltd.",
       "description": "Nintendo is a Japanese video game hardware and software company founded in 1889.",
-      "founded_date": null,
-      "founded_year": 1889,
-      "closed": null,
-      "closed_date": null,
-      "closed_year": null,
+      "origin_date": null,
+      "origin_year": 1889,
+      "end": null,
+      "end_date": null,
+      "end_year": null,
       "slug": "nintendo-co-ltd"
     },
     "relationships": {
-      "founded_place": {
+      "origin_place": {
         "data": {
           "id": "2932",
           "type": "places"
@@ -10480,7 +10326,7 @@
           "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
         }
       },
-      "hq_place": {
+      "latest_place": {
         "data": null
       },
       "created_by": {
@@ -10570,31 +10416,31 @@
 <td>A short biography up to 800 chars.</td>
 </tr>
 <tr>
-<td>founded_date</td>
+<td>origin_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>founded_year</td>
+<td>origin_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
 </tr>
 <tr>
-<td>closed</td>
+<td>end</td>
 <td>boolean</td>
 <td></td>
-<td>True if the company has closed.</td>
+<td>True if the company has end.</td>
 </tr>
 <tr>
-<td>closed_date</td>
+<td>end_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>closed_year</td>
+<td>end_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
@@ -10617,12 +10463,12 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>founded_place</td>
+<td>origin_place</td>
 <td>places</td>
 <td>belongs_to</td>
 </tr>
 <tr>
-<td>hq_place</td>
+<td>latest_place</td>
 <td>places</td>
 <td>belongs_to</td>
 </tr>
@@ -10635,37 +10481,6 @@
 <td>primary_image</td>
 <td>images</td>
 <td>belongs_to</td>
-</tr>
-</tbody></table>
-
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>users</td>
-<td>created_by</td>
-<td>username, role, given_names, family_name, avatar</td>
-</tr>
-<tr>
-<td>places</td>
-<td>founded_place</td>
-<td>name, formatted</td>
-</tr>
-<tr>
-<td>places</td>
-<td>hq_place</td>
-<td>name, formatted</td>
-</tr>
-<tr>
-<td>images</td>
-<td>primary_image</td>
-<td>title, file</td>
 </tr>
 </tbody></table>
 
@@ -10684,11 +10499,11 @@
     "attributes": {
       "display_title": "New Firm",
       "description": "New Firm is a new company, and this describes it.",
-      "founded_date": "1965-09-12",
-      "founded_year": "",
-      "closed": "",
-      "closed_date": "2012-05-18",
-      "closed_year": ""
+      "origin_date": "1965-09-12",
+      "origin_year": "",
+      "end": "",
+      "end_date": "2012-05-18",
+      "end_year": ""
     },
     "relationships": {
       "primary_image": {
@@ -10697,13 +10512,13 @@
           "type": "images"
         }
       },
-      "founded_place": {
+      "origin_place": {
         "data": {
           "id": "2883",
           "type": "places"
         }
       },
-      "hq_place": {
+      "latest_place": {
         "data": {
           "id": "2932",
           "type": "places"
@@ -10730,11 +10545,11 @@
             "last_review_comments": null,
             "published_at": null,
             "status": "draft",
-            "founded_date": "1965-09-12",
-            "founded_year": 1965,
-            "closed": true,
-            "closed_date": "2012-05-18",
-            "closed_year": 2012
+            "origin_date": "1965-09-12",
+            "origin_year": 1965,
+            "end": true,
+            "end_date": "2012-05-18",
+            "end_year": 2012
         },
         "relationships": {
             "primary_image": {
@@ -10758,7 +10573,7 @@
             "last_reviewed_by": {
                 "data": null
             },
-            "founded_place": {
+            "origin_place": {
                 "data": {
                     "id": "2883",
                     "type": "places"
@@ -10767,7 +10582,7 @@
                     "related": "http://localhost:3000/places/los-angeles-california-united-states"
                 }
             },
-            "hq_place": {
+            "latest_place": {
                 "data": {
                     "id": "2932",
                     "type": "places"
@@ -10910,31 +10725,31 @@
 <td>1-800 characters.</td>
 </tr>
 <tr>
-<td>founded_date</td>
+<td>origin_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>founded_year</td>
+<td>origin_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
 </tr>
 <tr>
-<td>closed</td>
+<td>end</td>
 <td>boolean</td>
 <td></td>
-<td>True if the company has closed.</td>
+<td>True if the company has end.</td>
 </tr>
 <tr>
-<td>closed_date</td>
+<td>end_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>closed_year</td>
+<td>end_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
@@ -10955,14 +10770,14 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>founded_place</td>
+<td>origin_place</td>
 <td>belongs_to</td>
 <td></td>
 <td>places</td>
 <td>Can be a country, subdivision, or locality.</td>
 </tr>
 <tr>
-<td>closed_place</td>
+<td>latest_place</td>
 <td>belongs_to</td>
 <td></td>
 <td>places</td>
@@ -10993,11 +10808,11 @@
     "attributes": {
       "display_title": "Changed Name",
       "description": "Updated description for an updated article.",
-      "founded_date": "1940-09-12",
-      "founded_year": "",
-      "dead": "",
-      "closed_date": "2013-04-05",
-      "closed_year": ""
+      "origin_date": "1940-09-12",
+      "origin_year": "",
+      "ended": "",
+      "end_date": "2013-04-05",
+      "end_year": ""
     },
     "relationships": {
       "primary_image": {
@@ -11006,13 +10821,13 @@
           "type": "images"
         }
       },
-      "founded_place": {
+      "origin_place": {
         "data": {
           "id": "25",
           "type": "places"
         }
       },
-      "hq_place": {
+      "latest_place": {
         "data": {
           "id": "2933",
           "type": "places"
@@ -11039,11 +10854,11 @@
             "last_review_comments": null,
             "published_at": "2017-06-28T17:04:18.271Z",
             "status": "published",
-            "founded_date": "1940-09-12",
-            "founded_year": 1940,
-            "closed": true,
-            "closed_date": "2013-04-05",
-            "closed_year": 2013
+            "origin_date": "1940-09-12",
+            "origin_year": 1940,
+            "end": true,
+            "end_date": "2013-04-05",
+            "end_year": 2013
         },
         "relationships": {
             "primary_image": {
@@ -11067,7 +10882,7 @@
             "last_reviewed_by": {
                 "data": null
             },
-            "founded_place": {
+            "origin_place": {
                 "data": {
                     "id": "25",
                     "type": "places"
@@ -11076,7 +10891,7 @@
                     "related": "http://localhost:3000/places/bolivia"
                 }
             },
-            "hq_place": {
+            "latest_place": {
                 "data": {
                     "id": "2933",
                     "type": "places"
@@ -11238,31 +11053,31 @@
 <td>1-800 characters.</td>
 </tr>
 <tr>
-<td>founded_date</td>
+<td>origin_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>founded_year</td>
+<td>origin_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
 </tr>
 <tr>
-<td>closed</td>
+<td>end</td>
 <td>boolean</td>
 <td></td>
-<td>True if the company has closed.</td>
+<td>True if the company has end.</td>
 </tr>
 <tr>
-<td>closed_date</td>
+<td>end_date</td>
 <td>date</td>
 <td></td>
 <td>Between 1st Jan 1800 and the present.</td>
 </tr>
 <tr>
-<td>closed_year</td>
+<td>end_year</td>
 <td>integer</td>
 <td></td>
 <td>Between 1800 and the present year.</td>
@@ -11290,14 +11105,14 @@
 <td>The main article image, usually a company logo.</td>
 </tr>
 <tr>
-<td>birth_place</td>
+<td>origin_place</td>
 <td>belongs_to</td>
 <td></td>
 <td>places</td>
 <td>Can be a country, subdivision, or locality.</td>
 </tr>
 <tr>
-<td>death_place</td>
+<td>latest_place</td>
 <td>belongs_to</td>
 <td></td>
 <td>places</td>
@@ -11358,38 +11173,38 @@
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_FOUNDED_DATE_INCLUSION</td>
-<td>founded_date</td>
+<td>COMPANY_ORIGIN_DATE_INCLUSION</td>
+<td>origin_date</td>
 <td>Founded date must be a past date not before 1800.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_FOUNDED_YEAR_INCLUSION</td>
-<td>founded_year</td>
+<td>COMPANY_ORIGIN_YEAR_INCLUSION</td>
+<td>origin_year</td>
 <td>Founded year must be a past year not before 1800.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_CLOSED_DATE_INCLUSION</td>
-<td>closed_date</td>
+<td>COMPANY_END_DATE_INCLUSION</td>
+<td>end_date</td>
 <td>Closed date must be a past date not before 1800.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_CLOSED_DATE_INVALID</td>
-<td>closed_date</td>
+<td>COMPANY_END_DATE_INVALID</td>
+<td>end_date</td>
 <td>Closed date must not be eariler than founded date.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_CLOSED_YEAR_INCLUSION</td>
-<td>closed_year</td>
+<td>COMPANY_END_YEAR_INCLUSION</td>
+<td>end_year</td>
 <td>Closed year must be a past year not before 1800.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_CLOSED_YEAR_INVALID</td>
-<td>closed_year</td>
+<td>COMPANY_END_YEAR_INVALID</td>
+<td>end_year</td>
 <td>Closed year must not be eariler than founded year.</td>
 </tr>
 </tbody></table>
@@ -11641,27 +11456,6 @@
 <td>company</td>
 <td>companies</td>
 <td>belongs_to</td>
-</tr>
-</tbody></table>
-
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>places</td>
-<td>place</td>
-<td>name</td>
-</tr>
-<tr>
-<td>companies</td>
-<td>company</td>
-<td>display_title</td>
 </tr>
 </tbody></table>
 
@@ -13141,27 +12935,6 @@
 <td>child</td>
 <td>companies</td>
 <td>belongs_to</td>
-</tr>
-</tbody></table>
-
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>companies</td>
-<td>parent</td>
-<td>display_title</td>
-</tr>
-<tr>
-<td>companies</td>
-<td>child</td>
-<td>display_title</td>
 </tr>
 </tbody></table>
 
@@ -15136,11 +14909,11 @@
             "last_review_comments": null,
             "published_at": null,
             "status": "submitted",
-            "founded_date": null,
-            "founded_year": 1889,
-            "closed": null,
-            "closed_date": null,
-            "closed_year": null
+            "origin_date": null,
+            "origin_year": 1889,
+            "end": null,
+            "end_date": null,
+            "end_year": null
         },
         "relationships": {
             "primary_image": {
@@ -15158,7 +14931,7 @@
             "last_reviewed_by": {
                 "data": null
             },
-            "founded_place": {
+            "origin_place": {
                 "data": {
                     "id": "2932",
                     "type": "places"
@@ -15167,7 +14940,7 @@
                     "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
                 }
             },
-            "hq_place": {
+            "latest_place": {
                 "data": null
             },
             "names": {
@@ -15329,11 +15102,11 @@
             "last_review_comments": "Please fix typing errors.",
             "published_at": null,
             "status": "draft",
-            "founded_date": null,
-            "founded_year": 1889,
-            "closed": null,
-            "closed_date": null,
-            "closed_year": null
+            "origin_date": null,
+            "origin_year": 1889,
+            "end": null,
+            "end_date": null,
+            "end_year": null
         },
         "relationships": {
             "primary_image": {
@@ -15357,7 +15130,7 @@
                     "related": "http://localhost:3000/users/2"
                 }
             },
-            "founded_place": {
+            "origin_place": {
                 "data": {
                     "id": "2932",
                     "type": "places"
@@ -15366,7 +15139,7 @@
                     "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
                 }
             },
-            "hq_place": {
+            "latest_place": {
                 "data": null
             },
             "names": {
@@ -15895,22 +15668,6 @@
 <td>images</td>
 <td>images</td>
 <td>has_many</td>
-</tr>
-</tbody></table>
-
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>places(countries)</td>
-<td>country</td>
-<td>subtype, slug, name, short_name, formatted</td>
 </tr>
 </tbody></table>
 
@@ -17982,22 +17739,6 @@
 </tr>
 </tbody></table>
 
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>users</td>
-<td>created_by</td>
-<td>username, role, given_names, family_name, avatar</td>
-</tr>
-</tbody></table>
-
 <h3 id="meta">Meta</h3>
 
 <p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
@@ -19444,27 +19185,6 @@
 </tr>
 </tbody></table>
 
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>users</td>
-<td>uploaded_by</td>
-<td>username, role, given_names, family_name, avatar</td>
-</tr>
-<tr>
-<td>places</td>
-<td>place</td>
-<td>subtype, slug, name, short_name, formatted</td>
-</tr>
-</tbody></table>
-
 <h3 id="meta">Meta</h3>
 
 <p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
@@ -20610,22 +20330,6 @@
 </tr>
 </tbody></table>
 
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>users</td>
-<td>created_by</td>
-<td>username, role, given_names, family_name, avatar</td>
-</tr>
-</tbody></table>
-
 <h3 id="meta">Meta</h3>
 
 <p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
@@ -21414,22 +21118,6 @@
 <td>created_by</td>
 <td>users</td>
 <td>belongs_to</td>
-</tr>
-</tbody></table>
-
-<h3 id="included">Included</h3>
-
-<table><thead>
-<tr>
-<th>Record type</th>
-<th>Relationship</th>
-<th>Attributes included</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>users</td>
-<td>created_by</td>
-<td>username, role, given_names, family_name, avatar</td>
 </tr>
 </tbody></table>
 
