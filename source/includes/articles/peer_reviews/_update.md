@@ -32,11 +32,11 @@
             "last_review_comments": "Please fix typing errors.",
             "published_at": null,
             "status": "draft",
-            "founded_date": null,
-            "founded_year": 1889,
-            "closed": null,
-            "closed_date": null,
-            "closed_year": null
+            "origin_date": null,
+            "origin_year": 1889,
+            "end": null,
+            "end_date": null,
+            "end_year": null
         },
         "relationships": {
             "primary_image": {
@@ -60,7 +60,7 @@
                     "related": "http://localhost:3000/users/2"
                 }
             },
-            "founded_place": {
+            "origin_place": {
                 "data": {
                     "id": "2932",
                     "type": "places"
@@ -69,7 +69,7 @@
                     "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
                 }
             },
-            "hq_place": {
+            "latest_place": {
                 "data": null
             },
             "names": {

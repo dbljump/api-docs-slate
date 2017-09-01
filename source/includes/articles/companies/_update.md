@@ -10,11 +10,11 @@
     "attributes": {
       "display_title": "Changed Name",
       "description": "Updated description for an updated article.",
-      "founded_date": "1940-09-12",
-      "founded_year": "",
+      "origin_date": "1940-09-12",
+      "origin_year": "",
       "dead": "",
-      "closed_date": "2013-04-05",
-      "closed_year": ""
+      "end_date": "2013-04-05",
+      "end_year": ""
     },
     "relationships": {
       "primary_image": {
@@ -23,13 +23,13 @@
           "type": "images"
         }
       },
-      "founded_place": {
+      "origin_place": {
         "data": {
           "id": "25",
           "type": "places"
         }
       },
-      "hq_place": {
+      "latest_place": {
         "data": {
           "id": "2933",
           "type": "places"
@@ -57,11 +57,11 @@
             "last_review_comments": null,
             "published_at": "2017-06-28T17:04:18.271Z",
             "status": "published",
-            "founded_date": "1940-09-12",
-            "founded_year": 1940,
-            "closed": true,
-            "closed_date": "2013-04-05",
-            "closed_year": 2013
+            "origin_date": "1940-09-12",
+            "origin_year": 1940,
+            "end": true,
+            "end_date": "2013-04-05",
+            "end_year": 2013
         },
         "relationships": {
             "primary_image": {
@@ -85,7 +85,7 @@
             "last_reviewed_by": {
                 "data": null
             },
-            "founded_place": {
+            "origin_place": {
                 "data": {
                     "id": "25",
                     "type": "places"
@@ -94,7 +94,7 @@
                     "related": "http://localhost:3000/places/bolivia"
                 }
             },
-            "hq_place": {
+            "latest_place": {
                 "data": {
                     "id": "2933",
                     "type": "places"
@@ -238,11 +238,11 @@ Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 display_title | string | Y | 1-250 characters.
 description | text | | 1-800 characters.
-founded_date | date | | Between 1st Jan 1800 and the present.
-founded_year | integer | | Between 1800 and the present year.
-closed | boolean | | True if the company has closed.
-closed_date | date | | Between 1st Jan 1800 and the present.
-closed_year | integer | | Between 1800 and the present year.
+origin_date | date | | Between 1st Jan 1800 and the present.
+origin_year | integer | | Between 1800 and the present year.
+end | boolean | | True if the company has end.
+end_date | date | | Between 1st Jan 1800 and the present.
+end_year | integer | | Between 1800 and the present year.
 
 ### Relationships
 

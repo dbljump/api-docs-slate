@@ -12,15 +12,15 @@
     "attributes": {
       "display_title": "Nintendo Co., Ltd.",
       "description": "Nintendo is a Japanese video game hardware and software company founded in 1889.",
-      "founded_date": null,
-      "founded_year": 1889,
-      "closed": null,
-      "closed_date": null,
-      "closed_year": null,
+      "origin_date": null,
+      "origin_year": 1889,
+      "end": null,
+      "end_date": null,
+      "end_year": null,
       "slug": "nintendo-co-ltd"
     },
     "relationships": {
-      "founded_place": {
+      "origin_place": {
         "data": {
           "id": "2932",
           "type": "places"
@@ -29,7 +29,7 @@
           "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
         }
       },
-      "hq_place": {
+      "latest_place": {
         "data": null
       },
       "created_by": {
@@ -101,19 +101,19 @@ Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 display_title | string | Y | The article title, usually the company name.
 description | text | | A short biography up to 800 chars.
-founded_date | date | | Between 1st Jan 1800 and the present.
-founded_year | integer | | Between 1800 and the present year.
-closed | boolean | | True if the company has closed.
-closed_date | date | | Between 1st Jan 1800 and the present.
-closed_year | integer | | Between 1800 and the present year.
+origin_date | date | | Between 1st Jan 1800 and the present.
+origin_year | integer | | Between 1800 and the present year.
+end | boolean | | True if the company has end.
+end_date | date | | Between 1st Jan 1800 and the present.
+end_year | integer | | Between 1800 and the present year.
 slug | string | Y | A record ID based on the display_title.
 
 ### Relationships
 
 Association | Record type | Relationship type
 ------------ | ---------- | -----------------
-founded_place | places | belongs_to
-hq_place | places | belongs_to
+origin_place | places | belongs_to
+latest_place | places | belongs_to
 created_by | users | belongs_to
 primary_image | images | belongs_to
 

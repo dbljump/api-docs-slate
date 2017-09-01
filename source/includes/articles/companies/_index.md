@@ -13,15 +13,15 @@
       "attributes": {
         "display_title": "Google Inc.",
         "description": "Google is an American technology company best known in the gaming world for its Android mobile platform.",
-        "founded_date": null,
-        "founded_year": 1998,
-        "closed": null,
-        "closed_date": null,
-        "closed_year": null,
+        "origin_date": null,
+        "origin_year": 1998,
+        "end": null,
+        "end_date": null,
+        "end_year": null,
         "slug": "google-inc"
       },
       "relationships": {
-        "founded_place": {
+        "origin_place": {
           "data": {
             "id": "2888",
             "type": "places"
@@ -30,7 +30,7 @@
             "related": "http://localhost:3000/places/mountain-view-california-united-states"
           }
         },
-        "hq_place": {
+        "latest_place": {
           "data": null
         },
         "created_by": {
@@ -53,15 +53,15 @@
       "attributes": {
         "display_title": "Apple Inc.",
         "description": "Apple is an American technology company best known within the gaming world for its iOS and Mac platforms.",
-        "founded_date": null,
-        "founded_year": 1976,
-        "closed": null,
-        "closed_date": null,
-        "closed_year": null,
+        "origin_date": null,
+        "origin_year": 1976,
+        "end": null,
+        "end_date": null,
+        "end_year": null,
         "slug": "apple-inc"
       },
       "relationships": {
-        "founded_place": {
+        "origin_place": {
           "data": {
             "id": "2887",
             "type": "places"
@@ -70,7 +70,7 @@
             "related": "http://localhost:3000/places/cupertino-california-united-states"
           }
         },
-        "hq_place": {
+        "latest_place": {
           "data": null
         },
         "created_by": {
@@ -113,7 +113,7 @@ Retrieve all company articles. Automatically paginated.
 Parameter | Default | Description
 --------- | ------- | -----------
 fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[companies]=display_title,description`
-filter[{field}] | All records | Filter search by field, e.g. `?filter[closed]=true`
+filter[{field}] | All records | Filter search by field, e.g. `?filter[end]=true`
 page[number] | 1 | Select the page number, e.g. `?page[number]=3`
 page[size] | 30 | Select the number of records per page, e.g. `?page[size]=20`
 
