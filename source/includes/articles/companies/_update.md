@@ -253,6 +253,7 @@ Name | Relationship | Req'd? | JSON:API type | Description
 primary_image | belongs_to | | images | The main article image, usually a company logo.
 origin_place | belongs_to | | places | Can be a country, subdivision, or locality.
 latest_place | belongs_to | | places | Can be a country, subdivision, or locality.
+platforms | has_many  | | platforms | Gaming platforms this company holds.
 
 ### Success HTTP response code
 
