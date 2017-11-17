@@ -15,230 +15,45 @@
             "name": "United States",
             "formatted": "United States",
             "short_name": "USA",
-            "also_known_as": [],
+            "also_known_as": [
+                "'United States of America'"
+            ],
             "latitude": 38,
             "longitude": -97,
             "iso_code": "US"
         },
         "relationships": {
             "parent": {
-                "data": null,
-                "links": {
-                    "related": "http://api.dbljump.com/places/niue"
-                }
+                "data": null
             },
             "children": {
                 "data": [
                     {
-                        "id": "329",
+                        "id": "2734",
                         "type": "places"
                     },
                     {
-                        "id": "335",
+                        "id": "2733",
                         "type": "places"
                     },
                     {
-                        "id": "398",
+                        "id": "2732",
                         "type": "places"
                     },
                     {
-                        "id": "460",
+                        "id": "2731",
                         "type": "places"
                     },
                     {
-                        "id": "461",
+                        "id": "2730",
                         "type": "places"
                     },
                     {
-                        "id": "463",
+                        "id": "2729",
                         "type": "places"
                     },
                     {
-                        "id": "464",
-                        "type": "places"
-                    },
-                    {
-                        "id": "465",
-                        "type": "places"
-                    },
-                    {
-                        "id": "708",
-                        "type": "places"
-                    },
-                    {
-                        "id": "842",
-                        "type": "places"
-                    },
-                    {
-                        "id": "849",
-                        "type": "places"
-                    },
-                    {
-                        "id": "902",
-                        "type": "places"
-                    },
-                    {
-                        "id": "925",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1047",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1092",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1146",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1205",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1258",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1265",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1274",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1278",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1363",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1402",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1574",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1613",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1665",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1673",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1714",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1726",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1733",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1734",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1752",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1826",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1833",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1836",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1838",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1839",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1843",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1898",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1901",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1927",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1979",
-                        "type": "places"
-                    },
-                    {
-                        "id": "1984",
-                        "type": "places"
-                    },
-                    {
-                        "id": "2001",
-                        "type": "places"
-                    },
-                    {
-                        "id": "2072",
-                        "type": "places"
-                    },
-                    {
-                        "id": "2139",
-                        "type": "places"
-                    },
-                    {
-                        "id": "2197",
-                        "type": "places"
-                    },
-                    {
-                        "id": "2463",
-                        "type": "places"
-                    },
-                    {
-                        "id": "2466",
-                        "type": "places"
-                    },
-                    {
-                        "id": "2595",
-                        "type": "places"
-                    },
-                    {
-                        "id": "2599",
-                        "type": "places"
-                    },
-                    {
-                        "id": "2676",
-                        "type": "places"
-                    },
-                    {
-                        "id": "2688",
+                        "id": "2728",
                         "type": "places"
                     },
                     {
@@ -246,36 +61,227 @@
                         "type": "places"
                     },
                     {
-                        "id": "2749",
+                        "id": "2726",
                         "type": "places"
                     },
                     {
-                        "id": "2750",
+                        "id": "2725",
                         "type": "places"
                     },
                     {
-                        "id": "2772",
+                        "id": "2724",
                         "type": "places"
                     },
                     {
-                        "id": "2801",
+                        "id": "2723",
                         "type": "places"
                     },
                     {
-                        "id": "2808",
+                        "id": "2722",
                         "type": "places"
                     },
                     {
-                        "id": "2812",
+                        "id": "2721",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2720",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2719",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2718",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2717",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2716",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2715",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2714",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2713",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2712",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2711",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2710",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2709",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2708",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2707",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2706",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2705",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2704",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2703",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2702",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2701",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2700",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2699",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2698",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2697",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2696",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2695",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2694",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2693",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2692",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2691",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2690",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2689",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2688",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2687",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2686",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2685",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2684",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2683",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2682",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2681",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2680",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2679",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2678",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2677",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2676",
+                        "type": "places"
+                    },
+                    {
+                        "id": "2675",
                         "type": "places"
                     }
                 ],
                 "links": {
-                    "related": "http://api.dbljump.com/places/united-states/children"
+                    "related": "http://localhost:3000/places/220/children"
+                },
+                "meta": {
+                    "total": 60
                 }
             },
             "regions": {
                 "data": [
+                    {
+                        "id": "240",
+                        "type": "places"
+                    },
                     {
                         "id": "238",
                         "type": "places"
@@ -286,8 +292,38 @@
                     }
                 ],
                 "links": {
-                    "related": "http://api.dbljump.com/places/united-states/regions"
+                    "related": "http://localhost:3000/places/220/regions"
+                },
+                "meta": {
+                    "total": 3
                 }
+            },
+            "origin_articles": {
+                "data": [
+                    {
+                        "id": "55",
+                        "type": "people"
+                    },
+                    {
+                        "id": "57",
+                        "type": "people"
+                    },
+                    {
+                        "id": "64",
+                        "type": "people"
+                    },
+                    {
+                        "id": "56",
+                        "type": "people"
+                    },
+                    {
+                        "id": "67",
+                        "type": "people"
+                    }
+                ]
+            },
+            "latest_articles": {
+                "data": []
             },
             "created_by": {
                 "data": {
@@ -295,46 +331,24 @@
                     "type": "users"
                 },
                 "links": {
-                    "related": "http://api.dbljump.com/users/1"
+                    "related": "http://localhost:3000/users/1"
                 }
             }
         },
         "links": {
-            "self": "http://api.dbljump.com/places/united-states"
+            "self": "http://localhost:3000/places/220"
         },
         "meta": {
-            "description": "Find video game companies and games industry professionals from United States at Dbljump.",
-            "keywords": "United States, USA, US, American, country, place, dbljump, video games, pc games, gaming",
-            "created_at": "2017-07-12T13:28:33.331Z",
-            "updated_at": "2017-07-12T13:28:33.331Z"
+            "created_at": "2017-08-25T08:31:18.461Z",
+            "updated_at": "2017-08-25T08:31:18.461Z",
+            "meta_description": "Find video game companies and games industry professionals from United States at Dbljump.",
+            "meta_keywords": "United States, USA, 'United States of America', US, American, country, place, dbljump, video games, pc games, gaming",
+            "total_children": 60,
+            "total_regions": 3,
+            "total_origin_articles": 5,
+            "total_latest_articles": 0
         }
-    },
-    "included": [
-        {
-            "id": "1",
-            "type": "users",
-            "attributes": {
-                "username": "tikithekiwi",
-                "role": "admin",
-                "given_names": "Tiki",
-                "family_name": "the Kiwi",
-                "avatar": null
-            },
-            "links": {
-                "self": "http://api.dbljump.com/users/1"
-            },
-            "meta": {
-                "description": "Tiki the Kiwi is a member at Dbljump, the video game reference.",
-                "keywords": "tikithekiwi, Tiki the Kiwi, user, dbljump, video games, pc games, gaming",
-                "last_signed_in_at": null,
-                "last_sign_in_ip": null,
-                "sign_in_count": 0,
-                "activated_at": "2017-07-12T13:28:27.875Z",
-                "created_at": "2017-07-12T13:28:27.985Z",
-                "updated_at": "2017-07-12T13:28:27.985Z"
-            }
-        }
-    ]
+    }
 }
 ```
 
@@ -373,6 +387,8 @@ created_by | users | belongs_to | The user that created the record.
 parent | places | belongs_to | The country a subdivision is in; he subdivision a locality is in; null for countries and regions.
 children | places | has_many | The countries inside a region; the subdivisions inside a country; the localities inside a subdivision; null for localities.
 regions | places | has_many | The regions that a country, subdivision, or locality belong to. Null for regions.
+origin_articles | polymorphic | has_many | Companies founded or people born in this place.
+latest_articles | polymorphic | has_many | Companies HQ'd or people who died in this place.
 
 ### Meta
 

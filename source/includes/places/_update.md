@@ -155,6 +155,8 @@ Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | ----------
 parent | belongs_to | Subdivisions and localities only | places | The country a subdivision is in; the subdivision a locality is in.
 children | has_many | | places | The countries inside a region.
+origin_articles  | has_many  |   | polymorphic | Companies founded or people born in this place.
+latest_articles  | has_many  |   | polymorphic | Companies HQ'd or people who died in this place.
 
 ### Success HTTP response code
 
