@@ -1705,151 +1705,6 @@
 </tr>
 </tbody></table>
 
-          <h1 id="articles-game-genres"><a name="game_genres_intro"></a>Articles: Game Genres</h1>
-
-<h2 id="game-genres-get-all">Game genres: get all</h2>
-
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 200</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code># GET /articles/games/dark-souls/genres
-
-{
-  "data": [
-    {
-      "id": "1",
-      "type": "genres",
-      "attributes": {
-        "name": "action",
-        "short_name": "",
-        "also_known_as": [],
-        "slug": "action"
-      },
-      "relationships": {
-        "parent": {
-          "data": null
-        },
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "created_bies"
-          },
-          "links": {
-            "related": "http://localhost:3000/users/1"
-          }
-        }
-      },
-      "links": {
-        "self": "http://localhost:3000/genres/action"
-      }
-    },
-    {
-      "id": "12",
-      "type": "genres",
-      "attributes": {
-        "name": "role-playing game",
-        "short_name": "RPG",
-        "also_known_as": [],
-        "slug": "role-playing-game"
-      },
-      "relationships": {
-        "parent": {
-          "data": null
-        },
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "created_bies"
-          },
-          "links": {
-            "related": "http://localhost:3000/users/1"
-          }
-        }
-      },
-      "links": {
-        "self": "http://localhost:3000/genres/role-playing-game"
-      }
-    },
-    {
-      "id": "20",
-      "type": "genres",
-      "attributes": {
-        "name": "fantasy",
-        "short_name": "",
-        "also_known_as": [],
-        "slug": "fantasy"
-      },
-      "relationships": {
-        "parent": {
-          "data": null
-        },
-        "created_by": {
-          "data": {
-            "id": "1",
-            "type": "created_bies"
-          },
-          "links": {
-            "related": "http://localhost:3000/users/1"
-          }
-        }
-      },
-      "links": {
-        "self": "http://localhost:3000/genres/fantasy"
-      }
-    }
-  ],
-  "links": {},
-  "meta": {
-    "total_items": 3
-  }
-}
-</code></pre>
-<p>Retrieve all genres belonging to a given game. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /articles/games/{game_slug}/genres</code> (replace <code class="prettyprint">{game_slug}</code> with game record slug)</p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>fields[{record-type}]</td>
-<td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[genres]=name,short_name</code></td>
-</tr>
-<tr>
-<td>filter[{field}]</td>
-<td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[name]=action</code></td>
-</tr>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
           <h1 id="articles-game-versions"><a name="game_versions_intro"></a>Articles: Game Versions</h1>
 
 <p>Resources related to game versions. There can be one version of a game per platform.</p>
@@ -1867,7 +1722,7 @@
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/games/dark-souls/versions?page[size]=2
+<pre class="highlight plaintext"><code># GET /articles/game_versions?page[size]=2
 
 {
     "data": [
@@ -1985,7 +1840,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/games/{game-slug}/versions</code></p>
+<p><code class="prettyprint">GET /articles/game_versions</code></p>
 
 <h3 id="url-query-parameters">URL query parameters</h3>
 
@@ -2204,7 +2059,7 @@
           <h2 id="create-a-new-game-version"><a name="game_versions_create"></a>Create a new game version</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/games/dark-souls/versions</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/game_versions</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -2218,6 +2073,13 @@
       "res_unlocked": "false"
     },
     "relationships": {
+      "game": {
+          "data": {
+              "id": "79",
+              "type": "games"
+          }
+        }
+      },
       "platform": {
         "data": {
           "id": "60",
@@ -2324,7 +2186,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /articles/games/{game-slug}/versions</code> (replace <code class="prettyprint">{game-slug}</code> with game slug)</p>
+<p><code class="prettyprint">POST /articles/game_versions</code></p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -2387,6 +2249,13 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>game</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>games</td>
+<td>The game the version belongs to.</td>
+</tr>
 <tr>
 <td>platform</td>
 <td>belongs_to</td>
@@ -2673,461 +2542,6 @@
 </tr>
 </tbody></table>
 
-          <h1 id="articles-game-version-images"><a name="version_images_intro"></a>Articles: Game Version Images</h1>
-
-<p>Resources related to game version images.</p>
-
-<p>Use these routes to create a new image record that is associated with a given game version, or get all images associated with a given game version.</p>
-
-          <h2 id="get-all-game-version-images">Get all game version images</h2>
-
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 200</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code># GET /articles/game_versions/1/images
-
-{
-    "data": [
-        {
-            "id": "3",
-            "type": "images",
-            "attributes": {
-                "kind": "screen",
-                "slug": "the-wonderful-101-title-screen-wii-u-screen",
-                "file": "http://localhost:3000/uploads/images/3/file.gif",
-                "title": "The Wonderful 101 title screen (Wii U)",
-                "description": "Title screen from The Wonderful 101 on Wii U",
-                "year": 2013,
-                "date": "2013-09-12",
-                "usage_type": "fair",
-                "usage_license_code": null,
-                "usage_license_name": null,
-                "usage_license_url": null,
-                "attributed_name": "",
-                "attributed_url": "",
-                "source_url": ""
-            },
-            "relationships": {
-                "uploaded_by": {
-                    "data": {
-                        "id": "2",
-                        "type": "users"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/users/2"
-                    }
-                },
-                "place": {
-                    "data": null
-                },
-                "games": {
-                    "data": [
-                        {
-                            "id": "46",
-                            "type": "games"
-                        }
-                    ]
-                },
-                "companies": {
-                    "data": []
-                },
-                "people": {
-                    "data": []
-                },
-                "game_versions": {
-                    "data": [
-                        {
-                            "id": "1",
-                            "type": "game_versions"
-                        }
-                    ]
-                }
-            },
-            "links": {
-                "self": "http://localhost:3000/media/images/the-wonderful-101-title-screen-wii-u-screen"
-            }
-        }
-    ],
-    "links": {},
-    "meta": {
-        "total_items": 1
-    }
-}
-</code></pre>
-<p>Retrieve all images associated with a given game version. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /articles/game_versions/{version-id}/images</code> (replace <code class="prettyprint">version-id</code> with the version ID)</p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>fields[{record-type}]</td>
-<td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[images]=file,title</code></td>
-</tr>
-<tr>
-<td>filter[{field}]</td>
-<td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=logo</code></td>
-</tr>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="upload-a-new-game-version-image"><a name="version_images_create"></a>Upload a new game version image</h2>
-
-<blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/game_versions/1/images</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "images",
-    "attributes": {
-      "base64_file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
-      "kind": "screen",
-      "title": "The Wonderful 101 title screen (Wii U)",
-      "description": "Title screen from The Wonderful 101 on Wii U",
-      "year": "",
-      "date": "2013-09-12",
-      "usage_type": "fair",
-      "usage_license_code": "",
-      "attributed_name": "",
-      "attributed_url": "",
-      "source_url": ""
-    },
-    "relationships": {
-      "place": {
-        "data": {
-          "id": "",
-          "type": "places"
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 201</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-    "data": {
-        "id": "3",
-        "type": "images",
-        "attributes": {
-            "kind": "screen",
-            "slug": "the-wonderful-101-title-screen-wii-u-screen",
-            "file": "http://localhost:3000/uploads/images/3/file.gif",
-            "title": "The Wonderful 101 title screen (Wii U)",
-            "description": "Title screen from The Wonderful 101 on Wii U",
-            "year": 2013,
-            "date": "2013-09-12",
-            "usage_type": "fair",
-            "usage_license_code": null,
-            "usage_license_name": null,
-            "usage_license_url": null,
-            "attributed_name": "",
-            "attributed_url": "",
-            "source_url": ""
-        },
-        "relationships": {
-            "uploaded_by": {
-                "data": {
-                    "id": "2",
-                    "type": "users"
-                },
-                "links": {
-                    "related": "http://localhost:3000/users/2"
-                }
-            },
-            "place": {
-                "data": null
-            },
-            "games": {
-                "data": [
-                    {
-                        "id": "46",
-                        "type": "games"
-                    }
-                ]
-            },
-            "companies": {
-                "data": []
-            },
-            "people": {
-                "data": []
-            },
-            "game_versions": {
-                "data": [
-                    {
-                        "id": "1",
-                        "type": "game_versions"
-                    }
-                ]
-            }
-        },
-        "links": {
-            "self": "http://localhost:3000/media/images/the-wonderful-101-title-screen-wii-u-screen"
-        }
-    },
-    "included": [
-        {
-            "id": "2",
-            "type": "users",
-            "attributes": {
-                "username": "neil",
-                "role": "admin",
-                "given_names": "Neil",
-                "family_name": "Wheatley",
-                "avatar": "http://localhost:3000/uploads/user_avatar/2/1706281804.jpg"
-            },
-            "links": {
-                "self": "http://localhost:3000/users/2"
-            }
-        },
-        {
-            "id": "46",
-            "type": "games",
-            "attributes": {
-                "display_title": "The Wonderful 101"
-            },
-            "links": {
-                "self": "http://localhost:3000/articles/games/the-wonderful-101"
-            }
-        }
-    ],
-    "meta": {
-        "keywords": "The Wonderful 101 title screen (Wii U), screen, 2013, 2013-09-12, image, picture, media, dbljump, video games, pc games, gaming",
-        "description": "'The Wonderful 101 title screen (Wii U)' is a video game image at Dbljump.",
-        "created_at": "2017-06-29T11:51:55.192Z",
-        "updated_at": "2017-06-29T11:51:55.192Z"
-    }
-}
-</code></pre>
-<p>Upload a new image associated with a given game version. The image will also be associated with the version&rsquo;s parent game. User must be an editor or admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: editor</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">POST /articles/game_versions/{version-id}/images</code> (replace <code class="prettyprint">version-id</code> with game version ID)</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>base64_file</td>
-<td>string</td>
-<td>Y</td>
-<td>Image file encoded as base64. See <a href="#image_file">File</a>.</td>
-</tr>
-<tr>
-<td>kind</td>
-<td>string</td>
-<td>Y</td>
-<td>See <a href="#image_kind">Kind</a>.</td>
-</tr>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>Y</td>
-<td>Max 100 chars.</td>
-</tr>
-<tr>
-<td>description</td>
-<td>string</td>
-<td></td>
-<td>Max 250 chars.</td>
-</tr>
-<tr>
-<td>year</td>
-<td>integer</td>
-<td></td>
-<td>1800 to present year.</td>
-</tr>
-<tr>
-<td>date</td>
-<td>date</td>
-<td></td>
-<td>1800-01-01 to present year.</td>
-</tr>
-<tr>
-<td>usage_type</td>
-<td>string</td>
-<td>Y</td>
-<td>Must be &lsquo;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
-</tr>
-<tr>
-<td>usage_license_code</td>
-<td>string</td>
-<td>*</td>
-<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. See <a href="#image_usage_license">Usage license</a>.</td>
-</tr>
-<tr>
-<td>attributed_name</td>
-<td>string</td>
-<td>*</td>
-<td>Image owner&rsquo;s name. Max 100 chars. Req&rsquo;d if usage_type is &#39;licensed&rsquo;.</td>
-</tr>
-<tr>
-<td>attributed_url</td>
-<td>string</td>
-<td></td>
-<td>The owner&rsquo;s website. Max 250 chars.</td>
-</tr>
-<tr>
-<td>source_url</td>
-<td>string</td>
-<td>*</td>
-<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. Max 250 chars. URL of image source.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>place</td>
-<td>belongs_to</td>
-<td></td>
-<td>places</td>
-<td>A <a href="#places_intro">place record</a> the image is associated with.</td>
-</tr>
-</tbody></table>
-
-<h3 id="file"><a name="image_file"></a>File</h3>
-
-<p><strong>File type:</strong> File uploads must be of type GIF, JPG/JPEG, or PNG.</p>
-
-<p><strong>Base64:</strong> Image file uploads are handled by the Ruby gems <a href="https://github.com/carrierwaveuploader/carrierwave">CarrierWave</a> and <a href="https://github.com/lebedev-yury/carrierwave-base64">Carrierwave::Base64</a>. Base64 strings should have <a href="https://github.com/lebedev-yury/carrierwave-base64#data-format">the correct data format</a>, i.e.:</p>
-
-<p><code class="prettyprint">data:image/jpeg;base64,(base64 encoded data)</code></p>
-
-<h3 id="kind"><a name="image_kind"></a>Kind</h3>
-
-<p>The <code class="prettyprint">kind</code> attribute accepts the following values.</p>
-
-<table><thead>
-<tr>
-<th>Kind</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>artwork</td>
-<td>Miscellaneous artwork, e.g. production design drawings or promotional art</td>
-</tr>
-<tr>
-<td>boxart</td>
-<td>Official box art from various regions</td>
-</tr>
-<tr>
-<td>doc</td>
-<td>Image of a document, e.g. a leaked presentation slide</td>
-</tr>
-<tr>
-<td>logo</td>
-<td>Usually a company or game logo</td>
-</tr>
-<tr>
-<td>photo</td>
-<td>A photograph</td>
-</tr>
-<tr>
-<td>poster</td>
-<td>A game poster</td>
-</tr>
-<tr>
-<td>screen</td>
-<td>A screenshot from a game</td>
-</tr>
-</tbody></table>
-
-<h3 id="usage-type"><a name="image_usage_type"></a>Usage type</h3>
-
-<p>Users should only upload images that can legally be shown on Dbljump.com. An image must therefore have one of three <code class="prettyprint">usage_type</code> values.</p>
-
-<table><thead>
-<tr>
-<th>Usage type</th>
-<th>usage_type value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Free</td>
-<td>free</td>
-<td>The image is in the public domain and free to use without attribution.</td>
-</tr>
-<tr>
-<td>Fair use</td>
-<td>fair</td>
-<td>The image can be used under US fair use law. May include logos, box-arts, and screenshots.</td>
-</tr>
-<tr>
-<td>Licensed</td>
-<td>licensed</td>
-<td>The image is free to use with some-rights-reserved license, e.g. Creative Commons.</td>
-</tr>
-</tbody></table>
-
-<h3 id="usage-license-attribute"><a name="image_usage_license"></a>Usage license attribute</h3>
-
-<p>If <code class="prettyprint">usage_type</code> is set to <code class="prettyprint">licensed</code>, a valid image license code must be provided. Please see <a href="#media_licenses_intro">Media Image Licenses</a>.</p>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">201 Created</code></p>
-
-          <h2 id="errors">Errors</h2>
-
-<p>See the main <a href="#media_image_errors">image errors section</a>.</p>
-
           <h1 id="articles-game-version-releases"><a name="version_releases_intro"></a>Articles: Game Version Releases</h1>
 
 <p>Resources related to game version releases. A release is a region- or country-specific edition of a game version, e.g. the Japanese release of the PS3 version of Bayonetta.</p>
@@ -3145,7 +2559,7 @@
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/game_versions/1/releases
+<pre class="highlight plaintext"><code># GET /articles/game_version_releases
 
 {
     "data": [
@@ -3255,7 +2669,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/game_versions/{version-id}/releases</code> (replace <code class="prettyprint">version-id</code> with game version ID)</p>
+<p><code class="prettyprint">GET /articles/game_version_releases</code></p>
 
 <h3 id="url-query-parameters">URL query parameters</h3>
 
@@ -3429,7 +2843,7 @@
           <h2 id="create-a-new-game-version-release"><a name="version_releases_create"></a>Create a new game version release</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/game_versions/1/releases</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/game_version_releases</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -3441,6 +2855,12 @@
       "digital": "true"
     },
     "relationships": {
+      "version": {
+          "data": {
+              "id": "1",
+              "type": "game_versions"
+          }
+      },
       "place": {
         "data": {
           "id": "102",
@@ -3514,7 +2934,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /articles/game_versions/{version-id}/releases</code> (replace <code class="prettyprint">{version-id}</code> with game version ID)</p>
+<p><code class="prettyprint">POST /articles/game_version_releases</code></p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -3565,6 +2985,13 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>version</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>game_versions</td>
+<td>The version the release belongs to.</td>
+</tr>
 <tr>
 <td>place</td>
 <td>belongs_to</td>
@@ -3809,7 +3236,7 @@
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/games/the-wonderful-101/titles?page[size]=2
+<pre class="highlight plaintext"><code># GET /articles/game_titles?page[size]=2
 
 {
   "data": [
@@ -3882,7 +3309,7 @@
   }
 }
 </code></pre>
-<p>Retrieve all of a given game&rsquo;s titles. Automatically paginated.</p>
+<p>Retrieve all game titles. Automatically paginated.</p>
 
 <ul>
 <li>User authentication: not required</li>
@@ -3891,7 +3318,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/games/{game-slug}/titles</code> (replace <code class="prettyprint">{game-slug}</code> with parent game record slug)</p>
+<p><code class="prettyprint">GET /articles/game_titles</code></p>
 
 <h3 id="url-query-parameters">URL query parameters</h3>
 
@@ -4066,7 +3493,7 @@
           <h2 id="create-a-new-game-title"><a name="game_titles_create"></a>Create a new game title</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/games/dark-souls/titles</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/game_titles</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -4077,6 +3504,12 @@
       "writing_system": "Latin"
     },
     "relationships": {
+      "game": {
+        "data": {
+          "id": "47",
+          "type": "games"
+        }
+      },
       "place": {
         "data": {
           "id": "17",
@@ -4165,7 +3598,7 @@
   }
 }
 </code></pre>
-<p>Create a new title record for a given game. User must be an editor or admin.</p>
+<p>Create a new game title record. User must be an editor or admin.</p>
 
 <ul>
 <li>User authentication: required</li>
@@ -4174,7 +3607,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /articles/games/{game-slug}/titles</code></p>
+<p><code class="prettyprint">POST /articles/game_titles</code></p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -4219,6 +3652,13 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>game</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>games</td>
+<td>The game the title belongs to.</td>
+</tr>
 <tr>
 <td>place</td>
 <td>belongs_to</td>
@@ -4513,12 +3953,12 @@
 
 <p>See <a href="#game_notes_show">Get a single game note</a></p>
 
-          <h2 id="get-all-of-a-game-39-s-titles">Get all of a game&rsquo;s titles</h2>
+          <h2 id="get-all-game-notes">Get all game notes</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/games/the-wonderful-101/notes?page[size]=2
+<pre class="highlight plaintext"><code># GET /articles/game_notes?page[size]=2
 
 {
   "data": [
@@ -4551,7 +3991,7 @@
         "created_by": {
           "data": {
             "id": "1",
-            "type": "created_bies"
+            "type": "users"
           },
           "links": {
             "related": "http://localhost:3000/users/1"
@@ -4566,7 +4006,7 @@
   }
 }
 </code></pre>
-<p>Retrieve all of a given game&rsquo;s notes. Automatically paginated.</p>
+<p>Retrieve all game notes. Automatically paginated.</p>
 
 <ul>
 <li>User authentication: not required</li>
@@ -4575,7 +4015,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/games/{game-slug}/notes</code> (replace <code class="prettyprint">{game-slug}</code> with parent game record slug)</p>
+<p><code class="prettyprint">GET /articles/game_notes</code></p>
 
 <h3 id="url-query-parameters">URL query parameters</h3>
 
@@ -4649,7 +4089,7 @@
       "created_by": {
         "data": {
           "id": "1",
-          "type": "created_bies"
+          "type": "users"
         },
         "links": {
           "related": "http://localhost:3000/users/1"
@@ -4755,7 +4195,7 @@
           <h2 id="create-a-new-game-note"><a name="game_notes_create"></a>Create a new game note</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/games/dark-souls/notes</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/game_notes</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -4768,6 +4208,12 @@
       "cite_website": "IGN"
     },
     "relationships": {
+      "game": {
+        "data": {
+          "id": "47",
+          "type": "games"
+        }
+      },
       "version": {
         "data": {
           "id": "2",
@@ -4830,7 +4276,7 @@
   }
 }
 </code></pre>
-<p>Create a new note for a given game. A note is a fact, story or piece of trivia about a game. User must be an editor or admin.</p>
+<p>Create a new game note. A note is a fact, story or piece of trivia about a game. User must be an editor or admin.</p>
 
 <ul>
 <li>User authentication: required</li>
@@ -4839,7 +4285,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /articles/games/{game-slug}/notes</code></p>
+<p><code class="prettyprint">POST /articles/game_notes</code></p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -4937,6 +4383,13 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>game</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>games</td>
+<td>The game the note belongs to.</td>
+</tr>
+<tr>
 <td>version</td>
 <td>belongs_to</td>
 <td></td>
@@ -4987,7 +4440,7 @@
       "created_by": {
         "data": {
           "id": "1",
-          "type": "created_bies"
+          "type": "users"
         },
         "links": {
           "related": "http://localhost:3000/users/1"
@@ -5039,7 +4492,7 @@
       "created_by": {
         "data": {
           "id": "1",
-          "type": "created_bies"
+          "type": "users"
         },
         "links": {
           "related": "http://localhost:3000/users/1"
@@ -5224,1121 +4677,6 @@
 <td>Cite website cannot be more than 100 characters.</td>
 </tr>
 </tbody></table>
-
-          <h1 id="articles-game-images"><a name="game_images_intro"></a>Articles: Game Images</h1>
-
-<p>Resources related to game images.</p>
-
-<p>Use these routes to create a new image record that is associated with a given game article, or get all images associated with a given game article.</p>
-
-          <h2 id="get-all-game-images">Get all game images</h2>
-
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 200</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code># GET /articles/games/pong/images
-
-{
-    "data": [
-        {
-            "id": "6",
-            "type": "images",
-            "attributes": {
-                "kind": "poster",
-                "slug": "pong-poster-poster",
-                "file": "http://localhost:3000/uploads/images/6/file.gif",
-                "title": "Pong poster",
-                "description": "Promotional poster for Pong.",
-                "year": 1981,
-                "date": null,
-                "usage_type": "fair",
-                "usage_license_code": null,
-                "usage_license_name": null,
-                "usage_license_url": null,
-                "attributed_name": "",
-                "attributed_url": "",
-                "source_url": ""
-            },
-            "relationships": {
-                "uploaded_by": {
-                    "data": {
-                        "id": "2",
-                        "type": "users"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/users/2"
-                    }
-                },
-                "place": {
-                    "data": null,
-                    "links": {
-                        "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
-                    }
-                },
-                "games": {
-                    "data": [
-                        {
-                            "id": "45",
-                            "type": "games"
-                        }
-                    ]
-                },
-                "companies": {
-                    "data": []
-                },
-                "people": {
-                    "data": []
-                },
-                "game_versions": {
-                    "data": []
-                }
-            },
-            "links": {
-                "self": "http://localhost:3000/media/images/pong-poster-poster"
-            }
-        }
-    ],
-    "links": {},
-    "meta": {
-        "total_items": 1
-    }
-}
-</code></pre>
-<p>Retrieve all images associated with a given game article. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /articles/games/{game-id}/images</code> (replace <code class="prettyprint">game-id</code> with the game ID or slug)</p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>fields[{record-type}]</td>
-<td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[images]=file,title</code></td>
-</tr>
-<tr>
-<td>filter[{field}]</td>
-<td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=logo</code></td>
-</tr>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="upload-a-new-game-image"><a name="game_images_create"></a>Upload a new game image</h2>
-
-<blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/games/pong/images</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "images",
-    "attributes": {
-      "base64_file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
-      "kind": "poster",
-      "title": "Pong poster",
-      "description": "Promotional poster for Pong.",
-      "year": "1981",
-      "date": "",
-      "usage_type": "fair",
-      "usage_license_code": "",
-      "attributed_name": "",
-      "attributed_url": "",
-      "source_url": ""
-    },
-    "relationships": {
-      "place": {
-        "data": {
-          "id": "",
-          "type": "places"
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 201</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-    "data": {
-        "id": "6",
-        "type": "images",
-        "attributes": {
-            "kind": "poster",
-            "slug": "pong-poster-poster",
-            "file": "http://localhost:3000/uploads/images/6/file.gif",
-            "title": "Pong poster",
-            "description": "Promotional poster for Pong.",
-            "year": 1981,
-            "date": null,
-            "usage_type": "fair",
-            "usage_license_code": null,
-            "usage_license_name": null,
-            "usage_license_url": null,
-            "attributed_name": "",
-            "attributed_url": "",
-            "source_url": ""
-        },
-        "relationships": {
-            "uploaded_by": {
-                "data": {
-                    "id": "2",
-                    "type": "users"
-                },
-                "links": {
-                    "related": "http://localhost:3000/users/2"
-                }
-            },
-            "place": {
-                "data": null
-            },
-            "games": {
-                "data": [
-                    {
-                        "id": "45",
-                        "type": "games"
-                    }
-                ]
-            },
-            "companies": {
-                "data": []
-            },
-            "people": {
-                "data": []
-            },
-            "game_versions": {
-                "data": []
-            }
-        },
-        "links": {
-            "self": "http://localhost:3000/media/images/pong-poster-poster"
-        }
-    },
-    "included": [
-        {
-            "id": "2",
-            "type": "users",
-            "attributes": {
-                "username": "neil",
-                "role": "admin",
-                "given_names": "Neil",
-                "family_name": "Wheatley",
-                "avatar": "http://localhost:3000/uploads/user_avatar/2/1706221451.jpg"
-            },
-            "links": {
-                "self": "http://localhost:3000/users/2"
-            }
-        },
-        {
-            "id": "45",
-            "type": "games",
-            "attributes": {
-                "display_title": "Pong"
-            },
-            "links": {
-                "self": "http://localhost:3000/articles/games/pong"
-            }
-        }
-    ],
-    "meta": {
-        "keywords": "Pong poster, poster, 1981, image, picture, media, dbljump, video games, pc games, gaming",
-        "description": "'Pong poster' is a video game image at Dbljump.",
-        "created_at": "2017-06-22T15:11:42.713Z",
-        "updated_at": "2017-06-22T15:11:42.713Z"
-    }
-}
-</code></pre>
-<p>Upload a new image associated with a given game article. User must be an editor or admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: editor</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">POST /articles/games/{game-id}/images</code> (replace <code class="prettyprint">game-id</code> with game ID or slug)</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>base64_file</td>
-<td>string</td>
-<td>Y</td>
-<td>Image file encoded as base64. See <a href="#image_file">File</a>.</td>
-</tr>
-<tr>
-<td>kind</td>
-<td>string</td>
-<td>Y</td>
-<td>See <a href="#image_kind">Kind</a>.</td>
-</tr>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>Y</td>
-<td>Max 100 chars.</td>
-</tr>
-<tr>
-<td>description</td>
-<td>string</td>
-<td></td>
-<td>Max 250 chars.</td>
-</tr>
-<tr>
-<td>year</td>
-<td>integer</td>
-<td></td>
-<td>1800 to present year.</td>
-</tr>
-<tr>
-<td>date</td>
-<td>date</td>
-<td></td>
-<td>1800-01-01 to present year.</td>
-</tr>
-<tr>
-<td>usage_type</td>
-<td>string</td>
-<td>Y</td>
-<td>Must be &lsquo;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
-</tr>
-<tr>
-<td>usage_license_code</td>
-<td>string</td>
-<td>*</td>
-<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. See <a href="#image_usage_license">Usage license</a>.</td>
-</tr>
-<tr>
-<td>attributed_name</td>
-<td>string</td>
-<td>*</td>
-<td>Image owner&rsquo;s name. Max 100 chars. Req&rsquo;d if usage_type is &#39;licensed&rsquo;.</td>
-</tr>
-<tr>
-<td>attributed_url</td>
-<td>string</td>
-<td></td>
-<td>The owner&rsquo;s website. Max 250 chars.</td>
-</tr>
-<tr>
-<td>source_url</td>
-<td>string</td>
-<td>*</td>
-<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. Max 250 chars. URL of image source.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>place</td>
-<td>belongs_to</td>
-<td></td>
-<td>places</td>
-<td>A <a href="#places_intro">place record</a> the image is associated with.</td>
-</tr>
-</tbody></table>
-
-<h3 id="file"><a name="image_file"></a>File</h3>
-
-<p><strong>File type:</strong> File uploads must be of type GIF, JPG/JPEG, or PNG.</p>
-
-<p><strong>Base64:</strong> Image file uploads are handled by the Ruby gems <a href="https://github.com/carrierwaveuploader/carrierwave">CarrierWave</a> and <a href="https://github.com/lebedev-yury/carrierwave-base64">Carrierwave::Base64</a>. Base64 strings should have <a href="https://github.com/lebedev-yury/carrierwave-base64#data-format">the correct data format</a>, i.e.:</p>
-
-<p><code class="prettyprint">data:image/jpeg;base64,(base64 encoded data)</code></p>
-
-<h3 id="kind"><a name="image_kind"></a>Kind</h3>
-
-<p>The <code class="prettyprint">kind</code> attribute accepts the following values.</p>
-
-<table><thead>
-<tr>
-<th>Kind</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>artwork</td>
-<td>Miscellaneous artwork, e.g. production design drawings or promotional art</td>
-</tr>
-<tr>
-<td>boxart</td>
-<td>Official box art from various regions</td>
-</tr>
-<tr>
-<td>doc</td>
-<td>Image of a document, e.g. a leaked presentation slide</td>
-</tr>
-<tr>
-<td>logo</td>
-<td>Usually a company or game logo</td>
-</tr>
-<tr>
-<td>photo</td>
-<td>A photograph</td>
-</tr>
-<tr>
-<td>poster</td>
-<td>A game poster</td>
-</tr>
-<tr>
-<td>screen</td>
-<td>A screenshot from a game</td>
-</tr>
-</tbody></table>
-
-<h3 id="usage-type"><a name="image_usage_type"></a>Usage type</h3>
-
-<p>Users should only upload images that can legally be shown on Dbljump.com. An image must therefore have one of three <code class="prettyprint">usage_type</code> values.</p>
-
-<table><thead>
-<tr>
-<th>Usage type</th>
-<th>usage_type value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Free</td>
-<td>free</td>
-<td>The image is in the public domain and free to use without attribution.</td>
-</tr>
-<tr>
-<td>Fair use</td>
-<td>fair</td>
-<td>The image can be used under US fair use law. May include logos, box-arts, and screenshots.</td>
-</tr>
-<tr>
-<td>Licensed</td>
-<td>licensed</td>
-<td>The image is free to use with some-rights-reserved license, e.g. Creative Commons.</td>
-</tr>
-</tbody></table>
-
-<h3 id="usage-license-attribute"><a name="image_usage_license"></a>Usage license attribute</h3>
-
-<p>If <code class="prettyprint">usage_type</code> is set to <code class="prettyprint">licensed</code>, a valid image license code must be provided. Please see <a href="#media_licenses_intro">Media Image Licenses</a>.</p>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">201 Created</code></p>
-
-          <h2 id="errors">Errors</h2>
-
-<p>See the main <a href="#media_image_errors">image errors section</a>.</p>
-
-          <h1 id="articles-game-person-credits"><a name="game_person_credits_intro"></a>Articles: Game Person-Credits</h1>
-
-<p>Resources related to the person credits belonging to a given game.</p>
-
-          <h2 id="get-all-of-a-game-39-s-person-credits">Get all of a game&rsquo;s person-credits</h2>
-
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 200</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code># GET /articles/games/the-wonderful-101/person_credits?page[size]=2
-
-{
-    "data": [
-        {
-            "id": "1",
-            "type": "person_credits",
-            "attributes": {
-                "category": "special",
-                "role": "Special Thanks"
-            },
-            "relationships": {
-                "credited": {
-                    "data": {
-                        "id": "26",
-                        "type": "people"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/articles/people/satoru-iwata"
-                    }
-                },
-                "game": {
-                    "data": {
-                        "id": "46",
-                        "type": "games"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/articles/games/the-wonderful-101"
-                    }
-                },
-                "version": {
-                    "data": {
-                        "id": "1",
-                        "type": "game_versions"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/articles/game_versions/1"
-                    }
-                },
-                "place": {
-                    "data": {
-                        "id": "55",
-                        "type": "places"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/places/czechia"
-                    }
-                }
-            }
-        },
-        {
-            "id": "2",
-            "type": "person_credits",
-            "attributes": {
-                "category": "creative",
-                "role": "Executive Producer"
-            },
-            "relationships": {
-                "credited": {
-                    "data": {
-                        "id": "21",
-                        "type": "people"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/articles/people/shigeru-miyamoto"
-                    }
-                },
-                "game": {
-                    "data": {
-                        "id": "46",
-                        "type": "games"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/articles/games/the-wonderful-101"
-                    }
-                },
-                "version": {
-                    "data": {
-                        "id": "1",
-                        "type": "game_versions"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/articles/game_versions/1"
-                    }
-                },
-                "place": {
-                    "data": null,
-                    "links": {
-                        "related": "http://localhost:3000/places/czechia"
-                    }
-                }
-            }
-        }
-    ],
-    "links": {},
-    "meta": {
-        "total_items": 2
-    }
-}
-</code></pre>
-<p>Retrieve all of a given game&rsquo;s person credits. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /articles/games/{game-slug}/person_credits</code> (replace <code class="prettyprint">{game-slug}</code> with parent game record slug)</p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>fields[{record-type}]</td>
-<td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[person_credits]=role</code></td>
-</tr>
-<tr>
-<td>filter[{field}]</td>
-<td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[category]=creative</code></td>
-</tr>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="create-a-game-person-credit"><a name="game_person_credits_create"></a>Create a game person-credit</h2>
-
-<blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/games/the-wonderful-101/person_credits</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "person_credits",
-    "attributes": {
-      "category": "creative",
-      "role": "Executive Producer"
-    },
-    "relationships": {
-      "credited": {
-        "data": {
-          "id": "21",
-          "type": "people"
-        }
-      },
-      "version": {
-        "data": {
-          "id": "1",
-          "type": "game_versions"
-        }
-      },
-      "place": {
-        "data": {
-          "id": "",
-          "type": "places"
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 201</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-    "data": {
-        "id": "2",
-        "type": "person_credits",
-        "attributes": {
-            "category": "creative",
-            "role": "Executive Producer"
-        },
-        "relationships": {
-            "credited": {
-                "data": {
-                    "id": "21",
-                    "type": "people"
-                },
-                "links": {
-                    "related": "http://localhost:3000/articles/people/shigeru-miyamoto"
-                }
-            },
-            "game": {
-                "data": {
-                    "id": "46",
-                    "type": "games"
-                },
-                "links": {
-                    "related": "http://localhost:3000/articles/games/the-wonderful-101"
-                }
-            },
-            "version": {
-                "data": {
-                    "id": "1",
-                    "type": "game_versions"
-                },
-                "links": {
-                    "related": "http://localhost:3000/articles/game_versions/1"
-                }
-            },
-            "place": {
-                "data": null
-            }
-        }
-    },
-    "included": [
-        {
-            "id": "21",
-            "type": "people",
-            "attributes": {
-                "display_title": "Shigeru Miyamoto"
-            },
-            "links": {
-                "self": "http://localhost:3000/articles/people/shigeru-miyamoto"
-            }
-        },
-        {
-            "id": "46",
-            "type": "games",
-            "attributes": {
-                "display_title": "The Wonderful 101"
-            },
-            "links": {
-                "self": "http://localhost:3000/articles/games/the-wonderful-101"
-            }
-        }
-    ],
-    "meta": {
-        "keywords": "The Wonderful 101, Shigeru Miyamoto, Executive Producer, person, credit, dbljump, video games, pc games, gaming",
-        "description": "Find staff and company credits for The Wonderful 101 at Dbljump, the video game reference.",
-        "created_at": "2017-06-29T16:14:58.988Z",
-        "updated_at": "2017-06-29T16:14:58.988Z"
-    }
-}
-</code></pre>
-<p>Create a new person credit for a given game. User must be an editor or admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: editor or admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">POST /articles/games/{game-slug}/person_credits</code></p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>category</td>
-<td>string</td>
-<td>Y</td>
-<td>The credit category. Must be an accepted value.</td>
-</tr>
-<tr>
-<td>role</td>
-<td>string</td>
-<td>Y</td>
-<td>The credit, e.g. &lsquo;Director&rsquo; or &#39;Lead Programmer&rsquo;. Max 100 chars.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>credited</td>
-<td>belongs_to</td>
-<td>Y</td>
-<td>people</td>
-<td>The person the credit relates to.</td>
-</tr>
-<tr>
-<td>version</td>
-<td>belongs_to</td>
-<td></td>
-<td>game_versions</td>
-<td>The game version the credit relates to (optional).</td>
-</tr>
-<tr>
-<td>place</td>
-<td>belongs_to</td>
-<td></td>
-<td>places</td>
-<td>The place the credit relates to (optional).</td>
-</tr>
-</tbody></table>
-
-<h3 id="person-credit-categories"><a name="person_credit_categories"></a>Person credit categories</h3>
-
-<p>The following are accepted value for the categories attribute:</p>
-
-<ul>
-<li>creative</li>
-<li>development</li>
-<li>technology</li>
-<li>visuals</li>
-<li>sound</li>
-<li>language</li>
-<li>special</li>
-<li>misc</li>
-</ul>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">201 Created</code></p>
-
-          <h2 id="errors">Errors</h2>
-
-<p>See the main <a href="#person_credits_errors">person credit errors section</a>.</p>
-
-          <h1 id="articles-game-company-credits"><a name="game_company_credits_intro"></a>Articles: Game Company-Credits</h1>
-
-<p>Resources related to the company credits belonging to a given game.</p>
-
-          <h2 id="get-all-of-a-game-39-s-company-credits">Get all of a game&rsquo;s company-credits</h2>
-
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 200</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code># GET /articles/games/the-wonderful-101/company_credits?page[size]=2
-
-{
-    "data": [
-        {
-            "id": "3",
-            "type": "company_credits",
-            "attributes": {
-                "category": "publishing",
-                "role": "Publisher"
-            },
-            "relationships": {
-                "credited": {
-                    "data": {
-                        "id": "1",
-                        "type": "companies"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/articles/companies/nintendo-co-ltd"
-                    }
-                },
-                "game": {
-                    "data": {
-                        "id": "46",
-                        "type": "games"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/articles/games/the-wonderful-101"
-                    }
-                },
-                "version": {
-                    "data": {
-                        "id": "1",
-                        "type": "game_versions"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/articles/game_versions/1"
-                    }
-                },
-                "place": {
-                    "data": null
-                }
-            }
-        }
-    ],
-    "links": {},
-    "meta": {
-        "total_items": 1
-    }
-}
-</code></pre>
-<p>Retrieve all of a given game&rsquo;s company credits. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /articles/games/{game-slug}/company_credits</code> (replace <code class="prettyprint">{game-slug}</code> with parent game record slug)</p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>fields[{record-type}]</td>
-<td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[company_credits]=role</code></td>
-</tr>
-<tr>
-<td>filter[{field}]</td>
-<td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[category]=development</code></td>
-</tr>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="create-a-game-company-credit"><a name="game_company_credits_create"></a>Create a game company-credit</h2>
-
-<blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/games/the-wonderful-101/company_credits</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "company_credits",
-    "attributes": {
-      "category": "publishing",
-      "role": "Publisher"
-    },
-    "relationships": {
-      "credited": {
-        "data": {
-          "id": "1",
-          "type": "companies"
-        }
-      },
-      "version": {
-        "data": {
-          "id": "1",
-          "type": "game_versions"
-        }
-      },
-      "place": {
-        "data": {
-          "id": "",
-          "type": "places"
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 201</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-    "data": {
-        "id": "3",
-        "type": "company_credits",
-        "attributes": {
-            "category": "publishing",
-            "role": "Publisher"
-        },
-        "relationships": {
-            "credited": {
-                "data": {
-                    "id": "1",
-                    "type": "companies"
-                },
-                "links": {
-                    "related": "http://localhost:3000/articles/companies/nintendo-co-ltd"
-                }
-            },
-            "game": {
-                "data": {
-                    "id": "46",
-                    "type": "games"
-                },
-                "links": {
-                    "related": "http://localhost:3000/articles/games/the-wonderful-101"
-                }
-            },
-            "version": {
-                "data": {
-                    "id": "1",
-                    "type": "game_versions"
-                },
-                "links": {
-                    "related": "http://localhost:3000/articles/game_versions/1"
-                }
-            },
-            "place": {
-                "data": null
-            }
-        }
-    },
-    "included": [
-        {
-            "id": "1",
-            "type": "companies",
-            "attributes": {
-                "display_title": "Nintendo Co., Ltd."
-            },
-            "links": {
-                "self": "http://localhost:3000/articles/companies/nintendo-co-ltd"
-            }
-        },
-        {
-            "id": "46",
-            "type": "games",
-            "attributes": {
-                "display_title": "The Wonderful 101"
-            },
-            "links": {
-                "self": "http://localhost:3000/articles/games/the-wonderful-101"
-            }
-        }
-    ],
-    "meta": {
-        "keywords": "The Wonderful 101, Nintendo Co., Ltd., Publisher, company, credit, dbljump, video games, pc games, gaming",
-        "description": "Find staff and company credits for The Wonderful 101 at Dbljump, the video game reference.",
-        "created_at": "2017-06-30T23:23:15.317Z",
-        "updated_at": "2017-06-30T23:23:15.317Z"
-    }
-}
-</code></pre>
-<p>Create a new company credit for a given game. User must be an editor or admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: editor or admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">POST /articles/games/{game-slug}/company_credits</code></p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>category</td>
-<td>string</td>
-<td>Y</td>
-<td>The credit category. Must be an accepted value.</td>
-</tr>
-<tr>
-<td>role</td>
-<td>string</td>
-<td>Y</td>
-<td>The credit, e.g. &lsquo;Publisher&rsquo; or &#39;Developer&rsquo;. Max 100 chars.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>credited</td>
-<td>belongs_to</td>
-<td>Y</td>
-<td>companies</td>
-<td>The company the credit relates to.</td>
-</tr>
-<tr>
-<td>version</td>
-<td>belongs_to</td>
-<td></td>
-<td>game_versions</td>
-<td>The game version the credit relates to (optional).</td>
-</tr>
-<tr>
-<td>place</td>
-<td>belongs_to</td>
-<td></td>
-<td>places</td>
-<td>The place the credit relates to (optional).</td>
-</tr>
-</tbody></table>
-
-<h3 id="company-credit-categories"><a name="company_credit_categories"></a>Company credit categories</h3>
-
-<p>The following are accepted value for the categories attribute:</p>
-
-<ul>
-<li>publishing</li>
-<li>development</li>
-<li>technology</li>
-<li>visuals</li>
-<li>sound</li>
-<li>language</li>
-<li>special</li>
-<li>misc</li>
-</ul>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">201 Created</code></p>
-
-          <h2 id="errors">Errors</h2>
-
-<p>See the main <a href="#company_credits_errors">company credit errors section</a>.</p>
 
           <h1 id="articles-people"><a name="people_intro"></a>Articles: People</h1>
 
@@ -7587,12 +5925,12 @@
 
 <p>See <a href="#person_names_show">Get a single person name</a></p>
 
-          <h2 id="get-all-of-a-person-39-s-names">Get all of a person&rsquo;s names</h2>
+          <h2 id="get-all-person-names">Get all person names</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/people/satoru-iwata/names?page[size]=2
+<pre class="highlight plaintext"><code># GET /articles/person_names?page[size]=2
 
 {
   "data": [
@@ -7631,7 +5969,7 @@
   }
 }
 </code></pre>
-<p>Retrieve all of a given person&rsquo;s names. Automatically paginated.</p>
+<p>Retrieve all person names. Automatically paginated.</p>
 
 <ul>
 <li>User authentication: not required</li>
@@ -7640,7 +5978,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/people/{person-slug}/names</code> (replace <code class="prettyprint">{person-slug}</code> with parent person record slug)</p>
+<p><code class="prettyprint">GET /articles/person_names</code></p>
 
 <h3 id="url-query-parameters">URL query parameters</h3>
 
@@ -7836,7 +6174,7 @@
           <h2 id="create-a-new-person-name"><a name="person_names_create"></a>Create a new person name</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/people/shigeru-miyamoto/names</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/person_names</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -7851,6 +6189,12 @@
       "year_dropped": "1972"
     },
     "relationships": {
+      "person": {
+        "data": {
+          "id": "21",
+          "type": "people"
+        }
+      },
       "place": {
         "data": {
           "id": "102",
@@ -7929,7 +6273,7 @@
   }
 }
 </code></pre>
-<p>Create a new name record for a given person. User must be an editor or admin.</p>
+<p>Create a new person name record. User must be an editor or admin.</p>
 
 <ul>
 <li>User authentication: required</li>
@@ -7938,7 +6282,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /articles/people/{person-slug}/names</code></p>
+<p><code class="prettyprint">POST /articles/person_names</code></p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -8007,6 +6351,13 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>person</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>people</td>
+<td>The person the name belongs to.</td>
+</tr>
 <tr>
 <td>place</td>
 <td>belongs_to</td>
@@ -8329,12 +6680,12 @@
 
 <p>See <a href="#person_notes_show">Get a single person note</a></p>
 
-          <h2 id="get-all-of-a-person-39-s-titles">Get all of a person&rsquo;s titles</h2>
+          <h2 id="get-all-person-titles">Get all person titles</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/people/shigeru-miyamoto/notes?page[size]=2
+<pre class="highlight plaintext"><code># GET /articles/person_notes?page[size]=2
 
 {
   "data": [
@@ -8361,7 +6712,7 @@
         "created_by": {
           "data": {
             "id": "1",
-            "type": "created_bies"
+            "type": "users"
           },
           "links": {
             "related": "http://localhost:3000/users/1"
@@ -8376,7 +6727,7 @@
   }
 }
 </code></pre>
-<p>Retrieve all of a given person&rsquo;s notes. Automatically paginated.</p>
+<p>Retrieve all person notes. Automatically paginated.</p>
 
 <ul>
 <li>User authentication: not required</li>
@@ -8385,7 +6736,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/companies/{person-slug}/notes</code> (replace <code class="prettyprint">{person-slug}</code> with parent person record slug)</p>
+<p><code class="prettyprint">GET /articles/person_notes</code></p>
 
 <h3 id="url-query-parameters">URL query parameters</h3>
 
@@ -8453,7 +6804,7 @@
       "created_by": {
         "data": {
           "id": "1",
-          "type": "created_bies"
+          "type": "users"
         },
         "links": {
           "related": "http://localhost:3000/users/1"
@@ -8554,7 +6905,7 @@
           <h2 id="create-a-new-person-note"><a name="person_notes_create"></a>Create a new person note</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/people/shigeru-miyamoto/notes</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/person_notes</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -8565,6 +6916,14 @@
       "cite_url": "http://ign.com/article",
       "cite_title": "The Article Title",
       "cite_website": "IGN"
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "id": "21",
+          "type": "people"
+        }
+      }
     }
   }
 }
@@ -8596,7 +6955,7 @@
       "created_by": {
         "data": {
           "id": "2",
-          "type": "created_bies"
+          "type": "users"
         },
         "links": {
           "related": "http://localhost:3000/users/2"
@@ -8612,7 +6971,7 @@
   }
 }
 </code></pre>
-<p>Create a new note for a given person. A note is a fact, story or piece of trivia about a person. User must be an editor or admin.</p>
+<p>Create a new person note record. A note is a fact, story or piece of trivia about a person. User must be an editor or admin.</p>
 
 <ul>
 <li>User authentication: required</li>
@@ -8621,7 +6980,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /articles/people/{game-slug}/notes</code></p>
+<p><code class="prettyprint">POST /articles/person_notes</code></p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -8662,6 +7021,28 @@
 <td>string</td>
 <td></td>
 <td>The name of the source website. 1-100 chars.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>person</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>people</td>
+<td>The person the note belongs to.</td>
 </tr>
 </tbody></table>
 
@@ -8743,7 +7124,7 @@
       "created_by": {
         "data": {
           "id": "1",
-          "type": "created_bies"
+          "type": "users"
         },
         "links": {
           "related": "http://localhost:3000/users/1"
@@ -8913,12 +7294,12 @@
 
 <p>See <a href="#person_credits_show">Get a single person note</a></p>
 
-          <h2 id="get-all-of-a-person-39-s-credits">Get all of a person&rsquo;s credits</h2>
+          <h2 id="get-all-person-credits">Get all person credits</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/people/satoru-iwata/credits
+<pre class="highlight plaintext"><code># GET /articles/person_credits
 
 {
     "data": [
@@ -8969,7 +7350,7 @@
     }
 }
 </code></pre>
-<p>Retrieve all of a given person&rsquo;s game credits. Automatically paginated.</p>
+<p>Retrieve all person-game credits. Automatically paginated.</p>
 
 <ul>
 <li>User authentication: not required</li>
@@ -8978,7 +7359,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/people/{person-slug}/credits</code> (replace <code class="prettyprint">{person-slug}</code> with parent person record slug or ID)</p>
+<p><code class="prettyprint">GET /articles/person_credits</code></p>
 
 <h3 id="url-query-parameters">URL query parameters</h3>
 
@@ -9186,7 +7567,7 @@
           <h2 id="create-a-new-person-credit"><a name="person_credits_create"></a>Create a new person credit</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/people/satoru-iwata/credits</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/person_credits</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -9196,6 +7577,12 @@
       "role": "Executive Producer"
     },
     "relationships": {
+      "credited": {
+          "data": {
+              "id": "26",
+              "type": "people"
+        }
+      },
       "game": {
         "data": {
           "id": "46",
@@ -9292,7 +7679,7 @@
     }
 }
 </code></pre>
-<p>Create a new game credit for a given person. User must be an editor or admin.</p>
+<p>Create a new person-game credit. User must be an editor or admin.</p>
 
 <ul>
 <li>User authentication: required</li>
@@ -9301,7 +7688,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /articles/people/{person-slug}/credits</code> (replace <code class="prettyprint">person-slug</code> with the person record slug or ID)</p>
+<p><code class="prettyprint">POST /articles/person_credits</code></p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -9340,6 +7727,13 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>credited</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>people</td>
+<td>The person credited.</td>
+</tr>
 <tr>
 <td>game</td>
 <td>belongs_to</td>
@@ -9665,477 +8059,6 @@
 <td>Category must be an accepted value.</td>
 </tr>
 </tbody></table>
-
-          <h1 id="articles-person-images"><a name="person_images_intro"></a>Articles: Person Images</h1>
-
-<p>Resources related to person images.</p>
-
-<p>Use these routes to create a new image record that is associated with a given person article, or get all images associated with a given person article.</p>
-
-          <h2 id="get-all-person-images">Get all person images</h2>
-
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 200</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code># GET /articles/people/shigeru-miyamoto/images
-
-{
-    "data": [
-        {
-            "id": "7",
-            "type": "images",
-            "attributes": {
-                "kind": "photo",
-                "slug": "portrait-of-shigeru-miyamoto-photo",
-                "file": "http://localhost:3000/uploads/images/7/file.gif",
-                "title": "Portrait of Shigeru Miyamoto",
-                "description": "Shigeru Miyamoto in Kyoto on 12 April 2012.",
-                "year": 2012,
-                "date": "2012-04-12",
-                "usage_type": "free",
-                "usage_license_code": null,
-                "usage_license_name": null,
-                "usage_license_url": null,
-                "attributed_name": null,
-                "attributed_url": null,
-                "source_url": ""
-            },
-            "relationships": {
-                "uploaded_by": {
-                    "data": {
-                        "id": "2",
-                        "type": "users"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/users/2"
-                    }
-                },
-                "place": {
-                    "data": {
-                        "id": "2932",
-                        "type": "places"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
-                    }
-                },
-                "games": {
-                    "data": []
-                },
-                "companies": {
-                    "data": []
-                },
-                "people": {
-                    "data": [
-                        {
-                            "id": "21",
-                            "type": "people"
-                        }
-                    ]
-                },
-                "game_versions": {
-                    "data": []
-                }
-            },
-            "links": {
-                "self": "http://localhost:3000/media/images/portrait-of-shigeru-miyamoto-photo"
-            }
-        }
-    ],
-    "links": {},
-    "meta": {
-        "total_items": 1
-    }
-}
-</code></pre>
-<p>Retrieve all images associated with a given person article. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /articles/people/{person-id}/images</code> (replace <code class="prettyprint">person-id</code> with the person ID or slug)</p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>fields[{record-type}]</td>
-<td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[images]=file,title</code></td>
-</tr>
-<tr>
-<td>filter[{field}]</td>
-<td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=logo</code></td>
-</tr>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="upload-a-new-person-image"><a name="person_images_create"></a>Upload a new person image</h2>
-
-<blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/people/shigeru-miyamoto/images</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "images",
-    "attributes": {
-      "base64_file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
-      "kind": "photo",
-      "title": "Portrait of Shigeru Miyamoto",
-      "description": "Shigeru Miyamoto in Kyoto on 12 April 2012.",
-      "year": "",
-      "date": "2012-04-12",
-      "usage_type": "free",
-      "usage_license_code": "",
-      "attributed_name": "",
-      "attributed_url": "",
-      "source_url": ""
-    },
-    "relationships": {
-      "place": {
-        "data": {
-          "id": "2932",
-          "type": "places"
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 201</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-    "data": {
-        "id": "7",
-        "type": "images",
-        "attributes": {
-            "kind": "photo",
-            "slug": "portrait-of-shigeru-miyamoto-photo",
-            "file": "http://localhost:3000/uploads/images/7/file.gif",
-            "title": "Portrait of Shigeru Miyamoto",
-            "description": "Shigeru Miyamoto in Kyoto on 12 April 2012.",
-            "year": 2012,
-            "date": "2012-04-12",
-            "usage_type": "free",
-            "usage_license_code": null,
-            "usage_license_name": null,
-            "usage_license_url": null,
-            "attributed_name": null,
-            "attributed_url": null,
-            "source_url": ""
-        },
-        "relationships": {
-            "uploaded_by": {
-                "data": {
-                    "id": "2",
-                    "type": "users"
-                },
-                "links": {
-                    "related": "http://localhost:3000/users/2"
-                }
-            },
-            "place": {
-                "data": {
-                    "id": "2932",
-                    "type": "places"
-                },
-                "links": {
-                    "related": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
-                }
-            },
-            "games": {
-                "data": []
-            },
-            "companies": {
-                "data": []
-            },
-            "people": {
-                "data": [
-                    {
-                        "id": "21",
-                        "type": "people"
-                    }
-                ]
-            },
-            "game_versions": {
-                "data": []
-            }
-        },
-        "links": {
-            "self": "http://localhost:3000/media/images/portrait-of-shigeru-miyamoto-photo"
-        }
-    },
-    "included": [
-        {
-            "id": "2",
-            "type": "users",
-            "attributes": {
-                "username": "neil",
-                "role": "admin",
-                "given_names": "Neil",
-                "family_name": "Wheatley",
-                "avatar": "http://localhost:3000/uploads/user_avatar/2/1706221451.jpg"
-            },
-            "links": {
-                "self": "http://localhost:3000/users/2"
-            }
-        },
-        {
-            "id": "2932",
-            "type": "places",
-            "attributes": {
-                "kind": "locality",
-                "slug": "kyoto-kyoto-prefecture-japan",
-                "name": "Kyoto",
-                "formatted": "Kyoto, Kyoto Prefecture, Japan",
-                "short_name": null
-            },
-            "links": {
-                "self": "http://localhost:3000/places/kyoto-kyoto-prefecture-japan"
-            }
-        },
-        {
-            "id": "21",
-            "type": "people",
-            "attributes": {
-                "display_title": "Shigeru Miyamoto"
-            },
-            "links": {
-                "self": "http://localhost:3000/articles/people/shigeru-miyamoto"
-            }
-        }
-    ],
-    "meta": {
-        "keywords": "Portrait of Shigeru Miyamoto, photo, 2012, 2012-04-12, image, picture, media, dbljump, video games, pc games, gaming",
-        "description": "'Portrait of Shigeru Miyamoto' is a video game image at Dbljump.",
-        "created_at": "2017-06-22T15:17:48.517Z",
-        "updated_at": "2017-06-22T15:17:48.517Z"
-    }
-}
-</code></pre>
-<p>Upload a new image associated with a given person article. User must be an editor or admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: editor</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">POST /articles/people/{person-id}/images</code> (replace <code class="prettyprint">person-id</code> with person ID or slug)</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>base64_file</td>
-<td>string</td>
-<td>Y</td>
-<td>Image file encoded as base64. See <a href="#image_file">File</a>.</td>
-</tr>
-<tr>
-<td>kind</td>
-<td>string</td>
-<td>Y</td>
-<td>See <a href="#image_kind">Kind</a>.</td>
-</tr>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>Y</td>
-<td>Max 100 chars.</td>
-</tr>
-<tr>
-<td>description</td>
-<td>string</td>
-<td></td>
-<td>Max 250 chars.</td>
-</tr>
-<tr>
-<td>year</td>
-<td>integer</td>
-<td></td>
-<td>1800 to present year.</td>
-</tr>
-<tr>
-<td>date</td>
-<td>date</td>
-<td></td>
-<td>1800-01-01 to present year.</td>
-</tr>
-<tr>
-<td>usage_type</td>
-<td>string</td>
-<td>Y</td>
-<td>Must be &lsquo;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
-</tr>
-<tr>
-<td>usage_license_code</td>
-<td>string</td>
-<td>*</td>
-<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. See <a href="#image_usage_license">Usage license</a>.</td>
-</tr>
-<tr>
-<td>attributed_name</td>
-<td>string</td>
-<td>*</td>
-<td>Image owner&rsquo;s name. Max 100 chars. Req&rsquo;d if usage_type is &#39;licensed&rsquo;.</td>
-</tr>
-<tr>
-<td>attributed_url</td>
-<td>string</td>
-<td></td>
-<td>The owner&rsquo;s website. Max 250 chars.</td>
-</tr>
-<tr>
-<td>source_url</td>
-<td>string</td>
-<td>*</td>
-<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. Max 250 chars. URL of image source.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>place</td>
-<td>belongs_to</td>
-<td></td>
-<td>places</td>
-<td>A <a href="#places_intro">place record</a> the image is associated with.</td>
-</tr>
-</tbody></table>
-
-<h3 id="file"><a name="image_file"></a>File</h3>
-
-<p><strong>File type:</strong> File uploads must be of type GIF, JPG/JPEG, or PNG.</p>
-
-<p><strong>Base64:</strong> Image file uploads are handled by the Ruby gems <a href="https://github.com/carrierwaveuploader/carrierwave">CarrierWave</a> and <a href="https://github.com/lebedev-yury/carrierwave-base64">Carrierwave::Base64</a>. Base64 strings should have <a href="https://github.com/lebedev-yury/carrierwave-base64#data-format">the correct data format</a>, i.e.:</p>
-
-<p><code class="prettyprint">data:image/jpeg;base64,(base64 encoded data)</code></p>
-
-<h3 id="kind"><a name="image_kind"></a>Kind</h3>
-
-<p>The <code class="prettyprint">kind</code> attribute accepts the following values.</p>
-
-<table><thead>
-<tr>
-<th>Kind</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>artwork</td>
-<td>Miscellaneous artwork, e.g. production design drawings or promotional art</td>
-</tr>
-<tr>
-<td>boxart</td>
-<td>Official box art from various regions</td>
-</tr>
-<tr>
-<td>doc</td>
-<td>Image of a document, e.g. a leaked presentation slide</td>
-</tr>
-<tr>
-<td>logo</td>
-<td>Usually a company or game logo</td>
-</tr>
-<tr>
-<td>photo</td>
-<td>A photograph</td>
-</tr>
-<tr>
-<td>poster</td>
-<td>A game poster</td>
-</tr>
-<tr>
-<td>screen</td>
-<td>A screenshot from a game</td>
-</tr>
-</tbody></table>
-
-<h3 id="usage-type"><a name="image_usage_type"></a>Usage type</h3>
-
-<p>Users should only upload images that can legally be shown on Dbljump.com. An image must therefore have one of three <code class="prettyprint">usage_type</code> values.</p>
-
-<table><thead>
-<tr>
-<th>Usage type</th>
-<th>usage_type value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Free</td>
-<td>free</td>
-<td>The image is in the public domain and free to use without attribution.</td>
-</tr>
-<tr>
-<td>Fair use</td>
-<td>fair</td>
-<td>The image can be used under US fair use law. May include logos, box-arts, and screenshots.</td>
-</tr>
-<tr>
-<td>Licensed</td>
-<td>licensed</td>
-<td>The image is free to use with some-rights-reserved license, e.g. Creative Commons.</td>
-</tr>
-</tbody></table>
-
-<h3 id="usage-license-attribute"><a name="image_usage_license"></a>Usage license attribute</h3>
-
-<p>If <code class="prettyprint">usage_type</code> is set to <code class="prettyprint">licensed</code>, a valid image license code must be provided. Please see <a href="#media_licenses_intro">Media Image Licenses</a>.</p>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">201 Created</code></p>
-
-          <h2 id="errors">Errors</h2>
-
-<p>See the main <a href="#media_image_errors">image errors section</a>.</p>
 
           <h1 id="articles-companies"><a name="companies_intro"></a>Articles: Companies</h1>
 
@@ -11648,22 +9571,61 @@
 
           <h1 id="articles-company-names"><a name="company_names_intro"></a>Articles: Company Names</h1>
 
-<p>Resources related to company names.</p>
+<p>Resources related to company names. The JSON:API type is <code class="prettyprint">company_names</code>.</p>
 
-<h3 id="request-attributes">Request attributes</h3>
+<h3 id="mutable-attributes">Mutable attributes</h3>
 
-<p>See <a href="#company_names_create">Create a new company name</a> and <a href="#company_names_update">Update a company name</a>.</p>
+<h4 id="name-string-required"><code class="prettyprint">name</code> (string, required)</h4>
 
-<h3 id="response-attributes">Response attributes</h3>
+<p>The name. 1-100 chars.</p>
 
-<p>See <a href="#company_names_show">Get a single company name</a></p>
+<h4 id="kind-string-required"><code class="prettyprint">kind</code> (string, required)</h4>
 
-          <h2 id="get-all-of-a-company-39-s-names">Get all of a company&rsquo;s names</h2>
+<p>Name classification. Must be <code class="prettyprint">name</code>, <code class="prettyprint">styled</code> or <code class="prettyprint">alias</code>.</p>
+
+<h4 id="writing_system-string-required"><code class="prettyprint">writing_system</code> (string, required)</h4>
+
+<p>Must be <code class="prettyprint">Latin</code>, <code class="prettyprint">Japanese</code>, <code class="prettyprint">Cyrillic</code>, <code class="prettyprint">Chinese</code> or <code class="prettyprint">Arabic</code>.</p>
+
+<h4 id="year_adopted-integer"><code class="prettyprint">year_adopted</code> (integer)</h4>
+
+<p>Must be between <code class="prettyprint">1800</code> and the present year.</p>
+
+<h4 id="dropped-boolean"><code class="prettyprint">dropped</code> (boolean)</h4>
+
+<p><code class="prettyprint">true</code> if the name is no longer used. Auto-set to <code class="prettyprint">true</code> if <code class="prettyprint">year_dropped</code> is present.</p>
+
+<h4 id="year_dropped-integer"><code class="prettyprint">year_dropped</code> (integer)</h4>
+
+<p>Must be between <code class="prettyprint">1800</code> and the present year, and greater than <code class="prettyprint">year_adopted</code>.</p>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>JSON:API type</th>
+<th>Relationship type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">place</code></td>
+<td><code class="prettyprint">places</code></td>
+<td><code class="prettyprint">belongs_to</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">company</code></td>
+<td><code class="prettyprint">companies</code></td>
+<td><code class="prettyprint">belongs_to</code></td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-company-names">Get company names</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/companies/nintendo-co-ltd/names?page[size]=2
+<pre class="highlight plaintext"><code># GET /articles/company_names?page[size]=2
 
 {
   "data": [
@@ -11712,47 +9674,35 @@
   }
 }
 </code></pre>
-<p>Retrieve all of a given company&rsquo;s names. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
+<p>Retrieve a collection of company names.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/companies/{company-slug}/names</code> (replace <code class="prettyprint">{company-slug}</code> with parent company record slug)</p>
+<p><code class="prettyprint">GET /articles/company_names</code></p>
 
-<h3 id="url-query-parameters">URL query parameters</h3>
+<h3 id="filter-fields">Filter fields</h3>
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>fields[{record-type}]</td>
-<td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[company_names]=name</code></td>
-</tr>
-<tr>
-<td>filter[{field}]</td>
-<td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[dropped]=true</code></td>
-</tr>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
-</tr>
-</tbody></table>
+<ul>
+<li><code class="prettyprint">company_id</code></li>
+<li><code class="prettyprint">display_text</code></li>
+<li><code class="prettyprint">kind</code></li>
+<li><code class="prettyprint">writing_system</code></li>
+<li><code class="prettyprint">year_adopted</code></li>
+<li><code class="prettyprint">year_dropped</code></li>
+<li><code class="prettyprint">dropped</code></li>
+</ul>
+
+<h3 id="sort-fields">Sort fields</h3>
+
+<ul>
+<li><code class="prettyprint">company_id</code></li>
+<li><code class="prettyprint">display_text</code></li>
+<li><code class="prettyprint">kind</code></li>
+<li><code class="prettyprint">writing_system</code></li>
+<li><code class="prettyprint">year_adopted</code></li>
+<li><code class="prettyprint">year_dropped</code></li>
+<li><code class="prettyprint">dropped</code></li>
+</ul>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
@@ -11812,12 +9762,7 @@
   }
 }
 </code></pre>
-<p>Retrieve a single company name. Company names are publicly available. No sign-in is required.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
+<p>Retrieve a single company name.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
@@ -11827,83 +9772,10 @@
 
 <p><code class="prettyprint">200 OK</code></p>
 
-<h3 id="response-attributes"><a name="company_names_response_attrs"></a>Response attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>The name.</td>
-</tr>
-<tr>
-<td>kind</td>
-<td>string</td>
-<td>Y</td>
-<td>The name classification. Must be &lsquo;name&rsquo;, &#39;styled&rsquo; or &#39;alias&rsquo;.</td>
-</tr>
-<tr>
-<td>writing_system</td>
-<td>string</td>
-<td>Y</td>
-<td>Must be an accepted value, e.g. &#39;Latin&rsquo;, &#39;Japanese&rsquo; etc.</td>
-</tr>
-<tr>
-<td>year_adopted</td>
-<td>integer</td>
-<td></td>
-<td>Between 1800 and the present year.</td>
-</tr>
-<tr>
-<td>dropped</td>
-<td>boolean</td>
-<td></td>
-<td>True if the name has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
-</tr>
-<tr>
-<td>year_dropped</td>
-<td>integer</td>
-<td></td>
-<td>Between 1800 and the present year.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<table><thead>
-<tr>
-<th>Association</th>
-<th>Record type</th>
-<th>Relationship type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>place</td>
-<td>places</td>
-<td>belongs_to</td>
-</tr>
-<tr>
-<td>company</td>
-<td>companies</td>
-<td>belongs_to</td>
-</tr>
-</tbody></table>
-
-<h3 id="meta">Meta</h3>
-
-<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
-
           <h2 id="create-a-new-company-name"><a name="company_names_create"></a>Create a new company name</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/companies/nintendo-co-ltd/names</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/company_names</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -11917,6 +9789,12 @@
       "year_dropped": "2017"
     },
     "relationships": {
+      "company": {
+        "data": {
+          "id": "1",
+          "type": "companies"
+        }
+      },
       "place": {
         "data": {
           "id": "17",
@@ -11994,7 +9872,7 @@
   }
 }
 </code></pre>
-<p>Create a new name record for a given company. User must be an editor or admin.</p>
+<p>Create a new company name record. User must be an editor or admin.</p>
 
 <ul>
 <li>User authentication: required</li>
@@ -12004,76 +9882,6 @@
 <h3 id="http-request">HTTP request</h3>
 
 <p><code class="prettyprint">POST /articles/companies/{company-slug}/names</code></p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>1-250 characters.</td>
-</tr>
-<tr>
-<td>kind</td>
-<td>string</td>
-<td>Y</td>
-<td>The name classification. Must be &lsquo;name&rsquo;, &#39;styled&rsquo; or &#39;alias&rsquo;.</td>
-</tr>
-<tr>
-<td>writing_system</td>
-<td>string</td>
-<td>Y</td>
-<td>Must be an accepted value.</td>
-</tr>
-<tr>
-<td>year_adopted</td>
-<td>integer</td>
-<td></td>
-<td>Between 1800 and the present year.</td>
-</tr>
-<tr>
-<td>dropped</td>
-<td>boolean</td>
-<td></td>
-<td>True if the name has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
-</tr>
-<tr>
-<td>year_dropped</td>
-<td>integer</td>
-<td></td>
-<td>Between 1800 and the present year.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>place</td>
-<td>belongs_to</td>
-<td></td>
-<td>places</td>
-<td>Can be a country or region.</td>
-</tr>
-</tbody></table>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
@@ -12173,86 +9981,13 @@
   }
 }
 </code></pre>
-<p>Update an existing company name. The user must be an editor.</p>
+<p>Update an existing company name. The user must be an editor or admin.</p>
 
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
-</ul>
+<p>The <code class="prettyprint">company</code> relationship cannot be updated.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
 <p><code class="prettyprint">PATCH /articles/company_names/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Y</td>
-<td>1-250 characters.</td>
-</tr>
-<tr>
-<td>kind</td>
-<td>string</td>
-<td>Y</td>
-<td>The name classification. Must be &lsquo;name&rsquo;, &#39;styled&rsquo; or &#39;alias&rsquo;.</td>
-</tr>
-<tr>
-<td>writing_system</td>
-<td>string</td>
-<td>Y</td>
-<td>Must be an accepted value.</td>
-</tr>
-<tr>
-<td>year_adopted</td>
-<td>integer</td>
-<td></td>
-<td>Between 1800 and the present year.</td>
-</tr>
-<tr>
-<td>dropped</td>
-<td>boolean</td>
-<td></td>
-<td>True if the name has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
-</tr>
-<tr>
-<td>year_dropped</td>
-<td>integer</td>
-<td></td>
-<td>Between 1800 and the present year.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>place</td>
-<td>belongs_to</td>
-<td></td>
-<td>places</td>
-<td>Can be a country or region.</td>
-</tr>
-</tbody></table>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
@@ -12261,11 +9996,6 @@
           <h2 id="delete-a-company-name"><a name="company_names_delete"></a>Delete a company name</h2>
 
 <p>Delete an existing company name. User must be an editor or admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: editor or admin</li>
-</ul>
 
 <h3 id="http-request">HTTP request</h3>
 
@@ -12372,7 +10102,7 @@
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/companies/nintendo-co-ltd/notes?page[size]=2
+<pre class="highlight plaintext"><code># GET /articles/company_notes?page[size]=2
 
 {
   "data": [
@@ -12399,7 +10129,7 @@
         "created_by": {
           "data": {
             "id": "1",
-            "type": "created_bies"
+            "type": "users"
           },
           "links": {
             "related": "http://localhost:3000/users/1"
@@ -12430,7 +10160,7 @@
         "created_by": {
           "data": {
             "id": "1",
-            "type": "created_bies"
+            "type": "users"
           },
           "links": {
             "related": "http://localhost:3000/users/1"
@@ -12445,7 +10175,7 @@
   }
 }
 </code></pre>
-<p>Retrieve all of a given company&rsquo;s notes. Automatically paginated.</p>
+<p>Retrieve all company notes. Automatically paginated.</p>
 
 <ul>
 <li>User authentication: not required</li>
@@ -12454,7 +10184,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/companies/{company-slug}/notes</code> (replace <code class="prettyprint">{company-slug}</code> with parent company record slug)</p>
+<p><code class="prettyprint">GET /articles/company_notes</code></p>
 
 <h3 id="url-query-parameters">URL query parameters</h3>
 
@@ -12522,7 +10252,7 @@
       "created_by": {
         "data": {
           "id": "1",
-          "type": "created_bies"
+          "type": "users"
         },
         "links": {
           "related": "http://localhost:3000/users/1"
@@ -12623,7 +10353,7 @@
           <h2 id="create-a-new-company-note"><a name="company_notes_create"></a>Create a new company note</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/companies/nintendo-co-ltd/notes</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/company_notes</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -12635,7 +10365,14 @@
       "cite_title": "The Article Title",
       "cite_website": "IGN"
     }
-  }
+  },
+  "relationships": {
+    "company": {
+      "data": {
+        "id": "1",
+        "type": "companies"
+      }
+    }
 }
 </code></pre>
 <blockquote>
@@ -12665,7 +10402,7 @@
       "created_by": {
         "data": {
           "id": "2",
-          "type": "created_bies"
+          "type": "users"
         },
         "links": {
           "related": "http://localhost:3000/users/2"
@@ -12681,7 +10418,7 @@
   }
 }
 </code></pre>
-<p>Create a new note for a given company. A note is a fact, story or piece of trivia about a company. User must be an editor or admin.</p>
+<p>Create a new company note record. A note is a fact, story or piece of trivia about a company. User must be an editor or admin.</p>
 
 <ul>
 <li>User authentication: required</li>
@@ -12690,7 +10427,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /articles/companies/{game-slug}/notes</code></p>
+<p><code class="prettyprint">POST /articles/company_notes</code></p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -12731,6 +10468,28 @@
 <td>string</td>
 <td></td>
 <td>The name of the source website. 1-100 chars.</td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Relationship</th>
+<th>Req&rsquo;d?</th>
+<th>JSON:API type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>company</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>companies</td>
+<td>The company the name belongs to.</td>
 </tr>
 </tbody></table>
 
@@ -12816,7 +10575,7 @@
       "created_by": {
         "data": {
           "id": "1",
-          "type": "created_bies"
+          "type": "users"
         },
         "links": {
           "related": "http://localhost:3000/users/1"
@@ -13002,103 +10761,12 @@
 
 <p>These resources include separate routes for indexing and creating parent kinships (<code class="prettyprint">/articles/companies/{company-id}/parents</code>) and child kinships (<code class="prettyprint">/articles/companies/{company-id}/children</code>) for a given company. A single common route is used for showing, updating, and deleting existing kinship records (<code class="prettyprint">/articles/company_kinships/{id}</code>).</p>
 
-          <h2 id="get-all-of-a-company-39-s-parent-kinships">Get all of a company&rsquo;s parent kinships</h2>
+          <h2 id="get-all-company-kinships">Get all company kinships</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/companies/retro-studios-inc/parents
-
-{
-    "data": [
-        {
-            "id": "2",
-            "type": "company_kinships",
-            "attributes": {
-                "kind": "division",
-                "start_year": null,
-                "end_year": null
-            },
-            "relationships": {
-                "parent": {
-                    "data": {
-                        "id": "1",
-                        "type": "companies"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/articles/companies/nintendo-co-ltd"
-                    }
-                },
-                "child": {
-                    "data": {
-                        "id": "22",
-                        "type": "companies"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/articles/companies/retro-studios-inc"
-                    }
-                }
-            }
-        }
-    ],
-    "links": {},
-    "meta": {
-        "total_items": 1
-    }
-}
-</code></pre>
-<p>Retrieve all of a given company&rsquo;s parent kinships. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /articles/companies/{company-slug}/parents</code> (replace <code class="prettyprint">{company-slug}</code> with company record slug)</p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>fields[{record-type}]</td>
-<td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[company_kinships]=kind</code></td>
-</tr>
-<tr>
-<td>filter[{field}]</td>
-<td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=division</code></td>
-</tr>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="get-all-of-a-company-39-s-child-kinships">Get all of a company&rsquo;s child kinships</h2>
-
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 200</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code># GET /articles/companies/nintendo-co-ltd/children
+<pre class="highlight plaintext"><code># GET /articles/company_kinships
 
 {
     "data": [
@@ -13196,7 +10864,7 @@
     }
 }
 </code></pre>
-<p>Retrieve all of a given company&rsquo;s child kinships. Automatically paginated.</p>
+<p>Retrieve all company kinships. Automatically paginated.</p>
 
 <ul>
 <li>User authentication: not required</li>
@@ -13205,7 +10873,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/companies/{company-slug}/children</code> (replace <code class="prettyprint">{company-slug}</code> with company record slug)</p>
+<p><code class="prettyprint">GET /articles/company_kinships</code></p>
 
 <h3 id="url-query-parameters">URL query parameters</h3>
 
@@ -13379,164 +11047,10 @@
 
 <p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
 
-          <h2 id="create-a-new-company-parent-kinship"><a name="company_parent_kinship_create"></a>Create a new company parent kinship</h2>
+          <h2 id="create-a-new-company-kinship"><a name="company_kinship_create"></a>Create a new company kinship</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/companies/ea-maxis/parents</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "company_kinships",
-    "attributes": {
-      "kind": "ownership",
-      "start_year": "1997",
-      "end_year": ""
-    },
-    "relationships": {
-      "parent": {
-        "data": {
-          "id": "7",
-          "type": "companies"
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 201</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-    "data": {
-        "id": "6",
-        "type": "company_kinships",
-        "attributes": {
-            "kind": "ownership",
-            "start_year": 1997,
-            "end_year": null
-        },
-        "relationships": {
-            "parent": {
-                "data": {
-                    "id": "7",
-                    "type": "companies"
-                },
-                "links": {
-                    "related": "http://localhost:3000/articles/companies/electronic-arts-inc-ea"
-                }
-            },
-            "child": {
-                "data": {
-                    "id": "11",
-                    "type": "companies"
-                },
-                "links": {
-                    "related": "http://localhost:3000/articles/companies/ea-maxis"
-                }
-            }
-        }
-    },
-    "included": [
-        {
-            "id": "7",
-            "type": "companies",
-            "attributes": {
-                "display_title": "Electronic Arts, Inc. (EA)"
-            },
-            "links": {
-                "self": "http://localhost:3000/articles/companies/electronic-arts-inc-ea"
-            }
-        },
-        {
-            "id": "11",
-            "type": "companies",
-            "attributes": {
-                "display_title": "EA Maxis"
-            },
-            "links": {
-                "self": "http://localhost:3000/articles/companies/ea-maxis"
-            }
-        }
-    ],
-    "meta": {
-        "keywords": "Electronic Arts, Inc. (EA), EA Maxis, ownership, company, ownership, parent, division, subsidiary, branch, dbljump, video games, pc games, gaming",
-        "description": "",
-        "created_at": "2017-07-01T11:59:03.114Z",
-        "updated_at": "2017-07-01T11:59:03.114Z"
-    }
-}
-</code></pre>
-<p>Create a new parent kinship record for a given company. User must be an editor or admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: editor or admin</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">POST /articles/companies/{company-slug}/parents</code></p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>kind</td>
-<td>string</td>
-<td>Y</td>
-<td>The name classification. Must be &lsquo;name&rsquo;, &#39;styled&rsquo; or &#39;alias&rsquo;.</td>
-</tr>
-<tr>
-<td>start_year</td>
-<td>integer</td>
-<td></td>
-<td>Year the kinship was formed. Must be between 1800 and present year.</td>
-</tr>
-<tr>
-<td>end_year</td>
-<td>integer</td>
-<td></td>
-<td>Year the kinship was ended. Must be between 1800 and present year.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>parent</td>
-<td>belongs_to</td>
-<td>Y</td>
-<td>companies</td>
-<td>The parent company.</td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">201 Created</code></p>
-
-          <h2 id="create-a-new-company-child-kinship"><a name="company_child_kinship_create"></a>Create a new company child kinship</h2>
-
-<blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/companies/electronic-arts-inc-ea/children</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/company_kinships</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -13550,6 +11064,12 @@
       "child": {
         "data": {
           "id": "11",
+          "type": "companies"
+        }
+      },
+      "parent": {
+        "data": {
+          "id": "7",
           "type": "companies"
         }
       }
@@ -13620,7 +11140,7 @@
     }
 }
 </code></pre>
-<p>Create a new child kinship record for a given company. User must be an editor or admin.</p>
+<p>Create a new company kinship record. User must be an editor or admin.</p>
 
 <ul>
 <li>User authentication: required</li>
@@ -13674,6 +11194,13 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>parent</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>companies</td>
+<td>The parent company.</td>
+</tr>
 <tr>
 <td>child</td>
 <td>belongs_to</td>
@@ -13946,12 +11473,12 @@
 
 <p>See <a href="#company_credits_show">Get a single company note</a></p>
 
-          <h2 id="get-all-of-a-company-39-s-credits">Get all of a company&rsquo;s credits</h2>
+          <h2 id="get-all-company-credits">Get all company credits</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/company/nintendo-co-ltd/credits
+<pre class="highlight plaintext"><code># GET /articles/company_credits
 
 {
     "data": [
@@ -14002,7 +11529,7 @@
     }
 }
 </code></pre>
-<p>Retrieve all of a given company&rsquo;s game credits. Automatically paginated.</p>
+<p>Retrieve all company game credits. Automatically paginated.</p>
 
 <ul>
 <li>User authentication: not required</li>
@@ -14011,7 +11538,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/companies/{company-slug}/credits</code> (replace <code class="prettyprint">{company-slug}</code> with parent company record slug or ID)</p>
+<p><code class="prettyprint">GET /articles/company_credits</code></p>
 
 <h3 id="url-query-parameters">URL query parameters</h3>
 
@@ -14203,7 +11730,7 @@
           <h2 id="create-a-new-company-credit"><a name="company_credits_create"></a>Create a new company credit</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/companies/nintendo-co-ltd/credits</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/company_credits</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
@@ -14213,6 +11740,12 @@
       "role": "Developer"
     },
     "relationships": {
+      "credited": {
+        "data": {
+          "id": "1",
+          "type": "games"
+        }
+      },
       "game": {
         "data": {
           "id": "46",
@@ -14318,7 +11851,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /articles/companies/{company-slug}/credits</code> (replace <code class="prettyprint">company-slug</code> with the company record slug or ID)</p>
+<p><code class="prettyprint">POST /articles/company_credits</code></p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -14357,6 +11890,13 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>credited</td>
+<td>belongs_to</td>
+<td>Y</td>
+<td>companies</td>
+<td>The company credited.</td>
+</tr>
 <tr>
 <td>game</td>
 <td>belongs_to</td>
@@ -14682,505 +12222,6 @@
 <td>Category must be an accepted value.</td>
 </tr>
 </tbody></table>
-
-          <h1 id="articles-company-images"><a name="company_images_intro"></a>Articles: Company Images</h1>
-
-<p>Resources related to company images.</p>
-
-<p>Use these routes to create a new image record that is associated with a given company article, or get all images associated with a given company article.</p>
-
-          <h2 id="get-all-company-images">Get all company images</h2>
-
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 200</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code># GET /articles/companies/nintendo-co-ltd/images
-
-{
-    "data": [
-        {
-            "id": "1",
-            "type": "images",
-            "attributes": {
-                "kind": "photo",
-                "slug": "nintendo-office-photo",
-                "file": "http://localhost:3000/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
-                "title": "Nintendo office",
-                "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
-                "year": 2006,
-                "date": "2006-02-18",
-                "usage_type": "licensed",
-                "usage_license_code": "cc_by_sa_3_0",
-                "usage_license_name": "Creative Commons Attribution-ShareAlike 3.0",
-                "usage_license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-                "attributed_name": "Moja~commonswiki",
-                "attributed_url": "",
-                "source_url": "https://en.wikipedia.org/wiki/Nintendo#/media/File:Nintendo_office.jpg"
-            },
-            "relationships": {
-                "uploaded_by": {
-                    "data": {
-                        "id": "1",
-                        "type": "users"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/users/1"
-                    }
-                },
-                "place": {
-                    "data": null
-                },
-                "games": {
-                    "data": []
-                },
-                "companies": {
-                    "data": [
-                        {
-                            "id": "1",
-                            "type": "companies"
-                        }
-                    ]
-                },
-                "people": {
-                    "data": []
-                },
-                "game_versions": {
-                    "data": []
-                }
-            },
-            "links": {
-                "self": "http://localhost:3000/media/images/nintendo-office-photo"
-            }
-        },
-        {
-            "id": "2",
-            "type": "images",
-            "attributes": {
-                "kind": "photo",
-                "slug": "mario-figure-photo",
-                "file": "http://localhost:3000/uploads/images/2/mario-figure.jpg",
-                "title": "Mario figure",
-                "description": "",
-                "year": 2016,
-                "date": "2016-07-30",
-                "usage_type": "free",
-                "usage_license_code": null,
-                "usage_license_name": null,
-                "usage_license_url": null,
-                "attributed_name": null,
-                "attributed_url": null,
-                "source_url": ""
-            },
-            "relationships": {
-                "uploaded_by": {
-                    "data": {
-                        "id": "1",
-                        "type": "users"
-                    },
-                    "links": {
-                        "related": "http://localhost:3000/users/1"
-                    }
-                },
-                "place": {
-                    "data": null
-                },
-                "games": {
-                    "data": []
-                },
-                "companies": {
-                    "data": [
-                        {
-                            "id": "1",
-                            "type": "companies"
-                        }
-                    ]
-                },
-                "people": {
-                    "data": []
-                },
-                "game_versions": {
-                    "data": []
-                }
-            },
-            "links": {
-                "self": "http://localhost:3000/media/images/mario-figure-photo"
-            }
-        }
-    ],
-    "links": {},
-    "meta": {
-        "total_items": 2
-    }
-}
-</code></pre>
-<p>Retrieve all images associated with a given company article. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /articles/companies/{company-id}/images</code> (replace <code class="prettyprint">company-id</code> with the company ID or slug)</p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>fields[{record-type}]</td>
-<td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[images]=file,title</code></td>
-</tr>
-<tr>
-<td>filter[{field}]</td>
-<td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=logo</code></td>
-</tr>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
-
-          <h2 id="upload-a-new-company-image"><a name="company_images_create"></a>Upload a new company image</h2>
-
-<blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/companies/nintendo-co-ltd/images</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "data": {
-    "type": "images",
-    "attributes": {
-      "base64_file": "data:image/gif;base64,R0lGODlhBQAFAIAAAAAAAP///ywAAAAABQAFAAACBIyPqVgAOw==",
-      "kind": "logo",
-      "title": "Nintendo Logo 2009",
-      "description": "Nintendo logo introduced in 2009.",
-      "year": "2006",
-      "date": "",
-      "usage_type": "fair",
-      "usage_license_code": "",
-      "attributed_name": "",
-      "attributed_url": "",
-      "source_url": ""
-    },
-    "relationships": {
-      "place": {
-        "data": {
-          "id": "",
-          "type": "places"
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<blockquote>
-<p>Response body | <code class="prettyprint">HTTP 201</code></p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-    "data": {
-        "id": "5",
-        "type": "images",
-        "attributes": {
-            "kind": "logo",
-            "slug": "nintendo-logo-2009-logo",
-            "file": "http://localhost:3000/uploads/images/5/file.gif",
-            "title": "Nintendo Logo 2009",
-            "description": "Nintendo logo introduced in 2009.",
-            "year": 2006,
-            "date": null,
-            "usage_type": "fair",
-            "usage_license_code": null,
-            "usage_license_name": null,
-            "usage_license_url": null,
-            "attributed_name": "",
-            "attributed_url": "",
-            "source_url": ""
-        },
-        "relationships": {
-            "uploaded_by": {
-                "data": {
-                    "id": "2",
-                    "type": "users"
-                },
-                "links": {
-                    "related": "http://localhost:3000/users/2"
-                }
-            },
-            "place": {
-                "data": null
-            },
-            "games": {
-                "data": []
-            },
-            "companies": {
-                "data": [
-                    {
-                        "id": "1",
-                        "type": "companies"
-                    }
-                ]
-            },
-            "people": {
-                "data": []
-            },
-            "game_versions": {
-                "data": []
-            }
-        },
-        "links": {
-            "self": "http://localhost:3000/media/images/nintendo-logo-2009-logo"
-        }
-    },
-    "included": [
-        {
-            "id": "2",
-            "type": "users",
-            "attributes": {
-                "username": "neil",
-                "role": "admin",
-                "given_names": "Neil",
-                "family_name": "Wheatley",
-                "avatar": "http://localhost:3000/uploads/user_avatar/2/1706221451.jpg"
-            },
-            "links": {
-                "self": "http://localhost:3000/users/2"
-            }
-        },
-        {
-            "id": "1",
-            "type": "companies",
-            "attributes": {
-                "display_title": "Nintendo Co., Ltd."
-            },
-            "links": {
-                "self": "http://localhost:3000/articles/companies/nintendo-co-ltd"
-            }
-        }
-    ],
-    "meta": {
-        "keywords": "Nintendo Logo 2009, logo, 2006, image, picture, media, dbljump, video games, pc games, gaming",
-        "description": "'Nintendo Logo 2009' is a video game image at Dbljump.",
-        "created_at": "2017-06-22T13:59:39.971Z",
-        "updated_at": "2017-06-22T13:59:39.971Z"
-    }
-}
-</code></pre>
-<p>Upload a new image associated with a given company article. User must be an editor or admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: editor</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">POST /articles/companies/{company-id}/images</code> (replace <code class="prettyprint">company-id</code> with company ID or slug)</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>base64_file</td>
-<td>string</td>
-<td>Y</td>
-<td>Image file encoded as base64. See <a href="#image_file">File</a>.</td>
-</tr>
-<tr>
-<td>kind</td>
-<td>string</td>
-<td>Y</td>
-<td>See <a href="#image_kind">Kind</a>.</td>
-</tr>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>Y</td>
-<td>Max 100 chars.</td>
-</tr>
-<tr>
-<td>description</td>
-<td>string</td>
-<td></td>
-<td>Max 250 chars.</td>
-</tr>
-<tr>
-<td>year</td>
-<td>integer</td>
-<td></td>
-<td>1800 to present year.</td>
-</tr>
-<tr>
-<td>date</td>
-<td>date</td>
-<td></td>
-<td>1800-01-01 to present year.</td>
-</tr>
-<tr>
-<td>usage_type</td>
-<td>string</td>
-<td>Y</td>
-<td>Must be &lsquo;free&rsquo;, &#39;fair&rsquo;, or &#39;licensed&rsquo;. See <a href="#image_usage_type">Usage type</a>.</td>
-</tr>
-<tr>
-<td>usage_license_code</td>
-<td>string</td>
-<td>*</td>
-<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. See <a href="#image_usage_license">Usage license</a>.</td>
-</tr>
-<tr>
-<td>attributed_name</td>
-<td>string</td>
-<td>*</td>
-<td>Image owner&rsquo;s name. Max 100 chars. Req&rsquo;d if usage_type is &#39;licensed&rsquo;.</td>
-</tr>
-<tr>
-<td>attributed_url</td>
-<td>string</td>
-<td></td>
-<td>The owner&rsquo;s website. Max 250 chars.</td>
-</tr>
-<tr>
-<td>source_url</td>
-<td>string</td>
-<td>*</td>
-<td>Req&rsquo;d if usage_type is &#39;licensed&rsquo;. Max 250 chars. URL of image source.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>place</td>
-<td>belongs_to</td>
-<td></td>
-<td>places</td>
-<td>A <a href="#places_intro">place record</a> the image is associated with.</td>
-</tr>
-</tbody></table>
-
-<h3 id="file"><a name="image_file"></a>File</h3>
-
-<p><strong>File type:</strong> File uploads must be of type GIF, JPG/JPEG, or PNG.</p>
-
-<p><strong>Base64:</strong> Image file uploads are handled by the Ruby gems <a href="https://github.com/carrierwaveuploader/carrierwave">CarrierWave</a> and <a href="https://github.com/lebedev-yury/carrierwave-base64">Carrierwave::Base64</a>. Base64 strings should have <a href="https://github.com/lebedev-yury/carrierwave-base64#data-format">the correct data format</a>, i.e.:</p>
-
-<p><code class="prettyprint">data:image/jpeg;base64,(base64 encoded data)</code></p>
-
-<h3 id="kind"><a name="image_kind"></a>Kind</h3>
-
-<p>The <code class="prettyprint">kind</code> attribute accepts the following values.</p>
-
-<table><thead>
-<tr>
-<th>Kind</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>artwork</td>
-<td>Miscellaneous artwork, e.g. production design drawings or promotional art</td>
-</tr>
-<tr>
-<td>boxart</td>
-<td>Official box art from various regions</td>
-</tr>
-<tr>
-<td>doc</td>
-<td>Image of a document, e.g. a leaked presentation slide</td>
-</tr>
-<tr>
-<td>logo</td>
-<td>Usually a company or game logo</td>
-</tr>
-<tr>
-<td>photo</td>
-<td>A photograph</td>
-</tr>
-<tr>
-<td>poster</td>
-<td>A game poster</td>
-</tr>
-<tr>
-<td>screen</td>
-<td>A screenshot from a game</td>
-</tr>
-</tbody></table>
-
-<h3 id="usage-type"><a name="image_usage_type"></a>Usage type</h3>
-
-<p>Users should only upload images that can legally be shown on Dbljump.com. An image must therefore have one of three <code class="prettyprint">usage_type</code> values.</p>
-
-<table><thead>
-<tr>
-<th>Usage type</th>
-<th>usage_type value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Free</td>
-<td>free</td>
-<td>The image is in the public domain and free to use without attribution.</td>
-</tr>
-<tr>
-<td>Fair use</td>
-<td>fair</td>
-<td>The image can be used under US fair use law. May include logos, box-arts, and screenshots.</td>
-</tr>
-<tr>
-<td>Licensed</td>
-<td>licensed</td>
-<td>The image is free to use with some-rights-reserved license, e.g. Creative Commons.</td>
-</tr>
-</tbody></table>
-
-<h3 id="usage-license-attribute"><a name="image_usage_license"></a>Usage license attribute</h3>
-
-<p>If <code class="prettyprint">usage_type</code> is set to <code class="prettyprint">licensed</code>, a valid image license code must be provided. Please see <a href="#media_licenses_intro">Media Image Licenses</a>.</p>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">201 Created</code></p>
-
-          <h2 id="errors">Errors</h2>
-
-<p>See the main <a href="#media_image_errors">image errors section</a>.</p>
 
           <h1 id="articles-search"><a name="articles_search_intro"></a>Articles: Search</h1>
 
@@ -16527,188 +13568,6 @@
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">204 No Content</code></p>
-
-          <h2 id="user-images-get-all">User images: get all</h2>
-
-<blockquote>
-<p>HTTP 200 response body</p>
-</blockquote>
-<pre class="highlight plaintext"><code># GET /users/1/images
-
-{
-    "data": [
-        {
-            "id": "2",
-            "type": "images",
-            "attributes": {
-                "kind": "photo",
-                "slug": "mario-figure-photo",
-                "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/2/mario-figure.jpg",
-                "title": "Mario figure",
-                "description": "",
-                "year": 2016,
-                "date": "2016-07-30",
-                "usage_type": "free",
-                "usage_license_code": null,
-                "usage_license_name": null,
-                "usage_license_url": null,
-                "attributed_name": null,
-                "attributed_url": null,
-                "source_url": ""
-            },
-            "relationships": {
-                "uploaded_by": {
-                    "data": {
-                        "id": "1",
-                        "type": "users"
-                    },
-                    "links": {
-                        "related": "http://api.dbljump.com/users/1"
-                    }
-                },
-                "place": {
-                    "data": null
-                },
-                "games": {
-                    "data": []
-                },
-                "companies": {
-                    "data": [
-                        {
-                            "id": "1",
-                            "type": "companies"
-                        }
-                    ]
-                },
-                "people": {
-                    "data": []
-                },
-                "game_versions": {
-                    "data": []
-                }
-            },
-            "links": {
-                "self": "http://api.dbljump.com/media/images/mario-figure-photo"
-            },
-            "meta": {
-                "description": "'Mario figure' is a video game image at Dbljump.",
-                "keywords": "Mario figure, photo, 2016, 2016-07-30, image, picture, media, dbljump, video games, pc games, gaming",
-                "created_at": "2017-07-12T13:30:10.913Z",
-                "updated_at": "2017-07-12T13:30:10.913Z"
-            }
-        },
-        {
-            "id": "1",
-            "type": "images",
-            "attributes": {
-                "kind": "photo",
-                "slug": "nintendo-office-photo",
-                "file": "https://dbljumpheroku.s3.amazonaws.com/uploads/images/1/nintendo-hq-kyoto-2006.jpg",
-                "title": "Nintendo office",
-                "description": "Head Quarters of Nintendo, Minami-ku, Kyoto, Japan. The picture was taken by the poster in February, 2006.",
-                "year": 2006,
-                "date": "2006-02-18",
-                "usage_type": "licensed",
-                "usage_license_code": "cc_by_sa_3_0",
-                "usage_license_name": "Creative Commons Attribution-ShareAlike 3.0",
-                "usage_license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-                "attributed_name": "Moja~commonswiki",
-                "attributed_url": "",
-                "source_url": "https://en.wikipedia.org/wiki/Nintendo#/media/File:Nintendo_office.jpg"
-            },
-            "relationships": {
-                "uploaded_by": {
-                    "data": {
-                        "id": "1",
-                        "type": "users"
-                    },
-                    "links": {
-                        "related": "http://api.dbljump.com/users/1"
-                    }
-                },
-                "place": {
-                    "data": null
-                },
-                "games": {
-                    "data": []
-                },
-                "companies": {
-                    "data": [
-                        {
-                            "id": "1",
-                            "type": "companies"
-                        }
-                    ]
-                },
-                "people": {
-                    "data": []
-                },
-                "game_versions": {
-                    "data": []
-                }
-            },
-            "links": {
-                "self": "http://api.dbljump.com/media/images/nintendo-office-photo"
-            },
-            "meta": {
-                "description": "'Nintendo office' is a video game image at Dbljump.",
-                "keywords": "Nintendo office, photo, 2006, 2006-02-18, Moja~commonswiki, image, picture, media, dbljump, video games, pc games, gaming",
-                "created_at": "2017-07-12T13:30:08.319Z",
-                "updated_at": "2017-07-12T13:30:08.319Z"
-            }
-        }
-    ],
-    "links": {},
-    "meta": {
-        "total_items": 2
-    }
-}
-</code></pre>
-<p>Retrieve all images uploaded by the given user. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
-
-<h3 id="http-request">HTTP request</h3>
-
-<p><code class="prettyprint">GET /users/{user_id}/images</code> (replace <code class="prettyprint">{user_id}</code> with country record slug)</p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>fields[{record-type}]</td>
-<td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[images]=file,title</code></td>
-</tr>
-<tr>
-<td>filter[{field}]</td>
-<td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=logo</code></td>
-</tr>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
-</tr>
-</tbody></table>
-
-<h3 id="success-http-response-code">Success HTTP response code</h3>
-
-<p><code class="prettyprint">200 OK</code></p>
 
           <h2 id="errors">Errors</h2>
 
