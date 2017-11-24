@@ -1,6 +1,6 @@
 ## <a name="version_releases_create"></a>Create a new game version release
 
-> Request body | `POST /articles/game_versions/1/releases`
+> Request body | `POST /articles/game_version_releases`
 
 ```JSON
 {
@@ -13,6 +13,12 @@
       "digital": "true"
     },
     "relationships": {
+      "version": {
+          "data": {
+              "id": "1",
+              "type": "game_versions"
+          }
+      },
       "place": {
         "data": {
           "id": "102",
@@ -86,7 +92,7 @@ Create a new game version release. User must be an editor or admin.
 
 ### HTTP request
 
-`POST /articles/game_versions/{version-id}/releases` (replace `{version-id}` with game version ID)
+`POST /articles/game_version_releases`
 
 ### Request attributes
 
@@ -103,6 +109,7 @@ Check this section's code example to see how to update these relationships.
 
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
+version  | belongs_to  | Y  | game_versions  |  The version the release belongs to.
 place | belongs_to | Y | places | Release country or region. There can be one game version release per place.
 
 ### Success HTTP response code

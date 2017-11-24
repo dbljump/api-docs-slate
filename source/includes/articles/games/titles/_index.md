@@ -3,7 +3,7 @@
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/games/the-wonderful-101/titles?page[size]=2
+# GET /articles/game_titles?page[size]=2
 
 {
   "data": [
@@ -77,14 +77,14 @@
 }
 ```
 
-Retrieve all of a given game's titles. Automatically paginated.
+Retrieve all game titles. Automatically paginated.
 
 * User authentication: not required
 * Authorization level: n/a
 
 ### HTTP request
 
-`GET /articles/games/{game-slug}/titles` (replace `{game-slug}` with parent game record slug)
+`GET /articles/game_titles`
 
 ### URL query parameters
 

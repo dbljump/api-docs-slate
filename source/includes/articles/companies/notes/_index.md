@@ -3,7 +3,7 @@
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/companies/nintendo-co-ltd/notes?page[size]=2
+# GET /articles/company_notes?page[size]=2
 
 {
   "data": [
@@ -30,7 +30,7 @@
         "created_by": {
           "data": {
             "id": "1",
-            "type": "created_bies"
+            "type": "users"
           },
           "links": {
             "related": "http://localhost:3000/users/1"
@@ -61,7 +61,7 @@
         "created_by": {
           "data": {
             "id": "1",
-            "type": "created_bies"
+            "type": "users"
           },
           "links": {
             "related": "http://localhost:3000/users/1"
@@ -77,14 +77,14 @@
 }
 ```
 
-Retrieve all of a given company's notes. Automatically paginated.
+Retrieve all company notes. Automatically paginated.
 
 * User authentication: not required
 * Authorization level: n/a
 
 ### HTTP request
 
-`GET /articles/companies/{company-slug}/notes` (replace `{company-slug}` with parent company record slug)
+`GET /articles/company_notes`
 
 ### URL query parameters
 

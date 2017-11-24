@@ -1,9 +1,9 @@
-## Get all of a person's titles
+## Get all person titles
 
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/people/shigeru-miyamoto/notes?page[size]=2
+# GET /articles/person_notes?page[size]=2
 
 {
   "data": [
@@ -30,7 +30,7 @@
         "created_by": {
           "data": {
             "id": "1",
-            "type": "created_bies"
+            "type": "users"
           },
           "links": {
             "related": "http://localhost:3000/users/1"
@@ -46,14 +46,14 @@
 }
 ```
 
-Retrieve all of a given person's notes. Automatically paginated.
+Retrieve all person notes. Automatically paginated.
 
 * User authentication: not required
 * Authorization level: n/a
 
 ### HTTP request
 
-`GET /articles/companies/{person-slug}/notes` (replace `{person-slug}` with parent person record slug)
+`GET /articles/person_notes`
 
 ### URL query parameters
 

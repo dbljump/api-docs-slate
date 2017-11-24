@@ -1,9 +1,9 @@
-## Get all of a company's child kinships
+## Get all company kinships
 
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/companies/nintendo-co-ltd/children
+# GET /articles/company_kinships
 
 {
     "data": [
@@ -102,14 +102,14 @@
 }
 ```
 
-Retrieve all of a given company's child kinships. Automatically paginated.
+Retrieve all company kinships. Automatically paginated.
 
 * User authentication: not required
 * Authorization level: n/a
 
 ### HTTP request
 
-`GET /articles/companies/{company-slug}/children` (replace `{company-slug}` with company record slug)
+`GET /articles/company_kinships`
 
 ### URL query parameters
 

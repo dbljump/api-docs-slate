@@ -1,9 +1,9 @@
-## Get all of a game's titles
+## Get all game notes
 
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/games/the-wonderful-101/notes?page[size]=2
+# GET /articles/game_notes?page[size]=2
 
 {
   "data": [
@@ -36,7 +36,7 @@
         "created_by": {
           "data": {
             "id": "1",
-            "type": "created_bies"
+            "type": "users"
           },
           "links": {
             "related": "http://localhost:3000/users/1"
@@ -52,14 +52,14 @@
 }
 ```
 
-Retrieve all of a given game's notes. Automatically paginated.
+Retrieve all game notes. Automatically paginated.
 
 * User authentication: not required
 * Authorization level: n/a
 
 ### HTTP request
 
-`GET /articles/games/{game-slug}/notes` (replace `{game-slug}` with parent game record slug)
+`GET /articles/game_notes`
 
 ### URL query parameters
 

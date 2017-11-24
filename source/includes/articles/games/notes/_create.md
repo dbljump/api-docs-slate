@@ -1,6 +1,6 @@
 ## <a name="game_notes_create"></a>Create a new game note
 
-> Request body | `POST /articles/games/dark-souls/notes`
+> Request body | `POST /articles/game_notes`
 
 ```JSON
 {
@@ -14,6 +14,12 @@
       "cite_website": "IGN"
     },
     "relationships": {
+      "game": {
+        "data": {
+          "id": "47",
+          "type": "games"
+        }
+      },
       "version": {
         "data": {
           "id": "2",
@@ -78,14 +84,14 @@
 }
 ```
 
-Create a new note for a given game. A note is a fact, story or piece of trivia about a game. User must be an editor or admin.
+Create a new game note. A note is a fact, story or piece of trivia about a game. User must be an editor or admin.
 
 * User authentication: required
 * Authorization level: editor or admin
 
 ### HTTP request
 
-`POST /articles/games/{game-slug}/notes`
+`POST /articles/game_notes`
 
 ### Request attributes
 
@@ -117,6 +123,7 @@ Check this section's code example to see how to update these relationships.
 
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
+game  | belongs_to  | Y  | games  | The game the note belongs to. 
 version | belongs_to | | game_versions | Version must belong to same game as note.
 
 ### Success HTTP response code

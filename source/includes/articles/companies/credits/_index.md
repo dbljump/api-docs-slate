@@ -1,9 +1,9 @@
-## Get all of a company's credits
+## Get all company credits
 
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/company/nintendo-co-ltd/credits
+# GET /articles/company_credits
 
 {
     "data": [
@@ -55,14 +55,14 @@
 }
 ```
 
-Retrieve all of a given company's game credits. Automatically paginated.
+Retrieve all company game credits. Automatically paginated.
 
 * User authentication: not required
 * Authorization level: n/a
 
 ### HTTP request
 
-`GET /articles/companies/{company-slug}/credits` (replace `{company-slug}` with parent company record slug or ID)
+`GET /articles/company_credits`
 
 ### URL query parameters
 

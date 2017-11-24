@@ -1,9 +1,9 @@
-## Get all of a person's names
+## Get all person names
 
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/people/satoru-iwata/names?page[size]=2
+# GET /articles/person_names?page[size]=2
 
 {
   "data": [
@@ -43,14 +43,14 @@
 }
 ```
 
-Retrieve all of a given person's names. Automatically paginated.
+Retrieve all person names. Automatically paginated.
 
 * User authentication: not required
 * Authorization level: n/a
 
 ### HTTP request
 
-`GET /articles/people/{person-slug}/names` (replace `{person-slug}` with parent person record slug)
+`GET /articles/person_names`
 
 ### URL query parameters
 

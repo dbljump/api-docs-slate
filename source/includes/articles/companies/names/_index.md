@@ -1,9 +1,9 @@
-## Get all of a company's names
+## Get company names
 
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/companies/nintendo-co-ltd/names?page[size]=2
+# GET /articles/company_names?page[size]=2
 
 {
   "data": [
@@ -53,23 +53,31 @@
 }
 ```
 
-Retrieve all of a given company's names. Automatically paginated.
-
-* User authentication: not required
-* Authorization level: n/a
+Retrieve a collection of company names.
 
 ### HTTP request
 
-`GET /articles/companies/{company-slug}/names` (replace `{company-slug}` with parent company record slug)
+`GET /articles/company_names`
 
-### URL query parameters
+### Filter fields
 
-Parameter | Default | Description
---------- | ------- | -----------
-fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[company_names]=name`
-filter[{field}] | All records | Filter search by field, e.g. `?filter[dropped]=true`
-page[number] | 1 | Select the page number, e.g. `?page[number]=3`
-page[size] | 30 | Select the number of records per page, e.g. `?page[size]=20`
+* `company_id`
+* `display_text`
+* `kind`
+* `writing_system`
+* `year_adopted`
+* `year_dropped`
+* `dropped`
+
+### Sort fields
+
+* `company_id`
+* `display_text`
+* `kind`
+* `writing_system`
+* `year_adopted`
+* `year_dropped`
+* `dropped`
 
 ### Success HTTP response code
 

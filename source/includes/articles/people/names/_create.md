@@ -1,6 +1,6 @@
 ## <a name="person_names_create"></a>Create a new person name
 
-> Request body | `POST /articles/people/shigeru-miyamoto/names`
+> Request body | `POST /articles/person_names`
 
 ```JSON
 {
@@ -16,6 +16,12 @@
       "year_dropped": "1972"
     },
     "relationships": {
+      "person": {
+        "data": {
+          "id": "21",
+          "type": "people"
+        }
+      },
       "place": {
         "data": {
           "id": "102",
@@ -96,14 +102,14 @@
 }
 ```
 
-Create a new name record for a given person. User must be an editor or admin.
+Create a new person name record. User must be an editor or admin.
 
 * User authentication: required
 * Authorization level: editor or admin
 
 ### HTTP request
 
-`POST /articles/people/{person-slug}/names`
+`POST /articles/person_names`
 
 ### Request attributes
 
@@ -123,6 +129,7 @@ Check this section's code example to see how to update these relationships.
 
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
+person  | belongs_to  | Y  | people  | The person the name belongs to. 
 place | belongs_to | | places | Can be a country or region.
 
 ### Success HTTP response code

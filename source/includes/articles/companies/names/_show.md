@@ -53,10 +53,7 @@
 }
 ```
 
-Retrieve a single company name. Company names are publicly available. No sign-in is required.
-
-* User authentication: not required
-* Authorization level: n/a
+Retrieve a single company name.
 
 ### HTTP request
 
@@ -65,25 +62,3 @@ Retrieve a single company name. Company names are publicly available. No sign-in
 ### Success HTTP response code
 
 `200 OK`
-
-### <a name="company_names_response_attrs"></a>Response attributes
-
-Attribute | Type | Req'd? | Description
---------- | ---- | ------ | -----------
-name | string | Y | The name.
-kind | string | Y | The name classification. Must be 'name', 'styled' or 'alias'.
-writing_system | string | Y | Must be an accepted value, e.g. 'Latin', 'Japanese' etc.
-year_adopted | integer | | Between 1800 and the present year.
-dropped | boolean | | True if the name has been dropped. Auto-sets true if `year_dropped` present.
-year_dropped | integer | | Between 1800 and the present year.
-
-### Relationships
-
-Association | Record type | Relationship type
------------- | ---------- | -----------------
-place | places | belongs_to
-company | companies | belongs_to
-
-### Meta
-
-The `meta` section of the JSON response includes `keywords`, `description`, `created_at` and `updated_at` attributes.

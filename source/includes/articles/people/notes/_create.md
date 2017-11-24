@@ -1,6 +1,6 @@
 ## <a name="person_notes_create"></a>Create a new person note
 
-> Request body | `POST /articles/people/shigeru-miyamoto/notes`
+> Request body | `POST /articles/person_notes`
 
 ```JSON
 {
@@ -12,6 +12,14 @@
       "cite_url": "http://ign.com/article",
       "cite_title": "The Article Title",
       "cite_website": "IGN"
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "id": "21",
+          "type": "people"
+        }
+      }
     }
   }
 }
@@ -44,7 +52,7 @@
       "created_by": {
         "data": {
           "id": "2",
-          "type": "created_bies"
+          "type": "users"
         },
         "links": {
           "related": "http://localhost:3000/users/2"
@@ -61,14 +69,14 @@
 }
 ```
 
-Create a new note for a given person. A note is a fact, story or piece of trivia about a person. User must be an editor or admin.
+Create a new person note record. A note is a fact, story or piece of trivia about a person. User must be an editor or admin.
 
 * User authentication: required
 * Authorization level: editor or admin
 
 ### HTTP request
 
-`POST /articles/people/{game-slug}/notes`
+`POST /articles/person_notes`
 
 ### Request attributes
 
@@ -79,6 +87,14 @@ body | string | Y | The note text. 5-2000 chars.
 cite_url | string |  | The URL of the source web page. 5-250 chars.
 cite_title | string | | The title of the source web page. 5-250 chars.
 cite_website | string | | The name of the source website. 1-100 chars.
+
+### Relationships
+
+Check this section's code example to see how to update these relationships.
+
+Name | Relationship | Req'd? | JSON:API type | Description
+---- | ------------ | ------ | ------------- | -----------
+person  | belongs_to  | Y  | people  | The person the note belongs to. 
 
 ### <a name="person_notes_cat"></a>Category
 

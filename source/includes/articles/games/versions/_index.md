@@ -3,7 +3,7 @@
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/games/dark-souls/versions?page[size]=2
+# GET /articles/game_versions?page[size]=2
 
 {
     "data": [
@@ -120,7 +120,7 @@ Retrieve all game versions. Automatically paginated.
 
 ### HTTP request
 
-`GET /articles/games/{game-slug}/versions`
+`GET /articles/game_versions`
 
 ### URL query parameters
 

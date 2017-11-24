@@ -1,6 +1,6 @@
 ## <a name="game_versions_create"></a>Create a new game version
 
-> Request body | `POST /articles/games/dark-souls/versions`
+> Request body | `POST /articles/game_versions`
 
 ```JSON
 {
@@ -15,6 +15,13 @@
       "res_unlocked": "false"
     },
     "relationships": {
+      "game": {
+          "data": {
+              "id": "79",
+              "type": "games"
+          }
+        }
+      },
       "platform": {
         "data": {
           "id": "60",
@@ -121,7 +128,7 @@ Create a new game version. User must be an editor or admin.
 
 ### HTTP request
 
-`POST /articles/games/{game-slug}/versions` (replace `{game-slug}` with game slug)
+`POST /articles/game_versions`
 
 ### Request attributes
 
@@ -140,6 +147,7 @@ Check this section's code example to see how to update these relationships.
 
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
+game  | belongs_to  | Y  | games  | The game the version belongs to.
 platform | belongs_to | Y | platforms | Platform this version runs on, e.g. PlayStation 4.
 
 ### Success HTTP response code

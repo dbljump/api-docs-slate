@@ -1,6 +1,6 @@
 ## <a name="company_names_create"></a>Create a new company name
 
-> Request body | `POST /articles/companies/nintendo-co-ltd/names`
+> Request body | `POST /articles/company_names`
 
 ```JSON
 {
@@ -15,6 +15,12 @@
       "year_dropped": "2017"
     },
     "relationships": {
+      "company": {
+        "data": {
+          "id": "1",
+          "type": "companies"
+        }
+      },
       "place": {
         "data": {
           "id": "17",
@@ -94,7 +100,7 @@
 }
 ```
 
-Create a new name record for a given company. User must be an editor or admin.
+Create a new company name record. User must be an editor or admin.
 
 * User authentication: required
 * Authorization level: editor or admin
@@ -102,25 +108,6 @@ Create a new name record for a given company. User must be an editor or admin.
 ### HTTP request
 
 `POST /articles/companies/{company-slug}/names`
-
-### Request attributes
-
-Attribute | Type | Req'd? | Description
---------- | ---- | ------ | -----------
-name | string | Y | 1-250 characters.
-kind | string | Y | The name classification. Must be 'name', 'styled' or 'alias'.
-writing_system | string | Y | Must be an accepted value.
-year_adopted | integer | | Between 1800 and the present year.
-dropped | boolean | | True if the name has been dropped. Auto-sets true if `year_dropped` present.
-year_dropped | integer | | Between 1800 and the present year.
-
-### Relationships
-
-Check this section's code example to see how to update these relationships.
-
-Name | Relationship | Req'd? | JSON:API type | Description
----- | ------------ | ------ | ------------- | -----------
-place | belongs_to | | places | Can be a country or region.
 
 ### Success HTTP response code
 

@@ -3,7 +3,7 @@
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/game_versions/1/releases
+# GET /articles/game_version_releases
 
 {
     "data": [
@@ -112,7 +112,7 @@ Retrieve all game version releases. Automatically paginated.
 
 ### HTTP request
 
-`GET /articles/game_versions/{version-id}/releases` (replace `version-id` with game version ID)
+`GET /articles/game_version_releases`
 
 ### URL query parameters
 

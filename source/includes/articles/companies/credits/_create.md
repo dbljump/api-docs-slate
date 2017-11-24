@@ -1,6 +1,6 @@
 ## <a name="company_credits_create"></a>Create a new company credit
 
-> Request body | `POST /articles/companies/nintendo-co-ltd/credits`
+> Request body | `POST /articles/company_credits`
 
 ```JSON
 {
@@ -11,6 +11,12 @@
       "role": "Developer"
     },
     "relationships": {
+      "credited": {
+        "data": {
+          "id": "1",
+          "type": "games"
+        }
+      },
       "game": {
         "data": {
           "id": "46",
@@ -116,7 +122,7 @@ Create a new game credit for a given company. User must be an editor or admin.
 
 ### HTTP request
 
-`POST /articles/companies/{company-slug}/credits` (replace `company-slug` with the company record slug or ID)
+`POST /articles/company_credits`
 
 ### Request attributes
 
@@ -131,6 +137,7 @@ Check this section's code example to see how to update these relationships.
 
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
+credited | belongs_to | Y |  companies | The company credited.
 game | belongs_to | Y | games | The game the credit relates to.
 version | belongs_to | | game_versions | The game version the credit relates to (optional).
 place | belongs_to | | places | The place the credit relates to (optional).

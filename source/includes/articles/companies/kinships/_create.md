@@ -1,6 +1,6 @@
-## <a name="company_parent_kinship_create"></a>Create a new company parent kinship
+## <a name="company_kinship_create"></a>Create a new company kinship
 
-> Request body | `POST /articles/companies/ea-maxis/parents`
+> Request body | `POST /articles/company_kinships`
 
 ```JSON
 {
@@ -12,6 +12,12 @@
       "end_year": ""
     },
     "relationships": {
+      "child": {
+        "data": {
+          "id": "11",
+          "type": "companies"
+        }
+      },
       "parent": {
         "data": {
           "id": "7",
@@ -28,7 +34,7 @@
 ```JSON
 {
     "data": {
-        "id": "6",
+        "id": "7",
         "type": "company_kinships",
         "attributes": {
             "kind": "ownership",
@@ -81,20 +87,20 @@
     "meta": {
         "keywords": "Electronic Arts, Inc. (EA), EA Maxis, ownership, company, ownership, parent, division, subsidiary, branch, dbljump, video games, pc games, gaming",
         "description": "",
-        "created_at": "2017-07-01T11:59:03.114Z",
-        "updated_at": "2017-07-01T11:59:03.114Z"
+        "created_at": "2017-07-01T12:05:57.502Z",
+        "updated_at": "2017-07-01T12:05:57.502Z"
     }
 }
 ```
 
-Create a new parent kinship record for a given company. User must be an editor or admin.
+Create a new company kinship record. User must be an editor or admin.
 
 * User authentication: required
 * Authorization level: editor or admin
 
 ### HTTP request
 
-`POST /articles/companies/{company-slug}/parents`
+`POST /articles/companies/{company-slug}/children`
 
 ### Request attributes
 
@@ -111,6 +117,7 @@ Check this section's code example to see how to update these relationships.
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
 parent | belongs_to | Y | companies | The parent company.
+child | belongs_to | Y | companies | The child company.
 
 ### Success HTTP response code
 

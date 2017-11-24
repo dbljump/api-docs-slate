@@ -1,6 +1,6 @@
 ## <a name="game_titles_create"></a>Create a new game title
 
-> Request body | `POST /articles/games/dark-souls/titles`
+> Request body | `POST /articles/game_titles`
 
 ```JSON
 {
@@ -12,6 +12,12 @@
       "writing_system": "Latin"
     },
     "relationships": {
+      "game": {
+        "data": {
+          "id": "47",
+          "type": "games"
+        }
+      },
       "place": {
         "data": {
           "id": "17",
@@ -102,14 +108,14 @@
 }
 ```
 
-Create a new title record for a given game. User must be an editor or admin.
+Create a new game title record. User must be an editor or admin.
 
 * User authentication: required
 * Authorization level: editor or admin
 
 ### HTTP request
 
-`POST /articles/games/{game-slug}/titles`
+`POST /articles/game_titles`
 
 ### Request attributes
 
@@ -125,6 +131,7 @@ Check this section's code example to see how to update these relationships.
 
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
+game  | belongs_to  | Y  | games  | The game the title belongs to.
 place | belongs_to | | places | Can be a country or region.
 version | belongs_to | | game_versions | Version must belong to same game as title.
 

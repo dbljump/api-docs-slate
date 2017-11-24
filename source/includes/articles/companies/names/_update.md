@@ -94,33 +94,13 @@
 }
 ```
 
-Update an existing company name. The user must be an editor.
+Update an existing company name. The user must be an editor or admin.
 
-* User authentication: required
-* Authorization level: admin
+The `company` relationship cannot be updated.
 
 ### HTTP request
 
 `PATCH /articles/company_names/{id}` (replace `{id}` with record ID)
-
-### Request attributes
-
-Attribute | Type | Req'd? | Description
---------- | ---- | ------ | -----------
-name | string | Y | 1-250 characters.
-kind | string | Y | The name classification. Must be 'name', 'styled' or 'alias'.
-writing_system | string | Y | Must be an accepted value.
-year_adopted | integer | | Between 1800 and the present year.
-dropped | boolean | | True if the name has been dropped. Auto-sets true if `year_dropped` present.
-year_dropped | integer | | Between 1800 and the present year.
-
-### Relationships
-
-Check this section's code example to see how to update these relationships.
-
-Name | Relationship | Req'd? | JSON:API type | Description
----- | ------------ | ------ | ------------- | -----------
-place | belongs_to | | places | Can be a country or region.
 
 ### Success HTTP response code
 

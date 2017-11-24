@@ -45,7 +45,7 @@
       "created_by": {
         "data": {
           "id": "1",
-          "type": "created_bies"
+          "type": "users"
         },
         "links": {
           "related": "http://localhost:3000/users/1"

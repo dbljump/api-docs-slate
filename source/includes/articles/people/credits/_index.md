@@ -1,9 +1,9 @@
-## Get all of a person's credits
+## Get all person credits
 
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/people/satoru-iwata/credits
+# GET /articles/person_credits
 
 {
     "data": [
@@ -55,14 +55,14 @@
 }
 ```
 
-Retrieve all of a given person's game credits. Automatically paginated.
+Retrieve all person-game credits. Automatically paginated.
 
 * User authentication: not required
 * Authorization level: n/a
 
 ### HTTP request
 
-`GET /articles/people/{person-slug}/credits` (replace `{person-slug}` with parent person record slug or ID)
+`GET /articles/person_credits`
 
 ### URL query parameters
 

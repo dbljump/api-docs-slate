@@ -1,6 +1,6 @@
 ## <a name="person_credits_create"></a>Create a new person credit
 
-> Request body | `POST /articles/people/satoru-iwata/credits`
+> Request body | `POST /articles/person_credits`
 
 ```JSON
 {
@@ -11,6 +11,12 @@
       "role": "Executive Producer"
     },
     "relationships": {
+      "credited": {
+          "data": {
+              "id": "26",
+              "type": "people"
+        }
+      },
       "game": {
         "data": {
           "id": "46",
@@ -109,14 +115,14 @@
 }
 ```
 
-Create a new game credit for a given person. User must be an editor or admin.
+Create a new person-game credit. User must be an editor or admin.
 
 * User authentication: required
 * Authorization level: editor or admin
 
 ### HTTP request
 
-`POST /articles/people/{person-slug}/credits` (replace `person-slug` with the person record slug or ID)
+`POST /articles/person_credits`
 
 ### Request attributes
 
@@ -131,6 +137,7 @@ Check this section's code example to see how to update these relationships.
 
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
+credited  | belongs_to  | Y  | people  | The person credited. 
 game | belongs_to | Y | games | The game the credit relates to.
 version | belongs_to | | game_versions | The game version the credit relates to (optional).
 place | belongs_to | | places | The place the credit relates to (optional).

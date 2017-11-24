@@ -2,9 +2,6 @@
 
 Delete an existing company name. User must be an editor or admin.
 
-* User authentication: required
-* Authorization level: editor or admin
-
 ### HTTP request
 
 `DELETE /articles/company_names/{id}` (replace `{id}` with record ID)
