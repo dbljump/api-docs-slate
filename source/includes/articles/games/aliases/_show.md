@@ -1,14 +1,14 @@
-## <a name="game_titles_show"></a>Get a single game title
+## Get a single game alias
 
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/game_titles/58
+# GET /articles/game_aliases/58
 
 {
   "data": {
     "id": "58",
-    "type": "game_titles",
+    "type": "game_aliases",
     "attributes": {
       "title": "Project P-100",
       "kind": "working",
@@ -59,35 +59,12 @@
 }
 ```
 
-Retrieve a single game title. Game titles are publicly available. No sign-in is required.
-
-* User authentication: not required
-* Authorization level: n/a
+Retrieve a single game alias.
 
 ### HTTP request
 
-`GET /articles/game_titles/{id}` (replace `{id}` with record ID)
+`GET /articles/game_aliases/{id}` (replace `{id}` with record ID)
 
 ### Success HTTP response code
 
 `200 OK`
-
-### <a name="game_titles_response_attrs"></a>Response attributes
-
-Attribute | Type | Req'd? | Description
---------- | ---- | ------ | -----------
-title | string | Y | The title.
-kind | string | Y | The name classification. Must be 'title', 'working' or 'translated'.
-writing_system | string | Y | Must be an accepted value, e.g. 'Latin', 'Japanese' etc.
-
-### Relationships
-
-Association | Record type | Relationship type
------------- | ---------- | -----------------
-place | places | belongs_to
-company | companies | belongs_to
-version | game_versions | belongs_to
-
-### Meta
-
-The `meta` section of the JSON response includes `keywords`, `description`, `created_at` and `updated_at` attributes.

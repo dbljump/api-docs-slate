@@ -1,13 +1,13 @@
-## <a name="company_names_create"></a>Create a new company name
+## Create a new company alias
 
-> Request body | `POST /articles/company_names`
+> Request body | `POST /articles/company_aliases`
 
 ```JSON
 {
   "data": {
-    "type": "company_names",
+    "type": "company_aliases",
     "attributes": {
-      "name": "New Name",
+      "display_text": "New Name",
       "kind": "name",
       "writing_system": "Latin",
       "year_adopted": "2010",
@@ -38,9 +38,9 @@
 {
   "data": {
     "id": "61",
-    "type": "company_names",
+    "type": "company_aliases",
     "attributes": {
-      "name": "New Name",
+      "display_text": "New Name",
       "kind": "name",
       "writing_system": "Latin",
       "year_adopted": 2010,
@@ -100,14 +100,11 @@
 }
 ```
 
-Create a new company name record. User must be an editor or admin.
-
-* User authentication: required
-* Authorization level: editor or admin
+Create a new company alias record. User must be an editor or admin.
 
 ### HTTP request
 
-`POST /articles/companies/{company-slug}/names`
+`POST /articles/company_aliases`
 
 ### Success HTTP response code
 

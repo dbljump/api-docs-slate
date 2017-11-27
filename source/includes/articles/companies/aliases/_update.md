@@ -1,14 +1,14 @@
-## <a name="company_names_update"></a>Update a company name
+## Update a company alias
 
-> Request body | `PATCH /articles/company_names/7`
+> Request body | `PATCH /articles/company_aliases/7`
 
 ```JSON
 {
   "data": {
-    "type": "company_names",
+    "type": "company_aliases",
     "id": "7",
     "attributes": {
-      "name": "アップデート",
+      "display_text": "アップデート",
       "kind": "styled",
       "writing_system": "Japanese",
       "year_adopted": "1995",
@@ -33,9 +33,9 @@
 {
   "data": {
     "id": "7",
-    "type": "company_names",
+    "type": "company_aliases",
     "attributes": {
-      "name": "アップデート",
+      "display_text": "アップデート",
       "kind": "styled",
       "writing_system": "Japanese",
       "year_adopted": 1995,
@@ -94,13 +94,13 @@
 }
 ```
 
-Update an existing company name. The user must be an editor or admin.
+Update an existing company alias. The user must be an editor or admin.
 
 The `company` relationship cannot be updated.
 
 ### HTTP request
 
-`PATCH /articles/company_names/{id}` (replace `{id}` with record ID)
+`PATCH /articles/company_aliases/{id}` (replace `{id}` with record ID)
 
 ### Success HTTP response code
 

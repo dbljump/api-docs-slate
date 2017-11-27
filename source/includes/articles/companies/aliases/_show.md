@@ -1,4 +1,4 @@
-## <a name="company_names_show"></a>Get a single company name
+## Get a single company alias
 
 > Response body | `HTTP 200`
 

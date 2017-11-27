@@ -1,17 +1,17 @@
-## Get company names
+## Get company aliases
 
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/company_names?page[size]=2
+# GET /articles/company_aliases?page[size]=2
 
 {
   "data": [
     {
       "id": "1",
-      "type": "company_names",
+      "type": "company_aliases",
       "attributes": {
-        "name": "任天堂株式会社",
+        "display_text": "任天堂株式会社",
         "kind": "name",
         "writing_system": "Japanese",
         "year_adopted": null,
@@ -26,9 +26,9 @@
     },
     {
       "id": "2",
-      "type": "company_names",
+      "type": "company_aliases",
       "attributes": {
-        "name": "Nintendō Kabushiki gaisha",
+        "display_text": "Nintendō Kabushiki gaisha",
         "kind": "name",
         "writing_system": "Latin",
         "year_adopted": null,
@@ -53,11 +53,11 @@
 }
 ```
 
-Retrieve a collection of company names.
+Retrieve a collection of company aliases.
 
 ### HTTP request
 
-`GET /articles/company_names`
+`GET /articles/company_aliases`
 
 ### Filter fields
 

@@ -1,13 +1,13 @@
-## <a name="game_titles_create"></a>Create a new game title
+## Create a new game alias
 
-> Request body | `POST /articles/game_titles`
+> Request body | `POST /articles/game_aliases`
 
 ```JSON
 {
   "data": {
-    "type": "game_titles",
+    "type": "game_aliases",
     "attributes": {
-      "title": "New Title",
+      "display_text": "New Title",
       "kind": "title",
       "writing_system": "Latin"
     },
@@ -41,9 +41,9 @@
 {
   "data": {
     "id": "62",
-    "type": "game_titles",
+    "type": "game_aliases",
     "attributes": {
-      "title": "New Title",
+      "display_text": "New Title",
       "kind": "title",
       "writing_system": "Latin"
     },
@@ -108,32 +108,11 @@
 }
 ```
 
-Create a new game title record. User must be an editor or admin.
-
-* User authentication: required
-* Authorization level: editor or admin
+Create a new game alias record. User must be an editor or admin.
 
 ### HTTP request
 
-`POST /articles/game_titles`
-
-### Request attributes
-
-Attribute | Type | Req'd? | Description
---------- | ---- | ------ | -----------
-title | string | Y | 1-250 characters.
-kind | string | Y | The name classification. Must be 'title', 'working' or 'translated'.
-writing_system | string | Y | Must be an accepted value.
-
-### Relationships
-
-Check this section's code example to see how to update these relationships.
-
-Name | Relationship | Req'd? | JSON:API type | Description
----- | ------------ | ------ | ------------- | -----------
-game  | belongs_to  | Y  | games  | The game the title belongs to.
-place | belongs_to | | places | Can be a country or region.
-version | belongs_to | | game_versions | Version must belong to same game as title.
+`POST /articles/game_aliases`
 
 ### Success HTTP response code
 

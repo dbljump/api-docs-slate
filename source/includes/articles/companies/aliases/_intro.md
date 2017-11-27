@@ -1,16 +1,16 @@
-# <a name="company_names_intro"></a>Articles: Company Names
+# Articles: Company Aliases
 
-Resources related to company names. The JSON:API type is `company_names`.
+Resources related to company aliases. An alias is another name the company is known by. The JSON:API type is `company_aliases`.
 
 ### Mutable attributes
 
-#### `name` (string, required)
+#### `display_text` (string, required)
 
-The name. 1-100 chars.
+The alias. 1-100 chars.
 
 #### `kind` (string, required)
 
-Name classification. Must be `name`, `styled` or `alias`.
+Name classification. Must be `name`, `styled` or `AKA`.
 
 #### `writing_system` (string, required)
 
@@ -22,7 +22,7 @@ Must be between `1800` and the present year.
 
 #### `dropped` (boolean)
 
-`true` if the name is no longer used. Auto-set to `true` if `year_dropped` is present.
+`true` if the alias is no longer used. Auto-set to `true` if `year_dropped` is present.
 
 #### `year_dropped` (integer)
 

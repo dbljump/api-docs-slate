@@ -1,11 +1,11 @@
-## <a name="game_titles_update"></a>Update a game title
+## Update a game alias
 
-> Request body | `PATCH /articles/game_titles/58`
+> Request body | `PATCH /articles/game_aliases/58`
 
 ```JSON
 {
   "data": {
-    "type": "game_titles",
+    "type": "game_aliases",
     "id": "58",
     "attributes": {
       "title": "アップデート",
@@ -36,7 +36,7 @@
 {
   "data": {
     "id": "58",
-    "type": "game_titles",
+    "type": "game_aliases",
     "attributes": {
       "title": "アップデート",
       "kind": "title",
@@ -103,31 +103,11 @@
 }
 ```
 
-Update an existing game title. The user must be an editor.
-
-* User authentication: required
-* Authorization level: admin
+Update an existing game alias. The user must be an editor or admin.
 
 ### HTTP request
 
-`PATCH /articles/game_titles/{id}` (replace `{id}` with record ID)
-
-### Request attributes
-
-Attribute | Type | Req'd? | Description
---------- | ---- | ------ | -----------
-title | string | Y | 1-250 characters.
-kind | string | Y | The name classification. Must be 'title', 'working' or 'translated'.
-writing_system | string | Y | Must be an accepted value.
-
-### Relationships
-
-Check this section's code example to see how to update these relationships.
-
-Name | Relationship | Req'd? | JSON:API type | Description
----- | ------------ | ------ | ------------- | -----------
-place | belongs_to | | places | Can be a country or region.
-version | belongs_to | | game_versions | Version must belong to same game as title.
+`PATCH /articles/game_aliases/{id}` (replace `{id}` with record ID)
 
 ### Success HTTP response code
 

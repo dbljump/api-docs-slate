@@ -1,16 +1,16 @@
-## <a name="person_names_show"></a>Get a single person name
+## Get a single person alias
 
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/person_names/41
+# GET /articles/person_aliases/41
 
 {
   "data": {
     "id": "41",
-    "type": "person_names",
+    "type": "person_aliases",
     "attributes": {
-      "display_name": "岩田 聡",
+      "display_text": "岩田 聡",
       "given_names": "聡",
       "family_name": "岩田",
       "kind": "name",
@@ -55,30 +55,30 @@
 }
 ```
 
-Retrieve a single person name. Person names are publicly available. No sign-in is required.
+Retrieve a single person alias. Person aliases are publicly available. No sign-in is required.
 
 * User authentication: not required
 * Authorization level: n/a
 
 ### HTTP request
 
-`GET /articles/person_names/{id}` (replace `{id}` with record ID)
+`GET /articles/person_aliases/{id}` (replace `{id}` with record ID)
 
 ### Success HTTP response code
 
 `200 OK`
 
-### <a name="person_names_response_attrs"></a>Response attributes
+### Response attributes
 
 Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
-display_name | string | Y | The name.
+display_text | string | Y | The alias.
 given_names | string | Y | 1-50 characters.
 family_name | string |  | 1-50 characters.
-kind | string | Y | The name classification. Must be 'name', 'styled' or 'alias'.
+kind | string | Y | The alias classification. Must be 'name', 'fullname' or 'nickname'.
 writing_system | string | Y | Must be an accepted value, e.g. 'Latin', 'Japanese' etc.
 year_adopted | integer | | Between 1800 and the present year.
-dropped | boolean | | True if the name has been dropped. Auto-sets true if `year_dropped` present.
+dropped | boolean | | True if the alias has been dropped. Auto-sets true if `year_dropped` present.
 year_dropped | integer | | Between 1800 and the present year.
 
 ### Relationships
@@ -87,7 +87,3 @@ Association | Record type | Relationship type
 ------------ | ---------- | -----------------
 place | places | belongs_to
 person | people | belongs_to
-
-### Meta
-
-The `meta` section of the JSON response includes `keywords`, `description`, `created_at` and `updated_at` attributes.

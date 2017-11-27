@@ -1,11 +1,11 @@
-## <a name="person_names_create"></a>Create a new person name
+## Create a new person alias
 
-> Request body | `POST /articles/person_names`
+> Request body | `POST /articles/person_aliases`
 
 ```JSON
 {
   "data": {
-    "type": "person_names",
+    "type": "person_aliases",
     "attributes": {
       "given_names": "Shiggy",
       "family_name": "Shaboo",
@@ -39,9 +39,9 @@
 {
   "data": {
     "id": "63",
-    "type": "person_names",
+    "type": "person_aliases",
     "attributes": {
-      "display_name": "Shiggy Shaboo",
+      "display_text": "Shiggy Shaboo",
       "given_names": "Shiggy",
       "family_name": "Shaboo",
       "kind": "nickname",
@@ -102,14 +102,14 @@
 }
 ```
 
-Create a new person name record. User must be an editor or admin.
+Create a new person alias record. User must be an editor or admin.
 
 * User authentication: required
 * Authorization level: editor or admin
 
 ### HTTP request
 
-`POST /articles/person_names`
+`POST /articles/person_aliases`
 
 ### Request attributes
 
@@ -117,10 +117,10 @@ Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 given_names | string | Y | 1-50 characters.
 family_name | string |  | 1-50 characters.
-kind | string | Y | The name classification. Must be 'name', 'fullname' or 'nickname'.
+kind | string | Y | The alias classification. Must be 'name', 'fullname' or 'nickname'.
 writing_system | string | Y | Must be an accepted value.
 year_adopted | integer | | Between 1800 and the present year.
-dropped | boolean | | True if the name has been dropped. Auto-sets true if `year_dropped` present.
+dropped | boolean | | True if the alias has been dropped. Auto-sets true if `year_dropped` present.
 year_dropped | integer | | Between 1800 and the present year.
 
 ### Relationships
@@ -129,7 +129,7 @@ Check this section's code example to see how to update these relationships.
 
 Name | Relationship | Req'd? | JSON:API type | Description
 ---- | ------------ | ------ | ------------- | -----------
-person  | belongs_to  | Y  | people  | The person the name belongs to. 
+person  | belongs_to  | Y  | people  | The person the alias belongs to.
 place | belongs_to | | places | Can be a country or region.
 
 ### Success HTTP response code

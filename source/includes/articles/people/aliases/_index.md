@@ -1,17 +1,17 @@
-## Get all person names
+## Get all person aliases
 
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/person_names?page[size]=2
+# GET /articles/person_aliases?page[size]=2
 
 {
   "data": [
     {
       "id": "41",
-      "type": "person_names",
+      "type": "person_aliases",
       "attributes": {
-        "display_name": "岩田 聡",
+        "display_text": "岩田 聡",
         "given_names": "聡",
         "family_name": "岩田",
         "kind": "name",
@@ -43,23 +43,11 @@
 }
 ```
 
-Retrieve all person names. Automatically paginated.
-
-* User authentication: not required
-* Authorization level: n/a
+Retrieve all person aliases. Automatically paginated.
 
 ### HTTP request
 
-`GET /articles/person_names`
-
-### URL query parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[person_names]=display_name`
-filter[{field}] | All records | Filter search by field, e.g. `?filter[dropped]=true`
-page[number] | 1 | Select the page number, e.g. `?page[number]=3`
-page[size] | 30 | Select the number of records per page, e.g. `?page[size]=20`
+`GET /articles/person_aliases`
 
 ### Success HTTP response code
 

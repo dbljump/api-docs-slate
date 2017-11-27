@@ -1,17 +1,17 @@
-## Get all of a game's titles
+## Get a collection of game aliases
 
 > Response body | `HTTP 200`
 
 ```JSON
-# GET /articles/game_titles?page[size]=2
+# GET /articles/game_aliases?page[size]=2
 
 {
   "data": [
     {
       "id": "58",
-      "type": "game_titles",
+      "type": "game_aliases",
       "attributes": {
-        "title": "Project P-100",
+        "display_text": "Project P-100",
         "kind": "working",
         "writing_system": "Latin"
       },
@@ -35,9 +35,9 @@
     },
     {
       "id": "59",
-      "type": "game_titles",
+      "type": "game_aliases",
       "attributes": {
-        "title": "Za Wandafuru Wan Ō Wan",
+        "display_text": "Za Wandafuru Wan Ō Wan",
         "kind": "title",
         "writing_system": "Latin"
       },
@@ -77,23 +77,11 @@
 }
 ```
 
-Retrieve all game titles. Automatically paginated.
-
-* User authentication: not required
-* Authorization level: n/a
+Retrieve a collection of game aliases.
 
 ### HTTP request
 
-`GET /articles/game_titles`
-
-### URL query parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-fields[{record-type}] | All fields | Return only specified fields, e.g. `?fields[company_names]=title`
-filter[{field}] | All records | Filter search by field, e.g. `?filter[kind]=working`
-page[number] | 1 | Select the page number, e.g. `?page[number]=3`
-page[size] | 30 | Select the number of records per page, e.g. `?page[size]=20`
+`GET /articles/game_aliases`
 
 ### Success HTTP response code
 

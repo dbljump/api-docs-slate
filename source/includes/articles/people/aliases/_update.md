@@ -1,11 +1,11 @@
-## <a name="person_names_update"></a>Update a person name
+## Update a person alias
 
-> Request body | `PATCH /articles/person_names/41`
+> Request body | `PATCH /articles/person_aliases/41`
 
 ```JSON
 {
   "data": {
-    "type": "person_names",
+    "type": "person_aliases",
     "id": "41",
     "attributes": {
       "given_names": "アップデート",
@@ -34,9 +34,9 @@
 {
   "data": {
     "id": "41",
-    "type": "person_names",
+    "type": "person_aliases",
     "attributes": {
-      "display_name": "カタカナ アップデート",
+      "display_text": "カタカナ アップデート",
       "given_names": "アップデート",
       "family_name": "カタカナ",
       "kind": "fullname",
@@ -97,14 +97,14 @@
 }
 ```
 
-Update an existing person name. The user must be an editor.
+Update an existing person alias. The user must be an editor.
 
 * User authentication: required
 * Authorization level: admin
 
 ### HTTP request
 
-`PATCH /articles/person_names/{id}` (replace `{id}` with record ID)
+`PATCH /articles/person_aliases/{id}` (replace `{id}` with record ID)
 
 ### Request attributes
 
@@ -112,10 +112,10 @@ Attribute | Type | Req'd? | Description
 --------- | ---- | ------ | -----------
 given_names | string | Y | 1-50 characters.
 family_name | string |  | 1-50 characters.
-kind | string | Y | The name classification. Must be 'name', 'fullname' or 'nickname'.
+kind | string | Y | The alias classification. Must be 'name', 'fullname' or 'nickname'.
 writing_system | string | Y | Must be an accepted value.
 year_adopted | integer | | Between 1800 and the present year.
-dropped | boolean | | True if the name has been dropped. Auto-sets true if `year_dropped` present.
+dropped | boolean | | True if the alias has been dropped. Auto-sets true if `year_dropped` present.
 year_dropped | integer | | Between 1800 and the present year.
 
 ### Relationships
