@@ -3219,32 +3219,68 @@
 </tr>
 </tbody></table>
 
-          <h1 id="articles-game-titles"><a name="game_titles_intro"></a>Articles: Game Titles</h1>
+          <h1 id="articles-game-aliases">Articles: Game Aliases</h1>
 
-<p>Resources related to game titles.</p>
+<p>Resources related to game aliases. An alias is another title the game is known by. The JSON:API type is <code class="prettyprint">game_aliases</code>.</p>
 
-<h3 id="request-attributes">Request attributes</h3>
+<h3 id="mutable-attributes">Mutable attributes</h3>
 
-<p>See <a href="#game_titles_create">Create a new game title</a> and <a href="#game_titles_update">Update a game title</a>.</p>
+<h4 id="display_text-string-required"><code class="prettyprint">display_text</code> (string, required)</h4>
 
-<h3 id="response-attributes">Response attributes</h3>
+<p>The alias. 1-250 chars.</p>
 
-<p>See <a href="#game_titles_show">Get a single game title</a></p>
+<h4 id="kind-string-required"><code class="prettyprint">kind</code> (string, required)</h4>
 
-          <h2 id="get-all-of-a-game-39-s-titles">Get all of a game&rsquo;s titles</h2>
+<p>Name classification. Must be <code class="prettyprint">title</code>, <code class="prettyprint">working</code> or <code class="prettyprint">translated</code>.</p>
+
+<h4 id="writing_system-string-required"><code class="prettyprint">writing_system</code> (string, required)</h4>
+
+<p>Must be <code class="prettyprint">Latin</code>, <code class="prettyprint">Japanese</code>, <code class="prettyprint">Cyrillic</code>, <code class="prettyprint">Chinese</code> or <code class="prettyprint">Arabic</code>.</p>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>JSON:API type</th>
+<th>Relationship type</th>
+<th>Required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">game</code></td>
+<td><code class="prettyprint">games</code></td>
+<td><code class="prettyprint">belongs_to</code></td>
+<td>Y</td>
+</tr>
+<tr>
+<td><code class="prettyprint">version</code></td>
+<td><code class="prettyprint">game_versions</code></td>
+<td><code class="prettyprint">belongs_to</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">place</code></td>
+<td><code class="prettyprint">places</code></td>
+<td><code class="prettyprint">belongs_to</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-a-collection-of-game-aliases">Get a collection of game aliases</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/game_titles?page[size]=2
+<pre class="highlight plaintext"><code># GET /articles/game_aliases?page[size]=2
 
 {
   "data": [
     {
       "id": "58",
-      "type": "game_titles",
+      "type": "game_aliases",
       "attributes": {
-        "title": "Project P-100",
+        "display_text": "Project P-100",
         "kind": "working",
         "writing_system": "Latin"
       },
@@ -3268,9 +3304,9 @@
     },
     {
       "id": "59",
-      "type": "game_titles",
+      "type": "game_aliases",
       "attributes": {
-        "title": "Za Wandafuru Wan Ō Wan",
+        "display_text": "Za Wandafuru Wan Ō Wan",
         "kind": "title",
         "writing_system": "Latin"
       },
@@ -3309,63 +3345,27 @@
   }
 }
 </code></pre>
-<p>Retrieve all game titles. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
+<p>Retrieve a collection of game aliases.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/game_titles</code></p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>fields[{record-type}]</td>
-<td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[company_names]=title</code></td>
-</tr>
-<tr>
-<td>filter[{field}]</td>
-<td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[kind]=working</code></td>
-</tr>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
-</tr>
-</tbody></table>
+<p><code class="prettyprint">GET /articles/game_aliases</code></p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">200 OK</code></p>
 
-          <h2 id="get-a-single-game-title"><a name="game_titles_show"></a>Get a single game title</h2>
+          <h2 id="get-a-single-game-alias">Get a single game alias</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/game_titles/58
+<pre class="highlight plaintext"><code># GET /articles/game_aliases/58
 
 {
   "data": {
     "id": "58",
-    "type": "game_titles",
+    "type": "game_aliases",
     "attributes": {
       "title": "Project P-100",
       "kind": "working",
@@ -3415,91 +3415,26 @@
   }
 }
 </code></pre>
-<p>Retrieve a single game title. Game titles are publicly available. No sign-in is required.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
+<p>Retrieve a single game alias.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/game_titles/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+<p><code class="prettyprint">GET /articles/game_aliases/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">200 OK</code></p>
 
-<h3 id="response-attributes"><a name="game_titles_response_attrs"></a>Response attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>Y</td>
-<td>The title.</td>
-</tr>
-<tr>
-<td>kind</td>
-<td>string</td>
-<td>Y</td>
-<td>The name classification. Must be &lsquo;title&rsquo;, &#39;working&rsquo; or &#39;translated&rsquo;.</td>
-</tr>
-<tr>
-<td>writing_system</td>
-<td>string</td>
-<td>Y</td>
-<td>Must be an accepted value, e.g. &#39;Latin&rsquo;, &#39;Japanese&rsquo; etc.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<table><thead>
-<tr>
-<th>Association</th>
-<th>Record type</th>
-<th>Relationship type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>place</td>
-<td>places</td>
-<td>belongs_to</td>
-</tr>
-<tr>
-<td>company</td>
-<td>companies</td>
-<td>belongs_to</td>
-</tr>
-<tr>
-<td>version</td>
-<td>game_versions</td>
-<td>belongs_to</td>
-</tr>
-</tbody></table>
-
-<h3 id="meta">Meta</h3>
-
-<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
-
-          <h2 id="create-a-new-game-title"><a name="game_titles_create"></a>Create a new game title</h2>
+          <h2 id="create-a-new-game-alias">Create a new game alias</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/game_titles</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/game_aliases</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "type": "game_titles",
+    "type": "game_aliases",
     "attributes": {
-      "title": "New Title",
+      "display_text": "New Title",
       "kind": "title",
       "writing_system": "Latin"
     },
@@ -3532,9 +3467,9 @@
 <pre class="highlight plaintext"><code>{
   "data": {
     "id": "62",
-    "type": "game_titles",
+    "type": "game_aliases",
     "attributes": {
-      "title": "New Title",
+      "display_text": "New Title",
       "kind": "title",
       "writing_system": "Latin"
     },
@@ -3598,95 +3533,24 @@
   }
 }
 </code></pre>
-<p>Create a new game title record. User must be an editor or admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: editor or admin</li>
-</ul>
+<p>Create a new game alias record. User must be an editor or admin.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /articles/game_titles</code></p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>Y</td>
-<td>1-250 characters.</td>
-</tr>
-<tr>
-<td>kind</td>
-<td>string</td>
-<td>Y</td>
-<td>The name classification. Must be &lsquo;title&rsquo;, &#39;working&rsquo; or &#39;translated&rsquo;.</td>
-</tr>
-<tr>
-<td>writing_system</td>
-<td>string</td>
-<td>Y</td>
-<td>Must be an accepted value.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>game</td>
-<td>belongs_to</td>
-<td>Y</td>
-<td>games</td>
-<td>The game the title belongs to.</td>
-</tr>
-<tr>
-<td>place</td>
-<td>belongs_to</td>
-<td></td>
-<td>places</td>
-<td>Can be a country or region.</td>
-</tr>
-<tr>
-<td>version</td>
-<td>belongs_to</td>
-<td></td>
-<td>game_versions</td>
-<td>Version must belong to same game as title.</td>
-</tr>
-</tbody></table>
+<p><code class="prettyprint">POST /articles/game_aliases</code></p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">201 Created</code></p>
 
-          <h2 id="update-a-game-title"><a name="game_titles_update"></a>Update a game title</h2>
+          <h2 id="update-a-game-alias">Update a game alias</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">PATCH /articles/game_titles/58</code></p>
+<p>Request body | <code class="prettyprint">PATCH /articles/game_aliases/58</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "type": "game_titles",
+    "type": "game_aliases",
     "id": "58",
     "attributes": {
       "title": "アップデート",
@@ -3716,7 +3580,7 @@
 <pre class="highlight plaintext"><code>{
   "data": {
     "id": "58",
-    "type": "game_titles",
+    "type": "game_aliases",
     "attributes": {
       "title": "アップデート",
       "kind": "title",
@@ -3782,100 +3646,31 @@
   }
 }
 </code></pre>
-<p>Update an existing game title. The user must be an editor.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: admin</li>
-</ul>
+<p>Update an existing game alias. The user must be an editor or admin.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">PATCH /articles/game_titles/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
-
-<h3 id="request-attributes">Request attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Req&rsquo;d?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>Y</td>
-<td>1-250 characters.</td>
-</tr>
-<tr>
-<td>kind</td>
-<td>string</td>
-<td>Y</td>
-<td>The name classification. Must be &lsquo;title&rsquo;, &#39;working&rsquo; or &#39;translated&rsquo;.</td>
-</tr>
-<tr>
-<td>writing_system</td>
-<td>string</td>
-<td>Y</td>
-<td>Must be an accepted value.</td>
-</tr>
-</tbody></table>
-
-<h3 id="relationships">Relationships</h3>
-
-<p>Check this section&rsquo;s code example to see how to update these relationships.</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Relationship</th>
-<th>Req&rsquo;d?</th>
-<th>JSON:API type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>place</td>
-<td>belongs_to</td>
-<td></td>
-<td>places</td>
-<td>Can be a country or region.</td>
-</tr>
-<tr>
-<td>version</td>
-<td>belongs_to</td>
-<td></td>
-<td>game_versions</td>
-<td>Version must belong to same game as title.</td>
-</tr>
-</tbody></table>
+<p><code class="prettyprint">PATCH /articles/game_aliases/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">200 OK</code></p>
 
-          <h2 id="delete-a-game-title"><a name="game_titles_delete"></a>Delete a game title</h2>
+          <h2 id="delete-a-game-alias">Delete a game alias</h2>
 
-<p>Delete an existing game title. User must be an editor or admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: editor or admin</li>
-</ul>
+<p>Delete an existing game alias. User must be an editor or admin.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">DELETE /articles/game_titles/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+<p><code class="prettyprint">DELETE /articles/game_aliases/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">204 No Content</code></p>
 
-          <h2 id="errors"><a name="game_titles_errors"></a>Errors</h2>
+          <h2 id="errors">Errors</h2>
 
-<p>Errors specific to creating and updating game titles.</p>
+<p>Errors specific to creating and updating game aliases.</p>
 
 <table><thead>
 <tr>
@@ -3887,55 +3682,55 @@
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>GAME_TITLE_TITLE_BLANK</td>
+<td>GAME_ALIAS_DISPLAY_TEXT_BLANK</td>
 <td>title</td>
-<td>Title is required.</td>
+<td>Display text is required.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_TITLE_TITLE_TOO_LONG</td>
+<td>GAME_ALIAS_DISPLAY_TEXT_TOO_LONG</td>
 <td>title</td>
-<td>Title cannot be more than 250 characters.</td>
+<td>Display text cannot be more than 250 characters.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_TITLE_TITLE_TAKEN</td>
+<td>GAME_ALIAS_DISPLAY_TEXT_TAKEN</td>
 <td>title</td>
-<td>Title must be unique to its parent company.</td>
+<td>Display text must be unique to its parent company.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_TITLE_KIND_BLANK</td>
+<td>GAME_ALIAS_KIND_BLANK</td>
 <td>kind</td>
 <td>Kind is required.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_TITLE_KIND_INCLUSION</td>
+<td>GAME_ALIAS_KIND_INCLUSION</td>
 <td>kind</td>
 <td>Kind must be an accepted value.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_TITLE_WRITING_SYSTEM_BLANK</td>
+<td>GAME_ALIAS_WRITING_SYSTEM_BLANK</td>
 <td>writing_system</td>
 <td>Writing system is required.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_TITLE_WRITING_SYSTEM_INCLUSION</td>
+<td>GAME_ALIAS_WRITING_SYSTEM_INCLUSION</td>
 <td>writing_system</td>
 <td>Writing system must be an accepted value.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_TITLE_PLACE_ID_INVALID</td>
+<td>GAME_ALIAS_PLACE_ID_INVALID</td>
 <td>data/relationships/place/data/id</td>
 <td>Place ID must be a valid country or region ID.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>GAME_TITLE_VERSION_ID_INVALID</td>
+<td>GAME_ALIAS_VERSION_ID_INVALID</td>
 <td>data/relationships/version/data/id</td>
 <td>Version ID must belong to the parent game.</td>
 </tr>
@@ -5913,32 +5708,24 @@
 </tr>
 </tbody></table>
 
-          <h1 id="articles-person-names"><a name="person_names_intro"></a>Articles: Person Names</h1>
+          <h2 id="articles-person-aliases">Articles: Person Aliases</h2>
 
-<p>Resources related to person names.</p>
+<p>Resources related to person aliases. Aliases can include full names, nicknames and local names.</p>
 
-<h3 id="request-attributes">Request attributes</h3>
-
-<p>See <a href="#person_names_create">Create a new person name</a> and <a href="#person_names_update">Update a person name</a>.</p>
-
-<h3 id="response-attributes">Response attributes</h3>
-
-<p>See <a href="#person_names_show">Get a single person name</a></p>
-
-          <h2 id="get-all-person-names">Get all person names</h2>
+          <h2 id="get-all-person-aliases">Get all person aliases</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/person_names?page[size]=2
+<pre class="highlight plaintext"><code># GET /articles/person_aliases?page[size]=2
 
 {
   "data": [
     {
       "id": "41",
-      "type": "person_names",
+      "type": "person_aliases",
       "attributes": {
-        "display_name": "岩田 聡",
+        "display_text": "岩田 聡",
         "given_names": "聡",
         "family_name": "岩田",
         "kind": "name",
@@ -5969,65 +5756,29 @@
   }
 }
 </code></pre>
-<p>Retrieve all person names. Automatically paginated.</p>
-
-<ul>
-<li>User authentication: not required</li>
-<li>Authorization level: n/a</li>
-</ul>
+<p>Retrieve all person aliases. Automatically paginated.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/person_names</code></p>
-
-<h3 id="url-query-parameters">URL query parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>fields[{record-type}]</td>
-<td>All fields</td>
-<td>Return only specified fields, e.g. <code class="prettyprint">?fields[person_names]=display_name</code></td>
-</tr>
-<tr>
-<td>filter[{field}]</td>
-<td>All records</td>
-<td>Filter search by field, e.g. <code class="prettyprint">?filter[dropped]=true</code></td>
-</tr>
-<tr>
-<td>page[number]</td>
-<td>1</td>
-<td>Select the page number, e.g. <code class="prettyprint">?page[number]=3</code></td>
-</tr>
-<tr>
-<td>page[size]</td>
-<td>30</td>
-<td>Select the number of records per page, e.g. <code class="prettyprint">?page[size]=20</code></td>
-</tr>
-</tbody></table>
+<p><code class="prettyprint">GET /articles/person_aliases</code></p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">200 OK</code></p>
 
-          <h2 id="get-a-single-person-name"><a name="person_names_show"></a>Get a single person name</h2>
+          <h2 id="get-a-single-person-alias">Get a single person alias</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/person_names/41
+<pre class="highlight plaintext"><code># GET /articles/person_aliases/41
 
 {
   "data": {
     "id": "41",
-    "type": "person_names",
+    "type": "person_aliases",
     "attributes": {
-      "display_name": "岩田 聡",
+      "display_text": "岩田 聡",
       "given_names": "聡",
       "family_name": "岩田",
       "kind": "name",
@@ -6071,7 +5822,7 @@
   }
 }
 </code></pre>
-<p>Retrieve a single person name. Person names are publicly available. No sign-in is required.</p>
+<p>Retrieve a single person alias. Person aliases are publicly available. No sign-in is required.</p>
 
 <ul>
 <li>User authentication: not required</li>
@@ -6080,13 +5831,13 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/person_names/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+<p><code class="prettyprint">GET /articles/person_aliases/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">200 OK</code></p>
 
-<h3 id="response-attributes"><a name="person_names_response_attrs"></a>Response attributes</h3>
+<h3 id="response-attributes">Response attributes</h3>
 
 <table><thead>
 <tr>
@@ -6097,10 +5848,10 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>display_name</td>
+<td>display_text</td>
 <td>string</td>
 <td>Y</td>
-<td>The name.</td>
+<td>The alias.</td>
 </tr>
 <tr>
 <td>given_names</td>
@@ -6118,7 +5869,7 @@
 <td>kind</td>
 <td>string</td>
 <td>Y</td>
-<td>The name classification. Must be &lsquo;name&rsquo;, &#39;styled&rsquo; or &#39;alias&rsquo;.</td>
+<td>The alias classification. Must be &lsquo;name&rsquo;, &#39;fullname&rsquo; or &#39;nickname&rsquo;.</td>
 </tr>
 <tr>
 <td>writing_system</td>
@@ -6136,7 +5887,7 @@
 <td>dropped</td>
 <td>boolean</td>
 <td></td>
-<td>True if the name has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
+<td>True if the alias has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
 </tr>
 <tr>
 <td>year_dropped</td>
@@ -6167,18 +5918,14 @@
 </tr>
 </tbody></table>
 
-<h3 id="meta">Meta</h3>
-
-<p>The <code class="prettyprint">meta</code> section of the JSON response includes <code class="prettyprint">keywords</code>, <code class="prettyprint">description</code>, <code class="prettyprint">created_at</code> and <code class="prettyprint">updated_at</code> attributes.</p>
-
-          <h2 id="create-a-new-person-name"><a name="person_names_create"></a>Create a new person name</h2>
+          <h2 id="create-a-new-person-alias">Create a new person alias</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/person_names</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/person_aliases</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "type": "person_names",
+    "type": "person_aliases",
     "attributes": {
       "given_names": "Shiggy",
       "family_name": "Shaboo",
@@ -6211,9 +5958,9 @@
 <pre class="highlight plaintext"><code>{
   "data": {
     "id": "63",
-    "type": "person_names",
+    "type": "person_aliases",
     "attributes": {
-      "display_name": "Shiggy Shaboo",
+      "display_text": "Shiggy Shaboo",
       "given_names": "Shiggy",
       "family_name": "Shaboo",
       "kind": "nickname",
@@ -6273,7 +6020,7 @@
   }
 }
 </code></pre>
-<p>Create a new person name record. User must be an editor or admin.</p>
+<p>Create a new person alias record. User must be an editor or admin.</p>
 
 <ul>
 <li>User authentication: required</li>
@@ -6282,7 +6029,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /articles/person_names</code></p>
+<p><code class="prettyprint">POST /articles/person_aliases</code></p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -6310,7 +6057,7 @@
 <td>kind</td>
 <td>string</td>
 <td>Y</td>
-<td>The name classification. Must be &lsquo;name&rsquo;, &#39;fullname&rsquo; or &#39;nickname&rsquo;.</td>
+<td>The alias classification. Must be &lsquo;name&rsquo;, &#39;fullname&rsquo; or &#39;nickname&rsquo;.</td>
 </tr>
 <tr>
 <td>writing_system</td>
@@ -6328,7 +6075,7 @@
 <td>dropped</td>
 <td>boolean</td>
 <td></td>
-<td>True if the name has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
+<td>True if the alias has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
 </tr>
 <tr>
 <td>year_dropped</td>
@@ -6356,7 +6103,7 @@
 <td>belongs_to</td>
 <td>Y</td>
 <td>people</td>
-<td>The person the name belongs to.</td>
+<td>The person the alias belongs to.</td>
 </tr>
 <tr>
 <td>place</td>
@@ -6371,14 +6118,14 @@
 
 <p><code class="prettyprint">201 Created</code></p>
 
-          <h2 id="update-a-person-name"><a name="person_names_update"></a>Update a person name</h2>
+          <h2 id="update-a-person-alias">Update a person alias</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">PATCH /articles/person_names/41</code></p>
+<p>Request body | <code class="prettyprint">PATCH /articles/person_aliases/41</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "type": "person_names",
+    "type": "person_aliases",
     "id": "41",
     "attributes": {
       "given_names": "アップデート",
@@ -6406,9 +6153,9 @@
 <pre class="highlight plaintext"><code>{
   "data": {
     "id": "41",
-    "type": "person_names",
+    "type": "person_aliases",
     "attributes": {
-      "display_name": "カタカナ アップデート",
+      "display_text": "カタカナ アップデート",
       "given_names": "アップデート",
       "family_name": "カタカナ",
       "kind": "fullname",
@@ -6468,7 +6215,7 @@
   }
 }
 </code></pre>
-<p>Update an existing person name. The user must be an editor.</p>
+<p>Update an existing person alias. The user must be an editor.</p>
 
 <ul>
 <li>User authentication: required</li>
@@ -6477,7 +6224,7 @@
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">PATCH /articles/person_names/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+<p><code class="prettyprint">PATCH /articles/person_aliases/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
 
 <h3 id="request-attributes">Request attributes</h3>
 
@@ -6505,7 +6252,7 @@
 <td>kind</td>
 <td>string</td>
 <td>Y</td>
-<td>The name classification. Must be &lsquo;name&rsquo;, &#39;fullname&rsquo; or &#39;nickname&rsquo;.</td>
+<td>The alias classification. Must be &lsquo;name&rsquo;, &#39;fullname&rsquo; or &#39;nickname&rsquo;.</td>
 </tr>
 <tr>
 <td>writing_system</td>
@@ -6523,7 +6270,7 @@
 <td>dropped</td>
 <td>boolean</td>
 <td></td>
-<td>True if the name has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
+<td>True if the alias has been dropped. Auto-sets true if <code class="prettyprint">year_dropped</code> present.</td>
 </tr>
 <tr>
 <td>year_dropped</td>
@@ -6559,26 +6306,21 @@
 
 <p><code class="prettyprint">200 OK</code></p>
 
-          <h2 id="delete-a-person-name"><a name="person_names_delete"></a>Delete a person name</h2>
+          <h2 id="delete-a-person-alias">Delete a person alias</h2>
 
-<p>Delete an existing person name. User must be an editor or admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: editor or admin</li>
-</ul>
+<p>Delete an existing person alias. User must be an editor or admin.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">DELETE /articles/person_names/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+<p><code class="prettyprint">DELETE /articles/person_aliases/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">204 No Content</code></p>
 
-          <h2 id="errors"><a name="person_names_errors"></a>Errors</h2>
+          <h2 id="errors">Errors</h2>
 
-<p>Errors specific to creating and updating person names.</p>
+<p>Errors specific to creating and updating person aliases.</p>
 
 <table><thead>
 <tr>
@@ -6590,79 +6332,79 @@
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>PERSON_NAME_GIVEN_NAMES_BLANK</td>
+<td>PERSON_ALIAS_GIVEN_NAMES_BLANK</td>
 <td>name</td>
 <td>Given names is required.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_NAME_GIVEN_NAMES_TOO_LONG</td>
+<td>PERSON_ALIAS_GIVEN_NAMES_TOO_LONG</td>
 <td>name</td>
 <td>Given names cannot be more than 50 characters.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_NAME_FAMILY_NAME_BLANK</td>
+<td>PERSON_ALIAS_FAMILY_NAME_BLANK</td>
 <td>name</td>
 <td>Family name is required.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_NAME_FAMILY_NAME_TOO_LONG</td>
+<td>PERSON_ALIAS_FAMILY_NAME_TOO_LONG</td>
 <td>name</td>
 <td>Family name cannot be more than 50 characters.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_NAME_DISPLAY_NAME_TAKEN</td>
+<td>PERSON_ALIAS_DISPLAY_TEXT_TAKEN</td>
 <td>name</td>
 <td>This person already has a name record with that given names and family name combination.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_NAME_KIND_BLANK</td>
+<td>PERSON_ALIAS_KIND_BLANK</td>
 <td>kind</td>
 <td>Kind is required.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_NAME_KIND_INCLUSION</td>
+<td>PERSON_ALIAS_KIND_INCLUSION</td>
 <td>kind</td>
 <td>Kind must be an accepted value.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_NAME_WRITING_SYSTEM_BLANK</td>
+<td>PERSON_ALIAS_WRITING_SYSTEM_BLANK</td>
 <td>writing_system</td>
 <td>Writing system is required.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_NAME_WRITING_SYSTEM_INCLUSION</td>
+<td>PERSON_ALIAS_WRITING_SYSTEM_INCLUSION</td>
 <td>writing_system</td>
 <td>Writing system must be an accepted value.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_NAME_YEAR_ADOPTED_INCLUSION</td>
+<td>PERSON_ALIAS_YEAR_ADOPTED_INCLUSION</td>
 <td>year_adopted</td>
 <td>Year adopted must be a past year not before 1800.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_NAME_YEAR_DROPPED_INCLUSION</td>
+<td>PERSON_ALIAS_YEAR_DROPPED_INCLUSION</td>
 <td>year_dropped</td>
 <td>Year dropped must be a past year not before 1800.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_NAME_YEAR_DROPPED_INVALID</td>
+<td>PERSON_ALIAS_YEAR_DROPPED_INVALID</td>
 <td>year_dropped</td>
 <td>Year dropped must not be earlier than year adopted.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>PERSON_NAME_PLACE_ID_INVALID</td>
+<td>PERSON_ALIAS_PLACE_ID_INVALID</td>
 <td>data/relationships/place/data/id</td>
 <td>Place ID must be a valid country or region ID.</td>
 </tr>
@@ -9569,19 +9311,19 @@
 </tr>
 </tbody></table>
 
-          <h1 id="articles-company-names"><a name="company_names_intro"></a>Articles: Company Names</h1>
+          <h1 id="articles-company-aliases">Articles: Company Aliases</h1>
 
-<p>Resources related to company names. The JSON:API type is <code class="prettyprint">company_names</code>.</p>
+<p>Resources related to company aliases. An alias is another name the company is known by. The JSON:API type is <code class="prettyprint">company_aliases</code>.</p>
 
 <h3 id="mutable-attributes">Mutable attributes</h3>
 
-<h4 id="name-string-required"><code class="prettyprint">name</code> (string, required)</h4>
+<h4 id="display_text-string-required"><code class="prettyprint">display_text</code> (string, required)</h4>
 
-<p>The name. 1-100 chars.</p>
+<p>The alias. 1-100 chars.</p>
 
 <h4 id="kind-string-required"><code class="prettyprint">kind</code> (string, required)</h4>
 
-<p>Name classification. Must be <code class="prettyprint">name</code>, <code class="prettyprint">styled</code> or <code class="prettyprint">alias</code>.</p>
+<p>Name classification. Must be <code class="prettyprint">name</code>, <code class="prettyprint">styled</code> or <code class="prettyprint">AKA</code>.</p>
 
 <h4 id="writing_system-string-required"><code class="prettyprint">writing_system</code> (string, required)</h4>
 
@@ -9593,7 +9335,7 @@
 
 <h4 id="dropped-boolean"><code class="prettyprint">dropped</code> (boolean)</h4>
 
-<p><code class="prettyprint">true</code> if the name is no longer used. Auto-set to <code class="prettyprint">true</code> if <code class="prettyprint">year_dropped</code> is present.</p>
+<p><code class="prettyprint">true</code> if the alias is no longer used. Auto-set to <code class="prettyprint">true</code> if <code class="prettyprint">year_dropped</code> is present.</p>
 
 <h4 id="year_dropped-integer"><code class="prettyprint">year_dropped</code> (integer)</h4>
 
@@ -9620,20 +9362,20 @@
 </tr>
 </tbody></table>
 
-          <h2 id="get-company-names">Get company names</h2>
+          <h2 id="get-company-aliases">Get company aliases</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /articles/company_names?page[size]=2
+<pre class="highlight plaintext"><code># GET /articles/company_aliases?page[size]=2
 
 {
   "data": [
     {
       "id": "1",
-      "type": "company_names",
+      "type": "company_aliases",
       "attributes": {
-        "name": "任天堂株式会社",
+        "display_text": "任天堂株式会社",
         "kind": "name",
         "writing_system": "Japanese",
         "year_adopted": null,
@@ -9648,9 +9390,9 @@
     },
     {
       "id": "2",
-      "type": "company_names",
+      "type": "company_aliases",
       "attributes": {
-        "name": "Nintendō Kabushiki gaisha",
+        "display_text": "Nintendō Kabushiki gaisha",
         "kind": "name",
         "writing_system": "Latin",
         "year_adopted": null,
@@ -9674,11 +9416,11 @@
   }
 }
 </code></pre>
-<p>Retrieve a collection of company names.</p>
+<p>Retrieve a collection of company aliases.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">GET /articles/company_names</code></p>
+<p><code class="prettyprint">GET /articles/company_aliases</code></p>
 
 <h3 id="filter-fields">Filter fields</h3>
 
@@ -9708,7 +9450,7 @@
 
 <p><code class="prettyprint">200 OK</code></p>
 
-          <h2 id="get-a-single-company-name"><a name="company_names_show"></a>Get a single company name</h2>
+          <h2 id="get-a-single-company-alias">Get a single company alias</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
@@ -9772,16 +9514,16 @@
 
 <p><code class="prettyprint">200 OK</code></p>
 
-          <h2 id="create-a-new-company-name"><a name="company_names_create"></a>Create a new company name</h2>
+          <h2 id="create-a-new-company-alias">Create a new company alias</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">POST /articles/company_names</code></p>
+<p>Request body | <code class="prettyprint">POST /articles/company_aliases</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "type": "company_names",
+    "type": "company_aliases",
     "attributes": {
-      "name": "New Name",
+      "display_text": "New Name",
       "kind": "name",
       "writing_system": "Latin",
       "year_adopted": "2010",
@@ -9811,9 +9553,9 @@
 <pre class="highlight plaintext"><code>{
   "data": {
     "id": "61",
-    "type": "company_names",
+    "type": "company_aliases",
     "attributes": {
-      "name": "New Name",
+      "display_text": "New Name",
       "kind": "name",
       "writing_system": "Latin",
       "year_adopted": 2010,
@@ -9872,32 +9614,27 @@
   }
 }
 </code></pre>
-<p>Create a new company name record. User must be an editor or admin.</p>
-
-<ul>
-<li>User authentication: required</li>
-<li>Authorization level: editor or admin</li>
-</ul>
+<p>Create a new company alias record. User must be an editor or admin.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">POST /articles/companies/{company-slug}/names</code></p>
+<p><code class="prettyprint">POST /articles/company_aliases</code></p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">201 Created</code></p>
 
-          <h2 id="update-a-company-name"><a name="company_names_update"></a>Update a company name</h2>
+          <h2 id="update-a-company-alias">Update a company alias</h2>
 
 <blockquote>
-<p>Request body | <code class="prettyprint">PATCH /articles/company_names/7</code></p>
+<p>Request body | <code class="prettyprint">PATCH /articles/company_aliases/7</code></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "data": {
-    "type": "company_names",
+    "type": "company_aliases",
     "id": "7",
     "attributes": {
-      "name": "アップデート",
+      "display_text": "アップデート",
       "kind": "styled",
       "writing_system": "Japanese",
       "year_adopted": "1995",
@@ -9921,9 +9658,9 @@
 <pre class="highlight plaintext"><code>{
   "data": {
     "id": "7",
-    "type": "company_names",
+    "type": "company_aliases",
     "attributes": {
-      "name": "アップデート",
+      "display_text": "アップデート",
       "kind": "styled",
       "writing_system": "Japanese",
       "year_adopted": 1995,
@@ -9981,33 +9718,33 @@
   }
 }
 </code></pre>
-<p>Update an existing company name. The user must be an editor or admin.</p>
+<p>Update an existing company alias. The user must be an editor or admin.</p>
 
 <p>The <code class="prettyprint">company</code> relationship cannot be updated.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">PATCH /articles/company_names/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+<p><code class="prettyprint">PATCH /articles/company_aliases/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">200 OK</code></p>
 
-          <h2 id="delete-a-company-name"><a name="company_names_delete"></a>Delete a company name</h2>
+          <h2 id="delete-a-company-alias">Delete a company alias</h2>
 
-<p>Delete an existing company name. User must be an editor or admin.</p>
+<p>Delete an existing company alias. User must be an editor or admin.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
-<p><code class="prettyprint">DELETE /articles/company_names/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+<p><code class="prettyprint">DELETE /articles/company_aliases/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">204 No Content</code></p>
 
-          <h2 id="errors"><a name="company_names_errors"></a>Errors</h2>
+          <h2 id="errors">Errors</h2>
 
-<p>Errors specific to creating and updating company names.</p>
+<p>Errors specific to creating and updating company aliases.</p>
 
 <table><thead>
 <tr>
@@ -10019,67 +9756,67 @@
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>COMPANY_NAME_NAME_BLANK</td>
+<td>COMPANY_ALIAS_DISPLAY_TEXT_BLANK</td>
 <td>name</td>
 <td>Name is required.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_NAME_NAME_TOO_LONG</td>
+<td>COMPANY_ALIAS_DISPLAY_TEXT_TOO_LONG</td>
 <td>name</td>
 <td>Name cannot be more than 250 characters.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_NAME_NAME_TAKEN</td>
+<td>COMPANY_ALIAS_DISPLAY_TEXT_TAKEN</td>
 <td>name</td>
 <td>Name must be unique to its parent company.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_NAME_KIND_BLANK</td>
+<td>COMPANY_ALIAS_KIND_BLANK</td>
 <td>kind</td>
 <td>Kind is required.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_NAME_KIND_INCLUSION</td>
+<td>COMPANY_ALIAS_KIND_INCLUSION</td>
 <td>kind</td>
 <td>Kind must be an accepted value.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_NAME_WRITING_SYSTEM_BLANK</td>
+<td>COMPANY_ALIAS_WRITING_SYSTEM_BLANK</td>
 <td>writing_system</td>
 <td>Writing system is required.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_NAME_WRITING_SYSTEM_INCLUSION</td>
+<td>COMPANY_ALIAS_WRITING_SYSTEM_INCLUSION</td>
 <td>writing_system</td>
 <td>Writing system must be an accepted value.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_NAME_YEAR_ADOPTED_INCLUSION</td>
+<td>COMPANY_ALIAS_YEAR_ADOPTED_INCLUSION</td>
 <td>year_adopted</td>
 <td>Year adopted must be a past year not before 1800.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_NAME_YEAR_DROPPED_INCLUSION</td>
+<td>COMPANY_ALIAS_YEAR_DROPPED_INCLUSION</td>
 <td>year_dropped</td>
 <td>Year dropped must be a past year not before 1800.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_NAME_YEAR_DROPPED_INVALID</td>
+<td>COMPANY_ALIAS_YEAR_DROPPED_INVALID</td>
 <td>year_dropped</td>
 <td>Year dropped must not be earlier than year adopted.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>COMPANY_NAME_PLACE_ID_INVALID</td>
+<td>COMPANY_ALIAS_PLACE_ID_INVALID</td>
 <td>data/relationships/place/data/id</td>
 <td>Place ID must be a valid country or region ID.</td>
 </tr>
