@@ -16870,71 +16870,463 @@
 </tr>
 </tbody></table>
 
-          <h1 id="media-licenses"><a name="media_licenses_intro"></a>Media: Licenses</h1>
+          <h1 id="media-licenses">Media licenses</h1>
 
-<p>Resources related to media licenses. Licenses are used to show the correct rights attributions for images and other media used by Dbljump.</p>
+<p>Users should only upload privately-owned media items (such as images) to Dbljump if they are published with a license that gives us the legal right to use them (e.g. Creative Commons licenses).</p>
 
-<p>A license record includes its name and URL, plus an ID code.</p>
+<p>This resource catalogues such licenses. Through the <code class="prettyprint">media/images</code> endpoint, it also allows us to relate licenses to media items so we can show proper rights attributions.</p>
 
-          <h2 id="get-all-media-licenses">Get all media licenses</h2>
+<p>The JSON:API type for this resource is <code class="prettyprint">media_licenses</code>.</p>
+
+<h3 id="mutable-attributes">Mutable attributes</h3>
+
+<h4 id="name-string-required-unique"><code class="prettyprint">name</code> (string, required, unique)</h4>
+
+<p>The license name. 1-100 chars.</p>
+
+<h4 id="short_name-string-required-unique"><code class="prettyprint">short_name</code> (string, required, unique)</h4>
+
+<p>A short version of the name. 1-15 chars.</p>
+
+<h4 id="url-string-required-unique"><code class="prettyprint">url</code> (string, required, unique)</h4>
+
+<p>The URL of the official web page for the license. 1-250 chars.</p>
+
+<h3 id="immutable-relationships">Immutable relationships</h3>
+
+<p>These relationships cannot be updated at this endpoint.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>JSON:API type</th>
+<th>Relationship type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">images</code></td>
+<td><code class="prettyprint">images</code></td>
+<td>Has many</td>
+</tr>
+<tr>
+<td><code class="prettyprint">created_by</code></td>
+<td><code class="prettyprint">users</code></td>
+<td>Belongs to</td>
+</tr>
+<tr>
+<td><code class="prettyprint">updated_by</code></td>
+<td><code class="prettyprint">users</code></td>
+<td>Belongs to</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-media-licenses">Get media licenses</h2>
 
 <blockquote>
 <p>Response body | <code class="prettyprint">HTTP 200</code></p>
 </blockquote>
-<pre class="highlight plaintext"><code># GET /media/licenses
+<pre class="highlight plaintext"><code># GET /media/licenses?page[size]=2&amp;sort=name
 
 {
     "data": [
         {
+            "id": "1",
             "type": "media_licenses",
-            "id": "cc_by_2_0",
             "attributes": {
-                "name": "Creative Commons Attribution 2.0",
+                "name": "A Super License",
+                "short_name": "CC BY 2.0",
                 "url": "https://creativecommons.org/licenses/by/2.0"
+            },
+            "relationships": {
+                "images": {
+                    "data": [
+                        {
+                            "id": "25",
+                            "type": "images"
+                        },
+                        {
+                            "id": "30",
+                            "type": "images"
+                        },
+                        {
+                            "id": "34",
+                            "type": "images"
+                        }
+                    ]
+                },
+                "updated_by": {
+                    "data": null
+                },
+                "created_by": {
+                    "data": null
+                }
+            },
+            "links": {
+                "self": "http://localhost:3000/media/licenses/1"
+            },
+            "meta": {
+                "created_at": "2017-12-11T11:05:41.001Z",
+                "updated_at": "2017-12-11T16:44:52.176Z",
+                "meta_description": "Find media published under A Super License at Dbljump, the video game reference.",
+                "meta_keywords": "A Super License, CC BY 2.0, creative commons, license, media, dbljump, video games, pc games, gaming",
+                "total_images": 15
             }
         },
         {
+            "id": "2",
             "type": "media_licenses",
-            "id": "cc_by_2_5",
             "attributes": {
                 "name": "Creative Commons Attribution 2.5",
+                "short_name": "CC BY 2.5",
                 "url": "https://creativecommons.org/licenses/by/2.5/"
-            }
-        },
-        {
-            "type": "media_licenses",
-            "id": "cc_by_sa_2_0",
-            "attributes": {
-                "name": "Creative Commons Attribution-ShareAlike 2.0",
-                "url": "https://creativecommons.org/licenses/by-sa/2.0"
+            },
+            "relationships": {
+                "images": {
+                    "data": [
+                        {
+                            "id": "39",
+                            "type": "images"
+                        }
+                    ]
+                },
+                "updated_by": {
+                    "data": null
+                },
+                "created_by": {
+                    "data": null
+                }
+            },
+            "links": {
+                "self": "http://localhost:3000/media/licenses/2"
+            },
+            "meta": {
+                "created_at": "2017-12-11T11:05:41.010Z",
+                "updated_at": "2017-12-11T11:05:41.010Z",
+                "meta_description": "Find media published under Creative Commons Attribution 2.5 at Dbljump, the video game reference.",
+                "meta_keywords": "Creative Commons Attribution 2.5, CC BY 2.5, creative commons, license, media, dbljump, video games, pc games, gaming",
+                "total_images": 1
             }
         }
     ],
     "links": {
-        "self": "http://localhost:3000/media/licenses"
+        "self": "http://localhost:3000/media/licenses?page%5Bnumber%5D=1&amp;page%5Bsize%5D=2&amp;sort=name",
+        "next": "http://localhost:3000/media/licenses?page%5Bnumber%5D=2&amp;page%5Bsize%5D=2&amp;sort=name",
+        "last": "http://localhost:3000/media/licenses?page%5Bnumber%5D=6&amp;page%5Bsize%5D=2&amp;sort=name"
     },
     "meta": {
-        "total_items": 3
+        "total_items": 11
     }
 }
 </code></pre>
-<p>Retrieve all media licenses. Useful for populating form select boxes.</p>
-
-<ul>
-<li>User authentication: not required</li>
-</ul>
+<p>Retrieve a collection of media licenses. No user authentication required.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
 <p><code class="prettyprint">GET /media/licenses</code></p>
 
-<h3 id="url-query-parameters">URL query parameters</h3>
+<h3 id="url-query-support">URL query support</h3>
 
-<p>Not supported.</p>
+<table><thead>
+<tr>
+<th>Query type</th>
+<th>Details</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Filter fields</td>
+<td><code class="prettyprint">name</code>, <code class="prettyprint">short_name</code>, <code class="prettyprint">url</code></td>
+</tr>
+<tr>
+<td>Sort fields</td>
+<td><code class="prettyprint">name</code>, <code class="prettyprint">short_name</code>, <code class="prettyprint">url</code></td>
+</tr>
+<tr>
+<td>Include</td>
+<td><code class="prettyprint">created_by</code>, <code class="prettyprint">updated_by</code></td>
+</tr>
+<tr>
+<td>Pagination</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="success-http-response-code">Success HTTP response code</h3>
 
 <p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="get-a-single-media-license">Get a single media license</h2>
+
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code># GET /media/licenses/1
+
+{
+    "data": {
+        "id": "2",
+        "type": "media_licenses",
+        "attributes": {
+            "name": "Creative Commons Attribution 2.5",
+            "short_name": "CC BY 2.5",
+            "url": "https://creativecommons.org/licenses/by/2.5/"
+        },
+        "relationships": {
+            "images": {
+                "data": [
+                    {
+                        "id": "39",
+                        "type": "images"
+                    }
+                ]
+            },
+            "updated_by": {
+                "data": null
+            },
+            "created_by": {
+                "data": null
+            }
+        },
+        "links": {
+            "self": "http://localhost:3000/media/licenses/2"
+        },
+        "meta": {
+            "created_at": "2017-12-11T11:05:41.010Z",
+            "updated_at": "2017-12-11T11:05:41.010Z",
+            "meta_description": "Find media published under Creative Commons Attribution 2.5 at Dbljump, the video game reference.",
+            "meta_keywords": "Creative Commons Attribution 2.5, CC BY 2.5, creative commons, license, media, dbljump, video games, pc games, gaming",
+            "total_images": 1
+        }
+    }
+}
+</code></pre>
+<p>Retrieve a single media license.</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">GET /media/licenses/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="create-a-new-media-license">Create a new media license</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">POST /media/licenses</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "media_licenses",
+    "attributes": {
+      "name": "New License",
+      "short_name": "New",
+      "url": "https://www.licenses.org/new-license"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 201</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "data": {
+        "id": "12",
+        "type": "media_licenses",
+        "attributes": {
+            "name": "New License",
+            "short_name": "New",
+            "url": "https://www.licenses.org/new-license"
+        },
+        "relationships": {
+            "images": {
+                "data": []
+            },
+            "updated_by": {
+                "data": {
+                    "id": "2",
+                    "type": "users"
+                }
+            },
+            "created_by": {
+                "data": {
+                    "id": "2",
+                    "type": "users"
+                }
+            }
+        },
+        "links": {
+            "self": "http://localhost:3000/media/licenses/12"
+        },
+        "meta": {
+            "created_at": "2017-12-11T20:49:14.349Z",
+            "updated_at": "2017-12-11T20:49:14.349Z",
+            "meta_description": "Find media published under New License at Dbljump, the video game reference.",
+            "meta_keywords": "New License, New, creative commons, license, media, dbljump, video games, pc games, gaming",
+            "total_images": 0
+        }
+    }
+}
+</code></pre>
+<p>Create a new media license record. The user must be an admin.</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST /articles/company_aliases</code></p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">201 Created</code></p>
+
+          <h2 id="update-a-media-license">Update a media license</h2>
+
+<blockquote>
+<p>Request body | <code class="prettyprint">PATCH /media/licenses/9</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "media_licenses",
+    "id": "9",
+    "attributes": {
+      "name": "Updated License",
+      "short_name": "Updated",
+      "url": "https://www.licenses.org/updated-license"
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Response body | <code class="prettyprint">HTTP 200</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "data": {
+        "id": "9",
+        "type": "media_licenses",
+        "attributes": {
+            "name": "Updated License",
+            "short_name": "Updated",
+            "url": "https://www.licenses.org/updated-license"
+        },
+        "relationships": {
+            "images": {
+                "data": []
+            },
+            "updated_by": {
+                "data": {
+                    "id": "2",
+                    "type": "users"
+                }
+            },
+            "created_by": {
+                "data": {
+                    "id": "2",
+                    "type": "users"
+                }
+            }
+        },
+        "links": {
+            "self": "http://localhost:3000/media/licenses/9"
+        },
+        "meta": {
+            "created_at": "2017-12-11T11:05:41.084Z",
+            "updated_at": "2017-12-11T20:51:21.759Z",
+            "meta_description": "Find media published under Updated License at Dbljump, the video game reference.",
+            "meta_keywords": "Updated License, Updated, creative commons, license, media, dbljump, video games, pc games, gaming",
+            "total_images": 0
+        }
+    }
+}
+</code></pre>
+<p>Update an existing media license. The user must be an admin.</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">PATCH /media/licenses/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+          <h2 id="delete-a-media-license">Delete a media license</h2>
+
+<p>Delete an existing media license. User must be an admin.</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">DELETE /media/licenses/{id}</code> (replace <code class="prettyprint">{id}</code> with record ID)</p>
+
+<h3 id="success-http-response-code">Success HTTP response code</h3>
+
+<p><code class="prettyprint">204 No Content</code></p>
+
+          <h2 id="media-license-errors">Media license errors</h2>
+
+<table><thead>
+<tr>
+<th>HTTP code</th>
+<th>Error code</th>
+<th>Pointer</th>
+<th>Title</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>MEDIA_LICENSE_NAME_BLANK</td>
+<td>name</td>
+<td>Name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>MEDIA_LICENSE_NAME_TOO_LONG</td>
+<td>name</td>
+<td>Name cannot be more than 100 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>MEDIA_LICENSE_NAME_TAKEN</td>
+<td>name</td>
+<td>Name must be unique.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>MEDIA_LICENSE_SHORT_NAME_BLANK</td>
+<td>short_name</td>
+<td>Short name is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>MEDIA_LICENSE_SHORT_NAME_TOO_LONG</td>
+<td>short_name</td>
+<td>Short name cannot be more than 15 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>MEDIA_LICENSE_SHORT_NAME_TAKEN</td>
+<td>short_name</td>
+<td>Short name must be unique.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>MEDIA_LICENSE_URL_BLANK</td>
+<td>url</td>
+<td>URL is required.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>MEDIA_LICENSE_URL_TOO_LONG</td>
+<td>url</td>
+<td>URL cannot be more than 250 characters.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>MEDIA_LICENSE_URL_TAKEN</td>
+<td>url</td>
+<td>URL must be unique.</td>
+</tr>
+</tbody></table>
 
           <h1 id="platforms"><a name="platforms_intro"></a>Platforms</h1>
 
