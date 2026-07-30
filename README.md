@@ -1,38 +1,43 @@
 # Dbljump API docs powered by Slate
 
-Note that setup instructions are based on those in the [Slate readme at Github](https://github.com/lord/slate). Check there for the latest.
+This repository uses the legacy [Slate](https://github.com/slatedocs/slate)
+documentation toolchain.
 
 ## Prerequisites
 
-+ **Linux or OS X** — Windows may work, but is unsupported.
-+ **Ruby, version 2.2.5 or newer**
-+ **Bundler** — If Ruby is already installed, but the bundle command doesn't work, just run gem install bundler in a terminal.
++ **Linux or macOS**
++ **Ruby 2.6.7** — selected automatically by `.ruby-version` when using rbenv
++ **Bundler 1.17.2**
 
 ## Installation
 
-1. Clone this repository using the instructions on Bitbucket
-2. Go to your clone's folder, e.g. `cd ~/slate`
-3. Bundle and start the server
+Clone the repository, install its locked dependencies, and start the local
+preview server:
 
-```
-#either run this to run locally
+```sh
+git clone https://github.com/dbljump/api-docs-slate.git
+cd api-docs-slate
 bundle install
-middleman server
-
-# OR run this to run with vagrant
-vagrant up
+bundle exec middleman server
 ```
 
 ## Local
 
-With the server running, you can now see the docs at http://localhost:4567.
+With the server running, view the docs at <http://localhost:4567>.
+
+To verify a production build:
+
+```sh
+bundle exec middleman build --clean
+```
 
 ## Publishing to GitHub Pages
 
 Commit changes to master branch, then run the deploy script:
 
-```
+```sh
 ./deploy.sh
 ```
 
-Re-set the custom domain name (http://docs.dbljump.com), as the deploy script removes it.
+The deploy script builds the site and pushes the generated output to the
+`gh-pages` branch.
