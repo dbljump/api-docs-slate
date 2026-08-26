@@ -1515,6 +1515,16 @@ unique, maximum 250 characters). Responses include image totals in metadata.</p>
 <td><code class="prettyprint">/users/{id}</code></td>
 <td>Same user, or admin deleting a non-admin</td>
 </tr>
+<tr>
+<td>PATCH</td>
+<td><code class="prettyprint">/user-onboarding/{id}</code></td>
+<td>Same user or admin</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code class="prettyprint">/user-preferences/{id}</code></td>
+<td>Same user or admin</td>
+</tr>
 </tbody></table>
 
 <h3 id="registration">Registration</h3>
@@ -1538,13 +1548,276 @@ required.</p>
 <p>Only admins can also write <code class="prettyprint">role</code> and <code class="prettyprint">editorRequestApproved</code>. Roles are
 <code class="prettyprint">member</code>, <code class="prettyprint">editor</code>, and <code class="prettyprint">admin</code>.</p>
 
+<p>Approving an editor request enrols the user in contributor onboarding and
+queues the welcome email that begins the journey. Repeating an approval does
+not replace existing progress or send the welcome email again. A user whose
+<code class="prettyprint">onboardingEmails</code> preference is <code class="prettyprint">false</code> is still enrolled but does not receive
+the onboarding email.</p>
+
 <p>Email and administrative metadata are returned only to the same user or an
 admin. Public responses include <code class="prettyprint">username</code>, <code class="prettyprint">role</code>, names, <code class="prettyprint">gender</code>,
 <code class="prettyprint">birthday</code>, <code class="prettyprint">avatar</code>, <code class="prettyprint">avatarThumb</code>, and <code class="prettyprint">place</code>.</p>
 
+<p>For the same user or an admin, the response <code class="prettyprint">meta</code> also contains the private
+<code class="prettyprint">onboarding</code> and <code class="prettyprint">preferences</code> objects described below. <code class="prettyprint">onboarding</code> is <code class="prettyprint">null</code>
+until the user has been enrolled. Preferences are returned with defaults
+applied even when the user has not saved an explicit choice.</p>
+
+<blockquote>
+<p>Private user state in a <code class="prettyprint">GET /users/{id}</code> response</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "meta": {
+    "onboarding": {
+      "visitEditorComplete": true,
+      "chooseArticleComplete": false,
+      "uploadImageComplete": false,
+      "addCitedTextComplete": false,
+      "viewContributionsComplete": false,
+      "journeyComplete": false
+    },
+    "preferences": {
+      "notifications": {
+        "onboardingEmails": true
+      },
+      "editor": {
+        "showOnboardingReminders": true
+      }
+    }
+  }
+}
+</code></pre>
 <p>Queryable fields are <code class="prettyprint">id</code>, <code class="prettyprint">username</code>, <code class="prettyprint">gender</code>, <code class="prettyprint">role</code>, <code class="prettyprint">placeId</code>,
 <code class="prettyprint">editorRequestOpen</code>, <code class="prettyprint">lastSignedInAt</code>, <code class="prettyprint">activatedAt</code>, <code class="prettyprint">birthday</code>,
 <code class="prettyprint">lastActiveAt</code>, <code class="prettyprint">createdAt</code>, and <code class="prettyprint">updatedAt</code>.</p>
+
+<h2 id="contributor-onboarding">Contributor onboarding</h2>
+
+<p><code class="prettyprint">PATCH /user-onboarding/{id}</code> records one or more completed tasks in an active
+contributor onboarding journey. Replace <code class="prettyprint">{id}</code> with the user ID and use the
+same value for <code class="prettyprint">data.id</code>. The resource type is <code class="prettyprint">userOnboarding</code>.</p>
+
+<p>The endpoint accepts partial updates. Every supplied value must be the JSON
+boolean <code class="prettyprint">true</code>: completion is permanent and cannot be reset through this
+endpoint. Repeating a completed task is safe and returns the unchanged current
+state. The response always includes all task flags and <code class="prettyprint">journeyComplete</code>, which
+becomes <code class="prettyprint">true</code> after every task is complete.</p>
+
+<p>The same user or an admin can update the resource. The target user must already
+be enrolled in contributor onboarding. The endpoint has no <code class="prettyprint">GET</code>, <code class="prettyprint">POST</code>, or
+<code class="prettyprint">DELETE</code> action; clients obtain the current state from <code class="prettyprint">GET /users/{id}</code>.</p>
+
+<p>On approval, the API sends the welcome email and schedules a first-step
+reminder for one week later. The first successful <code class="prettyprint">visitEditorComplete</code> update
+schedules a contribution reminder for one week later. Completing the journey
+queues its completion email immediately. Before delivery, delayed messages
+recheck the user&rsquo;s contributor role, email preference, and relevant progress;
+messages that are no longer applicable are cancelled.</p>
+
+<blockquote>
+<p>Complete one onboarding task</p>
+</blockquote>
+<pre class="highlight plaintext"><code># PATCH /user-onboarding/5
+{
+  "data": {
+    "type": "userOnboarding",
+    "id": "5",
+    "attributes": {
+      "visitEditorComplete": true
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "userOnboarding",
+    "id": "5",
+    "attributes": {
+      "visitEditorComplete": true,
+      "chooseArticleComplete": false,
+      "uploadImageComplete": false,
+      "addCitedTextComplete": false,
+      "viewContributionsComplete": false,
+      "journeyComplete": false
+    }
+  }
+}
+</code></pre>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">visitEditorComplete</code></td>
+<td>boolean</td>
+<td>The contributor has visited the editor.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">chooseArticleComplete</code></td>
+<td>boolean</td>
+<td>The contributor has chosen a game, person, or company article.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">uploadImageComplete</code></td>
+<td>boolean</td>
+<td>The contributor has successfully uploaded an image through the guided article workflow.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">addCitedTextComplete</code></td>
+<td>boolean</td>
+<td>The contributor has successfully added article text with a citation.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">viewContributionsComplete</code></td>
+<td>boolean</td>
+<td>The contributor has viewed their contributions.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">journeyComplete</code></td>
+<td>boolean</td>
+<td>Response-only flag indicating that every onboarding task is complete.</td>
+</tr>
+</tbody></table>
+
+<h3 id="contributor-onboarding-errors">Contributor onboarding errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP status</th>
+<th>Error code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td><code class="prettyprint">REQUEST_DATA_MISSING</code></td>
+<td>The JSON:API data or attributes object is missing.</td>
+</tr>
+<tr>
+<td>401</td>
+<td><code class="prettyprint">NOT_AUTHORIZED</code></td>
+<td>Authentication is missing, or the current user cannot update this account.</td>
+</tr>
+<tr>
+<td>409</td>
+<td><code class="prettyprint">ONBOARDING_RESOURCE_MISMATCH</code></td>
+<td>The body type or ID does not identify the resource in the URL.</td>
+</tr>
+<tr>
+<td>409</td>
+<td><code class="prettyprint">ONBOARDING_NOT_ACTIVE</code></td>
+<td>The target user has no active contributor onboarding journey.</td>
+</tr>
+<tr>
+<td>422</td>
+<td><code class="prettyprint">ONBOARDING_UPDATE_INVALID</code></td>
+<td>Attributes are empty or unsupported, or a value is not <code class="prettyprint">true</code>.</td>
+</tr>
+<tr>
+<td>422</td>
+<td><code class="prettyprint">ONBOARDING_STEP_INVALID</code></td>
+<td>A task is not part of the active onboarding definition.</td>
+</tr>
+</tbody></table>
+
+<h2 id="user-preferences">User preferences</h2>
+
+<p><code class="prettyprint">PATCH /user-preferences/{id}</code> updates one or more supported preferences.
+Replace <code class="prettyprint">{id}</code> with the user ID and use the same value for <code class="prettyprint">data.id</code>. The
+resource type is <code class="prettyprint">userPreferences</code>.</p>
+
+<p>Updates are partial and values must be JSON booleans. The response contains all
+currently supported preferences with defaults applied. The same user or an
+admin can update the resource. The endpoint has no <code class="prettyprint">GET</code>, <code class="prettyprint">POST</code>, or <code class="prettyprint">DELETE</code>
+action; clients obtain current preferences from <code class="prettyprint">GET /users/{id}</code>.</p>
+
+<blockquote>
+<p>Disable onboarding email and editor reminders</p>
+</blockquote>
+<pre class="highlight plaintext"><code># PATCH /user-preferences/5
+{
+  "data": {
+    "type": "userPreferences",
+    "id": "5",
+    "attributes": {
+      "onboardingEmails": false,
+      "showOnboardingReminders": false
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>HTTP 200 response body</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "userPreferences",
+    "id": "5",
+    "attributes": {
+      "onboardingEmails": false,
+      "showOnboardingReminders": false
+    }
+  }
+}
+</code></pre>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">onboardingEmails</code></td>
+<td>boolean</td>
+<td><code class="prettyprint">true</code></td>
+<td>Whether onboarding emails may be delivered.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">showOnboardingReminders</code></td>
+<td>boolean</td>
+<td><code class="prettyprint">true</code></td>
+<td>Whether dismissible onboarding reminders appear in the editor.</td>
+</tr>
+</tbody></table>
+
+<h3 id="user-preference-errors">User preference errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP status</th>
+<th>Error code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td><code class="prettyprint">REQUEST_DATA_MISSING</code></td>
+<td>The JSON:API data or attributes object is missing.</td>
+</tr>
+<tr>
+<td>401</td>
+<td><code class="prettyprint">NOT_AUTHORIZED</code></td>
+<td>Authentication is missing, or the current user cannot update this account.</td>
+</tr>
+<tr>
+<td>409</td>
+<td><code class="prettyprint">USER_PREFERENCES_RESOURCE_MISMATCH</code></td>
+<td>The body type or ID does not identify the resource in the URL.</td>
+</tr>
+<tr>
+<td>422</td>
+<td><code class="prettyprint">USER_PREFERENCES_UPDATE_INVALID</code></td>
+<td>Attributes are empty or unsupported, or a value is not a JSON boolean.</td>
+</tr>
+</tbody></table>
 
 <h2 id="account-activation">Account activation</h2>
 
@@ -1677,6 +1950,9 @@ returns <code class="prettyprint">200 OK</code> with an empty body.</p>
 <code class="prettyprint">NOT_AUTHORIZED</code>, <code class="prettyprint">TOKEN_INVALID</code>, <code class="prettyprint">TOKEN_EXPIRED</code>,
 <code class="prettyprint">USER_CREDENTIALS_INVALID</code>, <code class="prettyprint">USER_ACTIVATION_REQUIRED</code>,
 <code class="prettyprint">USER_ALREADY_ACTIVATED</code>, <code class="prettyprint">INVALID_NOTE_ORDER</code>, <code class="prettyprint">RESOURCE_MISMATCH</code>,
+<code class="prettyprint">ONBOARDING_RESOURCE_MISMATCH</code>, <code class="prettyprint">ONBOARDING_UPDATE_INVALID</code>,
+<code class="prettyprint">ONBOARDING_STEP_INVALID</code>, <code class="prettyprint">ONBOARDING_NOT_ACTIVE</code>,
+<code class="prettyprint">USER_PREFERENCES_RESOURCE_MISMATCH</code>, <code class="prettyprint">USER_PREFERENCES_UPDATE_INVALID</code>,
 <code class="prettyprint">MAILER_ERROR</code>, and <code class="prettyprint">SERVER_ERROR</code>.</p>
 
 <p>Validation error pointers use lower camel case and point to either
