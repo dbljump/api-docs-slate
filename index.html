@@ -217,6 +217,10 @@ Authorization header for signed-out requests.</p>
 requests use <code class="prettyprint">PATCH</code>, must include the resource <code class="prettyprint">id</code>, and return <code class="prettyprint">200 OK</code>.
 Deletes return <code class="prettyprint">204 No Content</code>.</p>
 
+<p>For an update, <code class="prettyprint">data.type</code> and <code class="prettyprint">data.id</code> must identify the same resource as the
+request URL. A mismatch returns <code class="prettyprint">409 Conflict</code> with the error code
+<code class="prettyprint">RESOURCE_MISMATCH</code> before any attributes or relationships are changed.</p>
+
 <p>Serialized attribute, relationship, filter, sort, and include names use
 lower camel case. IDs are strings in JSON:API documents.</p>
 
@@ -646,7 +650,8 @@ without exposing the current JWT in a URL.</p>
 }
 </code></pre>
 <p>Codes expire after five minutes and can be exchanged only once. Both handoff
-responses disable caching. Missing, expired, or reused codes return <code class="prettyprint">401</code>.</p>
+responses disable caching. Missing, expired, or reused codes return <code class="prettyprint">401</code> with
+the JSON:API error code <code class="prettyprint">AUTHENTICATION_HANDOFF_INVALID</code>.</p>
 
           <h1 id="articles">Articles</h1>
 
@@ -1948,6 +1953,7 @@ returns <code class="prettyprint">200 OK</code> with an empty body.</p>
 
 <p>Common application codes include <code class="prettyprint">BAD_REQUEST</code>, <code class="prettyprint">REQUEST_DATA_MISSING</code>,
 <code class="prettyprint">NOT_AUTHORIZED</code>, <code class="prettyprint">TOKEN_INVALID</code>, <code class="prettyprint">TOKEN_EXPIRED</code>,
+<code class="prettyprint">AUTHENTICATION_HANDOFF_INVALID</code>,
 <code class="prettyprint">USER_CREDENTIALS_INVALID</code>, <code class="prettyprint">USER_ACTIVATION_REQUIRED</code>,
 <code class="prettyprint">USER_ALREADY_ACTIVATED</code>, <code class="prettyprint">INVALID_NOTE_ORDER</code>, <code class="prettyprint">RESOURCE_MISMATCH</code>,
 <code class="prettyprint">ONBOARDING_RESOURCE_MISMATCH</code>, <code class="prettyprint">ONBOARDING_UPDATE_INVALID</code>,
