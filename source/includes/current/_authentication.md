@@ -80,4 +80,5 @@ The exchange is unauthenticated. A valid, unused code returns `200 OK`:
 ```
 
 Codes expire after five minutes and can be exchanged only once. Both handoff
-responses disable caching. Missing, expired, or reused codes return `401`.
+responses disable caching. Missing, expired, or reused codes return `401` with
+the JSON:API error code `AUTHENTICATION_HANDOFF_INVALID`.

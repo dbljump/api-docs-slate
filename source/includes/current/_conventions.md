@@ -50,6 +50,10 @@ Create requests use `POST`; successful responses return `201 Created`. Update
 requests use `PATCH`, must include the resource `id`, and return `200 OK`.
 Deletes return `204 No Content`.
 
+For an update, `data.type` and `data.id` must identify the same resource as the
+request URL. A mismatch returns `409 Conflict` with the error code
+`RESOURCE_MISMATCH` before any attributes or relationships are changed.
+
 Serialized attribute, relationship, filter, sort, and include names use
 lower camel case. IDs are strings in JSON:API documents.
 
