@@ -99,6 +99,7 @@ platforms, genres, places, and images.
 
 ## Metadata
 
-All normal resources include `createdAt` and `updatedAt` in `meta`. Article
+Most normal resources include `createdAt` and `updatedAt` in `meta`;
+`extResourceJoin` currently returns no timestamp metadata. Article
 metadata also includes `status`, `articleType`, and `keywords`. Several
 resources add relationship totals under `meta.total`.

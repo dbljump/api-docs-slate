@@ -242,6 +242,8 @@ or `thumb`.
       ],
       "volumeTitle": "Game History Journal",
       "doi": null,
+      "isbn": null,
+      "issn": null,
       "publisher": "Example Publishing",
       "year": 2024,
       "date": "2024-06-12",
@@ -262,6 +264,11 @@ or `thumb`.
         "data": [
           { "id": "19", "type": "gameNote" }
         ]
+      },
+      "consumerJoins": {
+        "data": [
+          { "id": "73", "type": "extResourceJoin" }
+        ]
       }
     },
     "meta": {
@@ -271,3 +278,115 @@ or `thumb`.
   }
 }
 ```
+
+## Create a source with an initial citation
+
+> `POST https://www.dbljump.com/ext-resources?include=consumerJoins`
+
+```JSON
+{
+  "data": {
+    "type": "extResource",
+    "attributes": {
+      "kind": "book",
+      "title": "Example book",
+      "isbn": "9780429771385",
+      "location": { "type": "pages", "start": "24", "end": "26" }
+    },
+    "relationships": {
+      "notes": {
+        "data": [ { "type": "gameNote", "id": "19" } ]
+      }
+    }
+  }
+}
+```
+
+An editor receives 201 on success. The response's primary resource is the new
+`extResource`; its `attributes` do not contain `location`. The requested
+`included` array contains the new `extResourceJoin` with the persisted page
+location. Both records are rolled back if creation fails.
+
+## Cite an existing source
+
+> `POST https://www.dbljump.com/ext-resource-joins`
+
+```JSON
+{
+  "data": {
+    "type": "extResourceJoin",
+    "attributes": {
+      "location": { "type": "timestamp", "start": 760, "end": 845 }
+    },
+    "relationships": {
+      "extResource": { "data": { "type": "extResource", "id": "206" } },
+      "consumer": { "data": { "type": "gameNote", "id": "19" } }
+    }
+  }
+}
+```
+
+Here resource 206 is an existing video source. The request creates a citation
+for 12:40–14:05 without changing the shared resource. Success returns 201 with
+the new citation as the primary resource. Repeating the same note/source pair
+returns 422 and preserves the existing citation.
+
+## Citation response
+
+> `GET https://www.dbljump.com/ext-resource-joins/75`
+
+```JSON
+{
+  "data": {
+    "id": "75",
+    "type": "extResourceJoin",
+    "attributes": {
+      "location": { "type": "timestamp", "start": 760, "end": 845 }
+    },
+    "relationships": {
+      "extResource": { "data": { "id": "206", "type": "extResource" } },
+      "consumer": { "data": { "id": "19", "type": "gameNote" } }
+    }
+  }
+}
+```
+
+Alternatively, request `GET /ext-resources/206?include=consumerJoins` or
+`GET /game-notes/19?include=extResourceJoins` to read the citation through a
+related resource. To include sources with a note's citations, request
+`GET /game-notes/19?include=extResourceJoins.extResource`.
+
+## Edit or clear a citation location
+
+> `PATCH https://www.dbljump.com/ext-resource-joins/75`
+
+```JSON
+{
+  "data": {
+    "type": "extResourceJoin",
+    "id": "75",
+    "attributes": {
+      "location": { "type": "timestamp", "start": 900, "end": 915 }
+    }
+  }
+}
+```
+
+This changes citation 75 to 15:00–15:15, leaving other citations and the shared
+source unchanged. Success returns 200 with the updated citation.
+
+> Clear the location with the same PATCH endpoint
+
+```JSON
+{
+  "data": {
+    "type": "extResourceJoin",
+    "id": "75",
+    "attributes": { "location": null }
+  }
+}
+```
+
+Omitting `location` preserves its current value. Explicit null clears the
+location and retains the citation. `DELETE /ext-resource-joins/75` instead
+removes the citation and returns 204, preserving source 206.

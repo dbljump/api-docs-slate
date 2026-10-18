@@ -47,9 +47,18 @@ relate to `gameVersions`. Notes may be linked to `extResources`.
 
 The body is Markdown, 5–5000 characters, and is returned both as `body` and
 sanitized `bodyHtml`. External links are rejected in note Markdown; cite an
-external resource through `extResources` instead. `heading` is at most 40
+external resource through `/ext-resource-joins` instead. `heading` is at most 40
 characters. If omitted during creation, `displayOrder` is appended
 automatically within its article and category.
+
+Note responses also expose `extResourceJoins`, the citation joins connecting
+that note to its sources. For example,
+`GET /game-notes/{id}?include=extResourceJoins` returns the citation IDs and
+their `attributes.location` in `included`. To include their shared sources as
+well, use `include=extResourceJoins.extResource`. Use `/ext-resource-joins` to
+add, edit, clear, or remove a note's individual citation; a location belongs
+to that join rather than the note or shared source. See **Citations
+(external-resource joins)** in the Media section for request formats.
 
 Note type | Allowed categories
 --------- | ------------------
