@@ -9,6 +9,7 @@ Deploy generated files to a git branch.
 Options:
 
   -h, --help               Show this help information.
+  --build-only             Build the site without committing or publishing.
   -v, --verbose            Increase verbosity. Useful for debugging.
   -e, --allow-empty        Allow deployment of an empty directory.
   -m, --message MESSAGE    Specify the message used when committing on the
@@ -17,7 +18,32 @@ Options:
                            commit's message.
 "
 
-bundle exec middleman build --clean
+build_site() {
+  local slate_ruby=${SLATE_RUBY:-$(command -v ruby)}
+  # This legacy Slate bundle needs Ruby 2.6. Prefer the active runtime, with
+  # macOS's compatible system Ruby as a fallback when mise selects Ruby 3.
+  if ! "$slate_ruby" -e 'exit(RUBY_VERSION.start_with?("2.6.") ? 0 : 1)'; then
+    if [[ -z ${SLATE_RUBY:-} ]] && [[ -x /usr/bin/ruby ]] &&
+       /usr/bin/ruby -e 'exit(RUBY_VERSION.start_with?("2.6.") ? 0 : 1)'; then
+      slate_ruby=/usr/bin/ruby
+    else
+      echo "This Slate project requires Ruby 2.6.x. Select it with your version manager or set SLATE_RUBY to its executable." >&2
+      return 1
+    fi
+  fi
+
+  echo "Building with $("$slate_ruby" --version)"
+  # Keep the old bundle separate from other projects and system gems.
+  export BUNDLE_PATH=${BUNDLE_PATH:-vendor/bundle}
+  export BUNDLE_FROZEN=true
+  if ! "$slate_ruby" -S bundle _1.17.2_ --version; then
+    echo "Install Bundler 1.17.2 for the selected Ruby before running this script." >&2
+    return 1
+  fi
+  "$slate_ruby" -S bundle _1.17.2_ check ||
+    "$slate_ruby" -S bundle _1.17.2_ install
+  "$slate_ruby" -S bundle _1.17.2_ exec middleman build --clean
+}
 
 parse_args() {
   # Set args from a local environment file.
@@ -31,7 +57,10 @@ parse_args() {
   while : ; do
     if [[ $1 = "-h" || $1 = "--help" ]]; then
       echo "$help_message"
-      return 0
+      exit 0
+    elif [[ $1 = "--build-only" ]]; then
+      build_only=true
+      shift
     elif [[ $1 = "-v" || $1 = "--verbose" ]]; then
       verbose=true
       shift
@@ -68,7 +97,13 @@ parse_args() {
 }
 
 main() {
+  cd "$(dirname "${BASH_SOURCE[0]}")"
   parse_args "$@"
+
+  if [[ $build_only = true ]]; then
+    build_site
+    return
+  fi
 
   enable_expanded_output
 
@@ -76,6 +111,8 @@ main() {
     echo Aborting due to uncommitted changes in the index >&2
     return 1
   fi
+
+  build_site
 
   commit_title=`git log -n 1 --format="%s" HEAD`
   commit_hash=` git log -n 1 --format="%H" HEAD`
