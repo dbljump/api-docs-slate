@@ -55,6 +55,45 @@ Writable attributes are `kind`, `title`, `authorNames`, `volumeTitle`, `doi`, `i
 DOI, ISBN, and ISSN are separate optional strings; no checksum or identifier
 format validation is currently enforced.
 
+### People's names
+
+`authorNames` is an optional, ordered array of people's names. Each entry uses
+only `given` and/or `family`; at least one must be a nonblank string. The other
+name may be omitted, null, or blank. A person with a single given name does
+not need a family name. Names may contain Unicode, spaces, and punctuation.
+
+```JSON
+{
+  "data": {
+    "type": "extResource",
+    "attributes": {
+      "kind": "book",
+      "title": "Example book",
+      "authorNames": [
+        { "given": "Zoë", "family": "Zed" },
+        { "given": "Björk" },
+        { "given": "Alex", "family": "Example" }
+      ]
+    }
+  }
+}
+```
+
+The API stores and returns the submitted spelling, spacing, order, and repeated
+entries unchanged. Omitting `authorNames` on PATCH preserves it; null or `[]`
+clears the named authors. Strings containing JSON, bare name objects, non-string
+name values other than null, unknown keys, and entries with no nonblank name
+return 422 with code `invalid` at `/data/attributes/authorNames`.
+
+Company/publication attribution uses the existing `publisher` and `volumeTitle`
+fields rather than author-name objects. Named authors take precedence; without
+them, `volumeTitle` supplies attribution for `web_article`, `webpage`,
+`print_article`, and `youtube`, while `publisher` supplies it for `book` and
+`website`. The resource title is the final fallback. The existing `twitter`
+type has no company/publication fallback.
+
+### Notes and publication details
+
 The to-many `notes` relationship links the source to notes. Each identifier
 must use `gameNote`, `companyNote`, or `personNote`, with an ID belonging to
 that declared type. Omitting `notes` on PATCH preserves the existing links;
