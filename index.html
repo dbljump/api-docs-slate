@@ -298,7 +298,7 @@ an empty collection when no record matches.</p>
 <h2 id="search">Search</h2>
 
 <p><code class="prettyprint">search</code> is supported for articles, games, companies, people, users,
-platforms, genres, places, and images.</p>
+platforms, genres, places, images, and external resources.</p>
 
 <h2 id="metadata">Metadata</h2>
 
@@ -1737,9 +1737,53 @@ other consumer types; the citation routes below support note consumers only.</p>
 <code class="prettyprint">lastAccessedAt</code>, <code class="prettyprint">approvedAt</code>, <code class="prettyprint">flaggedAt</code>, <code class="prettyprint">createdById</code>, <code class="prettyprint">createdAt</code>, and
 <code class="prettyprint">updatedAt</code>.</p>
 
-<p>Full-text <code class="prettyprint">search</code> is not currently supported for external resources. Use the
-listed filter fields and standard pagination. URL normalization is not
-implemented; preserve meaningful query parameters in source URLs.</p>
+<h3 id="search">Search</h3>
+
+<p><code class="prettyprint">GET /ext-resources?search=pong</code> searches the following fields using the same
+PostgreSQL search system as other collections. Results use weighted full-text
+relevance by default; A is the strongest weight.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Weight</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">title</code></td>
+<td>A</td>
+</tr>
+<tr>
+<td><code class="prettyprint">authorNames</code> (given/family name values only)</td>
+<td>B</td>
+</tr>
+<tr>
+<td><code class="prettyprint">volumeTitle</code></td>
+<td>B</td>
+</tr>
+<tr>
+<td><code class="prettyprint">publisher</code></td>
+<td>C</td>
+</tr>
+<tr>
+<td><code class="prettyprint">urlOriginal</code></td>
+<td>D</td>
+</tr>
+</tbody></table>
+
+<p>Title-only trigram matching also supports approximate title searches. Search
+works with the existing filters, sorting, pagination, and includes. For example,
+<code class="prettyprint">GET /ext-resources?search=pong&amp;filter[kindEq]=book&amp;page[size]=20</code> finds matching
+books, including offline sources.</p>
+
+<p>URL matching uses ordinary full-text tokens. A search for <code class="prettyprint">ign.com</code> can match
+<code class="prettyprint">https://ign.com/articles/example</code>, but does not automatically match
+<code class="prettyprint">www.ign.com</code> or other subdomains; search for that hostname as entered instead.
+For substring matching, use <code class="prettyprint">filter[urlOriginalCont]=ign.com</code>. This filter is
+not restricted to the hostname. Search does not normalize or rewrite URLs.</p>
+
+<p>Use the existing DOI, ISBN, and ISSN filters for identifier lookup; identifiers
+are not part of this weighted text search. Kind, year, and dates remain filters.</p>
 
 <h2 id="citations-external-resource-joins">Citations (external-resource joins)</h2>
 
