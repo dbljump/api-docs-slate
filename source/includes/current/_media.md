@@ -52,8 +52,8 @@ Reads are public. Editors can create and update; only admins can delete.
 Writable attributes are `kind`, `title`, `authorNames`, `volumeTitle`, `doi`, `isbn`, `issn`,
 `publisher`, `year`, `date`, `sortDate`, `urlOriginal`, `urlArchived`,
 `pageNumbersBegin`, and `pageNumbersEnd`. `title` and `kind` are required.
-DOI, ISBN, and ISSN are separate optional strings; no checksum or identifier
-format validation is currently enforced.
+DOI, ISBN, and ISSN are separate optional strings, with light format checks
+described below.
 
 ### People's names
 
@@ -91,6 +91,27 @@ them, `volumeTitle` supplies attribution for `web_article`, `webpage`,
 `print_article`, and `youtube`, while `publisher` supplies it for `book` and
 `website`. The resource title is the final fallback. The existing `twitter`
 type has no company/publication fallback.
+
+### Identifier formats
+
+These checks catch basic input mistakes. They do not verify checksums, query
+external registries, enforce uniqueness, or restrict identifiers by resource
+kind. All three fields may be omitted, null, or blank.
+
+Field | Accepted shape | Examples
+----- | -------------- | --------
+`doi` | A `10.` numeric prefix and a nonblank suffix separated by `/`. Older dotted prefixes and punctuation in suffixes are allowed. Optional `doi:` and `http(s)://doi.org/` or `http(s)://dx.doi.org/` prefixes are accepted. | `10.1000/182`, `doi: 10.1000/example`, `https://doi.org/10.1000/example`
+`isbn` | 10 or 13 digits, with a final `X` allowed for ISBN-10. Spaces and hyphens are accepted between digits. Optional `ISBN`, `ISBN-10`, or `ISBN-13` labels are accepted. | `9780429771385`, `978-0-429-77138-5`, `ISBN-10: 0-8044-2957-X`
+`issn` | Seven digits followed by a digit or `X`. Spaces and hyphens are accepted between digits, with an optional `ISSN` label. | `12345678`, `1234-5678`, `ISSN: 2434-561X`
+
+Labels and `X` are case-insensitive, surrounding whitespace is allowed, and
+common Unicode dash separators are accepted in ISBN/ISSN values. Formatting
+is checked without rewriting the stored value.
+
+Checks apply to new or changed identifier values. An unchanged older value
+does not block unrelated edits. Omitting an identifier on PATCH preserves it;
+null or an empty string clears it. Invalid changed values return 422 with
+code `invalid` and a pointer to the identifier, such as `/data/attributes/isbn`.
 
 ### Notes and publication details
 
