@@ -1622,6 +1622,42 @@ pages or timestamps in the same source.</p>
 DOI, ISBN, and ISSN are separate optional strings; no checksum or identifier
 format validation is currently enforced.</p>
 
+<h3 id="people-39-s-names">People&rsquo;s names</h3>
+
+<p><code class="prettyprint">authorNames</code> is an optional, ordered array of people&rsquo;s names. Each entry uses
+only <code class="prettyprint">given</code> and/or <code class="prettyprint">family</code>; at least one must be a nonblank string. The other
+name may be omitted, null, or blank. A person with a single given name does
+not need a family name. Names may contain Unicode, spaces, and punctuation.</p>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "extResource",
+    "attributes": {
+      "kind": "book",
+      "title": "Example book",
+      "authorNames": [
+        { "given": "Zoë", "family": "Zed" },
+        { "given": "Björk" },
+        { "given": "Alex", "family": "Example" }
+      ]
+    }
+  }
+}
+</code></pre>
+<p>The API stores and returns the submitted spelling, spacing, order, and repeated
+entries unchanged. Omitting <code class="prettyprint">authorNames</code> on PATCH preserves it; null or <code class="prettyprint">[]</code>
+clears the named authors. Strings containing JSON, bare name objects, non-string
+name values other than null, unknown keys, and entries with no nonblank name
+return 422 with code <code class="prettyprint">invalid</code> at <code class="prettyprint">/data/attributes/authorNames</code>.</p>
+
+<p>Company/publication attribution uses the existing <code class="prettyprint">publisher</code> and <code class="prettyprint">volumeTitle</code>
+fields rather than author-name objects. Named authors take precedence; without
+them, <code class="prettyprint">volumeTitle</code> supplies attribution for <code class="prettyprint">web_article</code>, <code class="prettyprint">webpage</code>,
+<code class="prettyprint">print_article</code>, and <code class="prettyprint">youtube</code>, while <code class="prettyprint">publisher</code> supplies it for <code class="prettyprint">book</code> and
+<code class="prettyprint">website</code>. The resource title is the final fallback. The existing <code class="prettyprint">twitter</code>
+type has no company/publication fallback.</p>
+
+<h3 id="notes-and-publication-details">Notes and publication details</h3>
+
 <p>The to-many <code class="prettyprint">notes</code> relationship links the source to notes. Each identifier
 must use <code class="prettyprint">gameNote</code>, <code class="prettyprint">companyNote</code>, or <code class="prettyprint">personNote</code>, with an ID belonging to
 that declared type. Omitting <code class="prettyprint">notes</code> on PATCH preserves the existing links;
