@@ -302,7 +302,8 @@ platforms, genres, places, and images.</p>
 
 <h2 id="metadata">Metadata</h2>
 
-<p>All normal resources include <code class="prettyprint">createdAt</code> and <code class="prettyprint">updatedAt</code> in <code class="prettyprint">meta</code>. Article
+<p>Most normal resources include <code class="prettyprint">createdAt</code> and <code class="prettyprint">updatedAt</code> in <code class="prettyprint">meta</code>;
+<code class="prettyprint">extResourceJoin</code> currently returns no timestamp metadata. Article
 metadata also includes <code class="prettyprint">status</code>, <code class="prettyprint">articleType</code>, and <code class="prettyprint">keywords</code>. Several
 resources add relationship totals under <code class="prettyprint">meta.total</code>.</p>
 
@@ -547,6 +548,8 @@ or <code class="prettyprint">thumb</code>.</p>
       ],
       "volumeTitle": "Game History Journal",
       "doi": null,
+      "isbn": null,
+      "issn": null,
       "publisher": "Example Publishing",
       "year": 2024,
       "date": "2024-06-12",
@@ -567,6 +570,11 @@ or <code class="prettyprint">thumb</code>.</p>
         "data": [
           { "id": "19", "type": "gameNote" }
         ]
+      },
+      "consumerJoins": {
+        "data": [
+          { "id": "73", "type": "extResourceJoin" }
+        ]
       }
     },
     "meta": {
@@ -576,6 +584,113 @@ or <code class="prettyprint">thumb</code>.</p>
   }
 }
 </code></pre>
+<h2 id="create-a-source-with-an-initial-citation">Create a source with an initial citation</h2>
+
+<blockquote>
+<p><code class="prettyprint">POST https://www.dbljump.com/ext-resources?include=consumerJoins</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "extResource",
+    "attributes": {
+      "kind": "book",
+      "title": "Example book",
+      "isbn": "9780429771385",
+      "location": { "type": "pages", "start": "24", "end": "26" }
+    },
+    "relationships": {
+      "notes": {
+        "data": [ { "type": "gameNote", "id": "19" } ]
+      }
+    }
+  }
+}
+</code></pre>
+<p>An editor receives 201 on success. The response&rsquo;s primary resource is the new
+<code class="prettyprint">extResource</code>; its <code class="prettyprint">attributes</code> do not contain <code class="prettyprint">location</code>. The requested
+<code class="prettyprint">included</code> array contains the new <code class="prettyprint">extResourceJoin</code> with the persisted page
+location. Both records are rolled back if creation fails.</p>
+
+<h2 id="cite-an-existing-source">Cite an existing source</h2>
+
+<blockquote>
+<p><code class="prettyprint">POST https://www.dbljump.com/ext-resource-joins</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "extResourceJoin",
+    "attributes": {
+      "location": { "type": "timestamp", "start": 760, "end": 845 }
+    },
+    "relationships": {
+      "extResource": { "data": { "type": "extResource", "id": "206" } },
+      "consumer": { "data": { "type": "gameNote", "id": "19" } }
+    }
+  }
+}
+</code></pre>
+<p>Here resource 206 is an existing video source. The request creates a citation
+for 12:40–14:05 without changing the shared resource. Success returns 201 with
+the new citation as the primary resource. Repeating the same note/source pair
+returns 422 and preserves the existing citation.</p>
+
+<h2 id="citation-response">Citation response</h2>
+
+<blockquote>
+<p><code class="prettyprint">GET https://www.dbljump.com/ext-resource-joins/75</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "id": "75",
+    "type": "extResourceJoin",
+    "attributes": {
+      "location": { "type": "timestamp", "start": 760, "end": 845 }
+    },
+    "relationships": {
+      "extResource": { "data": { "id": "206", "type": "extResource" } },
+      "consumer": { "data": { "id": "19", "type": "gameNote" } }
+    }
+  }
+}
+</code></pre>
+<p>Alternatively, request <code class="prettyprint">GET /ext-resources/206?include=consumerJoins</code> or
+<code class="prettyprint">GET /game-notes/19?include=extResourceJoins</code> to read the citation through a
+related resource. To include sources with a note&rsquo;s citations, request
+<code class="prettyprint">GET /game-notes/19?include=extResourceJoins.extResource</code>.</p>
+
+<h2 id="edit-or-clear-a-citation-location">Edit or clear a citation location</h2>
+
+<blockquote>
+<p><code class="prettyprint">PATCH https://www.dbljump.com/ext-resource-joins/75</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "extResourceJoin",
+    "id": "75",
+    "attributes": {
+      "location": { "type": "timestamp", "start": 900, "end": 915 }
+    }
+  }
+}
+</code></pre>
+<p>This changes citation 75 to 15:00–15:15, leaving other citations and the shared
+source unchanged. Success returns 200 with the updated citation.</p>
+
+<blockquote>
+<p>Clear the location with the same PATCH endpoint</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "extResourceJoin",
+    "id": "75",
+    "attributes": { "location": null }
+  }
+}
+</code></pre>
+<p>Omitting <code class="prettyprint">location</code> preserves its current value. Explicit null clears the
+location and retains the citation. <code class="prettyprint">DELETE /ext-resource-joins/75</code> instead
+removes the citation and returns 204, preserving source 206.</p>
+
           <h1 id="authentication">Authentication</h1>
 
 <h2 id="sign-in">Sign in</h2>
@@ -1101,9 +1216,18 @@ relate to <code class="prettyprint">gameVersions</code>. Notes may be linked to 
 
 <p>The body is Markdown, 5–5000 characters, and is returned both as <code class="prettyprint">body</code> and
 sanitized <code class="prettyprint">bodyHtml</code>. External links are rejected in note Markdown; cite an
-external resource through <code class="prettyprint">extResources</code> instead. <code class="prettyprint">heading</code> is at most 40
+external resource through <code class="prettyprint">/ext-resource-joins</code> instead. <code class="prettyprint">heading</code> is at most 40
 characters. If omitted during creation, <code class="prettyprint">displayOrder</code> is appended
 automatically within its article and category.</p>
+
+<p>Note responses also expose <code class="prettyprint">extResourceJoins</code>, the citation joins connecting
+that note to its sources. For example,
+<code class="prettyprint">GET /game-notes/{id}?include=extResourceJoins</code> returns the citation IDs and
+their <code class="prettyprint">attributes.location</code> in <code class="prettyprint">included</code>. To include their shared sources as
+well, use <code class="prettyprint">include=extResourceJoins.extResource</code>. Use <code class="prettyprint">/ext-resource-joins</code> to
+add, edit, clear, or remove a note&rsquo;s individual citation; a location belongs
+to that join rather than the note or shared source. See <strong>Citations
+(external-resource joins)</strong> in the Media section for request formats.</p>
 
 <table><thead>
 <tr>
@@ -1450,28 +1574,222 @@ image; an editor can delete an image they uploaded.</p>
 
 <h2 id="external-resources">External resources</h2>
 
-<p><code class="prettyprint">/ext-resources</code> is used for citations and other material outside Dbljump.
-The JSON:API type is <code class="prettyprint">extResource</code>.</p>
+<p><code class="prettyprint">/ext-resources</code> stores shared information about material outside Dbljump.
+The JSON:API type is <code class="prettyprint">extResource</code>. A resource serves as a source when cited;
+each citation is a separate <code class="prettyprint">extResourceJoin</code> connecting it to a note. The
+citation owns its passage location, so different notes can cite different
+pages or timestamps in the same source.</p>
+
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>GET</td>
+<td><code class="prettyprint">/ext-resources</code></td>
+<td>List, filter, sort, and paginate resources.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code class="prettyprint">/ext-resources/{id}</code></td>
+<td>Read a shared resource.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code class="prettyprint">/ext-resources</code></td>
+<td>Create a resource, optionally linked to notes.</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code class="prettyprint">/ext-resources/{id}</code></td>
+<td>Update shared resource details.</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code class="prettyprint">/ext-resources/{id}</code></td>
+<td>Delete the shared resource and its citation joins.</td>
+</tr>
+</tbody></table>
 
 <p>Reads are public. Editors can create and update; only admins can delete.</p>
 
-<p>Writable attributes are <code class="prettyprint">kind</code>, <code class="prettyprint">title</code>, <code class="prettyprint">authorNames</code>, <code class="prettyprint">volumeTitle</code>, <code class="prettyprint">doi</code>,
+<p>Writable attributes are <code class="prettyprint">kind</code>, <code class="prettyprint">title</code>, <code class="prettyprint">authorNames</code>, <code class="prettyprint">volumeTitle</code>, <code class="prettyprint">doi</code>, <code class="prettyprint">isbn</code>, <code class="prettyprint">issn</code>,
 <code class="prettyprint">publisher</code>, <code class="prettyprint">year</code>, <code class="prettyprint">date</code>, <code class="prettyprint">sortDate</code>, <code class="prettyprint">urlOriginal</code>, <code class="prettyprint">urlArchived</code>,
-<code class="prettyprint">pageNumbersBegin</code>, and <code class="prettyprint">pageNumbersEnd</code>. A <code class="prettyprint">notes</code> relationship can link the
-source to notes.</p>
+<code class="prettyprint">pageNumbersBegin</code>, and <code class="prettyprint">pageNumbersEnd</code>. <code class="prettyprint">title</code> and <code class="prettyprint">kind</code> are required.
+DOI, ISBN, and ISSN are separate optional strings; no checksum or identifier
+format validation is currently enforced.</p>
+
+<p>The to-many <code class="prettyprint">notes</code> relationship links the source to notes. Each identifier
+must use <code class="prettyprint">gameNote</code>, <code class="prettyprint">companyNote</code>, or <code class="prettyprint">personNote</code>, with an ID belonging to
+that declared type. Omitting <code class="prettyprint">notes</code> on PATCH preserves the existing links;
+supplying it replaces those links, and an empty <code class="prettyprint">data</code> array clears them.
+Use the citation routes below to edit or remove an individual citation.</p>
 
 <p><code class="prettyprint">kind</code> must be <code class="prettyprint">book</code>, <code class="prettyprint">print_article</code>, <code class="prettyprint">twitter</code>, <code class="prettyprint">web_article</code>, <code class="prettyprint">webpage</code>,
 <code class="prettyprint">website</code>, or <code class="prettyprint">youtube</code>. <code class="prettyprint">urlOriginal</code> is required for every kind except
 <code class="prettyprint">book</code> and <code class="prettyprint">print_article</code>. Page numbers are integers from 1–10000; supplying
 only the beginning creates a one-page range.</p>
 
+<p>The shared <code class="prettyprint">pageNumbersBegin</code> and <code class="prettyprint">pageNumbersEnd</code> fields describe publication
+pages. A cited passage uses the separate citation <code class="prettyprint">location</code> described below.</p>
+
+<h3 id="creating-a-resource-with-a-citation-location">Creating a resource with a citation location</h3>
+
+<p><code class="prettyprint">POST /ext-resources</code> also accepts <code class="prettyprint">attributes.location</code> as a creation-only
+input. A non-null location requires exactly one note in <code class="prettyprint">relationships.notes</code>.
+The API saves the resource and that note&rsquo;s citation location in one transaction;
+if either fails, neither record is created. A resource may be created without
+notes when its location is omitted or null.</p>
+
+<p>The input is stored on the citation join. It is never returned as an attribute
+of the shared resource. Read <code class="prettyprint">consumerJoins</code>, or request
+<code class="prettyprint">include=consumerJoins</code>, to retrieve the citation IDs and stored locations.
+<code class="prettyprint">PATCH /ext-resources/{id}</code> rejects <code class="prettyprint">attributes.location</code>, including null;
+update the individual join instead.</p>
+
+<h3 id="response-and-query-fields">Response and query fields</h3>
+
 <p>The response also exposes <code class="prettyprint">lastAccessedAt</code>, <code class="prettyprint">approvedAt</code>, and <code class="prettyprint">flaggedAt</code>,
-which are currently response-only, plus <code class="prettyprint">createdBy</code>.</p>
+which are currently response-only, plus the <code class="prettyprint">createdBy</code>, <code class="prettyprint">notes</code>, and
+<code class="prettyprint">consumerJoins</code> relationships. A resource&rsquo;s <code class="prettyprint">consumerJoins</code> may also contain
+other consumer types; the citation routes below support note consumers only.</p>
 
 <p>Queryable fields are <code class="prettyprint">id</code>, <code class="prettyprint">kind</code>, <code class="prettyprint">title</code>, <code class="prettyprint">year</code>, <code class="prettyprint">date</code>, <code class="prettyprint">sortDate</code>,
-<code class="prettyprint">urlOriginal</code>, <code class="prettyprint">urlArchived</code>, <code class="prettyprint">volumeTitle</code>, <code class="prettyprint">doi</code>, <code class="prettyprint">publisher</code>,
+<code class="prettyprint">urlOriginal</code>, <code class="prettyprint">urlArchived</code>, <code class="prettyprint">volumeTitle</code>, <code class="prettyprint">doi</code>, <code class="prettyprint">isbn</code>, <code class="prettyprint">issn</code>, <code class="prettyprint">publisher</code>,
 <code class="prettyprint">lastAccessedAt</code>, <code class="prettyprint">approvedAt</code>, <code class="prettyprint">flaggedAt</code>, <code class="prettyprint">createdById</code>, <code class="prettyprint">createdAt</code>, and
 <code class="prettyprint">updatedAt</code>.</p>
+
+<p>Full-text <code class="prettyprint">search</code> is not currently supported for external resources. Use the
+listed filter fields and standard pagination. URL normalization is not
+implemented; preserve meaningful query parameters in source URLs.</p>
+
+<h2 id="citations-external-resource-joins">Citations (external-resource joins)</h2>
+
+<p><code class="prettyprint">/ext-resource-joins</code> manages individual citations. Its JSON:API type is
+<code class="prettyprint">extResourceJoin</code>. Reads are public; editors can create, update, and remove
+note citations. These joins share the external-resource policy, while deleting
+a shared external resource still requires an admin.</p>
+
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>POST</td>
+<td><code class="prettyprint">/ext-resource-joins</code></td>
+<td>Cite an existing resource from a note.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code class="prettyprint">/ext-resource-joins/{id}</code></td>
+<td>Read a citation and its location.</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code class="prettyprint">/ext-resource-joins/{id}</code></td>
+<td>Change or clear a citation&rsquo;s location.</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code class="prettyprint">/ext-resource-joins/{id}</code></td>
+<td>Remove the citation, preserving its source and other citations.</td>
+</tr>
+</tbody></table>
+
+<p>There is no citation collection GET endpoint. Obtain citation IDs from a
+resource&rsquo;s <code class="prettyprint">consumerJoins</code> relationship or a note&rsquo;s <code class="prettyprint">extResourceJoins</code>
+relationship. Both support inclusion to retrieve the join records.</p>
+
+<h3 id="citation-requests-and-responses">Citation requests and responses</h3>
+
+<p>Creation requires two to-one relationships:</p>
+
+<table><thead>
+<tr>
+<th>Relationship</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">extResource</code></td>
+<td><code class="prettyprint">extResource</code></td>
+<td>The existing shared source.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">consumer</code></td>
+<td><code class="prettyprint">gameNote</code>, <code class="prettyprint">companyNote</code>, or <code class="prettyprint">personNote</code></td>
+<td>The note citing it; the ID must belong to the declared type.</td>
+</tr>
+</tbody></table>
+
+<p><code class="prettyprint">location</code> is the only writable citation attribute and is optional. Responses
+return <code class="prettyprint">attributes.location</code> and both relationship identifiers. Creating a
+second citation from the same note to the same source returns 422 with code
+<code class="prettyprint">taken</code> and pointer <code class="prettyprint">/data/relationships/extResource</code>; it does not replace the
+existing citation or location.</p>
+
+<p>PATCH requires <code class="prettyprint">data.type: &quot;extResourceJoin&quot;</code> and the citation&rsquo;s own <code class="prettyprint">data.id</code>.
+Omitting <code class="prettyprint">location</code> preserves it; <code class="prettyprint">location: null</code> clears it without removing
+the citation. PATCH rejects non-empty <code class="prettyprint">relationships</code>: the source and note
+cannot be reassigned through this endpoint. Delete the citation and create a
+new one to change either relationship.</p>
+
+<h3 id="citation-locations">Citation locations</h3>
+
+<p><code class="prettyprint">location</code> is null or one JSON object. Its <code class="prettyprint">type</code> selects the following fields;
+unknown types and extra fields are rejected. All text values must be nonblank
+strings and are plain text rather than HTML or Markdown.</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Example</th>
+<th>Rules</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">pages</code></td>
+<td><code class="prettyprint">{&quot;type&quot;:&quot;pages&quot;,&quot;start&quot;:&quot;24&quot;,&quot;end&quot;:&quot;26&quot;}</code></td>
+<td>Required string <code class="prettyprint">start</code>; optional string <code class="prettyprint">end</code>. Labels such as <code class="prettyprint">iv</code> or <code class="prettyprint">S12</code> are allowed. When both labels contain only decimal digits, the end cannot precede the start; other labels are not ordered by the API.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">timestamp</code></td>
+<td><code class="prettyprint">{&quot;type&quot;:&quot;timestamp&quot;,&quot;start&quot;:760,&quot;end&quot;:845}</code></td>
+<td>Required integer <code class="prettyprint">start</code>; optional integer <code class="prettyprint">end</code>. Both are nonnegative whole seconds, and the end cannot precede the start. This example denotes 12:40–14:05.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">chapter</code></td>
+<td><code class="prettyprint">{&quot;type&quot;:&quot;chapter&quot;,&quot;value&quot;:&quot;3&quot;}</code></td>
+<td>Required string <code class="prettyprint">value</code>, containing a number or title.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">section</code></td>
+<td><code class="prettyprint">{&quot;type&quot;:&quot;section&quot;,&quot;value&quot;:&quot;2.1&quot;}</code></td>
+<td>Required string <code class="prettyprint">value</code>, containing a number or title.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">other</code></td>
+<td><code class="prettyprint">{&quot;type&quot;:&quot;other&quot;,&quot;value&quot;:&quot;Table 3&quot;}</code></td>
+<td>Required string <code class="prettyprint">value</code> describing the passage.</td>
+</tr>
+</tbody></table>
+
+<p>Omit <code class="prettyprint">end</code> for a single page or timestamp; do not supply <code class="prettyprint">end: null</code>.
+Time strings such as <code class="prettyprint">&quot;12:40&quot;</code> are not accepted: clients must convert them to
+whole seconds. Setting the entire location to null is the way to clear it.</p>
+
+<p>Malformed document structures return 400 with code <code class="prettyprint">BAD_REQUEST</code>. Invalid
+location objects return 422 with code <code class="prettyprint">invalid</code> and pointer
+<code class="prettyprint">/data/attributes/location</code>. Unsupported note types return 422; an ID not
+found within its declared note type returns 404. A mismatched primary type
+on POST, or type/ID on PATCH, returns 409 with code <code class="prettyprint">RESOURCE_MISMATCH</code>.</p>
 
 <h2 id="media-licenses">Media licenses</h2>
 
@@ -1909,12 +2227,12 @@ returns <code class="prettyprint">200 OK</code> with an empty body.</p>
 <pre class="highlight plaintext"><code>{
   "errors": [
     {
-      "status": 422,
+      "status": "422",
       "code": "blank",
       "source": {
         "pointer": "/data/attributes/displayTitle"
       },
-      "title": "can't be blank"
+      "title": "Display title is required."
     }
   ]
 }
@@ -1939,7 +2257,7 @@ returns <code class="prettyprint">200 OK</code> with an empty body.</p>
 </tr>
 <tr>
 <td>409</td>
-<td>Request resource identity conflicts with the URL.</td>
+<td>Request resource identity conflicts with the URL or a creation type does not match the endpoint.</td>
 </tr>
 <tr>
 <td>422</td>
@@ -1963,6 +2281,17 @@ returns <code class="prettyprint">200 OK</code> with an empty body.</p>
 
 <p>Validation error pointers use lower camel case and point to either
 <code class="prettyprint">/data/attributes/{name}</code> or <code class="prettyprint">/data/relationships/{name}</code>.</p>
+
+<p>External-resource and citation write endpoints validate document structure
+before deserialization. Malformed objects, incorrect relationship cardinality,
+and misplaced relationship fields return <code class="prettyprint">400 BAD_REQUEST</code>; the error pointer
+identifies the offending document member. Location-value validation returns
+422 with code <code class="prettyprint">invalid</code> at <code class="prettyprint">/data/attributes/location</code>.</p>
+
+<p>A duplicate note/source citation returns 422 with code <code class="prettyprint">taken</code> at
+<code class="prettyprint">/data/relationships/extResource</code>. Unsupported note types return 422; a note
+ID that is not found within its declared type returns 404. Creating a resource
+or citation with the wrong primary type returns <code class="prettyprint">409 RESOURCE_MISMATCH</code>.</p>
 
       </div>
       <div class="dark-box">
