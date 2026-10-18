@@ -95,7 +95,7 @@ an empty collection when no record matches.
 ## Search
 
 `search` is supported for articles, games, companies, people, users,
-platforms, genres, places, and images.
+platforms, genres, places, images, and external resources.
 
 ## Metadata
 

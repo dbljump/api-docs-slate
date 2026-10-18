@@ -155,9 +155,33 @@ Queryable fields are `id`, `kind`, `title`, `year`, `date`, `sortDate`,
 `lastAccessedAt`, `approvedAt`, `flaggedAt`, `createdById`, `createdAt`, and
 `updatedAt`.
 
-Full-text `search` is not currently supported for external resources. Use the
-listed filter fields and standard pagination. URL normalization is not
-implemented; preserve meaningful query parameters in source URLs.
+### Search
+
+`GET /ext-resources?search=pong` searches the following fields using the same
+PostgreSQL search system as other collections. Results use weighted full-text
+relevance by default; A is the strongest weight.
+
+Field | Weight
+----- | ------
+`title` | A
+`authorNames` (given/family name values only) | B
+`volumeTitle` | B
+`publisher` | C
+`urlOriginal` | D
+
+Title-only trigram matching also supports approximate title searches. Search
+works with the existing filters, sorting, pagination, and includes. For example,
+`GET /ext-resources?search=pong&filter[kindEq]=book&page[size]=20` finds matching
+books, including offline sources.
+
+URL matching uses ordinary full-text tokens. A search for `ign.com` can match
+`https://ign.com/articles/example`, but does not automatically match
+`www.ign.com` or other subdomains; search for that hostname as entered instead.
+For substring matching, use `filter[urlOriginalCont]=ign.com`. This filter is
+not restricted to the hostname. Search does not normalize or rewrite URLs.
+
+Use the existing DOI, ISBN, and ISSN filters for identifier lookup; identifiers
+are not part of this weighted text search. Kind, year, and dates remain filters.
 
 ## Citations (external-resource joins)
 
