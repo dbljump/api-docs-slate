@@ -1619,8 +1619,8 @@ pages or timestamps in the same source.</p>
 <p>Writable attributes are <code class="prettyprint">kind</code>, <code class="prettyprint">title</code>, <code class="prettyprint">authorNames</code>, <code class="prettyprint">volumeTitle</code>, <code class="prettyprint">doi</code>, <code class="prettyprint">isbn</code>, <code class="prettyprint">issn</code>,
 <code class="prettyprint">publisher</code>, <code class="prettyprint">year</code>, <code class="prettyprint">date</code>, <code class="prettyprint">sortDate</code>, <code class="prettyprint">urlOriginal</code>, <code class="prettyprint">urlArchived</code>,
 <code class="prettyprint">pageNumbersBegin</code>, and <code class="prettyprint">pageNumbersEnd</code>. <code class="prettyprint">title</code> and <code class="prettyprint">kind</code> are required.
-DOI, ISBN, and ISSN are separate optional strings; no checksum or identifier
-format validation is currently enforced.</p>
+DOI, ISBN, and ISSN are separate optional strings, with light format checks
+described below.</p>
 
 <h3 id="people-39-s-names">People&rsquo;s names</h3>
 
@@ -1655,6 +1655,45 @@ them, <code class="prettyprint">volumeTitle</code> supplies attribution for <cod
 <code class="prettyprint">print_article</code>, and <code class="prettyprint">youtube</code>, while <code class="prettyprint">publisher</code> supplies it for <code class="prettyprint">book</code> and
 <code class="prettyprint">website</code>. The resource title is the final fallback. The existing <code class="prettyprint">twitter</code>
 type has no company/publication fallback.</p>
+
+<h3 id="identifier-formats">Identifier formats</h3>
+
+<p>These checks catch basic input mistakes. They do not verify checksums, query
+external registries, enforce uniqueness, or restrict identifiers by resource
+kind. All three fields may be omitted, null, or blank.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Accepted shape</th>
+<th>Examples</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">doi</code></td>
+<td>A <code class="prettyprint">10.</code> numeric prefix and a nonblank suffix separated by <code class="prettyprint">/</code>. Older dotted prefixes and punctuation in suffixes are allowed. Optional <code class="prettyprint">doi:</code> and <code class="prettyprint">http(s)://doi.org/</code> or <code class="prettyprint">http(s)://dx.doi.org/</code> prefixes are accepted.</td>
+<td><code class="prettyprint">10.1000/182</code>, <code class="prettyprint">doi: 10.1000/example</code>, <code class="prettyprint">https://doi.org/10.1000/example</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">isbn</code></td>
+<td>10 or 13 digits, with a final <code class="prettyprint">X</code> allowed for ISBN-10. Spaces and hyphens are accepted between digits. Optional <code class="prettyprint">ISBN</code>, <code class="prettyprint">ISBN-10</code>, or <code class="prettyprint">ISBN-13</code> labels are accepted.</td>
+<td><code class="prettyprint">9780429771385</code>, <code class="prettyprint">978-0-429-77138-5</code>, <code class="prettyprint">ISBN-10: 0-8044-2957-X</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">issn</code></td>
+<td>Seven digits followed by a digit or <code class="prettyprint">X</code>. Spaces and hyphens are accepted between digits, with an optional <code class="prettyprint">ISSN</code> label.</td>
+<td><code class="prettyprint">12345678</code>, <code class="prettyprint">1234-5678</code>, <code class="prettyprint">ISSN: 2434-561X</code></td>
+</tr>
+</tbody></table>
+
+<p>Labels and <code class="prettyprint">X</code> are case-insensitive, surrounding whitespace is allowed, and
+common Unicode dash separators are accepted in ISBN/ISSN values. Formatting
+is checked without rewriting the stored value.</p>
+
+<p>Checks apply to new or changed identifier values. An unchanged older value
+does not block unrelated edits. Omitting an identifier on PATCH preserves it;
+null or an empty string clears it. Invalid changed values return 422 with
+code <code class="prettyprint">invalid</code> and a pointer to the identifier, such as <code class="prettyprint">/data/attributes/isbn</code>.</p>
 
 <h3 id="notes-and-publication-details">Notes and publication details</h3>
 
