@@ -596,7 +596,7 @@ or <code class="prettyprint">thumb</code>.</p>
       "kind": "book",
       "title": "Example book",
       "isbn": "9780429771385",
-      "location": { "type": "pages", "start": "24", "end": "26" }
+      "initialCitationLocation": { "type": "pages", "start": "24", "end": "26" }
     },
     "relationships": {
       "notes": {
@@ -607,7 +607,8 @@ or <code class="prettyprint">thumb</code>.</p>
 }
 </code></pre>
 <p>An editor receives 201 on success. The response&rsquo;s primary resource is the new
-<code class="prettyprint">extResource</code>; its <code class="prettyprint">attributes</code> do not contain <code class="prettyprint">location</code>. The requested
+<code class="prettyprint">extResource</code>; its <code class="prettyprint">attributes</code> do not contain <code class="prettyprint">initialCitationLocation</code> or
+<code class="prettyprint">location</code>. The requested
 <code class="prettyprint">included</code> array contains the new <code class="prettyprint">extResourceJoin</code> with the persisted page
 location. Both records are rolled back if creation fails.</p>
 
@@ -1713,7 +1714,7 @@ pages. A cited passage uses the separate citation <code class="prettyprint">loca
 
 <h3 id="creating-a-resource-with-a-citation-location">Creating a resource with a citation location</h3>
 
-<p><code class="prettyprint">POST /ext-resources</code> also accepts <code class="prettyprint">attributes.location</code> as a creation-only
+<p><code class="prettyprint">POST /ext-resources</code> also accepts <code class="prettyprint">attributes.initialCitationLocation</code> as a creation-only
 input. A non-null location requires exactly one note in <code class="prettyprint">relationships.notes</code>.
 The API saves the resource and that note&rsquo;s citation location in one transaction;
 if either fails, neither record is created. A resource may be created without
@@ -1722,8 +1723,10 @@ notes when its location is omitted or null.</p>
 <p>The input is stored on the citation join. It is never returned as an attribute
 of the shared resource. Read <code class="prettyprint">consumerJoins</code>, or request
 <code class="prettyprint">include=consumerJoins</code>, to retrieve the citation IDs and stored locations.
-<code class="prettyprint">PATCH /ext-resources/{id}</code> rejects <code class="prettyprint">attributes.location</code>, including null;
-update the individual join instead.</p>
+<code class="prettyprint">PATCH /ext-resources/{id}</code> rejects <code class="prettyprint">attributes.initialCitationLocation</code>, including
+null; update the individual join&rsquo;s <code class="prettyprint">attributes.location</code> instead. The old
+resource-level <code class="prettyprint">attributes.location</code> name is rejected on both POST and PATCH
+rather than ignored.</p>
 
 <h3 id="response-and-query-fields">Response and query fields</h3>
 
@@ -2405,7 +2408,8 @@ returns <code class="prettyprint">200 OK</code> with an empty body.</p>
 before deserialization. Malformed objects, incorrect relationship cardinality,
 and misplaced relationship fields return <code class="prettyprint">400 BAD_REQUEST</code>; the error pointer
 identifies the offending document member. Location-value validation returns
-422 with code <code class="prettyprint">invalid</code> at <code class="prettyprint">/data/attributes/location</code>.</p>
+422 with code <code class="prettyprint">invalid</code> at <code class="prettyprint">/data/attributes/initialCitationLocation</code> when creating
+a resource, or <code class="prettyprint">/data/attributes/location</code> when writing a citation join.</p>
 
 <p>A duplicate note/source citation returns 422 with code <code class="prettyprint">taken</code> at
 <code class="prettyprint">/data/relationships/extResource</code>. Unsupported note types return 422; a note
