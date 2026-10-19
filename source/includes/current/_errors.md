@@ -45,7 +45,8 @@ External-resource and citation write endpoints validate document structure
 before deserialization. Malformed objects, incorrect relationship cardinality,
 and misplaced relationship fields return `400 BAD_REQUEST`; the error pointer
 identifies the offending document member. Location-value validation returns
-422 with code `invalid` at `/data/attributes/location`.
+422 with code `invalid` at `/data/attributes/initialCitationLocation` when creating
+a resource, or `/data/attributes/location` when writing a citation join.
 
 A duplicate note/source citation returns 422 with code `taken` at
 `/data/relationships/extResource`. Unsupported note types return 422; a note

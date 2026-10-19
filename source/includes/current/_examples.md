@@ -291,7 +291,7 @@ or `thumb`.
       "kind": "book",
       "title": "Example book",
       "isbn": "9780429771385",
-      "location": { "type": "pages", "start": "24", "end": "26" }
+      "initialCitationLocation": { "type": "pages", "start": "24", "end": "26" }
     },
     "relationships": {
       "notes": {
@@ -303,7 +303,8 @@ or `thumb`.
 ```
 
 An editor receives 201 on success. The response's primary resource is the new
-`extResource`; its `attributes` do not contain `location`. The requested
+`extResource`; its `attributes` do not contain `initialCitationLocation` or
+`location`. The requested
 `included` array contains the new `extResourceJoin` with the persisted page
 location. Both records are rolled back if creation fails.
 

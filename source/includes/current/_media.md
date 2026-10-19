@@ -131,7 +131,7 @@ pages. A cited passage uses the separate citation `location` described below.
 
 ### Creating a resource with a citation location
 
-`POST /ext-resources` also accepts `attributes.location` as a creation-only
+`POST /ext-resources` also accepts `attributes.initialCitationLocation` as a creation-only
 input. A non-null location requires exactly one note in `relationships.notes`.
 The API saves the resource and that note's citation location in one transaction;
 if either fails, neither record is created. A resource may be created without
@@ -140,8 +140,10 @@ notes when its location is omitted or null.
 The input is stored on the citation join. It is never returned as an attribute
 of the shared resource. Read `consumerJoins`, or request
 `include=consumerJoins`, to retrieve the citation IDs and stored locations.
-`PATCH /ext-resources/{id}` rejects `attributes.location`, including null;
-update the individual join instead.
+`PATCH /ext-resources/{id}` rejects `attributes.initialCitationLocation`, including
+null; update the individual join's `attributes.location` instead. The old
+resource-level `attributes.location` name is rejected on both POST and PATCH
+rather than ignored.
 
 ### Response and query fields
 
