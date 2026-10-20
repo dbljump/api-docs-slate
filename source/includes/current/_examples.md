@@ -232,7 +232,7 @@ or `thumb`.
     "id": "204",
     "type": "extResource",
     "attributes": {
-      "kind": "web_article",
+      "kind": "webpage",
       "title": "The history of Pong",
       "authorNames": [
         {
@@ -307,6 +307,74 @@ An editor receives 201 on success. The response's primary resource is the new
 `location`. The requested
 `included` array contains the new `extResourceJoin` with the persisted page
 location. Both records are rolled back if creation fails.
+
+## Create audio, report, and social sources
+
+These requests use the same `POST /ext-resources` route. Add the `notes`
+relationship shown above to cite the source while creating it.
+
+An audio episode retains its production organization, rather than the listening
+platform, in `publisher`. Its episode URL may depend on query parameters:
+
+```JSON
+{
+  "data": {
+    "type": "extResource",
+    "attributes": {
+      "kind": "online_audio",
+      "title": "Preserving game history",
+      "authorNames": [{ "given": "Alex", "family": "Example" }],
+      "volumeTitle": "The Games Podcast",
+      "publisher": "Independent Audio Studio",
+      "date": "2025-06-12",
+      "urlOriginal": "https://podcasts.apple.com/podcast/id12345?i=67890"
+    }
+  }
+}
+```
+
+A report can identify its authoring organization and publisher separately and
+does not require a URL:
+
+```JSON
+{
+  "data": {
+    "type": "extResource",
+    "attributes": {
+      "kind": "report",
+      "title": "Games industry annual report",
+      "volumeTitle": "Games Research Group",
+      "publisher": "Example Research Press",
+      "year": 2025
+    }
+  }
+}
+```
+
+A social post uses the profile name and an approved platform, without personal
+author objects:
+
+```JSON
+{
+  "data": {
+    "type": "extResource",
+    "attributes": {
+      "kind": "social_post",
+      "title": "An industry announcement",
+      "volumeTitle": "Example professional",
+      "publisher": "Bluesky",
+      "urlOriginal": "https://bsky.app/profile/example.test/post/123"
+    }
+  }
+}
+```
+
+Video requests use `online_video`, with an approved video platform in `publisher`,
+the optional channel in `volumeTitle`, and optional people's names in `authorNames`.
+Audio and video citations can use `initialCitationLocation` with a timestamp,
+for example `{ "type": "timestamp", "start": 90, "end": 120 }`, provided exactly
+one note is supplied. Reports and merged web sources can similarly use pages.
+The citation location format is validated independently of resource kind.
 
 ## Cite an existing source
 

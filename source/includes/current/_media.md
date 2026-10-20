@@ -58,9 +58,9 @@ described below.
 ### People's names
 
 `authorNames` is an optional, ordered array of people's names. Each entry uses
-only `given` and/or `family`; at least one must be a nonblank string. The other
-name may be omitted, null, or blank. A person with a single given name does
-not need a family name. Names may contain Unicode, spaces, and punctuation.
+only `given` and optionally `family`. `given` must be a nonblank string;
+`family` may be omitted, null, or blank. Put a single/full name in `given`.
+Each field allows up to 60 characters, including Unicode, spaces, and punctuation.
 
 ```JSON
 {
@@ -81,16 +81,15 @@ not need a family name. Names may contain Unicode, spaces, and punctuation.
 
 The API stores and returns the submitted spelling, spacing, order, and repeated
 entries unchanged. Omitting `authorNames` on PATCH preserves it; null or `[]`
-clears the named authors. Strings containing JSON, bare name objects, non-string
-name values other than null, unknown keys, and entries with no nonblank name
-return 422 with code `invalid` at `/data/attributes/authorNames`.
+clears the named authors. For sources other than social posts, strings containing JSON, bare name objects, non-string
+name values other than null, unknown keys, and entries without a nonblank given name
+return 422 with code `invalid` at `/data/attributes/authorNames`. A name field over
+60 characters returns 422 with code `too_long` at the same pointer.
 
-Company/publication attribution uses the existing `publisher` and `volumeTitle`
-fields rather than author-name objects. Named authors take precedence; without
-them, `volumeTitle` supplies attribution for `web_article`, `webpage`,
-`print_article`, and `youtube`, while `publisher` supplies it for `book` and
-`website`. The resource title is the final fallback. The existing `twitter`
-type has no company/publication fallback.
+Organization, publication, channel, profile, and podcast names use the existing
+`volumeTitle` and `publisher` fields rather than personal-author objects. Their
+meaning depends on `kind`, as shown below. For social posts, `authorNames` must
+be null or `[]`; use the required profile name in `volumeTitle` instead.
 
 ### Identifier formats
 
@@ -121,10 +120,58 @@ that declared type. Omitting `notes` on PATCH preserves the existing links;
 supplying it replaces those links, and an empty `data` array clears them.
 Use the citation routes below to edit or remove an individual citation.
 
-`kind` must be `book`, `print_article`, `twitter`, `web_article`, `webpage`,
-`website`, or `youtube`. `urlOriginal` is required for every kind except
-`book` and `print_article`. Page numbers are integers from 1–10000; supplying
-only the beginning creates a one-page range.
+`kind` must be one of the eight values below. The old `web_article`, `youtube`,
+and `twitter` values are retired and rejected on writes; they are not aliases.
+Existing stored records retain their original values on reads until converted.
+
+Kind | Meaning | `volumeTitle` | `publisher` | URL required?
+---- | ------- | ------------- | ----------- | -------------
+`book` | Book or ebook | Existing volume information, if any | Publisher | No
+`print_article` | Article in a printed publication or PDF | Publication title | Publisher | No
+`report` | Standalone report, including print, PDF, or HTML | Authoring organization | Publishing organization | No
+`webpage` | Web page or online article | Website or publication title | Publisher | Yes
+`website` | Whole website, retained for article-level links such as official sites | Usually unused | Organization/company | Yes
+`online_video` | Online video | Creator or channel | Approved video platform | Yes
+`online_audio` | Audio recording or podcast episode | Podcast or series, if applicable | Publisher/production organization | Yes
+`social_post` | Individual social media post | Profile name (required) | Approved social platform | Yes
+
+Video platforms are **YouTube, Vimeo, Twitch, LinkedIn**. Social platforms are
+**Bluesky, LinkedIn, Facebook, X**. Use these exact canonical names in `publisher`;
+there is no Other option. A missing or unsupported platform returns 422 with
+code `inclusion` at `/data/attributes/publisher`. Platform checks apply on creation,
+kind changes, or publisher changes; an unchanged older publisher value does not
+block unrelated edits. These checks validate the supplied platform name, not
+the URL's hostname or the account owner's identity.
+
+Social posts require a nonblank `volumeTitle` (422, `blank`,
+`/data/attributes/volumeTitle`). Any `authorNames` value other than null or `[]`
+returns one profile-specific error with code `present` at
+`/data/attributes/authorNames`. Contributor guidance requires verified
+accounts of journalists or known industry professionals; the API does not
+automatically verify accounts. Forum posts and threads are outside the current
+editorial scope, and Reddit is not an accepted platform.
+
+For reports, keep personal authors in `authorNames`, the authoring organization
+in `volumeTitle`, and any separate publishing organization in `publisher`.
+Personal authors take precedence for attribution; the organization is not a
+containing magazine or journal title. Videos and audio retain personal-author
+support. Dates, authors (except the social profile), series names, and publisher
+details other than controlled video/social platforms remain optional.
+
+Audio accepts an episode/recording page on the producer's site or a listening
+service, including Apple Podcasts links with episode query parameters. A direct
+audio-file URL is not required. Audio has no platform attribute or dropdown:
+`publisher` is free text for the production organization, not Spotify or Apple
+merely because the URL points there. Cite a specific episode/recording; whole
+podcast-series references are outside the current scope.
+
+The API retains `website` but contributor source-creation forms omit it for
+text citations. The current citation endpoints still accept only note consumers;
+further-reading management for article-level links is separate work.
+
+Page numbers are integers from 1–10000; supplying only the beginning creates a
+one-page range. No report-number, episode-number, username, or author-role
+attribute has been introduced.
 
 The shared `pageNumbersBegin` and `pageNumbersEnd` fields describe publication
 pages. A cited passage uses the separate citation `location` described below.
