@@ -538,7 +538,7 @@ or <code class="prettyprint">thumb</code>.</p>
     "id": "204",
     "type": "extResource",
     "attributes": {
-      "kind": "web_article",
+      "kind": "webpage",
       "title": "The history of Pong",
       "authorNames": [
         {
@@ -611,6 +611,65 @@ or <code class="prettyprint">thumb</code>.</p>
 <code class="prettyprint">location</code>. The requested
 <code class="prettyprint">included</code> array contains the new <code class="prettyprint">extResourceJoin</code> with the persisted page
 location. Both records are rolled back if creation fails.</p>
+
+<h2 id="create-audio-report-and-social-sources">Create audio, report, and social sources</h2>
+
+<p>These requests use the same <code class="prettyprint">POST /ext-resources</code> route. Add the <code class="prettyprint">notes</code>
+relationship shown above to cite the source while creating it.</p>
+
+<p>An audio episode retains its production organization, rather than the listening
+platform, in <code class="prettyprint">publisher</code>. Its episode URL may depend on query parameters:</p>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "extResource",
+    "attributes": {
+      "kind": "online_audio",
+      "title": "Preserving game history",
+      "authorNames": [{ "given": "Alex", "family": "Example" }],
+      "volumeTitle": "The Games Podcast",
+      "publisher": "Independent Audio Studio",
+      "date": "2025-06-12",
+      "urlOriginal": "https://podcasts.apple.com/podcast/id12345?i=67890"
+    }
+  }
+}
+</code></pre>
+<p>A report can identify its authoring organization and publisher separately and
+does not require a URL:</p>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "extResource",
+    "attributes": {
+      "kind": "report",
+      "title": "Games industry annual report",
+      "volumeTitle": "Games Research Group",
+      "publisher": "Example Research Press",
+      "year": 2025
+    }
+  }
+}
+</code></pre>
+<p>A social post uses the profile name and an approved platform, without personal
+author objects:</p>
+<pre class="highlight plaintext"><code>{
+  "data": {
+    "type": "extResource",
+    "attributes": {
+      "kind": "social_post",
+      "title": "An industry announcement",
+      "volumeTitle": "Example professional",
+      "publisher": "Bluesky",
+      "urlOriginal": "https://bsky.app/profile/example.test/post/123"
+    }
+  }
+}
+</code></pre>
+<p>Video requests use <code class="prettyprint">online_video</code>, with an approved video platform in <code class="prettyprint">publisher</code>,
+the optional channel in <code class="prettyprint">volumeTitle</code>, and optional people&rsquo;s names in <code class="prettyprint">authorNames</code>.
+Audio and video citations can use <code class="prettyprint">initialCitationLocation</code> with a timestamp,
+for example <code class="prettyprint">{ &quot;type&quot;: &quot;timestamp&quot;, &quot;start&quot;: 90, &quot;end&quot;: 120 }</code>, provided exactly
+one note is supplied. Reports and merged web sources can similarly use pages.
+The citation location format is validated independently of resource kind.</p>
 
 <h2 id="cite-an-existing-source">Cite an existing source</h2>
 
@@ -1626,9 +1685,9 @@ described below.</p>
 <h3 id="people-39-s-names">People&rsquo;s names</h3>
 
 <p><code class="prettyprint">authorNames</code> is an optional, ordered array of people&rsquo;s names. Each entry uses
-only <code class="prettyprint">given</code> and/or <code class="prettyprint">family</code>; at least one must be a nonblank string. The other
-name may be omitted, null, or blank. A person with a single given name does
-not need a family name. Names may contain Unicode, spaces, and punctuation.</p>
+only <code class="prettyprint">given</code> and optionally <code class="prettyprint">family</code>. <code class="prettyprint">given</code> must be a nonblank string;
+<code class="prettyprint">family</code> may be omitted, null, or blank. Put a single/full name in <code class="prettyprint">given</code>.
+Each field allows up to 60 characters, including Unicode, spaces, and punctuation.</p>
 <pre class="highlight plaintext"><code>{
   "data": {
     "type": "extResource",
@@ -1646,16 +1705,15 @@ not need a family name. Names may contain Unicode, spaces, and punctuation.</p>
 </code></pre>
 <p>The API stores and returns the submitted spelling, spacing, order, and repeated
 entries unchanged. Omitting <code class="prettyprint">authorNames</code> on PATCH preserves it; null or <code class="prettyprint">[]</code>
-clears the named authors. Strings containing JSON, bare name objects, non-string
-name values other than null, unknown keys, and entries with no nonblank name
-return 422 with code <code class="prettyprint">invalid</code> at <code class="prettyprint">/data/attributes/authorNames</code>.</p>
+clears the named authors. For sources other than social posts, strings containing JSON, bare name objects, non-string
+name values other than null, unknown keys, and entries without a nonblank given name
+return 422 with code <code class="prettyprint">invalid</code> at <code class="prettyprint">/data/attributes/authorNames</code>. A name field over
+60 characters returns 422 with code <code class="prettyprint">too_long</code> at the same pointer.</p>
 
-<p>Company/publication attribution uses the existing <code class="prettyprint">publisher</code> and <code class="prettyprint">volumeTitle</code>
-fields rather than author-name objects. Named authors take precedence; without
-them, <code class="prettyprint">volumeTitle</code> supplies attribution for <code class="prettyprint">web_article</code>, <code class="prettyprint">webpage</code>,
-<code class="prettyprint">print_article</code>, and <code class="prettyprint">youtube</code>, while <code class="prettyprint">publisher</code> supplies it for <code class="prettyprint">book</code> and
-<code class="prettyprint">website</code>. The resource title is the final fallback. The existing <code class="prettyprint">twitter</code>
-type has no company/publication fallback.</p>
+<p>Organization, publication, channel, profile, and podcast names use the existing
+<code class="prettyprint">volumeTitle</code> and <code class="prettyprint">publisher</code> fields rather than personal-author objects. Their
+meaning depends on <code class="prettyprint">kind</code>, as shown below. For social posts, <code class="prettyprint">authorNames</code> must
+be null or <code class="prettyprint">[]</code>; use the required profile name in <code class="prettyprint">volumeTitle</code> instead.</p>
 
 <h3 id="identifier-formats">Identifier formats</h3>
 
@@ -1704,10 +1762,114 @@ that declared type. Omitting <code class="prettyprint">notes</code> on PATCH pre
 supplying it replaces those links, and an empty <code class="prettyprint">data</code> array clears them.
 Use the citation routes below to edit or remove an individual citation.</p>
 
-<p><code class="prettyprint">kind</code> must be <code class="prettyprint">book</code>, <code class="prettyprint">print_article</code>, <code class="prettyprint">twitter</code>, <code class="prettyprint">web_article</code>, <code class="prettyprint">webpage</code>,
-<code class="prettyprint">website</code>, or <code class="prettyprint">youtube</code>. <code class="prettyprint">urlOriginal</code> is required for every kind except
-<code class="prettyprint">book</code> and <code class="prettyprint">print_article</code>. Page numbers are integers from 1–10000; supplying
-only the beginning creates a one-page range.</p>
+<p><code class="prettyprint">kind</code> must be one of the eight values below. The old <code class="prettyprint">web_article</code>, <code class="prettyprint">youtube</code>,
+and <code class="prettyprint">twitter</code> values are retired and rejected on writes; they are not aliases.
+Existing stored records retain their original values on reads until converted.</p>
+
+<table><thead>
+<tr>
+<th>Kind</th>
+<th>Meaning</th>
+<th><code class="prettyprint">volumeTitle</code></th>
+<th><code class="prettyprint">publisher</code></th>
+<th>URL required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">book</code></td>
+<td>Book or ebook</td>
+<td>Existing volume information, if any</td>
+<td>Publisher</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code class="prettyprint">print_article</code></td>
+<td>Article in a printed publication or PDF</td>
+<td>Publication title</td>
+<td>Publisher</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code class="prettyprint">report</code></td>
+<td>Standalone report, including print, PDF, or HTML</td>
+<td>Authoring organization</td>
+<td>Publishing organization</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code class="prettyprint">webpage</code></td>
+<td>Web page or online article</td>
+<td>Website or publication title</td>
+<td>Publisher</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code class="prettyprint">website</code></td>
+<td>Whole website, retained for article-level links such as official sites</td>
+<td>Usually unused</td>
+<td>Organization/company</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code class="prettyprint">online_video</code></td>
+<td>Online video</td>
+<td>Creator or channel</td>
+<td>Approved video platform</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code class="prettyprint">online_audio</code></td>
+<td>Audio recording or podcast episode</td>
+<td>Podcast or series, if applicable</td>
+<td>Publisher/production organization</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code class="prettyprint">social_post</code></td>
+<td>Individual social media post</td>
+<td>Profile name (required)</td>
+<td>Approved social platform</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<p>Video platforms are <strong>YouTube, Vimeo, Twitch, LinkedIn</strong>. Social platforms are
+<strong>Bluesky, LinkedIn, Facebook, X</strong>. Use these exact canonical names in <code class="prettyprint">publisher</code>;
+there is no Other option. A missing or unsupported platform returns 422 with
+code <code class="prettyprint">inclusion</code> at <code class="prettyprint">/data/attributes/publisher</code>. Platform checks apply on creation,
+kind changes, or publisher changes; an unchanged older publisher value does not
+block unrelated edits. These checks validate the supplied platform name, not
+the URL&rsquo;s hostname or the account owner&rsquo;s identity.</p>
+
+<p>Social posts require a nonblank <code class="prettyprint">volumeTitle</code> (422, <code class="prettyprint">blank</code>,
+<code class="prettyprint">/data/attributes/volumeTitle</code>). Any <code class="prettyprint">authorNames</code> value other than null or <code class="prettyprint">[]</code>
+returns one profile-specific error with code <code class="prettyprint">present</code> at
+<code class="prettyprint">/data/attributes/authorNames</code>. Contributor guidance requires verified
+accounts of journalists or known industry professionals; the API does not
+automatically verify accounts. Forum posts and threads are outside the current
+editorial scope, and Reddit is not an accepted platform.</p>
+
+<p>For reports, keep personal authors in <code class="prettyprint">authorNames</code>, the authoring organization
+in <code class="prettyprint">volumeTitle</code>, and any separate publishing organization in <code class="prettyprint">publisher</code>.
+Personal authors take precedence for attribution; the organization is not a
+containing magazine or journal title. Videos and audio retain personal-author
+support. Dates, authors (except the social profile), series names, and publisher
+details other than controlled video/social platforms remain optional.</p>
+
+<p>Audio accepts an episode/recording page on the producer&rsquo;s site or a listening
+service, including Apple Podcasts links with episode query parameters. A direct
+audio-file URL is not required. Audio has no platform attribute or dropdown:
+<code class="prettyprint">publisher</code> is free text for the production organization, not Spotify or Apple
+merely because the URL points there. Cite a specific episode/recording; whole
+podcast-series references are outside the current scope.</p>
+
+<p>The API retains <code class="prettyprint">website</code> but contributor source-creation forms omit it for
+text citations. The current citation endpoints still accept only note consumers;
+further-reading management for article-level links is separate work.</p>
+
+<p>Page numbers are integers from 1–10000; supplying only the beginning creates a
+one-page range. No report-number, episode-number, username, or author-role
+attribute has been introduced.</p>
 
 <p>The shared <code class="prettyprint">pageNumbersBegin</code> and <code class="prettyprint">pageNumbersEnd</code> fields describe publication
 pages. A cited passage uses the separate citation <code class="prettyprint">location</code> described below.</p>
